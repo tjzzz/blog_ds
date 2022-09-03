@@ -1,17 +1,10 @@
-# Foam/Obsidian-mkdocs-template
-[**中文文档**](https://github.com/Jackiexiao/foam-mkdocs-template/blob/master/README-zh.md)
-
-![foam-mkdocs-template-png](demo-mkdocs.png)
-
-* Share your **foam/obsidian/markdown** notes in a simple and intuitive way ! Support [[roamlike link]] 
-
-This template use [mkdocs](https://www.mkdocs.org/user-guide/configuration/), [mkdocs-material](https://squidfunk.github.io/mkdocs-material/), [mkdocs-roamlinks-plugin](https://github.com/Jackiexiao/mkdocs-roamlinks-plugin) and many mkdocs plugins.
 
 
-## Demo
+本博客是基于mkdocs搭建的静态博客，通过obsidian的进行markdown的文档书写，然后用mkdocs+github-pages进行发布，
+模版参考 https://github.com/Jackiexiao/foam-mkdocs-template
 
-* [github page](https://jackiexiao.github.io/foam-mkdocs-template/)
-* 国内访问[gitee page](https://jackiegeek.gitee.io/foam-mkdocs-template/)
+具体使用方式可以参看 mkdocs文档或者上述参考模版
+
 
 
 ## Usage：Deploy to github page

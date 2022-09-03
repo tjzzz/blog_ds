@@ -1,17 +1,71 @@
-# Foam-mkdocs-template
-Welcome to Foam-mkdocs-template! [[#support roamlinks]]!
-
-* How to create this website and share your foam/obsidian notes? See: [[tutorial]]
-* [foam](https://github.com/foambubble/foam)
+# about me
+欢迎来到zhenzhen的技术blog~
 
 
-## Support roamlinks
+---
+本博客主要是梳理data science的整体技术体系，整体分为如下两个大的部分
 
-| origin                  | convert                             |
-| ----------------------- | ----------------------------------- |
-| `[Git Flow](git_flow.md)` | `[Git Flow](../software/git_flow.md)` |
-| `[[Git Flow]]`            | `[Git Flow](../software/git_flow.md)` |
-| `![[image.png]]`           | `![image.png](../image/imag.png)`      |
-| `[[#Heading identifiers]]` | `[Heading identifiers in HTML](#heading-identifiers-in-html)`|
-| `[[Git Flow#Heading]]`     |  `[Git Flow](../software/git_flow.md#heading)` |
+- 技术的技术体系
+- 业务/专题性的方法论
+
+
+## 1. 技术体系
+
+整个技术体系的大致流程，计划按照如下方式进行梳理：
+
+1. 基础工具 
+工欲善其事必先利其器
+- markdown，git，R/python，MR,SQL
+- linux
+
+
+2. 获取数据
+
+3. 数据清洗+ 探索性分析
+    * 数据可视化
+
+
+4. 统计推断
+[@统计学](4_Statistics/@统计学.md)     [参数估计](4_Statistics/参数估计.md)    [假设检验](4_Statistics/假设检验.md)
+
+实验设计中ab-test和interleaving实验相关：
+
+
+
+5. 机器学习
+
+
+6. 深度学习
+
+
+7. 数据产品开发
+
+
+8. 平台架构
+
+
+## 2 业务方法论
+
+主要围绕：
+搜广推
+
+用户营销/画像
+
+指标体系分析
+
+商业化分析
+
+
+## 3. 排期
+
+
+|  分类           |  任务说明     | 计划时间/进度 |
+|:--------------|:----------|:--------|
+|  tools        |  基础工具，包括  |  2022-6/done |
+| 数据获取 + 数据可视化  |           |  2022-6/done |
+| 统计推断          |           |  2022-6/done|
+| 机器学习          |           |  2022-7 |
+| 深度学习          |           | 2022-8 |
+| 业务方法梳理        |           | 2022-10 |  
+
 
