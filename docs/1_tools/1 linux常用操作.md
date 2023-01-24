@@ -1,5 +1,3 @@
-[TOC]
-
 
 # 1.常用操作系统
 在实际工作中应用较多的应该主要是centos，Ubuntu
@@ -52,7 +50,6 @@ printf "the answer is %s\n" 12
 lsof |grep deleted | grep -v grep | awk '{print $2}' | xargs kill -9
 
 
-
 关于 lsof显示每列对应的含义：https://www.cnblogs.com/sparkdev/p/10271351.html
 ![](../../Draft/media/Pasted%20image%2020220216102828.png)
 
@@ -77,7 +74,6 @@ lsof |grep deleted | grep -v grep | awk '{print $2}' | xargs kill -9
 
 
 ## 文件操作
-
 
 * 删除指定日期之前的
 
@@ -130,8 +126,6 @@ sort b.txt a.txt a.txt | uniq -u
 ## 文件get
 
 * wget
-
-
 
 * scp
 

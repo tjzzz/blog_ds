@@ -1,9 +1,9 @@
-
-
 本博客是基于mkdocs搭建的静态博客，通过obsidian的进行markdown的文档书写，然后用mkdocs+github-pages进行发布，
 模版参考 https://github.com/Jackiexiao/foam-mkdocs-template
 
 具体使用方式可以参看 mkdocs文档或者上述参考模版
+
+最终生成的博客地址： https://tjzzz.github.io/blog_ds/
 
 
 

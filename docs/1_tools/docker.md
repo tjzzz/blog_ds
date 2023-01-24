@@ -80,10 +80,11 @@ docker rmi 镜像名
 
 
 清理空间
-
+```
 docker system df
-
 docker system prune -a
+```
+
 
 
 **mac安装**

@@ -9,6 +9,17 @@ conda install -c conda-forge dowhy
 https://microsoft.github.io/dowhy/readme.html
 github: https://github.com/Microsoft/dowhy
 
+教程: https://github.com/amit-sharma/causal-inference-tutorial
+
+其估计步骤如下
+1. Model a causal inference problem using assumptions.
+支持的图的输入格式:  gml (preferred) and dot
+3. Identify an expression for the causal effect under these assumptions (“causal estimand”).
+4. Estimate the expression using statistical methods such as matching or instrumental variables.
+5. Finally, verify the validity of the estimate using a variety of robustness checks.
+
+
+
 
 ![](../../../Draft/media/16351405512171.jpg)
 

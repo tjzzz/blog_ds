@@ -18,11 +18,9 @@ crontab -u xxx -l
 https://zhuanlan.zhihu.com/p/92152648
 
 
-# 
-
 将脚本设置例行，加上`source ~/.bashrc`,发现并没有引入环境。原因
 
-![-w528](../../Draft/media/15821981132887/15821981832654.jpg)
+![](../../Draft/media/15821981132887/15821981832654.jpg)
 
 bashrc文件中有这个一句
 
