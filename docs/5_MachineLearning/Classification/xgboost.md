@@ -55,11 +55,18 @@ xgboost.plot_importance(model, importance_type=xxx)
 
 # 其他问题
 
- ## xgboost特征是可复用的
+xgboost特征是可复用的
 
 ## xgboost 更改损失函数
 xgboost的默认损失函数
 
 #todo https://blog.csdn.net/zwqjoy/article/details/109311133
+
+
+
+# xgb-spark分布式版本
+xgb https://xgboost.readthedocs.io/en/stable/tutorials/spark_estimator.html
+lgb https://microsoft.github.io/SynapseML/docs/features/lightgbm/about/
+
 
 
