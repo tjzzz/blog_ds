@@ -1,0 +1,3768 @@
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>特征处理—降维 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#特征处理降维" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="blog_ds" class="md-header-nav__button md-logo" aria-label="blog_ds">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            blog_ds
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              特征处理—降维
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../1_tools/1%20linux%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" class="md-tabs__link">
+          1 tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../2_data/DataVisulization/%40%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E6%A6%82%E8%BF%B0/" class="md-tabs__link">
+          2 data
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../4_Statistics/%E3%80%90TOC%E3%80%91%E7%BB%9F%E8%AE%A1%E5%AD%A6/" class="md-tabs__link">
+          4 Statistics
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../0_%E6%A8%A1%E5%9E%8B%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7/" class="md-tabs__link md-tabs__link--active">
+          5 MachineLearning
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../7_DeepLearning/cv-tools/" class="md-tabs__link">
+          7 DeepLearning
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../ds%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97/%E3%80%90TOC%E3%80%91%E5%AF%BC%E8%AE%BA/" class="md-tabs__link">
+          Ds实践系列
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BBPDCA/%E3%80%90%E5%AF%BC%E8%AF%BB%E3%80%91/" class="md-tabs__link">
+          业务专题
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      1 tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="1 tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        1 tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/1%20linux%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" title="1.常用操作系统" class="md-nav__link">
+      1.常用操作系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/2%20%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7pip/" title="2 包管理工具pip" class="md-nav__link">
+      2 包管理工具pip
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/2%20%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7conda/" title="1. conda 环境管理" class="md-nav__link">
+      1. conda 环境管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/2.%20%E7%BB%88%E7%AB%AFIDE/" title="2. 终端IDE" class="md-nav__link">
+      2. 终端IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/3.vim%20%E9%85%8D%E7%BD%AE/" title="3.vim 配置" class="md-nav__link">
+      3.vim 配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/Jupyter/" title="Jupyter" class="md-nav__link">
+      Jupyter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/crontab/" title="crontab" class="md-nav__link">
+      crontab
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/docker/" title="docker" class="md-nav__link">
+      docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/git/" title="git" class="md-nav__link">
+      git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/ssh%26%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/" title="python-ssh" class="md-nav__link">
+      python-ssh
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/%E5%89%8D%E6%B2%BFstudy/" title="前沿study" class="md-nav__link">
+      前沿study
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1_tools/%E6%9C%89%E7%94%A8%E7%9A%84%E7%BD%91%E5%9D%80%26%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="有用的网址&小工具" class="md-nav__link">
+      有用的网址&小工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      2 data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="2 data" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        2 data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      DataVisulization
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="DataVisulization" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        <span class="md-nav__icon md-icon"></span>
+        DataVisulization
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/DataVisulization/%40%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E6%A6%82%E8%BF%B0/" title="@数据可视化概述" class="md-nav__link">
+      @数据可视化概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/DataVisulization/R-%E5%8F%AF%E8%A7%86%E5%8C%96/" title="基于R的" class="md-nav__link">
+      基于R的
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/DataVisulization/python-matplotlib/" title="matplotlib" class="md-nav__link">
+      matplotlib
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/DataVisulization/python-seaborn/" title="Python seaborn" class="md-nav__link">
+      Python seaborn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/DataVisulization/superset/" title="superset" class="md-nav__link">
+      superset
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      get Data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="get Data" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        <span class="md-nav__icon md-icon"></span>
+        get Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/get_Data/python-BeautifulSoup/" title="1.直接抓取网页" class="md-nav__link">
+      1.直接抓取网页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/get_Data/python-selenium/" title="【package】selenium" class="md-nav__link">
+      【package】selenium
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/get_Data/%E5%85%AC%E5%BC%80%E5%BE%AE%E8%A7%82%E6%95%B0%E6%8D%AE%E5%BA%93%201.0/" title="公开微观数据库 1.0" class="md-nav__link">
+      公开微观数据库 1.0
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3">
+      增强分析
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="增强分析" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        <span class="md-nav__icon md-icon"></span>
+        增强分析
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/BI/" title="BI工具" class="md-nav__link">
+      BI工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/" title="增强分析" class="md-nav__link">
+      增强分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/%E5%A4%9A%E7%BB%B4%E5%88%86%E6%9E%90/" title="多维分析" class="md-nav__link">
+      多维分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2_data/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/%E8%87%AA%E5%8A%A8%E6%95%B0%E6%8D%AE%E8%A7%81%E8%A7%A3/" title="自动数据见解" class="md-nav__link">
+      自动数据见解
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      4 Statistics
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="4 Statistics" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        4 Statistics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/%E3%80%90TOC%E3%80%91%E7%BB%9F%E8%AE%A1%E5%AD%A6/" title="【TOC】统计学" class="md-nav__link">
+      【TOC】统计学
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" title="假设检验" class="md-nav__link">
+      假设检验
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/%E5%88%86%E7%B1%BB%E5%8F%98%E9%87%8F%E7%9A%84%E6%8E%A8%E6%96%AD/" title="分类变量的推断" class="md-nav__link">
+      分类变量的推断
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1-%E6%A0%B7%E6%9C%AC%E9%87%8F%E7%9A%84%E7%A1%AE%E5%AE%9A/" title="参数估计 样本量的确定" class="md-nav__link">
+      参数估计 样本量的确定
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" title="参数估计的基本原理" class="md-nav__link">
+      参数估计的基本原理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/" title="相关系数" class="md-nav__link">
+      相关系数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" title="方差分析" class="md-nav__link">
+      方差分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" title="1. 离散型统计分布" class="md-nav__link">
+      1. 离散型统计分布
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/" title="生物统计 生存分析" class="md-nav__link">
+      生物统计 生存分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/%E9%9D%9E%E5%8F%82%E6%95%B0%E6%A3%80%E9%AA%8C/" title="非参数检验" class="md-nav__link">
+      非参数检验
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-11" type="checkbox" id="nav-4-11">
+    
+    <label class="md-nav__link" for="nav-4-11">
+      ExperimentDesign
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="ExperimentDesign" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-11">
+        <span class="md-nav__icon md-icon"></span>
+        ExperimentDesign
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/ExperimentDesign/ab-test/" title="Ab test" class="md-nav__link">
+      Ab test
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/ExperimentDesign/interleaving%E4%BB%8B%E7%BB%8D/" title="Interleaving介绍" class="md-nav__link">
+      Interleaving介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/ExperimentDesign/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1/" title="实验设计" class="md-nav__link">
+      实验设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/ExperimentDesign/%E6%8A%BD%E6%A0%B7%E6%8A%80%E6%9C%AF/" title="抽样技术" class="md-nav__link">
+      抽样技术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/ExperimentDesign/%E8%B0%83%E6%9F%A5%E9%97%AE%E5%8D%B7%E7%9A%84%E4%BF%A1%E5%BA%A6%E3%80%81%E6%95%88%E5%BA%A6/" title="调查问卷的信度、效度" class="md-nav__link">
+      调查问卷的信度、效度
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-12" type="checkbox" id="nav-4-12">
+    
+    <label class="md-nav__link" for="nav-4-12">
+      Causal analysis
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Causal analysis" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-12">
+        <span class="md-nav__icon md-icon"></span>
+        Causal analysis
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/%40%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/" title="@因果推断" class="md-nav__link">
+      @因果推断
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/readme-%E5%9B%A0%E6%9E%9C%E5%88%86%E6%9E%90/" title="课程" class="md-nav__link">
+      课程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/shap/" title="Shap" class="md-nav__link">
+      Shap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/uplift/" title="Uplift" class="md-nav__link">
+      Uplift
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9A%E5%85%B3%E4%BA%8E%E5%9B%A0%E6%9E%9C%E5%85%B3%E7%B3%BB%E7%9A%84%E6%96%B0%E7%A7%91%E5%AD%A6/" title="【读书笔记】为什么：关于因果关系的新科学" class="md-nav__link">
+      【读书笔记】为什么：关于因果关系的新科学
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E5%88%AB%E6%8B%BF%E7%9B%B8%E5%85%B3%E5%BD%93%E5%9B%A0%E6%9E%9C/" title="【读书笔记】别拿相关当因果" class="md-nav__link">
+      【读书笔记】别拿相关当因果
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/%E5%9B%A0%E6%9E%9C%E5%88%86%E6%9E%90/" title="因果分析" class="md-nav__link">
+      因果分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/%E5%9B%A0%E6%9E%9C%E6%95%88%E5%BA%94%E4%BC%B0%E8%AE%A1%E6%96%B9%E6%B3%95/" title="因果效应估计方法" class="md-nav__link">
+      因果效应估计方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/%E5%B7%A5%E5%85%B7-do_why/" title="do why" class="md-nav__link">
+      do why
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/%E5%B7%A5%E5%85%B7-econML%26causalML/" title="econML" class="md-nav__link">
+      econML
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../4_Statistics/causal_analysis/%E8%AE%BA%E6%96%87-LIME/" title="3.【解释性】LIME" class="md-nav__link">
+      3.【解释性】LIME
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      5 MachineLearning
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="5 MachineLearning" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        5 MachineLearning
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../0_%E6%A8%A1%E5%9E%8B%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7/" title="0 模型可解释性" class="md-nav__link">
+      0 模型可解释性
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../HMMM/" title="HMM" class="md-nav__link">
+      HMM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../page%20rank/" title="Page rank" class="md-nav__link">
+      Page rank
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E3%80%90%E5%AF%BC%E8%88%AA%E3%80%91%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="【导航】机器学习" class="md-nav__link">
+      【导航】机器学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%9B%A0%E5%AD%90%E5%88%86%E6%9E%90/" title="因子分析" class="md-nav__link">
+      因子分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA/" title="学习理论" class="md-nav__link">
+      学习理论
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%A8%A1%E5%9E%8B%E6%95%88%E6%9E%9C%E8%AF%84%E4%BC%B0/" title="模型效果评估" class="md-nav__link">
+      模型效果评估
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E6%9C%8D%E5%8A%A1/" title="模型管理与服务" class="md-nav__link">
+      模型管理与服务
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" title="知识图谱" class="md-nav__link">
+      知识图谱
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-10" type="checkbox" id="nav-5-10">
+    
+    <label class="md-nav__link" for="nav-5-10">
+      1 Auto tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="1 Auto tools" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-10">
+        <span class="md-nav__icon md-icon"></span>
+        1 Auto tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/MLops/" title="MLops" class="md-nav__link">
+      MLops
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/airflow/" title="airflow" class="md-nav__link">
+      airflow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/feature_tools/" title="Feature tools" class="md-nav__link">
+      Feature tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/pycaret/" title="pycaret" class="md-nav__link">
+      pycaret
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/python-ppt/" title="python-pptx" class="md-nav__link">
+      python-pptx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/streamlit/" title="Streamlit" class="md-nav__link">
+      Streamlit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/%E5%89%8D%E7%AB%AF%E5%B1%95%E7%8E%B0%E7%9B%B8%E5%85%B3/" title="前端展现相关" class="md-nav__link">
+      前端展现相关
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98/" title="参数调优" class="md-nav__link">
+      参数调优
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/%E5%B7%A5%E5%85%B7/" title="dolphinscheduler" class="md-nav__link">
+      dolphinscheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/%E6%A1%88%E4%BE%8B/" title="案例" class="md-nav__link">
+      案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" title="模型部署" class="md-nav__link">
+      模型部署
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0/" title="一.综述" class="md-nav__link">
+      一.综述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1_Auto_tools/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/" title="规则引擎" class="md-nav__link">
+      规则引擎
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-11" type="checkbox" id="nav-5-11">
+    
+    <label class="md-nav__link" for="nav-5-11">
+      5 RecommendSystem
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="5 RecommendSystem" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-11">
+        <span class="md-nav__icon md-icon"></span>
+        5 RecommendSystem
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%40%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" title="推荐系统的逻辑框架" class="md-nav__link">
+      推荐系统的逻辑框架
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/DSSM/" title="" class="md-nav__link">
+      
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/FM%20%E7%B3%BB%E5%88%97/" title="FM 系列" class="md-nav__link">
+      FM 系列
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/Faiss/" title="Faiss" class="md-nav__link">
+      Faiss
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/embedding/" title="Embedding" class="md-nav__link">
+      Embedding
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E3%80%90%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E3%80%91%E7%AB%A01%20%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" title="【推荐系统】章1 基本介绍" class="md-nav__link">
+      【推荐系统】章1 基本介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E3%80%90%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E3%80%91%E7%AB%A02%20%E5%88%A9%E7%94%A8%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%95%B0%E6%8D%AE/" title="【推荐系统】章2 利用用户行为数据" class="md-nav__link">
+      【推荐系统】章2 利用用户行为数据
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E5%8E%9F%E7%90%86%E7%AF%87-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" title="原理篇——深度学习" class="md-nav__link">
+      原理篇——深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E5%8E%9F%E7%90%86%E7%AF%87%E2%80%94%E2%80%941%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/" title="原理篇——近邻推荐" class="md-nav__link">
+      原理篇——近邻推荐
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E5%8E%9F%E7%90%86%E7%AF%87%E2%80%94%E2%80%942%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/" title="原理篇——矩阵分解" class="md-nav__link">
+      原理篇——矩阵分解
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E5%8E%9F%E7%90%86%E7%AF%87%E2%80%94%E5%86%B7%E5%90%AF%E5%8A%A8%E7%9B%B8%E5%85%B3/" title="原理篇——关于冷启动" class="md-nav__link">
+      原理篇——关于冷启动
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/" title="学习资料" class="md-nav__link">
+      学习资料
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E5%AE%9E%E8%B7%B5-deepCtr/" title="【工具篇】deepCTR" class="md-nav__link">
+      【工具篇】deepCTR
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E5%B7%A5%E7%A8%8B%E7%AF%87%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E6%9E%B6%E6%9E%84/" title="工程篇——常见架构" class="md-nav__link">
+      工程篇——常见架构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/" title="序列-推荐" class="md-nav__link">
+      序列-推荐
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E6%9C%80%E6%96%B0%E6%8A%80%E6%9C%AF/" title="最新技术" class="md-nav__link">
+      最新技术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../5_RecommendSystem/%E7%BB%BC%E8%BF%B0/" title="综述" class="md-nav__link">
+      综述
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-12" type="checkbox" id="nav-5-12">
+    
+    <label class="md-nav__link" for="nav-5-12">
+      Abnormal detect
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Abnormal detect" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-12">
+        <span class="md-nav__icon md-icon"></span>
+        Abnormal detect
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Abnormal_detect/tool-%E5%A4%9A%E5%85%83%E6%95%B0%E6%8D%AE-Pyod/" title="tool-多元数据-Pyod" class="md-nav__link">
+      tool-多元数据-Pyod
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Abnormal_detect/tool-%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" title="tool-时间序列-工具使用" class="md-nav__link">
+      tool-时间序列-工具使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Abnormal_detect/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B-%E5%A4%9A%E5%85%83/" title="【异常检测1】无监督-多元数据" class="md-nav__link">
+      【异常检测1】无监督-多元数据
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Abnormal_detect/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B-%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" title="【异常检测2】时间序列" class="md-nav__link">
+      【异常检测2】时间序列
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Abnormal_detect/%E7%9F%A5%E8%AF%86%E5%8F%91%E7%8E%B0/" title="知识发现" class="md-nav__link">
+      知识发现
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-13" type="checkbox" id="nav-5-13">
+    
+    <label class="md-nav__link" for="nav-5-13">
+      Classification
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Classification" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-13">
+        <span class="md-nav__icon md-icon"></span>
+        Classification
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Classification/%40%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B/" title="@分类模型" class="md-nav__link">
+      @分类模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Classification/CatBoost/" title="CatBoost" class="md-nav__link">
+      CatBoost
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Classification/k%E8%BF%91%E9%82%BB%20%E2%80%94%E2%80%94%20%E9%9D%9E%E5%8F%82%E6%A8%A1%E5%9E%8B/" title="K近邻 —— 非参模型" class="md-nav__link">
+      K近邻 —— 非参模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Classification/lightgbm/" title="lightgbm" class="md-nav__link">
+      lightgbm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Classification/xgboost/" title="xgboost" class="md-nav__link">
+      xgboost
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Classification/%E5%86%B3%E7%AD%96%E6%A0%91/" title="决策树" class="md-nav__link">
+      决策树
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Classification/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM/" title="支持向量机SVM" class="md-nav__link">
+      支持向量机SVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Classification/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/" title="1. logistic回归&最大熵模型" class="md-nav__link">
+      1. logistic回归&最大熵模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Classification/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" title="集成学习" class="md-nav__link">
+      集成学习
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-14" type="checkbox" id="nav-5-14">
+    
+    <label class="md-nav__link" for="nav-5-14">
+      Cluster
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Cluster" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-14">
+        <span class="md-nav__icon md-icon"></span>
+        Cluster
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cluster/%E8%81%9A%E7%B1%BB/" title="聚类" class="md-nav__link">
+      聚类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cluster/%E8%81%9A%E7%B1%BBTools%E7%AF%87/" title="聚类Tools篇" class="md-nav__link">
+      聚类Tools篇
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cluster/%E8%81%9A%E7%B1%BB%E6%95%88%E6%9E%9C%E8%AF%84%E4%BB%B7/" title="聚类效果评价" class="md-nav__link">
+      聚类效果评价
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-15" type="checkbox" id="nav-5-15" checked>
+    
+    <label class="md-nav__link" for="nav-5-15">
+      Features&Data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features&Data" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-15">
+        <span class="md-nav__icon md-icon"></span>
+        Features&Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" title="数据预处理" class="md-nav__link">
+      数据预处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E7%89%B9%E5%BE%81%E5%A4%84%E7%90%86%E2%80%94%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/" title="特征处理—特征选择" class="md-nav__link">
+      特征处理—特征选择
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        特征处理—降维
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="特征处理—降维" class="md-nav__link md-nav__link--active">
+      特征处理—降维
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-线性降维方法" class="md-nav__link">
+    1. 线性降维方法：
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2非线性的方法流形" class="md-nav__link">
+    2.非线性的方法——流形
+  </a>
+  
+    <nav class="md-nav" aria-label="2.非线性的方法——流形">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#多维缩放mds" class="md-nav__link">
+    多维缩放MDS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#等度量映射isomap" class="md-nav__link">
+    等度量映射Isomap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#局部线性嵌入lle" class="md-nav__link">
+    局部线性嵌入LLE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#随机近邻嵌入-sne" class="md-nav__link">
+    随机近邻嵌入 SNE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#小结" class="md-nav__link">
+    小结
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E7%BB%9F%E8%AE%A1-%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1/" title="1样本不均衡" class="md-nav__link">
+      1样本不均衡
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-16" type="checkbox" id="nav-5-16">
+    
+    <label class="md-nav__link" for="nav-5-16">
+      Regression
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Regression" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-16">
+        <span class="md-nav__icon md-icon"></span>
+        Regression
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Regression/4.2%20%E5%9B%9E%E5%BD%92%E4%B8%8E%E5%88%86%E7%B1%BB/" title="4.2 回归与分类" class="md-nav__link">
+      4.2 回归与分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Regression/%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/" title="回归模型" class="md-nav__link">
+      回归模型
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-17" type="checkbox" id="nav-5-17">
+    
+    <label class="md-nav__link" for="nav-5-17">
+      时间序列
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="时间序列" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-17">
+        <span class="md-nav__icon md-icon"></span>
+        时间序列
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8Btools/" title="时序预测tools" class="md-nav__link">
+      时序预测tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97-%E9%A2%84%E6%B5%8B/" title="2.时间序列预测模型" class="md-nav__link">
+      2.时间序列预测模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" title="时间序列" class="md-nav__link">
+      时间序列
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/%E8%AE%BA%E6%96%87/" title="Interday Forecasting and Intraday Updating of Call Center Arrivals" class="md-nav__link">
+      Interday Forecasting and Intraday Updating of Call Center Arrivals
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      7 DeepLearning
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="7 DeepLearning" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        7 DeepLearning
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/cv-tools/" title="MMLab" class="md-nav__link">
+      MMLab
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/cv-%E6%95%B0%E6%8D%AE%E5%B1%80%E5%A2%9E%E5%BC%BA/" title="【数据增强】" class="md-nav__link">
+      【数据增强】
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/tools-opncv/" title="opencv" class="md-nav__link">
+      opencv
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-tools/" title="工具篇" class="md-nav__link">
+      工具篇
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%BC%80%E6%BA%90%E5%9B%BE%E7%89%87%E5%BA%93/" title="深度学习-开源图片数据库" class="md-nav__link">
+      深度学习-开源图片数据库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/%E8%AE%AD%E7%BB%83%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" title="训练常见问题" class="md-nav__link">
+      训练常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-7" type="checkbox" id="nav-6-7">
+    
+    <label class="md-nav__link" for="nav-6-7">
+      1.act recognition&pose estimation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="1.act recognition&pose estimation" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-7">
+        <span class="md-nav__icon md-icon"></span>
+        1.act recognition&pose estimation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/1.act_recognition%26pose_estimation/%E3%80%90%E5%B7%A5%E5%85%B7%E3%80%91MMlab%E2%80%94mmaction/" title="【工具】MMlab—mmaction" class="md-nav__link">
+      【工具】MMlab—mmaction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/1.act_recognition%26pose_estimation/%E3%80%90%E5%B7%A5%E5%85%B7%E3%80%91MMlab%E2%80%94mmdetection/" title="【工具】MMlab—mmdetection" class="md-nav__link">
+      【工具】MMlab—mmdetection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/1.act_recognition%26pose_estimation/%E3%80%90%E5%B7%A5%E5%85%B7%E3%80%91slowfast/" title="【工具】slowfast" class="md-nav__link">
+      【工具】slowfast
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/1.act_recognition%26pose_estimation/%E6%95%B0%E6%8D%AE%E9%9B%86%26%E5%B7%A5%E5%85%B7/" title="行为识别-数据集&工具" class="md-nav__link">
+      行为识别-数据集&工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/1.act_recognition%26pose_estimation/%E7%BB%BC%E8%BF%B0_action%20recognition%20/" title="综述_action recognition" class="md-nav__link">
+      综述_action recognition
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/1.act_recognition%26pose_estimation/%E7%BB%BC%E8%BF%B0_poseestimation/" title="综述_pose_estimation" class="md-nav__link">
+      综述_pose_estimation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8" type="checkbox" id="nav-6-8">
+    
+    <label class="md-nav__link" for="nav-6-8">
+      2目标检测
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="2目标检测" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-8">
+        <span class="md-nav__icon md-icon"></span>
+        2目标检测
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/2%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" title="【目标检测】" class="md-nav__link">
+      【目标检测】
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9" type="checkbox" id="nav-6-9">
+    
+    <label class="md-nav__link" for="nav-6-9">
+      4图像分类
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="4图像分类" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-9">
+        <span class="md-nav__icon md-icon"></span>
+        4图像分类
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/4%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB-/" title="【案例】" class="md-nav__link">
+      【案例】
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/4%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB-tf1/" title="TF1.0-slim 图像识别模型—— 1.利用已有的进行微调" class="md-nav__link">
+      TF1.0-slim  图像识别模型—— 1.利用已有的进行微调
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/4%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB-%E7%BB%BC%E8%BF%B0/" title="综述" class="md-nav__link">
+      综述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/4%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB-%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E5%B0%91/" title="训练数据少-" class="md-nav__link">
+      训练数据少-
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-10" type="checkbox" id="nav-6-10">
+    
+    <label class="md-nav__link" for="nav-6-10">
+      5基础&综述
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="5基础&综述" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-10">
+        <span class="md-nav__icon md-icon"></span>
+        5基础&综述
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/5%E5%9F%BA%E7%A1%80%26%E7%BB%BC%E8%BF%B0/optical%20flow%20%E5%85%89%E6%B5%81md/" title="optical flow 光流" class="md-nav__link">
+      optical flow 光流
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/5%E5%9F%BA%E7%A1%80%26%E7%BB%BC%E8%BF%B0/%E4%BA%BA%E8%84%B8%E8%A1%A8%E6%83%85%E8%AF%86%E5%88%AB%20FER/" title="人脸表情识别 FER" class="md-nav__link">
+      人脸表情识别 FER
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/5%E5%9F%BA%E7%A1%80%26%E7%BB%BC%E8%BF%B0/%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2%EF%BC%9ABoF%E3%80%81VLAD%E3%80%81FV%E4%B8%89%E5%89%91%E5%AE%A2/" title="图像检索：BoF、VLAD、FV三剑客" class="md-nav__link">
+      图像检索：BoF、VLAD、FV三剑客
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-11" type="checkbox" id="nav-6-11">
+    
+    <label class="md-nav__link" for="nav-6-11">
+      6face
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="6face" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-11">
+        <span class="md-nav__icon md-icon"></span>
+        6face
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/6face/Face%E7%BB%BC%E8%BF%B0/" title="Face综述" class="md-nav__link">
+      Face综述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/6face/face_recgnization/" title="face_recgnization" class="md-nav__link">
+      face_recgnization
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-12" type="checkbox" id="nav-6-12">
+    
+    <label class="md-nav__link" for="nav-6-12">
+      7 Nlp
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="7 Nlp" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-12">
+        <span class="md-nav__icon md-icon"></span>
+        7 Nlp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/7_Nlp/N-gram/" title="N gram" class="md-nav__link">
+      N gram
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/7_Nlp/NLP-Attention%20Mechanism/" title="Attention Mechanism" class="md-nav__link">
+      Attention Mechanism
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/7_Nlp/NLP-REVIEW/" title="review 发展" class="md-nav__link">
+      review 发展
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/7_Nlp/bert/" title="Bert" class="md-nav__link">
+      Bert
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/7_Nlp/%E5%88%86%E8%AF%8D/" title="分词" class="md-nav__link">
+      分词
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/7_Nlp/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB-%E5%8E%9F%E7%90%86%E7%AF%87/" title="文本分类 原理篇" class="md-nav__link">
+      文本分类 原理篇
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/7_Nlp/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB-%E5%AE%9E%E8%B7%B5/" title="文本分类 实践" class="md-nav__link">
+      文本分类 实践
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-13" type="checkbox" id="nav-6-13">
+    
+    <label class="md-nav__link" for="nav-6-13">
+      8 DeepLearning
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="8 DeepLearning" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-13">
+        <span class="md-nav__icon md-icon"></span>
+        8 DeepLearning
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/4.8%20%E8%87%AA%E9%80%82%E5%BA%94%E7%9A%84%E5%9F%BA%E5%87%BD%E6%95%B0%E2%80%94%E2%80%94%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="4.8 自适应的基函数——神经网络" class="md-nav__link">
+      4.8 自适应的基函数——神经网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/4.9%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BB%BC%E8%BF%B0/" title="4.9 深度学习综述" class="md-nav__link">
+      4.9 深度学习综述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/%40%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" title="@深度学习" class="md-nav__link">
+      @深度学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/Drawing%202022-05-13%2017.30.47.excalidraw/" title="Drawing 2022 05 13 17.30.47.excalidraw" class="md-nav__link">
+      Drawing 2022 05 13 17.30.47.excalidraw
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/%E3%80%90NG-DL%E3%80%91course2_week1%20%E4%BC%98%E5%8C%96%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0/" title="【NG-DL】course2_week1 优化网络参数" class="md-nav__link">
+      【NG-DL】course2_week1 优化网络参数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="基础概念" class="md-nav__link">
+      基础概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/" title="平台相关" class="md-nav__link">
+      平台相关
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" title="强化学习" class="md-nav__link">
+      强化学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%A7%A3%E9%87%8A%E6%80%A7%E9%97%AE%E9%A2%98/" title="神经网络解释性问题" class="md-nav__link">
+      神经网络解释性问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/" title="【迁移学习】" class="md-nav__link">
+      【迁移学习】
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-13-11" type="checkbox" id="nav-6-13-11">
+    
+    <label class="md-nav__link" for="nav-6-13-11">
+      Graph
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Graph" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-13-11">
+        <span class="md-nav__icon md-icon"></span>
+        Graph
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/Graph/%E5%9B%BE%E7%BD%91%E7%BB%9C/" title="图网络" class="md-nav__link">
+      图网络
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-13-12" type="checkbox" id="nav-6-13-12">
+    
+    <label class="md-nav__link" for="nav-6-13-12">
+      Dl book
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Dl book" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-13-12">
+        <span class="md-nav__icon md-icon"></span>
+        Dl book
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/dl_book/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/" title="第一章 引言" class="md-nav__link">
+      第一章 引言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/dl_book/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E6%AD%A3%E5%88%99%E5%8C%96/" title="第七章 正则化" class="md-nav__link">
+      第七章 正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/dl_book/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A6%82%E7%8E%87%E4%B8%8E%E4%BF%A1%E6%81%AF%E8%AE%BA/" title="第三章 概率与信息论" class="md-nav__link">
+      第三章 概率与信息论
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/dl_book/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" title="第二章 线性代数" class="md-nav__link">
+      第二章 线性代数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/dl_book/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="第五章 机器学习" class="md-nav__link">
+      第五章 机器学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/dl_book/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96/" title="第八章 深度模型中的优化" class="md-nav__link">
+      第八章 深度模型中的优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/dl_book/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E6%B7%B1%E5%BA%A6%E5%89%8D%E9%A6%88%E7%BD%91%E7%BB%9C/" title="第六章 深度前馈网络" class="md-nav__link">
+      第六章 深度前馈网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/dl_book/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" title="第四章 数值计算" class="md-nav__link">
+      第四章 数值计算
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-13-13" type="checkbox" id="nav-6-13-13">
+    
+    <label class="md-nav__link" for="nav-6-13-13">
+      Tf
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tf" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-13-13">
+        <span class="md-nav__icon md-icon"></span>
+        Tf
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/tf/tensorflo/" title="TF2.0" class="md-nav__link">
+      TF2.0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/tf/tf-%E8%B5%84%E6%96%99/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/8_DeepLearning/tf/%E3%80%90TensorFlow%E3%80%91week1/" title="【TensorFlow】week1" class="md-nav__link">
+      【TensorFlow】week1
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-14" type="checkbox" id="nav-6-14">
+    
+    <label class="md-nav__link" for="nav-6-14">
+      Rnn
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Rnn" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-14">
+        <span class="md-nav__icon md-icon"></span>
+        Rnn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../7_DeepLearning/rnn/rnn-%E7%BB%BC%E8%BF%B0/" title="【综述】" class="md-nav__link">
+      【综述】
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Ds实践系列
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Ds实践系列" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Ds实践系列
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../ds%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97/%E3%80%90TOC%E3%80%91%E5%AF%BC%E8%AE%BA/" title="【TOC】导论" class="md-nav__link">
+      【TOC】导论
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../ds%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97/%E5%A6%82%E4%BD%95%E7%BB%BC%E8%BF%B0/" title="方法梳理——关于综述" class="md-nav__link">
+      方法梳理——关于综述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../ds%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%85%A5%E9%97%A8%E8%B5%84%E6%96%99/" title="如何选择入门资料" class="md-nav__link">
+      如何选择入门资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      业务专题
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="业务专题" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon"></span>
+        业务专题
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-1" type="checkbox" id="nav-8-1">
+    
+    <label class="md-nav__link" for="nav-8-1">
+      9专题 指标体系PDCA
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="9专题 指标体系PDCA" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-1">
+        <span class="md-nav__icon md-icon"></span>
+        9专题 指标体系PDCA
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BBPDCA/%E3%80%90%E5%AF%BC%E8%AF%BB%E3%80%91/" title="【导读】" class="md-nav__link">
+      【导读】
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BBPDCA/%E5%AE%89%E5%85%A8/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BBPDCA/%E6%8C%87%E6%A0%87%E5%BC%82%E5%8A%A8%E5%88%86%E6%9E%90/" title="指标异动分析" class="md-nav__link">
+      指标异动分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BBPDCA/%E6%A1%88%E4%BE%8B-%E5%85%B3%E4%BA%8E%E9%95%BF%E7%82%B9%E5%87%BB%E9%98%88%E5%80%BC%E5%88%92%E5%88%86%E6%96%B9%E6%B3%95/" title="案例 关于长点击阈值划分方法" class="md-nav__link">
+      案例 关于长点击阈值划分方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BBPDCA/%E6%A1%88%E4%BE%8B-%E6%8C%87%E6%A0%87%E9%98%88%E5%80%BC-rank%E6%90%9C%E7%B4%A2/" title="案例 指标阈值 rank搜索" class="md-nav__link">
+      案例 指标阈值 rank搜索
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BBPDCA/%E6%A1%88%E4%BE%8B-%E7%94%9F%E6%80%81%E6%8C%87%E6%A0%87/" title="案例 生态指标" class="md-nav__link">
+      案例 生态指标
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2">
+    
+    <label class="md-nav__link" for="nav-8-2">
+      9专题 轨迹分析
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="9专题 轨迹分析" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-2">
+        <span class="md-nav__icon md-icon"></span>
+        9专题 轨迹分析
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90/trace-sequence%20cluster/" title="sequence cluster" class="md-nav__link">
+      sequence cluster
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90/%E5%B7%A5%E5%85%B7/" title="工具" class="md-nav__link">
+      工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90/%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90-0.%E7%BB%BC%E8%BF%B0/" title="0.综述" class="md-nav__link">
+      0.综述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90/%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90-1.trajectory%20preprocessing/" title="1.trajectory preprocessing" class="md-nav__link">
+      1.trajectory preprocessing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90/%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90-2%20%E8%BD%A8%E8%BF%B9%E7%9B%B8%E4%BC%BC%E6%80%A7%E5%BA%A6%E9%87%8F/" title="轨迹分析 2 轨迹相似性度量" class="md-nav__link">
+      轨迹分析 2 轨迹相似性度量
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90/%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90-3.%20%E8%BD%A8%E8%BF%B9%E8%81%9A%E7%B1%BB%E7%BB%BC%E8%BF%B0/" title="3. 轨迹聚类综述" class="md-nav__link">
+      3. 轨迹聚类综述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90/%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90-CATS/" title="CATS" class="md-nav__link">
+      CATS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90/%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" title="应用案例" class="md-nav__link">
+      应用案例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E4%B8%9A%E5%8A%A1%E4%B8%93%E9%A2%98/9%E4%B8%93%E9%A2%98-%E8%BD%A8%E8%BF%B9%E5%88%86%E6%9E%90/%E8%BD%A8%E8%BF%B9%E5%AD%A6%E4%B9%A0and%20activity%20understanding/" title="4.轨迹学习and activity understanding" class="md-nav__link">
+      4.轨迹学习and activity understanding
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-线性降维方法" class="md-nav__link">
+    1. 线性降维方法：
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2非线性的方法流形" class="md-nav__link">
+    2.非线性的方法——流形
+  </a>
+  
+    <nav class="md-nav" aria-label="2.非线性的方法——流形">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#多维缩放mds" class="md-nav__link">
+    多维缩放MDS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#等度量映射isomap" class="md-nav__link">
+    等度量映射Isomap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#局部线性嵌入lle" class="md-nav__link">
+    局部线性嵌入LLE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#随机近邻嵌入-sne" class="md-nav__link">
+    随机近邻嵌入 SNE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#小结" class="md-nav__link">
+    小结
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="特征处理降维">特征处理—降维<a class="headerlink" href="#特征处理降维" title="Permanent link">#</a></h1>
+<p>关于降维的讨论主要是来源于“维度灾难”, 这个是数学家理查德-贝尔曼提出的。</p>
+<blockquote>
+<p>当所有参数是已知的时候，维度的增加可以让分类问题的错误率渐近为0.<br />
+当未知参数只能根据有限样本来估计时，维度的增加使错误率先降低后增加，最终收敛到0.5</p>
+</blockquote>
+<p>维数灾难的本质原因在于<code>数据样本的有限性</code>。而在数据有限的条件下，去解决维度问题，自然的方法就是去降维。降维的方法有很多</p>
+<h2 id="1-线性降维方法">1. 线性降维方法：<a class="headerlink" href="#1-线性降维方法" title="Permanent link">#</a></h2>
+<ul>
+<li>PCA 主成分分析</li>
+<li>IDA</li>
+<li>LDA</li>
+</ul>
+<h2 id="2非线性的方法流形">2.非线性的方法——流形<a class="headerlink" href="#2非线性的方法流形" title="Permanent link">#</a></h2>
+<p><strong>流形</strong><br />
+是指嵌入在高维空间中的低维子空间，它的维度是低维数据变化的自由度。（比如地球仪的球面，虽然它是在一个三维空间中，但其实是一个二维的地图卷曲而成，<span class="arithmatex"><span class="MathJax_Preview">x^2+y^2+z^2=1</span><script type="math/tex">x^2+y^2+z^2=1</script></span>，维度是2）</p>
+<p><strong>流形学习</strong><br />
+就是通过挖掘数据的内在结构实现向故由维度的转化，找到对应的低维嵌入流形。其大部分是非线性的、非参的。所以相比线性方法有更强的表达能力，但是同时对噪声更加敏感。</p>
+<p><strong>流形学习方法</strong></p>
+<p>流形学习，首先需要确定低维流形的结构，然后是高维到低维的映射关系。实际中因为都未知，所以需要做一些假设。</p>
+<h3 id="多维缩放mds">多维缩放MDS<a class="headerlink" href="#多维缩放mds" title="Permanent link">#</a></h3>
+<p>multi dimensional scaling<br />
+原则:让高维空间上样本之间的距离在低维空间中尽量保持一致以距离重建的误差最小为优化目标。</p>
+<p>具体来说：</p>
+<p>(1) 对于原始的数据<span class="arithmatex"><span class="MathJax_Preview">X_{np}</span><script type="math/tex">X_{np}</script></span>,首先可以计算出任何两个样本之间的距离，从而构造出一个距离矩阵<span class="arithmatex"><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span>，MDS算法的目的就是根据距离矩阵，寻找向量<span class="arithmatex"><span class="MathJax_Preview">Z_1,Z_2...Z_k</span><script type="math/tex">Z_1,Z_2...Z_k</script></span>,使得<span class="arithmatex"><span class="MathJax_Preview">||Z_i-Z_j||≈\sigma_{ij}</span><script type="math/tex">||Z_i-Z_j||≈\sigma_{ij}</script></span></p>
+<p>假设<span class="arithmatex"><span class="MathJax_Preview">Z</span><script type="math/tex">Z</script></span>是经过中心化处理过的，即<span class="arithmatex"><span class="MathJax_Preview">\sum z_i = 0</span><script type="math/tex">\sum z_i = 0</script></span> , 则有</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">XX^T = D≈ZZ^T</div>
+<script type="math/tex; mode=display">XX^T = D≈ZZ^T</script>
+</div>
+<p>看到这个形式，应该就能明白怎么取解了。对D做特征分解<span class="arithmatex"><span class="MathJax_Preview">D=VAV^T</span><script type="math/tex">D=VAV^T</script></span>， V是对应的特征向量，我们选择前k个特征值比较大的作为最终的降维维度即可。</p>
+<p><code>问题：高维空间的距离与低维空间距离保持一致这个假设是否合理？</code></p>
+<p>以地球仪的球面为例，三维空间中两个点的距离和平面中两个点的距离显然是不一样的。三维空间中如果用欧式距离去度量那么北京与纽约的距离是连接两点的直线，而在平面上他是一条曲线。</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># MDS</span>
+<span class="n">mds</span> <span class="o">=</span> <span class="n">manifold</span><span class="o">.</span><span class="n">MDS</span><span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">mds</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</code></pre></div>
+
+<p>下面再说一些以几何性质作为同构基础的降维方法</p>
+<h3 id="等度量映射isomap">等度量映射Isomap<a class="headerlink" href="#等度量映射isomap" title="Permanent link">#</a></h3>
+<p>等度量映射，以数据所在的低维流形与欧式空间子集的等距性为基础。描述距离的是**测地距离**，即流形上两点的真实距离。测地距离的近似计算方法：近邻点之间的欧式距离近似为近邻点之间的测地距离。</p>
+<p>通过对每一个近邻点建立连接，就可以让所有数据点共同构成一张带权重的近邻连接图。这样在这张图上任意两个点的测地距离就相当于是两点之间的最短路径。可以用图论中的Dijkstra算法求解。</p>
+<p>当计算出距离后，剩下的处理方法和MDS一致。所以总的来说包括三步：<br />
+(1) 最近邻搜索<br />
+(2) 最短路径搜索<br />
+(3) 部分特征值分解</p>
+<div class="codehilite"><pre><span></span><code>model = manifold.Isomap(n_neighbors, n_components)
+Y = model.fit_transform(X)
+</code></pre></div>
+
+<h3 id="局部线性嵌入lle">局部线性嵌入LLE<a class="headerlink" href="#局部线性嵌入lle" title="Permanent link">#</a></h3>
+<p>local linear embedding</p>
+<p>想法：待求解的低维流形在局部上是线性的，每个点可以表示成近邻点的线性组合。而局部线性嵌入就是在求解流形的过程中保持每个领域中的线性系数不变的基础上重构原数据点。</p>
+<p>详细的推导过程https://blog.csdn.net/yukgwy60648/article/details/54578141</p>
+<div class="codehilite"><pre><span></span><code># 其中method可选 [&#39;standard&#39;, &#39;ltsa&#39;, &#39;hessian&#39;, &#39;modified&#39;]
+model = manifold.LocallyLinearEmbedding(n_neighbors, n_components, eigen_solver=&#39;auto&#39;, method=method)
+Y = model.fit_transform(X)
+</code></pre></div>
+
+<p>从概率角度</p>
+<h3 id="随机近邻嵌入-sne">随机近邻嵌入 SNE<a class="headerlink" href="#随机近邻嵌入-sne" title="Permanent link">#</a></h3>
+<p>随机近邻嵌入的特点：保持数据降维前后的概率分布不变,他将高维空间中的距离首先映射到了一个服从正态分布的条件概率上。这个概率描述了不同数据点之间的相似性。<br />
+<span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">p_{j|i}=\frac{exp(-||x_j-x_i||^2/2\sigma^2_i)}{\sum_{k\ne i}exp(-||x_k-x_i||^2/2\sigma^2_i)}</span><script type="math/tex">p_{j|i}=\frac{exp(-||x_j-x_i||^2/2\sigma^2_i)}{\sum_{k\ne i}exp(-||x_k-x_i||^2/2\sigma^2_i)}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">p_{j|i}=\frac{exp(-||x_j-x_i||^2/2\sigma^2_i)}{\sum_{k\ne i}exp(-||x_k-x_i||^2/2\sigma^2_i)}</span><script type="math/tex">p_{j|i}=\frac{exp(-||x_j-x_i||^2/2\sigma^2_i)}{\sum_{k\ne i}exp(-||x_k-x_i||^2/2\sigma^2_i)}</script></span></script></span></p>
+<p>映射到低维空间后，按照同样方式计算条件概率，希望两个概率分布尽量一致。这里是KL散度最小化<br />
+<span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">KL(P||Q) = -\sum P_i ln(\frac{P_i}{Q_i})=-\sum P_i(ln(P_i)- ln(Q_i))</span><script type="math/tex">KL(P||Q) = -\sum P_i ln(\frac{P_i}{Q_i})=-\sum P_i(ln(P_i)- ln(Q_i))</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">KL(P||Q) = -\sum P_i ln(\frac{P_i}{Q_i})=-\sum P_i(ln(P_i)- ln(Q_i))</span><script type="math/tex">KL(P||Q) = -\sum P_i ln(\frac{P_i}{Q_i})=-\sum P_i(ln(P_i)- ln(Q_i))</script></span></script></span></p>
+<p><code>问题</code>：<br />
+KL距离是不对称的，会导致相聚较远的点出现较大的散度差。为了是KL距离最小化，数据就会被压缩到极小的范围，产生拥挤问题。</p>
+<p><code>改进</code><br />
+* 将KL散度改为对称形式 <span class="arithmatex"><span class="MathJax_Preview">p_{ij}=p_{ji}=(p_{i|j}+p_{j|i})/2</span><script type="math/tex">p_{ij}=p_{ji}=(p_{i|j}+p_{j|i})/2</script></span><br />
+* 令低维空间中的条件概率服从t分布，t分布有长尾效应，从而使高维中分布较远的点降维后也能区分开</p>
+<div class="codehilite"><pre><span></span><code>tsne = manifold.TSNE(n_components=n_components, init=&#39;pca&#39;, random_state=0)
+Y = tsne.fit_transform(X)
+</code></pre></div>
+
+<p><img alt="" src="../../../Draft/media/15382821564829/15383222417494.jpg" /></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;test.data&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">dd</span><span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)]</span>
+
+<span class="n">X_tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+<span class="n">X_pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">X_tsne</span><span class="p">,</span> <span class="n">X_pca</span><span class="p">)))</span>
+
+<span class="n">out2</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">200</span><span class="p">])</span>
+
+<span class="n">out</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;save_data.csv&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_tsne</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_tsne</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">200</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="c1">#plt.scatter(X_pca[:, 0], X_pca[:, 1], c=iris.target)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">200</span><span class="p">])</span>
+</code></pre></div>
+
+<h2 id="小结">小结<a class="headerlink" href="#小结" title="Permanent link">#</a></h2>
+<ul>
+<li>
+<p>本章主要知识结构<br />
+<img alt="image.png" src="https://upload-images.jianshu.io/upload_images/127231-bf906252693ca552.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+</li>
+<li>
+<p>sklearn中关于流形学习内容都在<code>sklearn.manifold</code>模块。<br />
+官网示例 <a href="http://sklearn.apachecn.org/cn/0.19.0/auto_examples/manifold/plot_compare_methods.html#sphx-glr-auto-examples-manifold-plot-compare-methods-py">http://sklearn.apachecn.org/cn/0.19.0/auto_examples/manifold/plot_compare_methods.html#sphx-glr-auto-examples-manifold-plot-compare-methods-py</a></p>
+</li>
+<li>
+<p>参考文档<br />
+<a href="https://blog.csdn.net/yukgwy60648/article/details/54578141">https://blog.csdn.net/yukgwy60648/article/details/54578141</a><br />
+sklearn—文档 <a href="http://scikit-learn.org/stable/modules/manifold.html">http://scikit-learn.org/stable/modules/manifold.html</a><br />
+<a href="http://sklearn.apachecn.org/cn/0.19.0/modules/manifold.html">http://sklearn.apachecn.org/cn/0.19.0/modules/manifold.html</a></p>
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../%E7%89%B9%E5%BE%81%E5%A4%84%E7%90%86%E2%80%94%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/" title="特征处理—特征选择" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                特征处理—特征选择
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../%E7%BB%9F%E8%AE%A1-%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1/" title="1样本不均衡" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                1样本不均衡
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ["navigation.expand", "tabs"],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
