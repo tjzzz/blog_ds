@@ -20,7 +20,11 @@ markdown_extensions:
   - admonition
   - pymdownx.highlight: # 9.x 替换旧 codehilite（代码高亮）
       guess_lang: false
-  - pymdownx.superfences # 围栏代码块 + 高亮
+  - pymdownx.superfences: # 围栏代码块 + 高亮；支持 mermaid 架构图渲染
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - footnotes
   - meta
   - def_list
@@ -63,6 +67,7 @@ plugins:
         - '.*\.(tmp|bin|tar|db|sqlite|pem|key|p12)$'
 
 extra_javascript:
+    - 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js'
     - 'js/extra.js'
     - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
   # extra_javascript:
