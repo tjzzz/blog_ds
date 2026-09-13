@@ -43,7 +43,7 @@ EconML 和 CausalML 更偏向机器学习因果效应估计，尤其适合 CATE 
 旧文档保留了工具链接和示意图：
 
 - [工具-econML&causalML](08_工具_EconML与CausalML.md)
-- [uplift](07_方法_异质性处理效应与Uplift.md)
+- [uplift](../方法_异质性处理效应与Uplift.md)
 
 
 ---

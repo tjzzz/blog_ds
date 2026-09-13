@@ -5,16 +5,11 @@ tags:
   - statistics/causal-inference
   - causal-method
 ---
-
-# 07. 方法：IV 工具变量
-
 工具变量用于处理内生性问题。
 
 ## 1. 内生性是什么
 
-当 treatment 与未观测因素相关时，直接回归会有偏。
-
-例如：
+当 treatment 与未观测因素相关时，直接回归会有偏。例如：
 
 ```text
 用户看到更多广告 -> 收入变化

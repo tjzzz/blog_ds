@@ -71,7 +71,7 @@ $$
 
 ## 6. 相关旧文档
 
-- [uplift](07_方法_异质性处理效应与Uplift.md)
+- [uplift](方法_异质性处理效应与Uplift.md)
 - [工具-econML&causalML](工具/08_工具_EconML与CausalML.md)
 
 

@@ -6,8 +6,6 @@ tags:
   - causal-method
 ---
 
-# 07. 方法：RDD 断点回归
-
 RDD 适用于 treatment 由某个连续分数或阈值规则决定的场景。
 
 ## 1. 适用场景

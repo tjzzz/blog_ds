@@ -20,7 +20,7 @@ tags:
 # 4. 在匹配后样本上估计 treatment effect
 ```
 
-旧文档 [Matching方法](07_方法_Matching与PSM.md) 中已有一版 PSMEstimator 代码，后续可以整理成可运行 notebook。
+旧文档 [Matching方法](../方法_Matching与PSM.md) 中已有一版 PSMEstimator 代码，后续可以整理成可运行 notebook。
 
 ## 2. DID 的基础回归
 

@@ -5,9 +5,6 @@ tags:
   - statistics/causal-inference
   - causal-method
 ---
-
-# 07. 方法：Matching 与 PSM
-
 Matching 的目标是：
 
 > 在观察性数据中，为处理组找到尽可能相似的对照组，从而降低可观测选择偏差。
@@ -72,7 +69,7 @@ GPS 的目标不是匹配二元处理组，而是估计 dose-response function�
 不同 treatment 强度 t 下，平均结果 E[Y(t)] 如何变化
 ```
 
-旧文档 [广义倾向性匹配得分](07_方法_Matching与PSM.md) 中已有 GPS 的建模流程，暂保留为扩展阅读。
+旧文档 [广义倾向性匹配得分](方法_Matching与PSM.md) 中已有 GPS 的建模流程，暂保留为扩展阅读。
 
 ## 7. 常见误用
 
@@ -85,8 +82,8 @@ GPS 的目标不是匹配二元处理组，而是估计 dose-response function�
 
 ## 8. 相关旧文档
 
-- [Matching方法](07_方法_Matching与PSM.md)
-- [广义倾向性匹配得分](07_方法_Matching与PSM.md)
+- [Matching方法](方法_Matching与PSM.md)
+- [广义倾向性匹配得分](方法_Matching与PSM.md)
 - [因果效应估计方法](03_无实验场景效果评估决策树.md)
 
 
