@@ -1,0 +1,65 @@
+{
+  "collapse-filter": true,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "leetcode",
+      "color": {
+        "a": 1,
+        "rgb": 5431473
+      }
+    },
+    {
+      "query": "统计学",
+      "color": {
+        "a": 1,
+        "rgb": 14725458
+      }
+    },
+    {
+      "query": "推荐系统",
+      "color": {
+        "a": 1,
+        "rgb": 16746056
+      }
+    },
+    {
+      "query": "nlp",
+      "color": {
+        "a": 1,
+        "rgb": 14701261
+      }
+    },
+    {
+      "query": "ds实践",
+      "color": {
+        "a": 1,
+        "rgb": 5431473
+      }
+    },
+    {
+      "query": "GPT",
+      "color": {
+        "a": 1,
+        "rgb": 7885536
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.33955485026042,
+  "lineSizeMultiplier": 3.40434977213542,
+  "collapse-forces": false,
+  "centerStrength": 0.499796549479167,
+  "repelStrength": 9.45231119791667,
+  "linkStrength": 0.581298828125,
+  "linkDistance": 167,
+  "scale": 0.43639325131620976,
+  "close": true
+}

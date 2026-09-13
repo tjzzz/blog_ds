@@ -1,0 +1,137 @@
+{
+  "main": {
+    "id": "eb331a1dd7238726",
+    "type": "split",
+    "children": [
+      {
+        "id": "b6ff7bfc88f7017c",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "docs/5_MachineLearning/Cluster/聚类Tools篇.md",
+            "mode": "preview",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "82e2569142967523",
+    "type": "split",
+    "children": [
+      {
+        "id": "f3d5233bef53369a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aa3185eb9de76a72",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "d83a85d7f646b023",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "http",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "6b981d0820660c4c",
+    "type": "split",
+    "children": [
+      {
+        "id": "0ac2434dc8318dc4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4b75762fdbbbbcd4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "docs/5_MachineLearning/Cluster/聚类Tools篇.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1a8064a18d7ff98e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "docs/5_MachineLearning/Cluster/聚类Tools篇.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "ce5d02b161aa47fa",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "998cee134ee52069",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "docs/5_MachineLearning/Cluster/聚类Tools篇.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "d83a85d7f646b023",
+  "lastOpenFiles": [
+    "docs/5_MachineLearning/Cluster/聚类效果评价.md",
+    "docs/5_MachineLearning/Cluster/聚类.md",
+    "Draft/语言篇/SQL/sql抽样.md",
+    "docs/4_Statistics/参数估计-样本量的确定.md",
+    "未命名.md",
+    "Draft/语言篇/SQL/SQL&hive.md",
+    "docs/4_Statistics/4_causal_analysis/@因果推断.md",
+    "Draft/8_DeepLearning/tf/tf-资料.md",
+    "Draft/8_DeepLearning/tf/tensorflo.md",
+    "Draft/语言篇/hive.md"
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "main": {
+    "id": "eb331a1dd7238726",
+    "type": "split",
+    "children": [
+      {
+        "id": "abbe64add8bac37d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e95c486849bb77fa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "DashBorad.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          }
+        ],
+        "stacked": true
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7a9fe238fa025071",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "b0bf38dca31e5590",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "8486b91e313a43c7",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "1a129d4c1218ba3d",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true
+          }
+        }
+      },
+      {
+        "id": "3dfedd4029a10d7c",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {}
+        }
+      },
+      {
+        "id": "73f0928495637e4e",
+        "type": "leaf",
+        "state": {
+          "type": "all-properties",
+          "state": {
+            "sortOrder": "frequency",
+            "showSearch": false,
+            "searchQuery": ""
+          }
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "d53d4a58d626e8d9",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "02495da775007ae1",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "DashBorad.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "79f1a95c6c35a7a5",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "DashBorad.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "69aa297d168b8a49",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "DashBorad.md"
+          }
+        }
+      }
+    ],
+    "currentTab": 2
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "markdown-table-editor:Open Markdown Table Editor": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "command-palette:打开命令面板": false,
+      "random-note:开始漫游笔记": false
+    }
+  },
+  "active": "e95c486849bb77fa",
+  "lastOpenFiles": [
+    "学习资料.md",
+    "广告.md",
+    "序列-频繁模式挖掘方法-prefixSpan.md",
+    "docs/论文/paper-Reading list.md",
+    "docs/论文/paper-2.User Interaction Sequences for Search Satisfaction Prediction.md",
+    "docs/论文/PAPER- netflix.md",
+    "docs/论文/paper——1.md",
+    "docs/论文/ID-representation.md",
+    "docs/论文/paper- 1.Deep Sequential Models for Task Satisfaction Prediction.md",
+    "docs/论文",
+    "docs/语言篇/R/1. Data science course/Coursera datascitoolbox 2014.pdf",
+    "docs/语言篇/R/1. Data science course/C3.R",
+    "docs/语言篇/R/1. Data science course/5.Reproducible Research",
+    "docs/语言篇/R/1. Data science course/1tool box",
+    "docs/语言篇/R/1. Data science course/4.Exploratory Data Analysis_W12.docx",
+    "docs/语言篇/R/1. Data science course/C9-V0.html",
+    "docs/语言篇/R/1. Data science course/test.Rmd",
+    "docs/语言篇/R/1. Data science course/8practical machine learning",
+    "docs/语言篇/R/1. Data science course/2.R programing",
+    "docs/语言篇/R/Basic data manupulation.md",
+    "docs/语言篇/R/Remap.md",
+    "docs/语言篇/R/【社交网络】R code.md",
+    "docs/语言篇/R/R-tidyverse.md",
+    "docs/语言篇/R/R绘图散点覆盖问题.md",
+    "docs/语言篇/R/Rmarkdown.md",
+    "docs/语言篇/tf/【TensorFlow】week1.md",
+    "docs/语言篇/tf/tf-资料.md",
+    "docs/语言篇/tf/tensorflo.md",
+    "docs/语言篇/python/python-日期类函数.md",
+    "docs/语言篇/python/pyhive.md",
+    "docs/语言篇/python/Python动态实例化：如何动态导入模块中类的字符串名称.md",
+    "docs/语言篇/python/python-采坑记录.md",
+    "docs/语言篇/python/【基础】Pandas-DataFrame.md",
+    "docs/语言篇/python/python-log常用的小工具.md",
+    "docs/语言篇/python/Python操作excel.md",
+    "docs/语言篇/python/内存诊断memory_profiler.md",
+    "docs/数据驱动/核心资源1-.canvas",
+    "Draft/media/Pasted image 20230708090104.png",
+    "Draft/media/Pasted image 20230601110414.png",
+    "Draft/media/Pasted image 20230603205602.png",
+    "Draft/media/Pasted image 20230609215801.png",
+    "Draft/media/Pasted image 20230602221019.png",
+    "Draft/media/Pasted image 20230604171930.png",
+    "Draft/media/Pasted image 20230601204801.png",
+    "Draft/media/Pasted image 20230610214547.png",
+    "Draft/media/Pasted image 20230603164331.png",
+    "docs/6_RecommendSystem/Canvas-推荐系统.canvas",
+    "Draft/media/Pasted image 20230601114410.png",
+    "docs/6_DeepLearning/Canvas-DeepLearning.canvas",
+    "未命名 1.canvas",
+    "docs/4_Statistics/causal_analysis/TOC-因果推断.canvas"
+  ]
+}

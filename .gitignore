@@ -2,11 +2,13 @@
 /baidu
 /Media/
 /Draft/
-.obsidian
 # macOS / editor metadata
 .DS_Store
 **/.DS_Store
-.obsidian/
+
+# Sync Obsidian settings, themes and plugins, but never store credentials.
+.obsidian/plugins/chatgpt-md/data.json
+.obsidian/plugins/obsidian-excalidraw-plugin/data.json
 
 # Local/private working materials (do not publish)
 Input/

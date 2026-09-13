@@ -1,0 +1,29 @@
+{
+  "searches": [
+    {
+      "tags": [],
+      "query": "https://www.google.com/search?&q={{query}}",
+      "name": "Google",
+      "encode": true
+    },
+    {
+      "tags": [],
+      "query": "https://en.wikipedia.org/wiki/Special:Search/{{query}}",
+      "name": "Wikipedia",
+      "encode": true
+    },
+    {
+      "tags": [],
+      "query": "https://www.baidu.com/s?wd={{query}}",
+      "name": "baidu",
+      "encode": true
+    },
+    {
+      "name": "微信读书",
+      "query": "https://weread.qq.com",
+      "tags": [],
+      "encode": true
+    }
+  ],
+  "useIframe": true
+}
