@@ -1,6 +1,47 @@
-刷题/
 Aibee/
 baidu
 Media/
 Draft/
 .obsidian
+# macOS / editor metadata
+.DS_Store
+**/.DS_Store
+.obsidian/
+
+# Local/private working materials (do not publish)
+Input/
+papers/
+附件/
+baidu/
+MOC_体系设计.md
+docs/08_业务专题/Digital_retail/
+docs/09_语言篇/R/1. Data science course/
+docs/07_语言篇/R/1. Data science course/
+
+# Build/cache artifacts
+site/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.tmp
+*.gz
+*.tar
+*.bin
+
+# Binary/data files: keep out of public GitHub Pages unless explicitly reviewed
+*.pdf
+*.ppt
+*.pptx
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.csv
+*.parquet
+*.db
+*.sqlite
+*.pem
+*.key
+*.p12
+.env

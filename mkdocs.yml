@@ -1,4 +1,4 @@
-# official tutorial 
+# official tutorial
 # mkdocs-material: https://squidfunk.github.io/mkdocs-material/
 # mkdocs: https://www.mkdocs.org/user-guide/configuration/
 
@@ -8,19 +8,18 @@ theme:
   #  favicon: attachment/portrait.png
   language: zh # 中文，解决中文搜索问题
   features:
-    - navigation.expand 
-    - tabs 
-markdown_extensions: 
+    - navigation.expand
+    - tabs
+markdown_extensions:
   - attr_list # https://squidfunk.github.io/mkdocs-material/reference/images/
   - pymdownx.tabbed  # https://squidfunk.github.io/mkdocs-material/reference/content-tabs/
-  - nl2br # newline-to-break 
+  - nl2br # newline-to-break
   - toc:
-      permalink: '#' # heading anchor 
-      slugify: !!python/name:pymdownx.slugs.uslugify # 解决中文标题解析问题
+      permalink: '#' # heading anchor
   - admonition
-  - codehilite:
+  - pymdownx.highlight: # 9.x 替换旧 codehilite（代码高亮）
       guess_lang: false
-      linenums: false
+  - pymdownx.superfences # 围栏代码块 + 高亮
   - footnotes
   - meta
   - def_list
@@ -41,23 +40,31 @@ markdown_extensions:
   - pymdownx.tilde
 plugins:
   - search
-  - roamlinks 
-    #- autolinks 
+  - roamlinks
+    #- autolinks
   - exclude:
       glob:
-        - "*.tmp"
-        - "*.pdf"
-        - "*.gz"
+        - "**/.DS_Store"
+        - "**/*.tmp"
+        - "**/*.pdf"
+        - "**/*.ppt"
+        - "**/*.pptx"
+        - "**/*.doc"
+        - "**/*.docx"
+        - "**/*.xls"
+        - "**/*.xlsx"
+        - "**/*.csv"
+        - "**/*.gz"
+        - "08_业务专题/Digital_retail/**"
+        - "09_语言篇/R/1. Data science course/**"
+        - "07_语言篇/R/1. Data science course/**"
       regex:
-        - '.*\.(tmp|bin|tar)$'
-        
+        - '.*\.(tmp|bin|tar|db|sqlite|pem|key|p12)$'
+
 extra_javascript:
     - 'js/extra.js'
-    - https://polyfill.io/v3/polyfill.min.js?features=es6
     - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
-    #- https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
   # extra_javascript:
   # - javascripts/mathjax.js6283897707209
-  
+
   # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
