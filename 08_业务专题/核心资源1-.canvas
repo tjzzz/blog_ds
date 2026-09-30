@@ -1,0 +1,13 @@
+{
+	"nodes":[
+		{"type":"group","id":"8dfc9e28a3a0dc47","x":-360,"y":-149,"width":290,"height":449,"label":"数字化驱动PDCA"},
+		{"type":"text","text":"诊断归因","id":"1e60ac5ee93e34d1","x":-340,"y":-20,"width":250,"height":60},
+		{"type":"text","text":"优化提升","id":"dd0d5d6fd3ccd6ab","x":-340,"y":80,"width":250,"height":60},
+		{"type":"text","text":"效果追踪","id":"6cc111cba2e647af","x":-340,"y":180,"width":250,"height":60},
+		{"type":"text","text":"自动化、规范化 logstat","id":"93969aeddb06b651","x":18,"y":-53,"width":250,"height":60},
+		{"type":"file","file":"docs/数据驱动/指标体系.md","id":"eec3b87885c718f6","x":-340,"y":-123,"width":220,"height":70},
+		{"type":"text","text":"实验设计 + 因果推断","id":"e963d2ac01e1b256","x":18,"y":50,"width":250,"height":60},
+		{"type":"text","text":"数字化基建\n口径、数据血缘","id":"fa6a423b98e80c0f","x":-120,"y":-280,"width":250,"height":60}
+	],
+	"edges":[]
+}
