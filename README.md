@@ -1,5 +1,7 @@
 # blog_ds 博客维护 SOP（中文）
 
+> 2026-10-09 起采用 LLM Wiki 渐进重构。公开 Wiki 结构与维护流程见 [docs/wiki-schema.md](docs/wiki-schema.md)；`Input/` 是原始资料与旧文快照，默认不进公开仓库。旧博客文章仍在原路径，新页面先按主题、实体、关系、综合分析四类建立。下文是原博客维护记录，路径和文章数量以当前目录为准。
+
 > 本文件是博客的维护记录与操作手册，新接手或隔久了回来照着做即可。
 > 线上地址：https://tjzzz.github.io/blog_ds/
 > 模板来源：[foam-mkdocs-template](https://github.com/Jackiexiao/foam-mkdocs-template)
