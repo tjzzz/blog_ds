@@ -1,0 +1,111 @@
+---
+title: "AB实验方法图谱 - 总入口 (MOC)"
+date: 2026-10-09
+tags:
+  - ab-test
+  - 实验方法
+  - 方法论文档
+  - llm-wiki
+  - 统计
+description: "以「实验生命周期」为主线，把假设检验/p值、贝叶斯胜率、序贯分析、CUPED/pre-AA、MAB、CSR客户分群路由、HTE/Uplift、网络效应、实验治理等概念统一落位的全景地图。配套 8 篇概念卡，并与 vault 内 ExperimentDesign / 基础统计学 / Experiment难题 互链。"
+created: 2026-10-09
+updated: 2026-10-09
+source: ["Input/rebuild_source_2026-10-09/03_统计/ab实验/MOC_ab实验方法图谱.md"]
+wiki_type: topics
+topic: "实验设计与AB测试"
+migrated_from: "03_统计/ab实验/MOC_ab实验方法图谱.md"
+review_status: structural
+---
+
+> 所属 Topic：[实验设计与AB测试](../%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95.md) · 类型：专题资料
+
+## Mental Model
+
+把一次 AB 实验想象成一条**流水线**——从「想验证一个点子」到「拍板上线」，要经过五道关卡：
+
+```
+想验证 ──▶ 设计 ──▶ 预实验 ──▶ 运行分流 ──▶ 分析推断 ──▶ 决策
+ (假设)    (power)  (pre-AA)   (50/50/MAB/CSR) (p值/贝叶斯/序贯) (胜率/回滚)
+```
+
+> **一句话**：所有进阶方法都长在**同一个核心矛盾**上——我们既想「随时看结果、早点下结论」，又想「别把噪声当成显著效果（假阳性失控）」。频率派固定样本检验是地基；中途偷看（peeking）会破坏它；序贯分析、贝叶斯胜率、MAB 是三条不同的出路；CUPED / pre-AA 是贯穿前后的「提效 + 校准」锚点。
+
+---
+
+## 🗺️ 五大阶段 + 方法落位
+
+| 阶段 | 回答的问题 | 关键方法 | 对应概念卡 |
+|------|-----------|---------|-----------|
+| 1. 设计 | 要多少人、跑多久？ | 功效分析(power)、最小可检测效应(MDE)、样本量 | [01_假设检验与p值](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__01_%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%E4%B8%8Ep%E5%80%BC.md) |
+| 2. 预实验 | 系统干净吗、方差多大？ | pre-AA（A/A 校验）、方差预估、SRM 前置检查 | [04_CUPED与方差缩减](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__04_CUPED%E4%B8%8E%E6%96%B9%E5%B7%AE%E7%BC%A9%E5%87%8F.md)、[08_实验治理与护栏](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__08_%E5%AE%9E%E9%AA%8C%E6%B2%BB%E7%90%86%E4%B8%8E%E6%8A%A4%E6%A0%8F.md) |
+| 3. 运行分流 | 流量怎么分？ | 固定 50/50、MAB（自适应）、CSR 客户分群路由 | [05_MAB与客户分群路由](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__05_MAB%E4%B8%8E%E5%AE%A2%E6%88%B7%E5%88%86%E7%BE%A4%E8%B7%AF%E7%94%B1.md) |
+| 4. 分析推断 | 谁更好？可信吗？ | p 值（频率派）、贝叶斯胜率、序贯分析 | [01_假设检验与p值](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__01_%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%E4%B8%8Ep%E5%80%BC.md)、[02_贝叶斯胜率](../../concepts/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__02_%E8%B4%9D%E5%8F%B6%E6%96%AF%E8%83%9C%E7%8E%87.md)、[03_序贯分析](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__03_%E5%BA%8F%E8%B4%AF%E5%88%86%E6%9E%90.md) |
+| 5. 决策 | 上还是不上？ | 胜率、护栏指标、回滚、Holdout | [08_实验治理与护栏](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__08_%E5%AE%9E%E9%AA%8C%E6%B2%BB%E7%90%86%E4%B8%8E%E6%8A%A4%E6%A0%8F.md) |
+
+**贯穿工具**：CUPED / CUPAC（方差缩减）、pre-AA（前校准）。见 [04_CUPED与方差缩减](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__04_CUPED%E4%B8%8E%E6%96%B9%E5%B7%AE%E7%BC%A9%E5%87%8F.md)。
+
+---
+
+## 🔥 核心矛盾：Peeking（偷看）→ 假阳性膨胀
+
+固定样本检验的前提是「事前定好样本量、到了才看」。一旦你**中途反复看 p 值并据此停实验**，假阳性率（本该 5%）会随查看次数累积膨胀到 20%~30%+。
+
+```
+        固定样本(合规)          偷看N次(peeking)
+真实无效应时           误判显著概率≈5%          误判显著概率≈20-30%+
+```
+
+三条出路（都属于「想随时看 vs 怕假阳性」这同一矛盾的解法）：
+
+| 出路 | 解决哪一侧 | 核心思想 |
+|------|-----------|---------|
+| **序贯分析** [03_序贯分析](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__03_%E5%BA%8F%E8%B4%AF%E5%88%86%E6%9E%90.md) | 推断侧 | 用 alpha-spending / always-valid，允许任意时刻停且全程控错 |
+| **贝叶斯胜率** [02_贝叶斯胜率](../../concepts/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__02_%E8%B4%9D%E5%8F%B6%E6%96%AF%E8%83%9C%E7%8E%87.md) | 沟通侧 | 后验天然顺序有效，无 peek 问题，汇报直观 |
+| **MAB** [05_MAB与客户分群路由](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__05_MAB%E4%B8%8E%E5%AE%A2%E6%88%B7%E5%88%86%E7%BE%A4%E8%B7%AF%E7%94%B1.md) | 分流侧 | 不等看完，边跑边把流量倾给赢家，省流量 |
+
+> ⚠️ 注意：**CSR（客户分群路由）= Customer Segmentation Routing**，是分流模式（按客群把流量路由到指定变体），与序贯/贝叶斯/推断**无关**——它不解决 peeking，只回答「哪类人看哪个版本」。详见 [05_MAB与客户分群路由](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__05_MAB%E4%B8%8E%E5%AE%A2%E6%88%B7%E5%88%86%E7%BE%A4%E8%B7%AF%E7%94%B1.md)。
+
+---
+
+## 📚 概念卡索引（本图谱 8 篇）
+
+| 卡片 | 一句话 | 与 vault 现有笔记的衔接 |
+|------|--------|------------------------|
+| [01_假设检验与p值](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__01_%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%E4%B8%8Ep%E5%80%BC.md) | 频率派地基：p 值、功效、样本量 | 接 [推断统计—假设检验](../../methods/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E6%8E%A8%E6%96%AD%E7%BB%9F%E8%AE%A1%E2%80%94%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C.md)、[推断统计—参数估计](../../methods/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E6%8E%A8%E6%96%AD%E7%BB%9F%E8%AE%A1%E2%80%94%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1.md)（样本量） |
+| [02_贝叶斯胜率](../../concepts/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__02_%E8%B4%9D%E5%8F%B6%E6%96%AF%E8%83%9C%E7%8E%87.md) | 后验胜率天然顺序有效，汇报直观 | 与 [01_假设检验与p值](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__01_%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%E4%B8%8Ep%E5%80%BC.md) 对照 |
+| [03_序贯分析](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__03_%E5%BA%8F%E8%B4%AF%E5%88%86%E6%9E%90.md) | peeking 的形式化解药 | 接 [多重检验与显著性窥探](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/Experiment%E9%9A%BE%E9%A2%98__%E5%A4%9A%E9%87%8D%E6%A3%80%E9%AA%8C%E4%B8%8E%E6%98%BE%E8%91%97%E6%80%A7%E7%AA%A5%E6%8E%A2.md) |
+| [04_CUPED与方差缩减](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__04_CUPED%E4%B8%8E%E6%96%B9%E5%B7%AE%E7%BC%A9%E5%87%8F.md) | 用协变量砍方差 + pre-AA 前校准 | 接 [☆如何提升实验灵敏度](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/Experiment%E9%9A%BE%E9%A2%98__%E2%98%86%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%AE%9E%E9%AA%8C%E7%81%B5%E6%95%8F%E5%BA%A6.md) |
+| [05_MAB与客户分群路由](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__05_MAB%E4%B8%8E%E5%AE%A2%E6%88%B7%E5%88%86%E7%BE%A4%E8%B7%AF%E7%94%B1.md) | 自适应分流 vs 规则分群路由 | 接 [03_抽样平台_流量分组](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ExperimentDesign__03_%E6%8A%BD%E6%A0%B7%E5%B9%B3%E5%8F%B0_%E6%B5%81%E9%87%8F%E5%88%86%E7%BB%84.md) |
+| [06_HTE与Uplift个性化](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__06_HTE%E4%B8%8EUplift%E4%B8%AA%E6%80%A7%E5%8C%96.md) | 从「平均效应」到「谁受益」 | 接 [潜在结果框架](../../methods/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/CausalAnalysis__04_%E6%BD%9C%E5%9C%A8%E7%BB%93%E6%9E%9C%E6%A1%86%E6%9E%B6_ITE_ATE_ATT_CATE.md)（待补）、因果推断.md（待补） |
+| [07_网络效应与干扰](../../concepts/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__07_%E7%BD%91%E7%BB%9C%E6%95%88%E5%BA%94%E4%B8%8E%E5%B9%B2%E6%89%B0.md) | 社交/双边市场下溢出污染 RCT | 接 [高阶实验难题_网络效应与溢出干扰](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/Experiment%E9%9A%BE%E9%A2%98__%E9%AB%98%E9%98%B6%E5%AE%9E%E9%AA%8C%E9%9A%BE%E9%A2%98_%E7%BD%91%E7%BB%9C%E6%95%88%E5%BA%94%E4%B8%8E%E6%BA%A2%E5%87%BA%E5%B9%B2%E6%89%B0.md) |
+| [08_实验治理与护栏](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__08_%E5%AE%9E%E9%AA%8C%E6%B2%BB%E7%90%86%E4%B8%8E%E6%8A%A4%E6%A0%8F.md) | SRM/护栏/多重比较/Holdout 防火墙 | 接 [分组样本比例不匹配](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/Experiment%E9%9A%BE%E9%A2%98__%E5%88%86%E7%BB%84%E6%A0%B7%E6%9C%AC%E6%AF%94%E4%BE%8B%E4%B8%8D%E5%8C%B9%E9%85%8D.md)（SRM） |
+
+---
+
+## 🔗 与 vault 体系的衔接
+
+本图谱定位为「**方法论文档**」，与已有的两个实验专题互补：
+
+- **[MOC_实验设计顶层设计](ExperimentDesign__MOC_%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E9%A1%B6%E5%B1%82%E8%AE%BE%E8%AE%A1.md)** —— 实验「流程」视角（可行性→方案→抽样→指标→上线）
+- **[☆如何提升实验灵敏度](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/Experiment%E9%9A%BE%E9%A2%98__%E2%98%86%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%AE%9E%E9%AA%8C%E7%81%B5%E6%95%8F%E5%BA%A6.md)** 等 8 篇 —— 实验「疑难」视角（辛普森、SRM、网络效应…）
+- **本图谱** —— 实验「方法/概念」视角（进阶统计技术的全景与落位）
+
+三者构成「**流程 — 方法 — 疑难**」三件套。基础统计学（[基础统计学](../../concepts/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6.md)）是共同底座。
+
+> 📌  recruit 缺口提示（来自 [MOC_统计概览](../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/MOC_%E7%BB%9F%E8%AE%A1%E6%A6%82%E8%A7%88.md)）：1.1 仍缺公司级实验体系/流量分层(正交·互斥·Holdout)；1.2 仍缺序贯/CUPED 的「专用统计修正」标准化模板与结论可信度输出——本图谱 03/04/08 正好补位。
+
+---
+
+## 🚀 建议阅读路径
+
+1. 新手：本 MOC → [01_假设检验与p值](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__01_%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%E4%B8%8Ep%E5%80%BC.md) → [03_序贯分析](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__03_%E5%BA%8F%E8%B4%AF%E5%88%86%E6%9E%90.md)（先懂地基和 peek 矛盾）
+2. 做平台/分流：[05_MAB与客户分群路由](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__05_MAB%E4%B8%8E%E5%AE%A2%E6%88%B7%E5%88%86%E7%BE%A4%E8%B7%AF%E7%94%B1.md) → [04_CUPED与方差缩减](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__04_CUPED%E4%B8%8E%E6%96%B9%E5%B7%AE%E7%BC%A9%E5%87%8F.md)
+3. 做个性化/增长：[06_HTE与Uplift个性化](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__06_HTE%E4%B8%8EUplift%E4%B8%AA%E6%80%A7%E5%8C%96.md)
+4. 社交/双边产品：[07_网络效应与干扰](../../concepts/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__07_%E7%BD%91%E7%BB%9C%E6%95%88%E5%BA%94%E4%B8%8E%E5%B9%B2%E6%89%B0.md)
+5. 上线把关：[08_实验治理与护栏](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ab%E5%AE%9E%E9%AA%8C__08_%E5%AE%9E%E9%AA%8C%E6%B2%BB%E7%90%86%E4%B8%8E%E6%8A%A4%E6%A0%8F.md)
+
+---
+
+**更新日期**：2026-10-09
+**适用场景**：AB 实验岗位方法论沉淀、面试准备、平台/实验设计 Review
+**关联笔记**：[MOC_统计概览](../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/MOC_%E7%BB%9F%E8%AE%A1%E6%A6%82%E8%A7%88.md) · [MOC_实验设计顶层设计](ExperimentDesign__MOC_%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E9%A1%B6%E5%B1%82%E8%AE%BE%E8%AE%A1.md) · [☆如何提升实验灵敏度](../../methods/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/Experiment%E9%9A%BE%E9%A2%98__%E2%98%86%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%AE%9E%E9%AA%8C%E7%81%B5%E6%95%8F%E5%BA%A6.md)
