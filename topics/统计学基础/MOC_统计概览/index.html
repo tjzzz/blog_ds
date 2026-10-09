@@ -1,0 +1,981 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>MOC_统计概览 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#moc_" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MOC_统计概览
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        统计能力体系总览
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        招聘需求拆解：1.1-1.2 实验体系与高阶实验问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建议后续拆出的专题 MOC
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../">统计学基础</a> · 类型：专题资料</p>
+</blockquote>
+<h1 id="moc_">MOC_统计概览<a class="headerlink" href="#moc_" title="Permanent link">#</a></h1>
+<h2 id="_1">统计能力体系总览<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>一级体系</th>
+<th>能力定位</th>
+<th>子模块包含哪些</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../../concepts/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6/">基础统计学</a></td>
+<td>解决「数据是否可靠、差异是否可信、结论能否推广」的问题，是后续实验、因果、指标分析的底座</td>
+<td>概率分布<br>参数估计<br>样本量估算<br>假设检验<br>方差分析<br>回归分析<br>非参数检验<br>分类变量推断<br>生存分析</td>
+</tr>
+<tr>
+<td>实验科学 <a href="../../%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ExperimentDesign__MOC_%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E9%A1%B6%E5%B1%82%E8%AE%BE%E8%AE%A1/">MOC_实验设计顶层设计</a></td>
+<td>解决「如何通过实验验证策略/产品/算法是否有效」的问题，是 AB 实验岗位能力的核心</td>
+<td>实验设计<br>AB Test<br>抽样技术<br>随机化<br>实验单元设计<br>指标设计<br>显著性检验<br>实验分析报告</td>
+</tr>
+<tr>
+<td>实验体系治理</td>
+<td>解决「公司级/业务线级如何大规模、长期、并行地做实验」的问题，是 1.1 的核心</td>
+<td>实验平台治理<br>实验生命周期管理<br>流量分层<br>正交实验<br>实验互斥<br>流量隔离<br>灰度发布<br>并行实验治理<br>实验质量评估</td>
+</tr>
+<tr>
+<td>高阶实验攻坚</td>
+<td>解决「实验结果不干净、不可信、有偏差时如何诊断和修正」的问题，是 1.2 的核心</td>
+<td>显著者实验 / Peeking<br>样本偏差<br>辛普森悖论<br>幸存者偏差<br>流量溢出<br>时序干扰<br>网络效应<br>多重检验<br>方差缩减<br>稳健性检验<br>实验重构</td>
+</tr>
+<tr>
+<td>因果推断</td>
+<td>解决「不能做 AB 实验时，如何判断策略是否真的产生增量」的问题，是 1.3 的核心</td>
+<td>相关 vs 因果<br>因果图<br>潜在结果框架<br>匹配方法<br>倾向得分<br>DID<br>RDD<br>IV<br>合成控制<br>Uplift<br>异质性处理效应<br>因果工具</td>
+</tr>
+<tr>
+<td>指标体系与业务评估</td>
+<td>解决「实验和策略到底用什么指标评估」的问题，是 1.4、1.7 的连接层</td>
+<td>北极星指标<br>核心指标<br>护栏指标<br>观测指标<br>归因指标<br>指标口径<br>指标基线<br>异常监控<br>业务增长拆解<br>策略收益评估</td>
+</tr>
+<tr>
+<td>方法论沉淀与团队赋能</td>
+<td>解决「如何把个人经验变成组织可复用资产」的问题，对应 1.6</td>
+<td>标准化实验流程<br>实验设计模板<br>实验分析模板<br>异常实验案例库<br>方法论文档<br>培训材料<br>复盘机制<br>避坑清单</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-12">招聘需求拆解：1.1-1.2 实验体系与高阶实验问题<a class="headerlink" href="#11-12" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>招聘要求</th>
+<th>上位体系</th>
+<th>需要沉淀的知识模块</th>
+<th>子主题包含哪些</th>
+<th>当前资料状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1 实验体系顶层设计与治理</td>
+<td>实验体系治理</td>
+<td>AB 实验平台与实验治理</td>
+<td>公司级 / 业务线级实验体系<br>实验平台基本架构<br>实验生命周期：需求评审、方案设计、上线、监控、分析、复盘<br>实验规范、审批机制、实验元数据管理<br>实验质量评估与平台治理</td>
+<td>已有基础资料：实验设计、AB Test<br>需要补：实验平台治理、公司级实验体系设计</td>
+</tr>
+<tr>
+<td>1.1 实验体系顶层设计与治理</td>
+<td>实验体系治理</td>
+<td>流量分层与流量管理</td>
+<td>流量分层<br>正交实验<br>实验互斥<br>流量隔离<br>流量复用<br>Holdout / Global Holdout<br>用户分桶与随机化机制<br>长期实验与短期实验的流量规划</td>
+<td>当前资料较少<br>建议作为重点补充专题</td>
+</tr>
+<tr>
+<td>1.1 实验体系顶层设计与治理</td>
+<td>实验体系治理</td>
+<td>灰度发布与策略上线</td>
+<td>灰度发布<br>逐步放量<br>实验转全量机制<br>回滚机制<br>实验与发布系统的关系<br>实验期间异常监控<br>上线后效果追踪</td>
+<td>当前资料较少<br>可与模型部署、MLOps、业务监控资料打通</td>
+</tr>
+<tr>
+<td>1.1 实验体系顶层设计与治理</td>
+<td>实验体系治理</td>
+<td>大规模并行实验问题</td>
+<td>流量污染<br>实验冲突<br>样本交叉干扰<br>实验间相互影响<br>网络效应 / 溢出效应<br>多实验并行下的统计功效管理<br>实验排期与资源协调</td>
+<td>当前资料较少<br>这是岗位要求里的核心增量，需要重点补</td>
+</tr>
+<tr>
+<td>1.2 高阶统计实验攻坚</td>
+<td>高阶实验攻坚</td>
+<td>疑难实验场景识别</td>
+<td>显著者实验 / Peeking 问题<br>样本偏差<br>辛普森悖论<br>幸存者偏差<br>新奇效应 / 学习效应<br>时序干扰<br>节假日、活动、版本发布等外部冲击</td>
+<td>已有统计学、抽样、假设检验基础<br>需要补：疑难实验案例库</td>
+</tr>
+<tr>
+<td>1.2 高阶统计实验攻坚</td>
+<td>高阶实验攻坚</td>
+<td>实验统计修正方法</td>
+<td>分层分析<br>分层抽样<br>CUPED / 方差缩减<br>多重检验修正<br>序贯检验<br>Bootstrap<br>稳健性检验<br>异常值处理<br>样本重加权</td>
+<td>已有假设检验、参数估计、抽样技术<br>需要补：AB 实验专用统计修正方法</td>
+</tr>
+<tr>
+<td>1.2 高阶统计实验攻坚</td>
+<td>高阶实验攻坚</td>
+<td>实验重构与替代方案</td>
+<td>重新定义实验单元<br>重构随机化方式<br>调整指标窗口<br>拆分人群与场景<br>匹配方法<br>准实验方案<br>从实验结论到业务解释的校验链路</td>
+<td>可与因果分析资料打通<br>需要沉淀「实验失败后怎么救」的方法论</td>
+</tr>
+<tr>
+<td>1.2 高阶统计实验攻坚</td>
+<td>高阶实验攻坚</td>
+<td>结论可信度与输出策略</td>
+<td>结论置信度分级<br>显著但不可信的识别<br>不显著但有业务价值的判断<br>实验结论边界<br>风险提示<br>可落地修正策略<br>复盘模板</td>
+<td>当前缺标准化输出模板<br>建议补：实验分析报告模板、复盘模板</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="moc">建议后续拆出的专题 MOC<a class="headerlink" href="#moc" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>MOC 文档</th>
+<th>承接招聘要求</th>
+<th>解决什么问题</th>
+<th>建议内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MOC_AB实验体系设计</td>
+<td>1.1</td>
+<td>怎么搭建公司级 / 业务线级实验体系</td>
+<td>实验平台架构<br>实验生命周期<br>流量分层<br>正交 / 互斥<br>灰度发布<br>并行实验治理</td>
+</tr>
+<tr>
+<td>MOC_AB实验疑难问题</td>
+<td>1.2</td>
+<td>实验结果有偏差、不可信、相互污染时怎么诊断和修正</td>
+<td>样本偏差<br>辛普森悖论<br>幸存者偏差<br>显著者实验<br>溢出效应<br>时序干扰<br>统计修正<br>复盘案例</td>
+</tr>
+<tr>
+<td>MOC_因果推断体系</td>
+<td>1.3</td>
+<td>不能做 AB 实验时怎么做策略增量评估</td>
+<td>潜在结果框架<br>匹配方法<br>DID<br>RDD<br>IV<br>合成控制<br>Uplift<br>因果工具与业务案例</td>
+</tr>
+<tr>
+<td>MOC_实验指标体系</td>
+<td>1.4 / 1.7</td>
+<td>实验与业务策略应该如何定义评估指标</td>
+<td>北极星指标<br>核心指标<br>护栏指标<br>归因指标<br>指标口径<br>基线与置信区间<br>异常监控</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

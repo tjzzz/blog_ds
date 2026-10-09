@@ -1,0 +1,1086 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>工具_DoWhy - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#08-dowhy" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              工具_DoWhy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 四步框架
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 适用场景
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 和业务落地的关系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 原始资料
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dowhy-api-refute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        旧笔记整合：DoWhy API、示例与 refute 流程
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/">因果推断</a> · 类型：工具</p>
+</blockquote>
+<h1 id="08-dowhy">08. 工具：DoWhy<a class="headerlink" href="#08-dowhy" title="Permanent link">#</a></h1>
+<p>DoWhy 适合把因果分析流程标准化为四步：</p>
+<div class="highlight"><pre><span></span><code>model -&gt; identify -&gt; estimate -&gt; refute
+</code></pre></div>
+<h2 id="1">1. 四步框架<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model</td>
+<td>用 DAG 或变量列表表达因果假设</td>
+</tr>
+<tr>
+<td>Identify</td>
+<td>判断目标因果效应是否可识别</td>
+</tr>
+<tr>
+<td>Estimate</td>
+<td>用 PSM、回归、IV、DID 等方法估计</td>
+</tr>
+<tr>
+<td>Refute</td>
+<td>做反驳与稳健性检验</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">2. 适用场景<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<ul>
+<li>需要把因果假设显式写出来；</li>
+<li>需要统一管理后门、前门、IV 等识别路径；</li>
+<li>需要做 refutation tests；</li>
+<li>需要和 EconML 结合估计 CATE。</li>
+</ul>
+<h2 id="3">3. 和业务落地的关系<a class="headerlink" href="#3" title="Permanent link">#</a></h2>
+<p>DoWhy 的价值不只是调用模型，而是强制分析者回答：</p>
+<ul>
+<li>treatment 是什么；</li>
+<li>outcome 是什么；</li>
+<li>common causes 是什么；</li>
+<li>instrumental variables 是否存在；</li>
+<li>effect modifiers 是什么；</li>
+<li>估计结果能否经受随机 common cause、placebo treatment、data subset 等反驳检验。</li>
+</ul>
+<h2 id="4">4. 原始资料<a class="headerlink" href="#4" title="Permanent link">#</a></h2>
+<p>完整安装、API、示例代码暂保留在旧文档：</p>
+<ul>
+<li><a href="./">工具-do_why</a></li>
+</ul>
+<hr />
+<!-- migrated-from: 08_工具_DoWhy.md -->
+
+<h2 id="dowhy-api-refute">旧笔记整合：DoWhy API、示例与 refute 流程<a class="headerlink" href="#dowhy-api-refute" title="Permanent link">#</a></h2>
+<blockquote>
+<p>迁移说明：保留原安装、识别、估计、refute、graph 输入等细节。</p>
+</blockquote>
+<h1 id="do-why">do why<a class="headerlink" href="#do-why" title="Permanent link">#</a></h1>
+<div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">dowhy</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">dowhy</span>
+</code></pre></div>
+<h1 id="1_1">1 基本介绍<a class="headerlink" href="#1_1" title="Permanent link">#</a></h1>
+<p><a href="https://microsoft.github.io/dowhy/readme.html">https://microsoft.github.io/dowhy/readme.html</a><br />
+github: <a href="https://github.com/Microsoft/dowhy">https://github.com/Microsoft/dowhy</a></p>
+<p>教程: <a href="https://github.com/amit-sharma/causal-inference-tutorial">https://github.com/amit-sharma/causal-inference-tutorial</a></p>
+<p>其估计步骤如下<br />
+1. Model a causal inference problem using assumptions.<br />
+支持的图的输入格式:  gml (preferred) and dot<br />
+3. Identify an expression for the causal effect under these assumptions (“causal estimand”).<br />
+4. Estimate the expression using statistical methods such as matching or instrumental variables.<br />
+5. Finally, verify the validity of the estimate using a variety of robustness checks.</p>
+<p><img alt="" src="../../../media/16351405512171.jpg" /></p>
+<p>DoWhy supports estimation of the average causal effect for backdoor, frontdoor, instrumental variable and other identification methods, and estimation of the conditional effect (CATE) through an integration with the EconML library.</p>
+<h2 id="1_2">1. 基本用法<a class="headerlink" href="#1_2" title="Permanent link">#</a></h2>
+<p>学习官网例子： <a href="https://github.com/microsoft/dowhy/blob/master/docs/source/example_notebooks/dowhy_simple_example.ipynb">https://github.com/microsoft/dowhy/blob/master/docs/source/example_notebooks/dowhy_simple_example.ipynb</a></p>
+<p><a href="https://colab.research.google.com/github/microsoft/dowhy/blob/master/docs/source/example_notebooks/dowhy_simple_example.ipynb#scrollTo=QC0iOXcRE9-z">https://colab.research.google.com/github/microsoft/dowhy/blob/master/docs/source/example_notebooks/dowhy_simple_example.ipynb#scrollTo=QC0iOXcRE9-z</a></p>
+<h3 id="1-model-a-causal-problem">(1) model a causal problem<a class="headerlink" href="#1-model-a-causal-problem" title="Permanent link">#</a></h3>
+<p>先创建一个因果图，这个图可以不用完整，可以只提供部分图，dowhy会自己推断？<br />
+图的格式有两种： gml(preferred)和dot</p>
+<p>除了图的格式外，也可以通过提供变量名称的方式，比如指定common causes, instrumental variables, effect modifiers, frontdoor variables, etc.</p>
+<h3 id="2_1">(2) 识别<a class="headerlink" href="#2_1" title="Permanent link">#</a></h3>
+<p>只是检测构建的因果图是否可识别，常用的识别方法：<br />
+- 后门准则<br />
+- 前门准则<br />
+- 工具变量</p>
+<p>Z=&gt;A=&gt;Y, r(YZ)/r(ZA)<br />
+<img alt="" src="../../../media/16352312091642.jpg" /></p>
+<ul>
+<li>Mediation (Direct and indirect effect identification)</li>
+</ul>
+<h3 id="3-estimate">(3) estimate<a class="headerlink" href="#3-estimate" title="Permanent link">#</a></h3>
+<p>支持的估计方法：<br />
+- 基于估计干预分配的方法<br />
+    - 基于倾向的分层（Propensity-based Stratification）<br />
+    - 倾向得分匹配（Propensity Score Matching）PSM<br />
+    - 逆向倾向加权（Inverse Propensity Weighting）<br />
+- 基于估计结果模型的方法<br />
+    - 线性回归（Linear Regression）<br />
+    - 广义线性模型（Generalized Linear Models）<br />
+- 基于工具变量等式的方法<br />
+    - 二元工具/Wald 估计器（Binary Instrument/Wald Estimator）<br />
+    - 两阶段最小二乘法（Two-stage least squares）<br />
+    - 非连续回归（Regression discontinuity）<br />
+- 基于前门准则和一般中介的方法<br />
+    - 两层线性回归（Two-stage linear regression）</p>
+<p><code>help(CausalModel.estimate_effect)</code>查看</p>
+<p><code>model.estimate_effect()r</code>中自带的估计方法: "[backdoor/iv].estimation_method_name". <br />
+* Propensity Score Matching: "backdoor.propensity_score_matching"   PSM<br />
+* Propensity Score Stratification: "backdoor.propensity_score_stratification"   PSS<br />
+* Propensity Score-based Inverse Weighting: "backdoor.propensity_score_weighting"   PSW<br />
+* Linear Regression: "backdoor.linear_regression"<br />
+* Generalized Linear Models (e.g., logistic regression): "backdoor.generalized_linear_model"<br />
+* Instrumental Variables: "iv.instrumental_variable"<br />
+* Regression Discontinuity: "iv.regression_discontinuity"</p>
+<p>支持嵌入EconML和ecoml的方法  "backdoor.econml.path-to-estimator-class". <br />
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LassoCV</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+<span class="n">dml_estimate</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">estimate_effect</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">,</span> <span class="n">method_name</span><span class="o">=</span><span class="s2">"backdoor.econml.dml.DML"</span><span class="p">,</span>
+                <span class="n">control_value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="n">treatment_value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="n">target_units</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"X0"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">confidence_intervals</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">method_params</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">"init_params"</span><span class="p">:{</span><span class="s1">'model_y'</span><span class="p">:</span><span class="n">GradientBoostingRegressor</span><span class="p">(),</span>
+                                   <span class="s1">'model_t'</span><span class="p">:</span> <span class="n">GradientBoostingRegressor</span><span class="p">(),</span>
+                                   <span class="s1">'model_final'</span><span class="p">:</span><span class="n">LassoCV</span><span class="p">(),</span>
+                                   <span class="s1">'featurizer'</span><span class="p">:</span><span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)},</span>
+                    <span class="s2">"fit_params"</span><span class="p">:{}}</span>
+                                        <span class="p">)</span>
+</code></pre></div></p>
+<p>自带的一般是估计线性的，ecoml中可以支持一些比较复杂的方法。官方给出了一个例子说明，当DGP是非线性的时候，自带的方法估计的不准<br />
+<a href="https://microsoft.github.io/dowhy/example_notebooks/tutorial-causalinference-machinelearning-using-dowhy-econml.html">https://microsoft.github.io/dowhy/example_notebooks/tutorial-causalinference-machinelearning-using-dowhy-econml.html</a></p>
+<p>断点回归----</p>
+<h3 id="4-refute-the-estimate">(4) refute the estimate<a class="headerlink" href="#4-refute-the-estimate" title="Permanent link">#</a></h3>
+<p>the below refutation tests are based on either 1) Invariant transformations: changes in the data that should not change the estimate. Any estimator whose result varies significantly between the original data and the modified data fails the test;</p>
+<div class="highlight"><pre><span></span><code>random_common_cause
+placebo_treatment_refuter
+data_subset_refuter
+</code></pre></div>
+<ul>
+<li>
+<p>添加随机混杂因子<br />
+如果假设正确，则添加随机混杂因子后，效应应该不会变化太多。</p>
+</li>
+<li>
+<p>安慰剂干预<br />
+将干预替换为随机变量，如果假设正确，则因果效应应该接近于0</p>
+</li>
+<li>
+<p>数据子集验证<br />
+在数据子集上估计因果效应，如果假设正确，因果效应应该变化不大。</p>
+</li>
+</ul>
+<p>EconMl和CausalML 可以使用 Conditional Average Treatment Effect (CATE)</p>
+<h2 id="2-padnas-api">2.简单版 padnas API<a class="headerlink" href="#2-padnas-api" title="Permanent link">#</a></h2>
+<p>example: <a href="https://github.com/microsoft/dowhy/blob/master/docs/source/example_notebooks/dowhy_causal_api.ipynb">https://github.com/microsoft/dowhy/blob/master/docs/source/example_notebooks/dowhy_causal_api.ipynb</a></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">dowhy.api</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dowhy.datasets</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">dowhy</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">linear_dataset</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">num_common_causes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">num_instruments</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">treatment_is_binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># data['df'] is just a regular pandas.DataFrame</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'df'</span><span class="p">]</span><span class="o">.</span><span class="n">causal</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'v0'</span><span class="p">,</span> <span class="c1"># name of treatment variable</span>
+                     <span class="n">variable_types</span><span class="o">=</span><span class="p">{</span><span class="s1">'v0'</span><span class="p">:</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">:</span> <span class="s1">'c'</span><span class="p">,</span> <span class="s1">'W0'</span><span class="p">:</span> <span class="s1">'c'</span><span class="p">},</span>
+                     <span class="n">outcome</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span>
+                     <span class="n">common_causes</span><span class="o">=</span><span class="p">[</span><span class="s1">'W0'</span><span class="p">])</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'v0'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">)</span><span class="n">r</span>
+</code></pre></div>
+<p>说明:<br />
+ - variable_types是一个词典，o代表定序变量，u代码非定序的离散变量，d代表discrete，c是连续变量，b二元变量</p>
+<h1 id="2-graphical-modelpotential-outcomes">2. Graphical model和potential outcomes<a class="headerlink" href="#2-graphical-modelpotential-outcomes" title="Permanent link">#</a></h1>
+<p>dowhy是使用了图模型和do-calculus来建模以及识别，使用potential outcomes来进行估计</p>
+<p>建模四步骤:<br />
+- Model a causal inference problem using assumptions.<br />
+- Identify an expression for the causal effect under these assumptions (“causal estimand”).<br />
+- Estimate the expression using statistical methods such as matching or instrumental variables.<br />
+- Finally, verify the validity of the estimate using a variety of robustness checks.</p>
+<p>This workflow can be captured by four key verbs in DoWhy:</p>
+<ul>
+<li>model</li>
+<li>identify</li>
+<li>estimate</li>
+<li>refute</li>
+</ul>
+<p>和其他软件的区别：<br />
+- Explicit identifying assumptions： 通过图的方式来设置假设条件，并且可以用观测数据来验证<br />
+- Separation between identification and estimation： 识别和估计是奋力的。识别是因果问题，估计是统计问题。<br />
+- Automated robustness checks <br />
+- 支持扩展，支持econML和CausalML的方法扩展</p>
+<h1 id="3-quick-start-tutorial">3. quick start tutorial<a class="headerlink" href="#3-quick-start-tutorial" title="Permanent link">#</a></h1>
+<ol>
+<li>因果效应</li>
+</ol>
+<p>$<span class="arithmatex"><span class="MathJax_Preview">E[Y|do(A=1)] - E[Y|do(A=0)]</span><script type="math/tex">E[Y|do(A=1)] - E[Y|do(A=0)]</script></span>$<br />
+为了估计这个效应，一个黄金准则就是进行随机试验。然而实际操作上并不总能实现。<br />
+<img alt="" src="../../../media/16352303623300.jpg" /></p>
+<p>QQ?<br />
+什么情况下回归估计的结果与因果的结果一样？？<br />
+<a href="https://github.com/microsoft/dowhy/blob/master/docs/source/example_notebooks/dowhy_causal_api.ipynb">https://github.com/microsoft/dowhy/blob/master/docs/source/example_notebooks/dowhy_causal_api.ipynb</a></p>
+<h2 id="4-load-an-input-graph">4. load an input graph<a class="headerlink" href="#4-load-an-input-graph" title="Permanent link">#</a></h2>
+<p>定义图的方式：<br />
+可以以str的形式，也可以以文件的形式，比如<code>graph="../example_graphs/simple_graph_example.gml"</code><br />
+(1)gml 格式<br />
+<div class="highlight"><pre><span></span><code><span class="c1"># With GML string</span>
+<span class="n">model</span><span class="o">=</span><span class="n">CausalModel</span><span class="p">(</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+        <span class="n">treatment</span><span class="o">=</span><span class="s1">'X'</span><span class="p">,</span>
+        <span class="n">outcome</span><span class="o">=</span><span class="s1">'Y'</span><span class="p">,</span>
+        <span class="n">graph</span><span class="o">=</span><span class="s2">"""graph[directed 1 node[id "Z" label "Z"]</span>
+<span class="s2">                    node[id "X" label "X"]</span>
+<span class="s2">                    node[id "Y" label "Y"]</span>
+<span class="s2">                    edge[source "Z" target "X"]</span>
+<span class="s2">                    edge[source "Z" target "Y"]</span>
+<span class="s2">                    edge[source "X" target "Y"]]"""</span>
+
+        <span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">view_model</span><span class="p">()</span>
+</code></pre></div></p>
+<p>(2) dot 格式<br />
+<div class="highlight"><pre><span></span><code><span class="c1"># With DOT string</span>
+<span class="n">model</span><span class="o">=</span><span class="n">CausalModel</span><span class="p">(</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+        <span class="n">treatment</span><span class="o">=</span><span class="s1">'X'</span><span class="p">,</span>
+        <span class="n">outcome</span><span class="o">=</span><span class="s1">'Y'</span><span class="p">,</span>
+        <span class="n">graph</span><span class="o">=</span><span class="s2">"digraph {Z -&gt; X;Z -&gt; Y;X -&gt; Y;}"</span>
+        <span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">view_model</span><span class="p">()</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">"causal_model.png"</span><span class="p">))</span>
+</code></pre></div></p>
+<h2 id="_1">参考<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p>案例 <a href="https://zhuanlan.zhihu.com/p/321808640">https://zhuanlan.zhihu.com/p/321808640</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

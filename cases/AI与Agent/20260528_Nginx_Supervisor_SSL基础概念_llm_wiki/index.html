@@ -1,0 +1,2029 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="面向初学者的 Nginx、Supervisor、SSL 基础概念解释，包含三者在生产部署中的角色定位、工作原理和相互关系。配合 FastAPI 商业项目阿里云部署方案使用。">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Nginx / Supervisor / SSL 基础概念 - LLM Wiki风格 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mental-model" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Nginx / Supervisor / SSL 基础概念 - LLM Wiki风格
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mental Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 三件套对比
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 我需要装哪个？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssl-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、SSL / HTTPS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、SSL / HTTPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本质
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用户感知
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        费用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        申请（一行搞定）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS 握手（简化版）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        证书文件说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hsts-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HSTS：强制 HTTPS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、Nginx
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本质
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么不能直接把 FastAPI 暴露出去
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nginx 做的三件事
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最小配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        替代品速览
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location 匹配优先级（经典坑）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebSocket 代理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upstream 负载均衡
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用安全头
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、Supervisor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、Supervisor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本质
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有 vs 没有
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemdsupervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        systemd：Supervisor 的替代方案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗺️ 完整请求链路
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 新服务器一键部署
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔥 排错速查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔥 排错速查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#502-bad-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        502 Bad Gateway
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#504-gateway-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        504 Gateway Timeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        证书过期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        端口冲突
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nginx 配置有语法错误
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 日常运维流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 日常运维流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        更新代码（标准操作）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gunicorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        零停机重启（gunicorn）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        部署后检查清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        查看访问日志
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Nginx / Supervisor / SSL 基础概念 - LLM Wiki风格</h1>
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/AI%E4%B8%8EAgent/">AI与Agent</a> · 类型：案例</p>
+</blockquote>
+<h2 id="mental-model">Mental Model<a class="headerlink" href="#mental-model" title="Permanent link">#</a></h2>
+<p>把你部署到服务器上的 Web 应用想象成**一家餐馆**：</p>
+<div class="highlight"><pre><span></span><code>┌──────────────┐     ┌─────────────┐     ┌────────────┐
+│   SSL/HTTPS  │  =  │   防盗门     │  =  │ 客人信息不 │
+│              │     │             │     │ 会被偷听   │
+└──────────────┘     └─────────────┘     └────────────┘
+┌──────────────┐     ┌─────────────┐     ┌────────────┐
+│    Nginx     │  =  │  前台服务员   │  =  │ 接待客人、 │
+│              │     │             │     │ 传菜、上菜 │
+└──────────────┘     └─────────────┘     └────────────┘
+┌──────────────┐     ┌─────────────┐     ┌────────────┐
+│  Supervisor  │  =  │    保姆      │  =  │ 厨师倒了？ │
+│              │     │             │     │ 立刻扶起来 │
+└──────────────┘     └─────────────┘     └────────────┘
+</code></pre></div>
+<blockquote>
+<p><strong>一句话</strong>：Supervisor 保命，Nginx 分流，SSL 加密。三者配你的 FastAPI 代码 = 完整生产环境。</p>
+</blockquote>
+<hr />
+<h2 id="_1">📊 三件套对比<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>SSL / HTTPS</th>
+<th>Nginx</th>
+<th>Supervisor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>角色</strong></td>
+<td>加密传输</td>
+<td>反向代理 + 静态文件</td>
+<td>进程守护</td>
+</tr>
+<tr>
+<td><strong>比喻</strong></td>
+<td>防盗门</td>
+<td>前台服务员</td>
+<td>保姆</td>
+</tr>
+<tr>
+<td><strong>面向谁</strong></td>
+<td>用户浏览器 ↔ 服务器</td>
+<td>用户请求 → 后端</td>
+<td>你的应用进程</td>
+</tr>
+<tr>
+<td><strong>解决什么</strong></td>
+<td>防止中间人窃听/篡改</td>
+<td>端口转发、SSL 终结、负载均衡</td>
+<td>崩溃自动重启、开机自启</td>
+</tr>
+<tr>
+<td><strong>费用</strong></td>
+<td>¥0（Let's Encrypt）</td>
+<td>¥0（开源）</td>
+<td>¥0（开源）</td>
+</tr>
+<tr>
+<td><strong>配置频率</strong></td>
+<td>3 月自动续期</td>
+<td>一次配好，基本不动</td>
+<td>一次配好，基本不动</td>
+</tr>
+<tr>
+<td><strong>替代品</strong></td>
+<td>付费证书</td>
+<td>Caddy, HAProxy, Traefik</td>
+<td>systemd, pm2, docker restart</td>
+</tr>
+<tr>
+<td><strong>能不能不用？</strong></td>
+<td>❌ 支付/登录必须</td>
+<td>⚠️ 可以但强烈不建议</td>
+<td>⚠️ 可以但半夜挂了没人管</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">🎯 我需要装哪个？<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>你的情况</th>
+<th style="text-align: center;">SSL</th>
+<th style="text-align: center;">Nginx</th>
+<th style="text-align: center;">Supervisor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有域名，需要 HTTPS</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td>用户要输入密码/支付</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td>只想 IP:端口跑着玩玩</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td>怕应用挂了没人知道</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>服务器重启后不想手动启动</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>静态文件多，想减轻后端压力</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td>未来可能多台服务器</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td>完全不想碰运维</td>
+<td style="text-align: center;">→ 用 PaaS（Fly.io / Railway）</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ssl-https">一、SSL / HTTPS<a class="headerlink" href="#ssl-https" title="Permanent link">#</a></h2>
+<h3 id="_3">本质<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<p>HTTP 是**明信片**（沿途每个路由器都能看），HTTPS 是**密封信封**（只有收件人能打开）。</p>
+<p>SSL 证书 = 一把公钥，由 CA（证书机构）签名担保"这个公钥确实属于这个域名"。浏览器内置了信任的 CA 列表，验证通过就显示 🔒。</p>
+<h3 id="_4">用户感知<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>🔒 https://你的域名.com    ← 有小锁
+⚠️ http://你的域名.com     ← 浏览器标"不安全"
+</code></pre></div>
+<h3 id="_5">费用<a class="headerlink" href="#_5" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>价格</th>
+<th>适合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Let's Encrypt</strong>（推荐）</td>
+<td>¥0</td>
+<td>所有项目，certbot 自动续期</td>
+</tr>
+<tr>
+<td>阿里云免费证书</td>
+<td>¥0</td>
+<td>国内 ECS 用户</td>
+</tr>
+<tr>
+<td>付费企业证书</td>
+<td>¥2000+/年</td>
+<td>银行、政府等 EV 验证场景</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>微信支付 / 支付宝回调强制要求 HTTPS</strong>，没证书支付走不通。</p>
+</blockquote>
+<h3 id="_6">申请（一行搞定）<a class="headerlink" href="#_6" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 前提：域名已解析到服务器 IP</span>
+certbot<span class="w"> </span>--nginx<span class="w"> </span>-d<span class="w"> </span>your-domain.com
+</code></pre></div>
+<p>certbot 自动配 Nginx + 设置定时续期，之后就不用管了。</p>
+<h3 id="tls">TLS 握手（简化版）<a class="headerlink" href="#tls" title="Permanent link">#</a></h3>
+<p>浏览器和服务器在传输数据前，先握手协商加密密钥：</p>
+<div class="highlight"><pre><span></span><code>浏览器                                  服务器
+  │                                       │
+  │── ① ClientHello ───────────────────→ │   "我支持 TLS 1.3, 这些加密算法"
+  │                                       │
+  │←─ ② ServerHello + 证书 ──────────── │   "用这个算法, 这是我的证书(含公钥)"
+  │                                       │
+  │  ③ 浏览器验签：证书是可信 CA 发的？    │
+  │     域名匹配？证书过期了吗？            │
+  │                                       │
+  │── ④ 用公钥加密 pre-master secret ──→ │   双方各自派生 session key
+  │                                       │
+  │←────── ⑤ 加密通信开始 ────────→      │   后续全部用 session key 对称加密
+</code></pre></div>
+<blockquote>
+<p>TLS 1.3 只需要 1-RTT（一次往返），比旧版本快。Let's Encrypt 证书走的就是这个流程。</p>
+</blockquote>
+<h3 id="_7">证书文件说明<a class="headerlink" href="#_7" title="Permanent link">#</a></h3>
+<p>certbot 申请后生成两个关键文件：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>内容</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fullchain.pem</code></td>
+<td>你的证书 + 中间 CA 证书（链）</td>
+<td>Nginx <code>ssl_certificate</code></td>
+</tr>
+<tr>
+<td><code>privkey.pem</code></td>
+<td>你的私钥</td>
+<td>Nginx <code>ssl_certificate_key</code>，<strong>绝对不能泄露</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>证书链 = 站点证书 ← 中间 CA ← 根 CA（浏览器内置信任）。缺中间 CA 会导致部分设备（特别是 Android）报证书错误。所以用 <code>fullchain.pem</code> 而不是 <code>cert.pem</code>。</p>
+</blockquote>
+<h3 id="hsts-https">HSTS：强制 HTTPS<a class="headerlink" href="#hsts-https" title="Permanent link">#</a></h3>
+<p>加一行 header，告诉浏览器"以后访问这个域名，只用 HTTPS，别试 HTTP"：</p>
+<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">Strict-Transport-Security</span><span class="w"> </span><span class="s">"max-age=31536000</span><span class="p">;</span><span class="w"> </span><span class="k">includeSubDomains"</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+</code></pre></div>
+<p>效果：第一次 HTTPS 访问后，浏览器 1 年内不会尝试 HTTP，杜绝 SSL stripping 攻击。</p>
+<hr />
+<h2 id="nginx">二、Nginx<a class="headerlink" href="#nginx" title="Permanent link">#</a></h2>
+<h3 id="_8">本质<a class="headerlink" href="#_8" title="Permanent link">#</a></h3>
+<p><strong>反向代理服务器</strong>。站在用户和你的应用之间，接收请求 → 决定发给谁 → 返回结果。</p>
+<h3 id="fastapi">为什么不能直接把 FastAPI 暴露出去<a class="headerlink" href="#fastapi" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>直接暴露 (<code>uvicorn --host 0.0.0.0 --port 8000</code>)</th>
+<th>经过 Nginx</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户访问 <code>http://ip:8000</code>，难记</td>
+<td>用户访问 <code>https://域名</code>，正常</td>
+</tr>
+<tr>
+<td>无法配 HTTPS</td>
+<td>Nginx 处理 SSL，后端不用管</td>
+</tr>
+<tr>
+<td>端口可能被防火墙挡</td>
+<td>走 80/443 标准端口</td>
+</tr>
+<tr>
+<td>没有限流/缓存/压缩</td>
+<td>Nginx 自带这些能力</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nginx_1">Nginx 做的三件事<a class="headerlink" href="#nginx_1" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>用户 → https://域名
+         │
+    ┌────▼─────────────────────┐
+    │         Nginx            │
+    │                          │
+    │  ① SSL 终结（解密 HTTPS） │
+    │  ② 反向代理（转发给后端） │
+    │  ③ 静态文件（直接返回）   │
+    └────────┬─────────────────┘
+             │ http://127.0.0.1:8000
+    ┌────────▼─────┐
+    │   FastAPI    │
+    └──────────────┘
+</code></pre></div>
+<h3 id="_9">最小配置<a class="headerlink" href="#_9" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># /etc/nginx/conf.d/fastapi.conf</span>
+<span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">your-domain.com</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w">     </span><span class="s">/etc/nginx/ssl/fullchain.pem</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w"> </span><span class="s">/etc/nginx/ssl/privkey.pem</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://127.0.0.1:8000</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/static/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">alias</span><span class="w"> </span><span class="s">/var/www/myapp/static/</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_10">替代品速览<a class="headerlink" href="#_10" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>定位</th>
+<th>适合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Caddy</strong></td>
+<td>更简单的 Nginx</td>
+<td>自动 HTTPS，配置极简</td>
+</tr>
+<tr>
+<td><strong>HAProxy</strong></td>
+<td>专业负载均衡</td>
+<td>高并发 TCP/HTTP 分发</td>
+</tr>
+<tr>
+<td><strong>Traefik</strong></td>
+<td>云原生反向代理</td>
+<td>Docker/K8s 自动服务发现</td>
+</tr>
+</tbody>
+</table>
+<h3 id="location">Location 匹配优先级（经典坑）<a class="headerlink" href="#location" title="Permanent link">#</a></h3>
+<p>Nginx 的 <code>location</code> 不是按书写顺序匹配，而是按**优先级**：</p>
+<div class="highlight"><pre><span></span><code>优先级 高 → 低
+  ①  = /exact       精确匹配
+  ②  ^~ /prefix      前缀匹配（匹配后不再检查正则）
+  ③  ~  \.php$       区分大小写的正则
+  ④  ~* \.jpg$       不区分大小写的正则
+  ⑤  /prefix          普通前缀（最宽松）
+  ⑥  /                兜底
+</code></pre></div>
+<p><strong>常见踩坑</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ❌ 你以为静态文件走 /static/，实际可能被 ~ \.php$ 截胡</span>
+<span class="k">location</span><span class="w"> </span><span class="p">~</span><span class="w"> </span><span class="sr">\.php$</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kn">...</span><span class="w"> </span><span class="err">}</span>
+<span class="s">location</span><span class="w"> </span><span class="s">/static/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kn">alias</span><span class="w"> </span><span class="s">/var/www/static/</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1"># 如果请求 /static/test.php，先命中上面的正则！</span>
+
+<span class="c1"># ✅ 加 ^~ 禁止正则匹配</span>
+<span class="kn">location</span><span class="w"> </span><span class="s">^~</span><span class="w"> </span><span class="s">/static/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kn">alias</span><span class="w"> </span><span class="s">/var/www/static/</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="websocket">WebSocket 代理<a class="headerlink" href="#websocket" title="Permanent link">#</a></h3>
+<p>FastAPI 的 WebSocket 端点需要 Nginx 升级连接：</p>
+<div class="highlight"><pre><span></span><code><span class="k">location</span><span class="w"> </span><span class="s">/ws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://127.0.0.1:8000</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_http_version</span><span class="w"> </span><span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Upgrade</span><span class="w"> </span><span class="nv">$http_upgrade</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Connection</span><span class="w"> </span><span class="s">"upgrade"</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_read_timeout</span><span class="w"> </span><span class="s">86400s</span><span class="p">;</span><span class="w">   </span><span class="c1"># WebSocket 长连接不能断</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>关键：<code>proxy_http_version 1.1</code> + <code>Upgrade</code> + <code>Connection "upgrade"</code> 三件套，缺一个 WebSocket 就连不上。</p>
+</blockquote>
+<h3 id="upstream">Upstream 负载均衡<a class="headerlink" href="#upstream" title="Permanent link">#</a></h3>
+<p>流量大了，启动多个 FastAPI 实例，Nginx 帮你在它们之间分配请求：</p>
+<div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">fastapi_cluster</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># 默认轮询（round-robin）</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">8001</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">8002</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">8003</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1"># 其他策略：</span>
+<span class="w">    </span><span class="c1"># least_conn;              # 最少连接</span>
+<span class="w">    </span><span class="c1"># ip_hash;                 # 同 IP 固定到同一台（session 亲和）</span>
+<span class="w">    </span><span class="c1"># server xxx:8001 weight=3;  # 加权（性能好的机器多分配）</span>
+<span class="p">}</span>
+
+<span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://fastapi_cluster</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_11">常用安全头<a class="headerlink" href="#_11" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 防点击劫持</span>
+<span class="k">add_header</span><span class="w"> </span><span class="s">X-Frame-Options</span><span class="w"> </span><span class="s">"SAMEORIGIN"</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+
+<span class="c1"># 防 MIME 类型嗅探</span>
+<span class="k">add_header</span><span class="w"> </span><span class="s">X-Content-Type-Options</span><span class="w"> </span><span class="s">"nosniff"</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+
+<span class="c1"># 启用浏览器 XSS 过滤器</span>
+<span class="k">add_header</span><span class="w"> </span><span class="s">X-XSS-Protection</span><span class="w"> </span><span class="s">"1</span><span class="p">;</span><span class="w"> </span><span class="k">mode=block"</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+
+<span class="c1"># HSTS（前面讲过）</span>
+<span class="k">add_header</span><span class="w"> </span><span class="s">Strict-Transport-Security</span><span class="w"> </span><span class="s">"max-age=31536000</span><span class="p">;</span><span class="w"> </span><span class="k">includeSubDomains"</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h2 id="supervisor">三、Supervisor<a class="headerlink" href="#supervisor" title="Permanent link">#</a></h2>
+<h3 id="_12">本质<a class="headerlink" href="#_12" title="Permanent link">#</a></h3>
+<p><strong>进程守护工具</strong>。盯着你的应用进程，挂了就重启。</p>
+<h3 id="vs">有 vs 没有<a class="headerlink" href="#vs" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>没有 Supervisor</th>
+<th>有 Supervisor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关 SSH 窗口</td>
+<td>❌ 服务停</td>
+<td>✅ 继续跑</td>
+</tr>
+<tr>
+<td>代码报错崩溃</td>
+<td>❌ 挂了没人管</td>
+<td>✅ 秒级自动重启</td>
+</tr>
+<tr>
+<td>服务器重启</td>
+<td>❌ SSH 上去手动启动</td>
+<td>✅ 开机自启</td>
+</tr>
+<tr>
+<td>想看状态</td>
+<td>❌ <code>ps aux \| grep</code> 猜</td>
+<td>✅ <code>supervisorctl status</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_13">配置<a class="headerlink" href="#_13" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">; /etc/supervisord.d/fastapi.ini</span>
+<span class="k">[program:fastapi]</span>
+<span class="na">command</span><span class="o">=</span><span class="s">/var/www/myapp/venv/bin/gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 127.0.0.1:8000</span>
+<span class="na">directory</span><span class="o">=</span><span class="s">/var/www/myapp</span>
+<span class="na">user</span><span class="o">=</span><span class="s">www-data</span>
+<span class="na">autostart</span><span class="o">=</span><span class="s">true</span>
+<span class="na">autorestart</span><span class="o">=</span><span class="s">true</span>
+<span class="na">stderr_logfile</span><span class="o">=</span><span class="s">/var/log/fastapi.err.log</span>
+<span class="na">stdout_logfile</span><span class="o">=</span><span class="s">/var/log/fastapi.out.log</span>
+</code></pre></div>
+<h3 id="_14">常用命令<a class="headerlink" href="#_14" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>supervisorctl<span class="w"> </span>status<span class="w">              </span><span class="c1"># 查看所有进程</span>
+supervisorctl<span class="w"> </span>start<span class="w"> </span>fastapi<span class="w">       </span><span class="c1"># 启动</span>
+supervisorctl<span class="w"> </span>stop<span class="w"> </span>fastapi<span class="w">        </span><span class="c1"># 停止</span>
+supervisorctl<span class="w"> </span>restart<span class="w"> </span>fastapi<span class="w">     </span><span class="c1"># 重启</span>
+supervisorctl<span class="w"> </span>tail<span class="w"> </span>fastapi<span class="w">        </span><span class="c1"># 实时日志</span>
+</code></pre></div>
+<blockquote>
+<p>⚠️ 别用 <code>screen</code>/<code>tmux</code> 跑生产服务——SSH 一断全完。也别手动 <code>python main.py &amp;</code> 后台跑——崩了没人知道。</p>
+</blockquote>
+<h3 id="systemdsupervisor">systemd：Supervisor 的替代方案<a class="headerlink" href="#systemdsupervisor" title="Permanent link">#</a></h3>
+<p>现代 Linux 发行版自带 systemd，可以不装 Supervisor 直接用它管理服务。<strong>推荐新项目优先考虑 systemd</strong>，少一个依赖。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">; /etc/systemd/system/fastapi.service</span>
+<span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">FastAPI Application</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">User</span><span class="o">=</span><span class="s">www-data</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/var/www/myapp</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/var/www/myapp/venv/bin/gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 127.0.0.1:8000</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+<span class="na">RestartSec</span><span class="o">=</span><span class="s">3</span>
+<span class="na">StandardOutput</span><span class="o">=</span><span class="s">append:/var/log/fastapi.out.log</span>
+<span class="na">StandardError</span><span class="o">=</span><span class="s">append:/var/log/fastapi.err.log</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>daemon-reload<span class="w">           </span><span class="c1"># 重载配置</span>
+systemctl<span class="w"> </span>start<span class="w"> </span>fastapi<span class="w">           </span><span class="c1"># 启动</span>
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>fastapi<span class="w">          </span><span class="c1"># 开机自启</span>
+systemctl<span class="w"> </span>status<span class="w"> </span>fastapi<span class="w">          </span><span class="c1"># 查看状态</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>fastapi<span class="w"> </span>-f<span class="w">          </span><span class="c1"># 实时日志</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>对比</th>
+<th>Supervisor</th>
+<th>systemd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安装</td>
+<td>需要 pip install</td>
+<td>系统自带</td>
+</tr>
+<tr>
+<td>配置复杂度</td>
+<td>简单</td>
+<td>稍复杂（更多字段）</td>
+</tr>
+<tr>
+<td>日志</td>
+<td><code>supervisorctl tail</code></td>
+<td><code>journalctl -u</code></td>
+</tr>
+<tr>
+<td>Web 管理界面</td>
+<td>✅ 内置</td>
+<td>❌ 需额外工具</td>
+</tr>
+<tr>
+<td>依赖管理（先启动数据库再启动应用）</td>
+<td>❌ 需配 priority</td>
+<td>✅ <code>After=</code> / <code>Requires=</code></td>
+</tr>
+<tr>
+<td>推荐场景</td>
+<td>CentOS 7 老系统</td>
+<td>CentOS 8+ / Ubuntu 16+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_15">🗺️ 完整请求链路<a class="headerlink" href="#_15" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code>用户浏览器
+   │  https://your-domain.com
+   ▼
+┌──────────────────────────┐
+│    互联网（SSL 加密）      │
+└──────────────────────────┘
+   │  :443
+   ▼
+┌──────────────────────────┐
+│  Nginx                   │
+│  ├─ 解密 HTTPS           │
+│  ├─ 静态文件？→ 直接返回  │
+│  └─ API 请求？→ 转发     │
+└──────────────────────────┘
+   │  http://127.0.0.1:8000（内网）
+   ▼
+┌──────────────────────────┐
+│  FastAPI（你的代码）      │
+│  ├─ 业务逻辑             │
+│  ├─ 数据库               │
+│  └─ 支付接口             │
+└──────────────────────────┘
+   ▲
+   │  盯着 👀
+┌──────────────────────────┐
+│  Supervisor              │
+│  ├─ 活着？→ 不打扰       │
+│  ├─ 挂了？→ 马上重启     │
+│  └─ 重启后？→ 自动启动   │
+└──────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="_16">🚀 新服务器一键部署<a class="headerlink" href="#_16" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 1. 安装 ----------</span>
+yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nginx<span class="w"> </span>certbot<span class="w"> </span>python3-certbot-nginx
+pip3<span class="w"> </span>install<span class="w"> </span>supervisor
+
+<span class="c1"># ---------- 2. Supervisor ----------</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/supervisord.d/fastapi.ini<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
+<span class="s">[program:fastapi]</span>
+<span class="s">command=/var/www/myapp/venv/bin/gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 127.0.0.1:8000</span>
+<span class="s">directory=/var/www/myapp</span>
+<span class="s">autostart=true</span>
+<span class="s">autorestart=true</span>
+<span class="s">stderr_logfile=/var/log/fastapi.err.log</span>
+<span class="s">stdout_logfile=/var/log/fastapi.out.log</span>
+<span class="s">EOF</span>
+
+systemctl<span class="w"> </span>start<span class="w"> </span>supervisord
+supervisorctl<span class="w"> </span>update
+supervisorctl<span class="w"> </span>start<span class="w"> </span>fastapi
+
+<span class="c1"># ---------- 3. Nginx（先 HTTP，后升级 HTTPS）----------</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/nginx/conf.d/fastapi.conf<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
+<span class="s">server {</span>
+<span class="s">    listen 80;</span>
+<span class="s">    server_name your-domain.com;</span>
+
+<span class="s">    location / {</span>
+<span class="s">        proxy_pass http://127.0.0.1:8000;</span>
+<span class="s">        proxy_set_header Host $host;</span>
+<span class="s">        proxy_set_header X-Real-IP $remote_addr;</span>
+<span class="s">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span>
+<span class="s">        proxy_set_header X-Forwarded-Proto $scheme;</span>
+<span class="s">    }</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+
+systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
+
+<span class="c1"># ---------- 4. SSL 证书 ----------</span>
+<span class="c1"># 确保域名已解析到服务器 IP</span>
+certbot<span class="w"> </span>--nginx<span class="w"> </span>-d<span class="w"> </span>your-domain.com
+
+<span class="c1"># ---------- 5. 验证 ----------</span>
+curl<span class="w"> </span>http://127.0.0.1:8000/health<span class="w">     </span><span class="c1"># FastAPI 活着？</span>
+supervisorctl<span class="w"> </span>status<span class="w">                    </span><span class="c1"># Supervisor 在盯？</span>
+curl<span class="w"> </span>https://your-domain.com/health<span class="w">     </span><span class="c1"># Nginx + SSL 通了？</span>
+</code></pre></div>
+<blockquote>
+<p>配好后日常只需要 <code>supervisorctl status</code> 看一眼 + 偶尔 <code>supervisorctl tail fastapi</code> 翻翻日志。三件套基本零维护。</p>
+</blockquote>
+<hr />
+<h2 id="_17">🔥 排错速查<a class="headerlink" href="#_17" title="Permanent link">#</a></h2>
+<h3 id="502-bad-gateway">502 Bad Gateway<a class="headerlink" href="#502-bad-gateway" title="Permanent link">#</a></h3>
+<p><strong>含义</strong>：Nginx 收到了请求，但转发给后端时，后端没响应（进程死了/没启动/端口不对）。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 第一步：后端活着吗？</span>
+curl<span class="w"> </span>http://127.0.0.1:8000/health
+
+<span class="c1"># 第二步：Supervisor 状态</span>
+supervisorctl<span class="w"> </span>status
+<span class="c1"># 如果显示 FATAL / STOPPED → 看错误日志</span>
+supervisorctl<span class="w"> </span>tail<span class="w"> </span>fastapi<span class="w"> </span>stderr
+
+<span class="c1"># 第三步：端口被占用？</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:8000
+<span class="c1"># 或</span>
+ss<span class="w"> </span>-tlnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">8000</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>原因</th>
+<th>检查</th>
+<th>修复</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>后端进程挂了</td>
+<td><code>supervisorctl status</code></td>
+<td><code>supervisorctl restart fastapi</code></td>
+</tr>
+<tr>
+<td>端口号写错</td>
+<td>Nginx 配置里的 <code>proxy_pass</code> 和 FastAPI 启动端口一致吗？</td>
+<td>改配置 <code>systemctl restart nginx</code></td>
+</tr>
+<tr>
+<td>后端监听 127.0.0.1 但 Nginx 连 localhost</td>
+<td>确保两边一致（统一用 <code>127.0.0.1</code> 或 <code>localhost</code>）</td>
+<td>统一即可</td>
+</tr>
+<tr>
+<td>防火墙挡了内网</td>
+<td><code>iptables -L</code></td>
+<td>内网 127.0.0.1 不应该被挡</td>
+</tr>
+</tbody>
+</table>
+<h3 id="504-gateway-timeout">504 Gateway Timeout<a class="headerlink" href="#504-gateway-timeout" title="Permanent link">#</a></h3>
+<p><strong>含义</strong>：Nginx 转发请求给后端了，但后端处理太久，Nginx 等不及就断了。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 加长超时（默认 60s）</span>
+<span class="k">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://127.0.0.1:8000</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_read_timeout</span><span class="w"> </span><span class="s">300s</span><span class="p">;</span><span class="w">       </span><span class="c1"># 等后端响应的最长时间</span>
+<span class="w">    </span><span class="kn">proxy_connect_timeout</span><span class="w"> </span><span class="s">60s</span><span class="p">;</span><span class="w">     </span><span class="c1"># 连接后端的最长时间</span>
+<span class="w">    </span><span class="kn">proxy_send_timeout</span><span class="w"> </span><span class="s">300s</span><span class="p">;</span><span class="w">       </span><span class="c1"># 发送请求给后端的最长时间</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>如果某个接口就是慢（导出报表、批量处理），给那个接口单独配 <code>location</code> 加超时，不要全局放大。</p>
+</blockquote>
+<h3 id="_18">证书过期<a class="headerlink" href="#_18" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 检查证书到期时间</span>
+openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>your-domain.com:443<span class="w"> </span>-servername<span class="w"> </span>your-domain.com<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-dates
+
+<span class="c1"># certbot 续期是否正常</span>
+certbot<span class="w"> </span>renew<span class="w"> </span>--dry-run
+
+<span class="c1"># 如果自动续期失败，手动续</span>
+certbot<span class="w"> </span>renew<span class="w"> </span>--force-renewal
+systemctl<span class="w"> </span>reload<span class="w"> </span>nginx
+</code></pre></div>
+<blockquote>
+<p>certbot 续期后需要 <code>reload</code> Nginx（不是 <code>restart</code>，reload 不中断连接）。可以在 crontab 加一句：<code>0 3 * * * certbot renew --quiet &amp;&amp; systemctl reload nginx</code></p>
+</blockquote>
+<h3 id="_19">端口冲突<a class="headerlink" href="#_19" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 谁在占用 80 / 443？</span>
+ss<span class="w"> </span>-tlnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">':80 |:443 '</span>
+
+<span class="c1"># 杀掉占用进程</span>
+fuser<span class="w"> </span>-k<span class="w"> </span><span class="m">80</span>/tcp
+</code></pre></div>
+<p>常见冲突：Caddy 和 Nginx 同时装，都抢 80/443。二选一。</p>
+<h3 id="nginx_2">Nginx 配置有语法错误<a class="headerlink" href="#nginx_2" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 改完配置先测语法，别直接 restart！</span>
+nginx<span class="w"> </span>-t
+
+<span class="c1"># 语法 OK 才 reload</span>
+systemctl<span class="w"> </span>reload<span class="w"> </span>nginx
+</code></pre></div>
+<blockquote>
+<p><code>restart</code> = 停掉再启动，瞬间丢所有连接。<code>reload</code> = 不停机加载新配置。日常改配置用 <code>reload</code>。</p>
+</blockquote>
+<hr />
+<h2 id="_20">🔄 日常运维流程<a class="headerlink" href="#_20" title="Permanent link">#</a></h2>
+<h3 id="_21">更新代码（标准操作）<a class="headerlink" href="#_21" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 拉代码</span>
+<span class="nb">cd</span><span class="w"> </span>/var/www/myapp
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+
+<span class="c1"># 2. 装依赖（如果有新增）</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c1"># 3. 重启应用（Supervisor 方式）</span>
+supervisorctl<span class="w"> </span>restart<span class="w"> </span>fastapi
+
+<span class="c1"># 或者 systemd 方式</span>
+systemctl<span class="w"> </span>restart<span class="w"> </span>fastapi
+
+<span class="c1"># 4. 验证</span>
+curl<span class="w"> </span>http://127.0.0.1:8000/health
+curl<span class="w"> </span>https://your-domain.com/health
+</code></pre></div>
+<h3 id="gunicorn">零停机重启（gunicorn）<a class="headerlink" href="#gunicorn" title="Permanent link">#</a></h3>
+<p>gunicorn 支持平滑重启：不丢请求，逐个 worker 替换。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 发送 HUP 信号 = 优雅重启</span>
+<span class="nb">kill</span><span class="w"> </span>-HUP<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>/var/run/gunicorn.pid<span class="k">)</span>
+
+<span class="c1"># 或者在 Supervisor 配置里：</span>
+<span class="c1"># stopsignal=HUP</span>
+</code></pre></div>
+<h3 id="_22">部署后检查清单<a class="headerlink" href="#_22" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>□<span class="w"> </span>curl<span class="w"> </span>https://域名/health<span class="w">                 </span><span class="c1"># HTTPS 通不通</span>
+□<span class="w"> </span>curl<span class="w"> </span>-I<span class="w"> </span>https://域名<span class="w">                      </span><span class="c1"># 看响应头有没有 HSTS</span>
+□<span class="w"> </span>supervisorctl<span class="w"> </span>status<span class="w">                      </span><span class="c1"># 进程活着</span>
+□<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/fastapi.err.log<span class="w">          </span><span class="c1"># 没有异常报错</span>
+□<span class="w"> </span>openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>域名:443<span class="w"> </span>&lt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Verify<span class="w">  </span><span class="c1"># 证书 OK</span>
+</code></pre></div>
+<h3 id="_23">查看访问日志<a class="headerlink" href="#_23" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Nginx 访问日志（谁在访问你的 API）</span>
+tail<span class="w"> </span>-f<span class="w"> </span>/var/log/nginx/access.log
+
+<span class="c1"># 只看 API 请求，过滤掉静态文件</span>
+tail<span class="w"> </span>-f<span class="w"> </span>/var/log/nginx/access.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">'/static/'</span>
+</code></pre></div>
+<hr />
+<h2 id="_24">🔗 参考<a class="headerlink" href="#_24" title="Permanent link">#</a></h2>
+<ul>
+<li>Nginx 官方文档：<a href="https://nginx.org/en/docs/">https://nginx.org/en/docs/</a></li>
+<li>Nginx 配置生成器：<a href="https://nginxconfig.io/">https://nginxconfig.io/</a></li>
+<li>Supervisor 官方文档：<a href="http://supervisord.org/">http://supervisord.org/</a></li>
+<li>Let's Encrypt：<a href="https://letsencrypt.org/zh-cn/">https://letsencrypt.org/zh-cn/</a></li>
+<li>certbot：<a href="https://certbot.eff.org/">https://certbot.eff.org/</a></li>
+</ul>
+<hr />
+<p><strong>更新日期</strong>：2026-05-28<br />
+<strong>适用场景</strong>：FastAPI 商业项目阿里云轻量服务器部署<br />
+<strong>关联笔记</strong>：20260528_FastAPI商业项目阿里云部署方案_llm_wiki（资料已移出公开 Wiki，待脱敏）</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

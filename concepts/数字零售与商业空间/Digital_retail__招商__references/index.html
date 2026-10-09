@@ -1,0 +1,1149 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>references - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              references
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文献1-非线性规划
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="文献1-非线性规划">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        introduction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文献综述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        研究方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计算方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        案例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文献2-
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文献3 ☆☆☆
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-method-for-determining-optimal-tenant-mix-including-location-in-shopping-centers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Method for Determining Optimal Tenant Mix (Including Location) in Shopping Centers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A Method for Determining Optimal Tenant Mix (Including Location) in Shopping Centers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        作者方案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考资料
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        toread
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="toread">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        41
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        47
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E6%95%B0%E5%AD%97%E9%9B%B6%E5%94%AE%E4%B8%8E%E5%95%86%E4%B8%9A%E7%A9%BA%E9%97%B4/">数字零售与商业空间</a> · 类型：概念</p>
+</blockquote>
+<h2 id="1-">文献1-非线性规划<a class="headerlink" href="#1-" title="Permanent link">#</a></h2>
+<p>Development of a Nonlinear Integer Optimization Model for Tenant Mix Layout in a Shopping Centre-2020</p>
+<h3 id="introduction">introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h3>
+<p>关于TMP(tenant mix problem)的相关研究比较少，</p>
+<p>早期的研究的规划问题，主要考虑的限制条件如下：<br />
+-  including total leasable area, <br />
+- the upper and lower limits of each type of business area, <br />
+- the upper and lower limits of each size of a shop, <br />
+- the maximum amount of interior decoration allowance</p>
+<p>作者目的：考虑store和store之间的交互，shpping centre可以看做是一个生态系统，不同的业态组合是消费者选择后进化的产物。</p>
+<h3 id="_1">文献综述<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<p>整体来说TMP包括三个决策：<br />
+ - the division of physical space [18–20], <br />
+ - the selection of retail types,<br />
+ - and the brand level of stores [18].</p>
+<p>实际的场景中包含两种情况：<br />
+1. 针对商场整体的布局做分配，<br />
+2. 只针对特定空位置安排合适的业态和店铺</p>
+<p>一些发现：<br />
+Consumer behaviour in a shopping centre can create <strong>retail externalities</strong> <a href="../Digital_retail__%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86__%E7%90%86%E8%AE%BA-%E9%9B%B6%E5%94%AE%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/">理论-零售空间布局</a>in stores due to shopping attitudes, such as multipurpose shopping, comparison shopping, and reducing search costs, and those externalities have been widely identified [6,  <a href="./#21">21</a>, <a href="./#22">22</a>]</p>
+<p>barbell shopping center model: 两头放一些大型的或者餐饮店，中间放一些小的店铺</p>
+<p>分析可见性、店铺大小等对sale的影响</p>
+<p>模拟在给定tenant mix下的消费者行为。分析客流密度和业态集中度的关系[<a href="./#41">41</a>]</p>
+<h3 id="_2">研究方法<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<p>作者的研究粒度：业态+brand level</p>
+<p>基本假定：<br />
+-  The attraction of a store is directly proportional to its size.<br />
+-  Anchor store generates retail externalities but is not affected by the externalities of other stores.<br />
+-  Each floor has a main type of retail； floor theme</p>
+<p>目标：rent</p>
+<p>Rent  = Basic rent + Excess rent</p>
+<p>（1）basic rent<br />
+$$Basic rent = f(AREA,FLOOR,LEVEL,POSITION,TYPE)=S_{f,x,y}r_b c_f c_h c_{po} $$</p>
+<p>作者这里使用归一化的方式，即选择一个指定的参考点，然后其他位置按照系数进行折算</p>
+<ul>
+<li>rB：Basic 坪效 for the first floor</li>
+<li>cf： Adjustment coefficient of the floor </li>
+<li>ch: Adjustment coefficient of shop grade</li>
+<li>c_po: 这里对location的计算和落位预测里的很相似，也是考虑了entrance和elevator....<br />
+<img alt="" src="../../../media/recovered/c951cc734ca0-Pasted%20image%2020220304133754.png" /></li>
+</ul>
+<blockquote>
+<p>折算定价法</p>
+</blockquote>
+<p>（2） excess rent<br />
+ 提成租金是与store的销售额有关的</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">SALES = f(TYPE, LEVEL, EXTERNALITY, POSITION)</div>
+<script type="math/tex; mode=display">SALES = f(TYPE, LEVEL, EXTERNALITY, POSITION)</script>
+</div>
+<p>retail externalities: The externalities of the anchor store and similar agglomeration externalities</p>
+<ul>
+<li>
+<p>根据前面假定，其中 the externality of the anchor store使用的引力模型来计算<br />
+<span class="arithmatex"><span class="MathJax_Preview">w1 = \frac{S_{anchor}S_{(f,x,y)}}{d_{anchor}^2}</span><script type="math/tex">w1 = \frac{S_{anchor}S_{(f,x,y)}}{d_{anchor}^2}</script></span></p>
+</li>
+<li>
+<p>similar agglomeration externalities<br />
+对该主题楼层下的某个主题店铺(f, x, y)<br />
+<img alt="" src="../../../media/recovered/020096c3a33a-Pasted%20image%2020220417221042.png" /></p>
+</li>
+</ul>
+<p>其中：<br />
+<span class="arithmatex"><span class="MathJax_Preview">S_{trav}</span><script type="math/tex">S_{trav}</script></span>：  the maximum i-type store area that potential consumers are willing to search for to find desired goods. <br />
+求导<span class="arithmatex"><span class="MathJax_Preview">g/S_i</span><script type="math/tex">g/S_i</script></span> <br />
+<img alt="" src="../../../media/recovered/2f96336f3512-Pasted%20image%2020220417222428.png" /></p>
+<p>对于主题楼层下的非主题店铺 the nontheme store is affected by the spillover effect of theme store aggregation<br />
+<img alt="" src="../../../media/recovered/2d2571c64130-Pasted%20image%2020220417223357.png" /></p>
+<p><img alt="" src="../../../media/recovered/2af75525eca1-Pasted%20image%2020220417220105.png" /></p>
+<h3 id="model">model<a class="headerlink" href="#model" title="Permanent link">#</a></h3>
+<p><img alt="" src="../../../media/recovered/441430e16693-Pasted%20image%2020220417224706.png" /></p>
+<p><img alt="" src="../../../media/recovered/676c1d5635e8-Pasted%20image%2020220417224810.png" /></p>
+<p><img alt="" src="../../../media/recovered/4fe0777e8cb4-Pasted%20image%2020220417224833.png" /></p>
+<p>最终的优化目标：</p>
+<p><img alt="" src="../../../media/recovered/21c601688a2d-Pasted%20image%2020220417224931.png" /></p>
+<h3 id="_3">计算方法<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<p>最终转化为一个非线性优化问题，使用GA[<a href="./#47">47</a>]算法来求解<br />
+设定：<br />
+- 一个个体表示搜索空间中的一个解<br />
+- 因为整个搜索空间非常大，所以如果每次都是随机生成的话很难收敛，设置一些限制：设置不同等级的面积限制、不同业态类型的面积范围（brand level 划分出5级，area setting: 根据面积大小划分成几个档次）</p>
+<p>算法过程：<br />
+<div class="highlight"><pre><span></span><code>Input information about the shopping centre to be laid out Initialize the tenant layout population under logical constraints Set parameters of the GA  
+Do
+    For each iteration  
+    - Calculate the fitness of all individuals in the population
+    - Find and then save the best solution and elite individuals in this generation into the next generation population 
+    - Use the roulette method to select the individuals  who can enter the next iteration
+    - The selected individual genes are crossed and mutated under logical constraints  
+    - Update the population
+
+    End  
+Until default number of iterations
+</code></pre></div></p>
+<h3 id="_4">案例<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<p>用了重庆的一个商场的数据<br />
+<img alt="" src="../../../media/recovered/5fa40b9f1c07-Pasted%20image%2020220418114316.png" /></p>
+<p>后续计划：<br />
+- We hope that the model proposed in this paper can be incorporated into software tools in the future to provide better decision-making information for shopping centre retail space planning.<br />
+- 当前只考虑了两种外部性，后续可以考虑不同业态之间的</p>
+<p>code: <a href="http://downloads.hindawi.com/journals/ace/2020/2787351.f1.pdf">http://downloads.hindawi.com/journals/ace/2020/2787351.f1.pdf</a><br />
+<a href="../Digital_retail__%E6%8B%9B%E5%95%86__code/">code</a></p>
+<p>QQ:<br />
+- 推荐的角度<br />
+- 主题区域，每层楼大概会有自己的业态主题，而且对于较大的场来说，还会划分出不同的区域<br />
+- 输入是不同的业态组合表现，输出是整体的客流/gmv表现，算法去学习背后的关系</p>
+<h2 id="2-">文献2-<a class="headerlink" href="#2-" title="Permanent link">#</a></h2>
+<p>Finding Prospects for Shopping Centers: a machine learning approach</p>
+<p>综述</p>
+<p>void analysis</p>
+<p>基本数据是<br />
+mall_id, 各个业态的个数</p>
+<p>To set this up as a machine learning problem, each training case consisted of removing one store from a center and then predicting its type from the remaining stores in the center.-默认当前的配置是相对好的？</p>
+<p>base版本是按照当前场内的业态频次挑选最高的<br />
+模型版本用的RF</p>
+<h2 id="3">文献3 ☆☆☆<a class="headerlink" href="#3" title="Permanent link">#</a></h2>
+<p>Shoppingcenterdesign using a facility layout assignment approach. 文献综述中提到了很多方法，可以深入再看看</p>
+<p>The maximum flow capturing problem<br />
+作者的问题目标：设置合理的店铺布局，是客流分布尽量均衡</p>
+<p>核心概念： <img alt="" src="../../../media/recovered/93f214591172-Pasted%20image%2020220308172712.png" /></p>
+<p>将每个区域的客流表示成we的加权(周边店铺考虑距离)</p>
+<h2 id="a-method-for-determining-optimal-tenant-mix-including-location-in-shopping-centers">A Method for Determining Optimal Tenant Mix (Including Location) in Shopping Centers<a class="headerlink" href="#a-method-for-determining-optimal-tenant-mix-including-location-in-shopping-centers" title="Permanent link">#</a></h2>
+<p>1990年代：The academic findings generally parallel professional knowledge about the nature of store attributes and location<br />
+- Rent subsidies go to those that produce these externalities while rent premiums are paid by those that “free ride.  吸引客流的租金少，其他的租金高一些<br />
+- 租金坪效随着面积增大而减小<br />
+- 有竞争关系的同业态会相对分散 #ra</p>
+<p>Selecting Tenants in a Shopping Mall” (Bean, et al. (1988))<br />
+非线性整数规划问题， 包括：店铺类型、店铺大小(三种类型)、位置类型(三种)<br />
+Homart’s Market Research Group can estimate a store’s sales over the study horizon given its type, size, location class, and the number of stores of its type in the mall</p>
+<h3 id="_5">作者方案<a class="headerlink" href="#_5" title="Permanent link">#</a></h3>
+<p>数据采集：合作方的商场数据</p>
+<h2 id="_6">参考资料<a class="headerlink" href="#_6" title="Permanent link">#</a></h2>
+<ol>
+<li>A virtual reality tool to measure shoppers’ tenant mix preferences,</li>
+<li>J. Hirsch, M. Segerer, K. Klein, and T. Wiegelmann, “The analysis of customer density, tenant placement and coupling inside a shopping centre with GIS,” Journal of Property Re- search, vol. 33, no. 1, pp. 37–63, 2016.</li>
+</ol>
+<h1 id="toread">toread<a class="headerlink" href="#toread" title="Permanent link">#</a></h1>
+<p><a href="https://www.doc88.com/p-3048710646806.html">https://www.doc88.com/p-3048710646806.html</a></p>
+<p>硕士论文：中国购物中心租户组合策略研究 <a href="https://www.docin.com/p-916561762.html">https://www.docin.com/p-916561762.html</a></p>
+<p>考虑因素：<br />
+- location<br />
+- 交互影响<br />
+- 布局应该使消费者尽可能的路过更多的店铺<br />
+- 从消费者的消费需求：有的是多目的购物、对比购物、直达目的型</p>
+<p>可以再学习下：<br />
+- J. C. Bean, C. E. Noon, S. M. Ryan, and G. J. Salton, Selecting tenants in a shopping mall,<br />
+- A virtual reality tool to measure shoppers’ tenant mix preferences,<br />
+- J. Hirsch, M. Segerer, K. Klein, and T. Wiegelmann, “The analysis of customer density, tenant placement and coupling inside a shopping centre with GIS,” Journal of Property Re- search, vol. 33, no. 1, pp. 37–63, 2016.</p>
+<h4 id="21">21<a class="headerlink" href="#21" title="Permanent link">#</a></h4>
+<p>[21] D. H. Gatzlaff, G. T. Sirmans, and B. A. Diskin, “The effect of anchor tenant loss on shopping center rents,” Journal of Real Estate Research, vol. 9, no. 1, pp. 99–110, 1994.</p>
+<h4 id="22">22<a class="headerlink" href="#22" title="Permanent link">#</a></h4>
+<p>[22] M. J. Eppli and J. D. Shilling, “Changing economic per- spectives on the theory of retail location,” in Megatrends in Retail Real Estate, J. D. Benjamin, Ed., vol. 3, Berlin, Germany, Springer, 1996, Research Issues in Real Estate.</p>
+<h4 id="41">41<a class="headerlink" href="#41" title="Permanent link">#</a></h4>
+<p>[41] J. Hirsch, M. Segerer, K. Klein, and T. Wiegelmann, “The analysis of customer density, tenant placement and coupling inside a shopping centre with GIS,” Journal of Property Re- search, vol. 33, no. 1, pp. 37–63, 2016.</p>
+<h4 id="47">47<a class="headerlink" href="#47" title="Permanent link">#</a></h4>
+<p>U. Aickelin and K. A. Dowsland, “Enhanced direct and in- direct genetic algorithm approaches for a mall layout and tenant selection problem,” Journal of Heuristics, vol. 8, no. 5, pp. 503–514, 2002.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

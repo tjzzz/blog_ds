@@ -1,0 +1,1179 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2.2 pyspark.sql模块【官方文档】 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#22-pysparksql" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.2 pyspark.sql模块【官方文档】
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pysparksqlsparksession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyspark.sql.SparkSession
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysparksqlcreatedataframedata-schemanone-samplingrationone-verifyschematrue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyspark.sql.createDataFrame(data, schema=None, samplingRatio=None, verifySchema=True)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其他入库量
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysparksqldataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyspark.sql.DataFrame
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysparksqlgroupeddata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyspark.sql.GroupedData
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysparksqlcolumn-row" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyspark.sql.Column &amp; Row
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysparksqlwindow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyspark.sql.Window
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysparksqlfunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyspark.sql.functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#udf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        udf 函数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="udf 函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用的格式转化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">编程与数据工程</a> · 类型：工具</p>
+</blockquote>
+<h1 id="22-pysparksql">2.2 pyspark.sql模块【官方文档】<a class="headerlink" href="#22-pysparksql" title="Permanent link">#</a></h1>
+<h2 id="pysparksqlsparksession">pyspark.sql.SparkSession<a class="headerlink" href="#pysparksqlsparksession" title="Permanent link">#</a></h2>
+<p>SparkSession是对dataframe和dataset数据进行操作的一个入口，常用的方式是</p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+        <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">"local"</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">"Word Count"</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">"spark.some.config.option"</span><span class="p">,</span> <span class="s2">"some-value"</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+</code></pre></div><br />
+bulider建立一个sparksession的实例，Builder有很多的属性</p>
+<ul>
+<li>master：设置spark master。可以有的选择有<ul>
+<li>local，local[4] 表示run locally with 4 cores</li>
+<li>"spark://master:7077"  run on a Spark standalone cluster</li>
+</ul>
+</li>
+<li>appName： 任务名称</li>
+<li>
+<p>config是设置一些配置参数</p>
+<ul>
+<li>比如内存</li>
+<li>另外一种方式是已经有了一个conf对象，这时可以写成config(conf = conf)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkConf</span>
+<span class="n">conf</span> <span class="o">=</span> <span class="n">SparkConf</span><span class="p">()</span>
+<span class="n">conf</span> <span class="o">=</span> <span class="n">conf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"spark.executor.memory"</span><span class="p">,</span> <span class="s2">"10g"</span><span class="p">)</span>
+<span class="n">conf</span> <span class="o">=</span> <span class="n">conf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"spark.driver.memory"</span><span class="p">,</span> <span class="s2">"10g"</span><span class="p">)</span>
+<span class="n">conf</span> <span class="o">=</span> <span class="n">conf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"spark.excutor.maxResultSize"</span><span class="p">,</span> <span class="s2">"10g"</span><span class="p">)</span>
+<span class="n">conf</span> <span class="o">=</span> <span class="n">conf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"spark.driver.maxResultSize"</span><span class="p">,</span> <span class="s2">"10g"</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span><span class="o">.</span><span class="n">enableHiveSupport</span><span class="p">()</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+</code></pre></div>
+</li>
+<li>
+<p>enableHiveSupport()   设置支持hive相关的操作</p>
+</li>
+<li>getOrCreate()   如果当前没有SparkSession的话就创建一个，如果有的话就用当前的这个</li>
+</ul>
+<h2 id="pysparksqlcreatedataframedata-schemanone-samplingrationone-verifyschematrue">pyspark.sql.createDataFrame(data, schema=None, samplingRatio=None, verifySchema=True)<a class="headerlink" href="#pysparksqlcreatedataframedata-schemanone-samplingrationone-verifyschematrue" title="Permanent link">#</a></h2>
+<p>data：rdd，list， 或者是pandas.DataFrame创建一个spark的DataFrame<br />
+schema 表示的是列名，不指定的情况下spark会根据数据自己进行推断<br />
+samplingRatio是用来用于指定推断schema的数据的行数，如果不指定的话默认根据第一行的数据来判断</p>
+<p>dataframe 相关的操作</p>
+<div class="highlight"><pre><span></span><code><span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">pandas_df</span><span class="p">)</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># 创建一个dataframe，只有一列id。元素是range的数据</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="n">sql_cmd</span><span class="p">)</span>    <span class="c1"># 返回一个Dataframe</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">table_name</span><span class="p">)</span>    <span class="c1"># 将表数据返回为一个Dataframe</span>
+</code></pre></div>
+<h2 id="_1">其他入库量<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p>sparksession在spark2.0中是作为统一的入口。在1.0版本中会有不同的读入方式。</p>
+<p>pyspark.sql.SQLContext()， HiveContext()</p>
+<h2 id="pysparksqldataframe">pyspark.sql.DataFrame<a class="headerlink" href="#pysparksqldataframe" title="Permanent link">#</a></h2>
+<p>A distributed collection of data grouped into named columns.</p>
+<p>spark的dataframe的相关操作函数</p>
+<p><a href="https://www.cnblogs.com/rxingyue/p/7113235.html">https://www.cnblogs.com/rxingyue/p/7113235.html</a></p>
+<p><strong>agg</strong><br />
+对整个dataframe进行聚合(不分组)，比如求最小，最大值</p>
+<div class="highlight"><pre><span></span><code>from pyspark.sql import functions as F
+df1.agg(F.mean(df1.duration)).collect()
+</code></pre></div>
+<p><strong>alias</strong></p>
+<p>重命名</p>
+<p>一些类似sql的函数功能<br />
+<div class="highlight"><pre><span></span><code>df.filter()     等价于 df.where()
+groupby()
+df1.join(df2, on=xx, how= xx)
+df.select()
+df.selectExpr(*expr)
+df.limit()
+df.orderby(*cols, **kwargs)
+df.withColumn()   # 增加一个新列或者覆盖原有的列
+</code></pre></div><br />
+其他</p>
+<div class="highlight"><pre><span></span><code>df.withColumnRenamed('old_name', 'new_name')     # 给某一列重新命名
+df.printSchema().   #Prints out the schema in the tree format.
+df.approxQuantile(col, prob)     # 近似的分位点
+df.coalesce(n)                            # 返回一个新的按照number=n进行partition的dataframe
+df.collect()                             # 将所有记录按照a list of Row返回 
+df.count()            #返回行数
+df.createGlobalTempView(table_name)    # 根据df创建一个临时的表，可以执行sql操作
+df.createTempView(name)
+df.crosstab(col1, col2)
+df.describe(*cols)    #类似R的summary
+df.summary()
+## 删除某些列
+df.drop(*cols)     # 去掉一些列
+df.drop_duplicates(subset=None)
+df.dropna(how=)
+df.fillna(value, subset=None)    # 是df.na.fill()的缩写
+foreach(f)    # Applies the f function to all Row of this DataFrame 对每行进行f函数操作
+
+## 
+df.repartition(num)
+df.sample(withReplacement=None, fraction=None, seed=None)
+##
+df.toJSON()
+df.toPandas().  # 将spark.sql的dataframe转为pandas的dataframe
+</code></pre></div>
+<h2 id="pysparksqlgroupeddata">pyspark.sql.GroupedData<a class="headerlink" href="#pysparksqlgroupeddata" title="Permanent link">#</a></h2>
+<p>针对DataFrame.groupBy()之后可以做一些聚合操作。</p>
+<p>agg()</p>
+<ul>
+<li>常用的一些汇聚函数： avg/mean, max, min, sum, count, pivot</li>
+<li>也可以自己定义udf函数</li>
+</ul>
+<h2 id="pysparksqlcolumn-row">pyspark.sql.Column   &amp; Row<a class="headerlink" href="#pysparksqlcolumn-row" title="Permanent link">#</a></h2>
+<p>对dataframe的一列做的一些操作, 比如</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alias</td>
+<td>重命名</td>
+<td>df.age.alias('age_new')</td>
+</tr>
+<tr>
+<td>between</td>
+<td></td>
+<td>df.select(df.name, df.age.between(2, 4)).show()</td>
+</tr>
+<tr>
+<td>cast 或者astype</td>
+<td>将某列转换成另一个dataType</td>
+<td>df.select(df.age.cast("string").alias('ages')).collect()</td>
+</tr>
+<tr>
+<td>contains</td>
+<td></td>
+<td>是否包含的</td>
+</tr>
+</tbody>
+</table>
+<p>对dataframe的row做的一些操作</p>
+<p>row.asDict(recursive=False)</p>
+<h2 id="pysparksqlwindow">pyspark.sql.Window<a class="headerlink" href="#pysparksqlwindow" title="Permanent link">#</a></h2>
+<p>For working with window functions.</p>
+<hr />
+<h2 id="pysparksqlfunctions">pyspark.sql.functions<a class="headerlink" href="#pysparksqlfunctions" title="Permanent link">#</a></h2>
+<p>List of built-in functions available for DataFrame.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql.functions</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="n">collect_list</span><span class="p">()</span>
+</code></pre></div>
+<p>注意： collect_list会自动过滤掉数据中的null</p>
+<h2 id="udf">udf 函数<a class="headerlink" href="#udf" title="Permanent link">#</a></h2>
+<p>注意： spark的udf函数里传入的是列<br />
+example 1.<br />
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql.functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">udf</span><span class="p">,</span> <span class="n">col</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringType</span>
+
+<span class="c1">## 定义自己的操作函数</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">myfun</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">'zzz'</span> <span class="o">+</span> <span class="n">s</span>
+
+<span class="n">my_udfs</span> <span class="o">=</span> <span class="n">udf</span><span class="p">(</span><span class="n">myfun</span><span class="p">,</span> <span class="n">StringType</span><span class="p">())</span>          <span class="c1"># 将其转为udf，注意需要制定return的类型</span>
+<span class="c1"># my_udfs = udf(stat_group, MapType(StringType(),ShortType()))   # MapType 指定key，value的格式</span>
+<span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">"zzz"</span><span class="p">,</span>  <span class="n">my_udfs</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">col1</span><span class="p">))</span>   <span class="c1"># 生成新的一列</span>
+</code></pre></div></p>
+<p>example2: 在一个myfun中返回多个结果，通过withColunmn生成多列，比如下面的scala代码</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="n">myUDf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">udf</span><span class="p">((</span><span class="n">s</span><span class="p">:</span><span class="nc">String</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nc">Array</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">toUpperCase</span><span class="p">(),</span><span class="n">s</span><span class="p">.</span><span class="n">toLowerCase</span><span class="p">()))</span><span class="w">   </span><span class="n">#返回两个</span>
+
+<span class="kd">val</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="n">parallelize</span><span class="p">(</span><span class="nc">Seq</span><span class="p">(</span><span class="s">"Peter"</span><span class="p">,</span><span class="s">"John"</span><span class="p">)).</span><span class="n">toDF</span><span class="p">(</span><span class="s">"name"</span><span class="p">)</span>
+
+<span class="o">##</span><span class="w"> </span><span class="n">通过取索引</span><span class="err">，</span><span class="n">然后drop掉原来结果</span>
+<span class="kd">val</span><span class="w"> </span><span class="n">newDf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span>
+<span class="w">  </span><span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"udfResult"</span><span class="p">,</span><span class="n">myUDf</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s">"name"</span><span class="p">)))</span>
+<span class="w">  </span><span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"uppercaseColumn"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">(</span><span class="s">"udfResult"</span><span class="p">)(</span><span class="mi">0</span><span class="p">))</span>
+<span class="w">  </span><span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"lowercaseColumn"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">(</span><span class="s">"udfResult"</span><span class="p">)(</span><span class="mi">1</span><span class="p">))</span>
+<span class="w">  </span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="s">"udfResult"</span><span class="p">)</span>
+
+<span class="n">newDf</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>example 3: 需要在udf函数中传入其他参数</strong>，例如</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">normalize_process</span><span class="p">(</span><span class="n">max_value</span><span class="p">,</span> <span class="n">min_value</span><span class="p">):</span>
+    <span class="c1"># 定义一个返回udf的函数</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">max_value</span> <span class="o">-</span> <span class="n">min_value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">min_value</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">max_value</span> <span class="o">-</span> <span class="n">min_value</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">udf</span><span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">returnType</span><span class="o">=</span><span class="n">FloatType</span><span class="p">())</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">"area_norm"</span><span class="p">,</span> <span class="n">normalize_process</span><span class="p">(</span><span class="n">area_max</span><span class="p">,</span> <span class="n">area_min</span><span class="p">)(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"area"</span><span class="p">)))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">## 传入参数词典holiday_dict</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">func_is_holiday</span><span class="p">(</span><span class="n">holiday_dict</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">udf</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">holiday_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s1">'-'</span><span class="p">))</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">"is_holiday"</span><span class="p">,</span> <span class="n">func_is_holiday</span><span class="p">(</span><span class="n">holiday_dict</span><span class="p">)(</span><span class="n">df</span><span class="p">[</span><span class="s1">'floor'</span><span class="p">])</span> <span class="p">)</span>
+</code></pre></div>
+<p><strong>example4 将一行转为多行</strong><br />
+<a href="https://blog.csdn.net/intersting/article/details/84711723">https://blog.csdn.net/intersting/article/details/84711723</a></p>
+<p>假设原始的数据是</p>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>data_list</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>111</td>
+<td>[1,2,3]</td>
+</tr>
+<tr>
+<td>222</td>
+<td>[4,5,6]</td>
+</tr>
+</tbody>
+</table>
+<p>希望将list中的元素拆出多行，即</p>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>data_new</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>111</td>
+<td>1</td>
+</tr>
+<tr>
+<td>111</td>
+<td>2</td>
+</tr>
+<tr>
+<td>111</td>
+<td>3</td>
+</tr>
+<tr>
+<td>222</td>
+<td>4</td>
+</tr>
+<tr>
+<td>222</td>
+<td>5</td>
+</tr>
+<tr>
+<td>222</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>方法，首先定义一个将array转成词典的udf函数</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">udf_array_to_map</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">array</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">array</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">array</span><span class="p">))</span>
+
+<span class="n">idx_udf</span> <span class="o">=</span> <span class="n">udf</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">udf_array_to_map</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">MapType</span><span class="p">(</span><span class="n">IntegerType</span><span class="p">(),</span> <span class="n">IntegerType</span><span class="p">()))</span>    
+</code></pre></div><br />
+然后对原始的df进行如下变换：最终就会生成多列，同时还有一个INTEGER_IDX来进行标号</p>
+<div class="highlight"><pre><span></span><code>df.withColumn('idx_columns', idx_udf(df.data_list)) \
+.select('id', f.explode('idx_columns').alias('INTEGER_IDX', 'col'))
+</code></pre></div>
+<p>UDF: 一进一出<br />
+UDAF: 聚合函数，多进一出，比如分组统计均值<br />
+pandas_udf</p>
+<p>另一种方式是使用注册的方式：<br />
+spark.udf.register("fun_name",fun_name)</p>
+<h3 id="_2">常用的格式转化<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<p>to_json</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

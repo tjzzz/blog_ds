@@ -1,0 +1,1135 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>AIGC智能创作时代 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aigc" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AIGC智能创作时代
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 内容生产
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aigc_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二章 AIGC的技术思想
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章 AIGC的技术思想">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发展流派
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器学习
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        感知器与神经网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        强化学习
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        深度学习
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aigc_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AIGC关键演变过程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AIGC关键演变过程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        早期尝试 GAN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-diffusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI绘画的推动 Diffusion模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大模型的基础 transformer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPT系列
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aigc_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AIGC的职能应用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其他应用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="其他应用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chatglm-6b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        chatGLM-6B
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        资源
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/AI%E4%B8%8EAgent/">AI与Agent</a> · 类型：概念</p>
+</blockquote>
+<h1 id="aigc">AIGC<a class="headerlink" href="#aigc" title="Permanent link">#</a></h1>
+<h2 id="1">1 内容生产<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">web1.0</th>
+<th style="text-align: left;">web2.0</th>
+<th style="text-align: left;">web3.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">PGC</td>
+<td style="text-align: left;">UGC</td>
+<td style="text-align: left;">AIGC</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">专业人士/机构</td>
+<td style="text-align: left;">非专业人士</td>
+<td style="text-align: left;">机器</td>
+</tr>
+</tbody>
+</table>
+<p>AIGC的几种形态模式：<a href="https://mp.weixin.qq.com/s/qS4GXOIuVZxOGyub6YpVsg">https://mp.weixin.qq.com/s/qS4GXOIuVZxOGyub6YpVsg</a></p>
+<p><strong>(1) AI文本</strong><br />
+AI文本的生成主要有两种形式：<br />
+- 非交互式： 比如写作(标题生成、新闻播报，剧情续写)，辅助性写作<br />
+- 交互式：心理咨询、文本交互游戏等</p>
+<p>应用案例： <a href="https://zhuanlan.zhihu.com/p/390877618">https://zhuanlan.zhihu.com/p/390877618</a><br />
+- 国内许多知名媒体旗下都有这种类型的AI小编，包括新华社的“快笔小新”、第一财经的“DT稿王”、《南方都市报》的“小南”、封面新闻的“小封”、腾讯财经的“Dreamwriter”，以及今日头条的“Xiaomingbot”等。</p>
+<p>(2) AI音频生成<br />
+TTS(text to speech) 文本转语音技术。</p>
+<p>应用案例：<br />
+- OpenAI MuseNet<br />
+- 网易伏羲</p>
+<p>(3) AI图像生成</p>
+<ul>
+<li>stable diffusion</li>
+<li>DALL e2</li>
+<li>midjourney</li>
+<li>
+<p>文心一格</p>
+<p>针对AI与人类的辩题，Midjourney的创始人大卫·霍尔兹(David Holz)这样评价：“AI是水，而非老虎。水固然危险，但你可以学着游泳，可以造舟，可以造堤坝，还能借此发电；水固然危险，却是文明的驱动力，人类之所以进步，正是因为我们知道如何与水相处并利用好它。水给予更多的是机会。</p>
+</li>
+</ul>
+<p>(4) AI视频生成</p>
+<p>2022年9月，Meta推出的Make-A-Video工具就具有根据文本描述生成相应短视频的能力。<br />
+谷歌就推出了主打高清生成的Imagen Video和主打更长视频内容生成的Phenaki。<br />
+AIGC在视频生成方面的常见传统应用场景还包括视频属性编辑、视频自动剪辑及视频部分编辑。<br />
+从广义上讲，AI主播也可以看作一种AIGC生成视频的应用</p>
+<h2 id="aigc_1">第二章　AIGC的技术思想<a class="headerlink" href="#aigc_1" title="Permanent link">#</a></h2>
+<blockquote>
+<p>人们总喜欢活在舒适区内，用粗暴的断言安慰自己，例如机器永远无法模仿人类的某些特性。但我给不了这样的安慰，因为我认为并不存在无法模仿的人类特性。<br />
+——艾伦·图灵(Alan Turing)</p>
+</blockquote>
+<ul>
+<li>1950年，艾伦·图灵发表了一篇划时代的论文《计算机器与智能》(Computing Machinery and Intelligence)，探讨了让机器具备人类一样智能的可能性</li>
+<li>1956年达特茅斯学院举行的人工智能夏季研讨会，"人工智能"的名称和任务才被正式界定下来。</li>
+</ul>
+<h3 id="_1">发展流派<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<ol>
+<li>
+<p>符号主义<br />
+符号主义认为人的智能来自逻辑推理，世界上所有信息都可以抽象为各种符号，而人类的认知过程可以看作运用逻辑规则操作这些符号的过程。<br />
+符号主义 =》 知识库+推理机的专家系统</p>
+</li>
+<li>
+<p>联结主义<br />
+而联结主义则认为，让机器模拟人类智能的关键不是去想办法实现跟思考有关的功能，而是应该模仿人脑的结构。联结主义把智能归结为人脑中神经元彼此联结成网络共同处理信息的结果，希望能够运用计算机模拟出神经网络的工作模式来打造人工智能。<br />
+即现在的神经网络。</p>
+</li>
+</ol>
+<p>但是到了20世纪60年代末，发展陷入了瓶颈。<br />
+- 计算能力受限<br />
+- 数据受限，很多应用领域需要大量认知信息，当时的数据库无法满足这些。</p>
+<ol>
+<li>行为主义<br />
+一种倡导“感知+行动”的行为主义流派也得到了较好的发展。行为主义起源于控制论，强调模拟人在控制过程中的智能行为和动作，虽然它的起源也可以追溯到人工智能诞生时期，但一直未成为主流。在模拟人类智能方面，如果说符号主义是知其然且知其所以然，联结主义是知其然但不知其所以然，那么行为主义就是既不知其然也不知其所以然</li>
+</ol>
+<h3 id="_2">机器学习<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<p>根据卡耐基梅隆大学计算机学院教授汤姆·米切尔(Tom Michell)的定义，机器学习是指“计算机程序能从经验E中学习，以解决某一任务T，并通过性能度量P，能够测定在解决T时机器在学习经验E后的表现提升”</p>
+<h3 id="_3">感知器与神经网络<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h3 id="_4">强化学习<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<p>强化学习是机器学习除监督学习与无监督学习之外的又一领域，也可以与深度学习结合进行深度强化学习<br />
+区别于监督学习和无监督学习，强化学习并不是要对数据本身进行学习，而是在给定的数据环境下，让智能体学习如何选择一系列行动，来达成长期累计收益最大化的目标。强化学习本质上学习的是一套决策系统而非数据本身。</p>
+<h3 id="_5">深度学习<a class="headerlink" href="#_5" title="Permanent link">#</a></h3>
+<p><img alt="" src="../../../media/Pasted%20image%2020230413091408.png" /></p>
+<h2 id="aigc_2">AIGC关键演变过程<a class="headerlink" href="#aigc_2" title="Permanent link">#</a></h2>
+<h3 id="gan">早期尝试 GAN<a class="headerlink" href="#gan" title="Permanent link">#</a></h3>
+<p>GAN（生成对抗网络）诞生于2014年，是早期广泛应用于AIGC的算法之一，有诸多衍生形式，并至今仍被诸多AIGC应用所采用。GAN综合了深度学习和强化学习的思想，通过一个生成器和一个判别器的相互对抗，来实现图像或文字等元素的生成过程</p>
+<p>对于具体的算法，这里就不再详细去讲，后面会有详细的章节来讲，这部分内容</p>
+<h3 id="ai-diffusion">AI绘画的推动 Diffusion模型<a class="headerlink" href="#ai-diffusion" title="Permanent link">#</a></h3>
+<p>Diffusion模型是一类应用于细粒度图像生成的模型，尤其是在跨模态图像的生成任务中，已逐渐替代GAN成为主流。在2022年美国科罗拉多州博览会艺术比赛中击败所有人类画家、斩获数字艺术类冠军的AI创作画作《太空歌剧院》的底层技术模型就涉及Diffusion模型。</p>
+<p><img alt="" src="https://www.xiaohongshu.com/explore/63298d3c000000000903340d" /></p>
+<p>传统的GAN虽然已经能较好地完成与图像相关的生成任务，但依然存在以下诸多问题。<br />
+·需要同时训练生成器和判别器这两个深度神经网络，训练难度较大。<br />
+·生成器的核心目标是骗过判别器，因而可能会选择走捷径，学到一些并不希望被学到的特征，模型并不稳定，有可能会生成奇怪的结果。<br />
+·生成器生成的结果通常具备较差的多样性，因为具有多样性的结果不利于骗过判别器。</p>
+<p>那么换一个角度去思考，既然任何一张图像都可以在不断添加噪声后，变成一张完全随机的噪声图像，那我们能不能将这个过程翻转，让神经网络学习这个噪声扩散的过程之后逆向扩散，把随机生成的噪声图像，逐渐转化为清晰的生成图像呢？Diffusion模型就是基于这个思想实现的。</p>
+<p>Diffusion模型主要是应用于AI绘画，AI绘画的成功还归功于CLIP（Contrastive Language-Image Pre-Training，文本-图像预训练）模型。</p>
+<p>CLIP<br />
+CLIP模型是OpenAI在2021年初发布的用于匹配图像和文本的预训练神经网络模型。<br />
+AI，对于图片的学习是通过一个个像素的特征进行学习，A lip的学习思路是另外一种方式，对于人类来说，在婴儿时期学习图片并不是具体的学习，一个一个像素，而是父母指着图片告诉孩子，这是一只在吃猫粮的黑色小猫，或者这是一辆在马路上飞驰的红色汽车。研究者开始思考，AI的学习过程是否也能采用这种类似的方式？这本质上是一个文本和图像匹配的问题。如果要完成这个任务，自然也需要大量的数据，但互联网上天然就有海量这样的数据，无论是发朋友圈、微博还是推特等，本质上都是用一段文字去说明发布的图片，很容易就可以获取大量标注好的图像文本对</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">发布时间</th>
+<th style="text-align: left;">公司</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">stable diffusion</td>
+<td style="text-align: left;">2022.8</td>
+<td style="text-align: left;">stability AI</td>
+</tr>
+<tr>
+<td style="text-align: left;">DALL E2</td>
+<td style="text-align: left;">2022.4</td>
+<td style="text-align: left;">openAI</td>
+</tr>
+<tr>
+<td style="text-align: left;">midjourney</td>
+<td style="text-align: left;">2022.7</td>
+<td style="text-align: left;">Midjourney</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transformer">大模型的基础 transformer<a class="headerlink" href="#transformer" title="Permanent link">#</a></h3>
+<p>seq2seq模型<br />
+Seq2Seq模型最早在2014年提出，主要是为了解决机器翻译的问题。Seq2Seq模型的结构包括一个编码器和一个解码器，编码器会先对输入的序列进行处理，然后将处理后的结果发送给解码器，转化成我们想要的向量输出。</p>
+<p>注意力机制</p>
+<p>transformer结构</p>
+<h3 id="gpt">GPT系列<a class="headerlink" href="#gpt" title="Permanent link">#</a></h3>
+<p>GPT（Generative Pre-trained Transformer，生成型预训练变换器）是由OpenAI研发的大型文本生成类深度学习模型</p>
+<ul>
+<li>GPT-1的核心思想是将无监督学习作用于监督学习模型的预训练目标，先通过在无标签的数据上学习一个通用的语言模型，然后再根据问答和常识推理、语义相似度判断、文本分类、自然语言推理等特定语言处理任务对模型进行微调，来实现大规模通用语言模型的构建，这可以理解成一种半监督学习的形式</li>
+<li>为了增强GPT模型的泛化能力，GPT-2在GPT-1的基础上进行了技术思想上的优化。GPT-2的核心出发点是：在语言模型领域，所有监督学习都可以看作无监督学习的子集。例如，把“小明是A省2022年高考状元”丢给算法做无监督学习，但是它也能学会完成“A省2022年高考状元是谁？”“小明是2022年哪个省的高考状元？”等需要标注正确答案的监督学习任务。因此，当模型的容量非常大且数据量足够丰富时，一个无监督学习的语言模型就可以覆盖所有监督学习的任务</li>
+</ul>
+<p>归因分析</p>
+<p>监督学习</p>
+<h2 id="aigc_3">AIGC的职能应用<a class="headerlink" href="#aigc_3" title="Permanent link">#</a></h2>
+<h2 id="_6">其他应用<a class="headerlink" href="#_6" title="Permanent link">#</a></h2>
+<h3 id="chatglm-6b">chatGLM-6B<a class="headerlink" href="#chatglm-6b" title="Permanent link">#</a></h3>
+<p><a href="https://github.com/THUDM/ChatGLM-6B">https://github.com/THUDM/ChatGLM-6B</a></p>
+<h2 id="_7">资源<a class="headerlink" href="#_7" title="Permanent link">#</a></h2>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

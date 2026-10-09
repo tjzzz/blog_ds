@@ -1,0 +1,1284 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>☆如何提升实验灵敏度 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ☆如何提升实验灵敏度
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 先看公式：为什么会“不敏感”
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 提高实验敏感性的主要方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 方法一：增加样本量与优化流量分配
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 方法二：降低指标方差
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cuped" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 方法三：CUPED 方差缩减
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-post-stratification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 方法四：分层、post-stratification 与方差加权
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 方法四：分层、post-stratification 与方差加权">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 方差加权估计
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 方法五：选择更敏感的指标与触发用户分析
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 方法六：换实验机制或实验设计
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 不要为了敏感性牺牲可信度
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>☆如何提升实验灵敏度</h1>
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/">实验设计与AB测试</a> · 类型：方法</p>
+</blockquote>
+<p>实验敏感性不足，指的是：<strong>实验真实存在效果，但因为样本量、指标方差、实验设计或指标选择问题，实验很难把这个效果稳定检出来</strong>。</p>
+<p>什么时候要怀疑敏感性不足：</p>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>指标方向稳定正向，但一直不显著</td>
+<td>样本量不足、方差太大、MDE 过小</td>
+</tr>
+<tr>
+<td>分层里部分人群明显正向，整体不显著</td>
+<td>人群异质性强，被整体平均稀释</td>
+</tr>
+<tr>
+<td>小改动业务上合理，但 AB 完全看不出</td>
+<td>指标不敏感，或者实验方式不适合</td>
+</tr>
+<tr>
+<td>金额、时长类指标波动极大</td>
+<td>长尾分布、极端值拉高方差</td>
+</tr>
+<tr>
+<td>长期指标看不出，短期指标有变化</td>
+<td>指标窗口太长、转化低频</td>
+</tr>
+<tr>
+<td>搜索排序微调没有信号</td>
+<td>AB 对排序微调不敏感，可能需要 interleaving</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：</p>
+<blockquote>
+<p>实验敏感性解决的是：为什么业务上可能有用的策略，在实验结果里看起来“不显著”。</p>
+</blockquote>
+<h2 id="1">1. 先看公式：为什么会“不敏感”<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<p>在 AB 实验里，常见检验统计量可以直观理解为：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+t = \frac{\bar Y_t - \bar Y_c}{\sqrt{Var(\bar Y_t - \bar Y_c)}}
+</div>
+<script type="math/tex; mode=display">
+t = \frac{\bar Y_t - \bar Y_c}{\sqrt{Var(\bar Y_t - \bar Y_c)}}
+</script>
+</div>
+<p>如果两组样本量相同，可以近似写成：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+t = \frac{\bar Y_t - \bar Y_c}{\sqrt{\sigma_t^2/n + \sigma_c^2/n}}
+</div>
+<script type="math/tex; mode=display">
+t = \frac{\bar Y_t - \bar Y_c}{\sqrt{\sigma_t^2/n + \sigma_c^2/n}}
+</script>
+</div>
+<p>所以实验是否容易显著，取决于三件事：</p>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组间差异</td>
+<td>实验组和对照组差异越大，越容易显著</td>
+</tr>
+<tr>
+<td>样本量</td>
+<td>样本量越大，标准误越小，越容易显著</td>
+</tr>
+<tr>
+<td>指标方差</td>
+<td>指标方差越大，噪声越大，越不容易显著</td>
+</tr>
+</tbody>
+</table>
+<p>提高实验敏感性，本质上就是：</p>
+<div class="highlight"><pre><span></span><code>放大可检测的真实差异，或降低指标噪声。
+</code></pre></div>
+<h2 id="2">2. 提高实验敏感性的主要方法<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<p>下面 6 类方法和后文的「方法一～方法六」一一对应。部分更细的技巧，例如 50/50 流量分配、方差加权、触发用户分析，会放在对应方法下展开。</p>
+<table>
+<thead>
+<tr>
+<th>后文标题</th>
+<th>核心思路</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方法一：增加样本量与优化流量分配</td>
+<td>扩大流量、拉长周期，或让实验组/对照组更接近 50/50，降低标准误</td>
+<td>流量充足、实验风险可控的标准 AB</td>
+</tr>
+<tr>
+<td>方法二：降低指标方差</td>
+<td>对长尾指标做截尾、winsorize、转换、分位数等处理</td>
+<td>GMV、时长、金额类长尾指标</td>
+</tr>
+<tr>
+<td>方法三：CUPED 方差缩减</td>
+<td>用实验前与目标指标相关的协变量解释自然波动</td>
+<td>有稳定历史行为的数据</td>
+</tr>
+<tr>
+<td>方法四：分层、post-stratification 与方差加权</td>
+<td>先按人群或场景分层估计，再按结构或方差加权汇总</td>
+<td>人群异质性强、各层方差差异明显</td>
+</tr>
+<tr>
+<td>方法五：选择更敏感的指标与触发用户分析</td>
+<td>选择更靠近实验动作的前置指标，并分析真正接触实验处理的人群</td>
+<td>长期指标低频、实验触发率低</td>
+</tr>
+<tr>
+<td>方法六：换实验机制或实验设计</td>
+<td>用 interleaving、配对、区组、交叉等设计减少无关噪声</td>
+<td>搜索/推荐排序微调，或可配对、自身对照场景</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 方法一：增加样本量与优化流量分配<a class="headerlink" href="#3" title="Permanent link">#</a></h2>
+<p>这是最直接的方法。</p>
+<p>可以通过：</p>
+<ul>
+<li>提高实验流量；</li>
+<li>拉长实验周期；</li>
+<li>扩大目标人群；</li>
+<li>减少不必要的排除规则；</li>
+<li>合并多个低频场景；</li>
+<li>在风险可控时，让实验组和对照组尽量接近 50/50，提高统计效率。</li>
+</ul>
+<p>但增加样本量不是万能的：</p>
+<table>
+<thead>
+<tr>
+<th>风险</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>周期太长</td>
+<td>外部环境、版本发布、节假日更容易干扰</td>
+</tr>
+<tr>
+<td>流量太大</td>
+<td>如果策略有风险，会扩大损失</td>
+</tr>
+<tr>
+<td>人群扩大</td>
+<td>可能引入不相关人群，稀释真实效果</td>
+</tr>
+<tr>
+<td>机会成本</td>
+<td>占用流量层，影响其他实验排期</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 方法二：降低指标方差<a class="headerlink" href="#4" title="Permanent link">#</a></h2>
+<p>很多业务指标天然长尾，例如 GMV、停留时长、订单金额、人均收入。少数极端用户可能让指标方差变得很大。</p>
+<p>常见处理：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>截尾</td>
+<td>去掉极端高值或低值</td>
+</tr>
+<tr>
+<td>winsorize</td>
+<td>把极端值压到某个分位点，而不是直接删除</td>
+</tr>
+<tr>
+<td>log 转换</td>
+<td>对强长尾金额类指标做对数变换</td>
+</tr>
+<tr>
+<td>分位数指标</td>
+<td>用中位数、P75、P90 替代均值</td>
+</tr>
+<tr>
+<td><strong>人群分层</strong></td>
+<td>对不同层分别估计，避免混在一起增大方差</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>注意：指标变换必须在实验前定义，不能实验后为了显著性临时换口径。</p>
+<h2 id="5-cuped">5. 方法三：CUPED 方差缩减<a class="headerlink" href="#5-cuped" title="Permanent link">#</a></h2>
+<p>CUPED（Controlled Experiment Using Pre-Experiment Data）的核心思想是：</p>
+<blockquote>
+<p>如果实验前的历史行为 X 和实验期目标指标 Y 高度相关，而且 X 不受实验影响，就可以用 X 来解释一部分 Y 的自然波动，从而降低方差。</p>
+</blockquote>
+<p>直观理解：那历史的先验数据，能更好的判断数据的波动，减少指标的方差</p>
+<p>定义调整后的指标：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+Y' = Y - \theta X
+</div>
+<script type="math/tex; mode=display">
+Y' = Y - \theta X
+</script>
+</div>
+<p>如果 X 和 Y 的相关系数为 <span class="arithmatex"><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span>，理想情况下有：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+Var(Y') = Var(Y)(1 - \rho^2)
+</div>
+<script type="math/tex; mode=display">
+Var(Y') = Var(Y)(1 - \rho^2)
+</script>
+</div>
+<p>所以 X 和 Y 越相关，方差降低越明显。</p>
+<p>例子：</p>
+<table>
+<thead>
+<tr>
+<th>实验指标 Y</th>
+<th>可用协变量 X</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实验期下单数</td>
+<td>实验前一周下单数</td>
+</tr>
+<tr>
+<td>实验期 GMV</td>
+<td>实验前一周 GMV</td>
+</tr>
+<tr>
+<td>实验期点击率</td>
+<td>实验前历史点击率</td>
+</tr>
+<tr>
+<td>实验期活跃天数</td>
+<td>实验前活跃天数</td>
+</tr>
+</tbody>
+</table>
+<p>使用 CUPED 的注意点：</p>
+<ul>
+<li>协变量必须在实验开始前产生；</li>
+<li>协变量不能受实验处理影响；</li>
+<li>协变量和目标指标要有足够相关性；</li>
+<li>新用户或无历史数据用户可能不适用。</li>
+</ul>
+<h2 id="6-post-stratification">6. 方法四：分层、post-stratification 与方差加权<a class="headerlink" href="#6-post-stratification" title="Permanent link">#</a></h2>
+<p>如果用户差异很大，把所有人混在一起会增加噪声。</p>
+<p>可以先按重要维度分层：</p>
+<ul>
+<li>新用户 / 老用户；</li>
+<li>高活 / 中活 / 低活；</li>
+<li>iOS / Android；</li>
+<li>城市等级；</li>
+<li>商家等级；</li>
+<li>流量来源。</li>
+</ul>
+<p>然后在每层内估计实验效果，再按总体结构加权汇总。</p>
+<p>这样做的好处：</p>
+<ul>
+<li>降低人群结构差异带来的方差；</li>
+<li>更容易发现异质性效果；</li>
+<li>避免部分人群效果被整体平均稀释。</li>
+</ul>
+<h3 id="61">6.1 方差加权估计<a class="headerlink" href="#61" title="Permanent link">#</a></h3>
+<p>在 post-stratification 的基础上，如果不同 group 的方差差异很大，可以进一步考虑 <strong>variance-weighted estimators</strong>。</p>
+<p>直觉是：</p>
+<div class="highlight"><pre><span></span><code>同样都是一个分层估计值，噪声更小的层可以给更高权重，噪声更大的层给更低权重。
+</code></pre></div>
+<p>只要权重设计不引入系统性偏差，这类估计量仍然可以保持无偏，同时降低总体估计方差。</p>
+<p>适用条件：</p>
+<ul>
+<li>已经有稳定分层，例如新老用户、端、地域、用户活跃度；</li>
+<li>各层样本量和方差差异明显；</li>
+<li>平台能稳定记录层标签；</li>
+<li>权重规则在实验前定义，而不是实验后为了显著性临时调权。</li>
+</ul>
+<p>注意：方差加权不是“让结果更好看”，而是让估计更有效率。它应该服务于更稳定的估计，而不是服务于选择性汇报。</p>
+<h2 id="7">7. 方法五：选择更敏感的指标与触发用户分析<a class="headerlink" href="#7" title="Permanent link">#</a></h2>
+<p>有时候不是实验没效果，而是指标离实验动作太远。</p>
+<p>例子：</p>
+<table>
+<thead>
+<tr>
+<th>实验动作</th>
+<th>不够敏感的指标</th>
+<th>更敏感的前置指标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>搜索排序优化</td>
+<td>GMV</td>
+<td>长点击率、满意点击率、换 query 率</td>
+</tr>
+<tr>
+<td>推荐卡片样式</td>
+<td>次日留存</td>
+<td>点击率、停留时长、负反馈率</td>
+</tr>
+<tr>
+<td>下单页文案</td>
+<td>复购率</td>
+<td>提交订单率、支付转化率</td>
+</tr>
+<tr>
+<td>新手引导</td>
+<td>30 日留存</td>
+<td>首日关键行为完成率</td>
+</tr>
+</tbody>
+</table>
+<p>前置指标不能替代最终指标，但可以帮助判断机制是否生效。</p>
+<p>如果实验触发率很低，也可以补充观察「真正触发实验处理的人群」，例如真正看到新样式、真正进入改造链路、真正被新排序策略影响的用户。但触发用户分析通常是辅助分析，不能随意替代全量随机人群口径，否则可能引入触发偏差。</p>
+<h2 id="8">8. 方法六：换实验机制或实验设计<a class="headerlink" href="#8" title="Permanent link">#</a></h2>
+<p>如果改动非常细，普通 AB 可能天然不敏感。</p>
+<p>典型场景是搜索 / 推荐排序实验：</p>
+<ul>
+<li>排序位置只发生微调；</li>
+<li>低频 query 很难在实验组和对照组同时出现；</li>
+<li>用户行为差异被 query 差异掩盖。</li>
+</ul>
+<p>这时可以考虑 <a href="../../../concepts/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ExperimentDesign__interleaving%E4%BB%8B%E7%BB%8D/">interleaving</a>：让同一次请求中同时混排两个策略的结果，用点击和停留等行为判断用户更偏好哪一侧。</p>
+<p>如果业务对象天然可以配对或分块，也可以考虑配对实验、区组实验、交叉实验、自身前后对照等设计，让实验组和对照组在关键背景变量上更接近，从而减少无关差异。</p>
+<h2 id="9">9. 不要为了敏感性牺牲可信度<a class="headerlink" href="#9" title="Permanent link">#</a></h2>
+<p>提高敏感性时要避免几类错误：</p>
+<table>
+<thead>
+<tr>
+<th>错误做法</th>
+<th>问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实验后临时换指标</td>
+<td>容易 p-hacking，增加假阳性</td>
+</tr>
+<tr>
+<td>只看正向分层</td>
+<td>多重检验问题，容易误判</td>
+</tr>
+<tr>
+<td>只看触发用户</td>
+<td>可能产生触发偏差，破坏随机性</td>
+</tr>
+<tr>
+<td>任意剔除异常值</td>
+<td>可能人为制造显著性</td>
+</tr>
+<tr>
+<td>无限延长实验</td>
+<td>容易受到时序干扰和外部冲击</td>
+</tr>
+</tbody>
+</table>
+<p>原则：</p>
+<blockquote>
+<p>敏感性提升必须在实验前设计，不能在实验后为了显著而改口径。</p>
+</blockquote>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

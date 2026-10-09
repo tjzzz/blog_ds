@@ -1,0 +1,1006 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>interleaving介绍 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1ab-test" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              interleaving介绍
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1ab-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.AB-test的缺点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.AB-test的缺点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.实验不够敏感
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.低频无法准确分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 实验周期一般较长
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2interleaving" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.interleaving实验介绍
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.interleaving实验介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        算法实践
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验效果度量
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-interleavingab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Interleaving与AB实验方式区别
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 专业版
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>interleaving介绍</h1>
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/">实验设计与AB测试</a> · 类型：概念</p>
+<p>“每个男人生命中总有两个女人, 一个是红玫瑰，一个是白玫瑰。娶了红玫瑰，红玫瑰终将褪成墙上的一抹蚊子血，而白玫瑰则成了床前的一抹明月光。娶了白玫瑰，白玫瑰成了衣服上的一粒饭粒子，而红玫瑰则永远成了心口上的朱砂痣” <br />
+——张爱玲</p>
+</blockquote>
+<p>搜索引擎系统一直追求将更好的结果展现给用户，从而提升用户体验。而与之对应的，我们也需要某种方法去评估其效果。而在搜索引擎评估系统中，似乎也有这么一对白玫瑰和红玫瑰——AB实验和interleaving实验。</p>
+<h2 id="1ab-test">1.AB-test的缺点<a class="headerlink" href="#1ab-test" title="Permanent link">#</a></h2>
+<p>AB实验（AB-Test），作为一种传统的评估及检测方式由来已久，由于其实验方法简单，适用场景多，因此在很多领域都有着广泛的应用（比如药物效果所进行的双盲AB测试）。搜索引擎评估之初，当开发出一个新的产品，对线上展现效果或者卡片样式做变化的时候，一个最自然的想法就是进行AB实验。实现方法是从线上随机抽取两份流量，一部分的人（A组）体验到新版效果，一部分人（B组）体验旧版的效果。通过对比两部分的指标情况，来判断新版本的整体效果。</p>
+<p>然而AB实验并不是完美的，随着搜索引擎技术发展，人们在评估中也渐渐地发现了一些问题。她像白玫瑰，有时太过沉静和安稳。</p>
+<h3 id="1">1.实验不够敏感<a class="headerlink" href="#1" title="Permanent link">#</a></h3>
+<p>对于一个检索系统来说，很多时候，程序员们都是在搞各种排序算法，期望让更好更相关的结果排在前面，比如把原来展现在第3位置较差的结果调到了第4位，把第4位的好结果放到第3位。这种微小的变化，通过AB实验的统计性指标，很难度量出排序的变化所带来的体验影响。</p>
+<h3 id="2">2.低频无法准确分析<a class="headerlink" href="#2" title="Permanent link">#</a></h3>
+<p>随着搜索技术发展，各类中高频的需求满足情况逐步完善，用户体验持续提升。搜索竞品之间的争夺，更多的集中在对于冷门需求（通常为频次低，Query较长）的效果体验差异上。 在这种场景下，由于A组和B组两部分很难出现相同的查询请求（Query无法在A/B共现），因此，AB实验对于这部分的评估就非常困难，且无法提供有效的用户Case进行产品分析。</p>
+<h3 id="3">3. 实验周期一般较长<a class="headerlink" href="#3" title="Permanent link">#</a></h3>
+<p>此时，我们非常期待一个能够对用户行为有着更敏锐反馈的实验方式，期望用户在一次检索下既能看到新版又同时能看到旧版的效果，来进行更加直接的PK，也不用担心冷门Query无法复现的问题。像红玫瑰，热烈奔放，即使微弱的排序变化，也能够迅速捕捉，敏锐反映。</p>
+<h2 id="2interleaving">2.interleaving实验介绍<a class="headerlink" href="#2interleaving" title="Permanent link">#</a></h2>
+<p>Interleaving实验，从直观上来说，就是可以满足让用户”同时”看到新版和旧版两种效果的实验方式。那么，究竟要怎样设计才能让用户“同时”看到两种效果呢？下面就来简单的介绍一下interleaving的实验原理。</p>
+<h3 id="_1">基本原理<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<p>首先我们把新版的效果叫做策略组，记为A，旧版的效果叫做基线组，记为B。一个比较自然的想法，就是通过某种方式将策略和基线的效果merge到一起，这样用户就能“同时”看到两种效果。</p>
+<p><img alt="" src="../../../media/16143353906729.jpg" /><br />
+图1、Interleaving图示</p>
+<p>如图1示例，当用户检索一个Query的时候，算法A和算法B会分别有一套排序策略。展现结果分别是(A1, A2, ……)，(B1, B2, ……)。然后按照A优先或者B优先的方式，两边按顺序各自取一条结果，依次拼凑在一起。从而构成右侧的排序结果，这种方式称为balanced interleaving抽样。</p>
+<h3 id="_2">算法实践<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<p>上面是Interleaving的基本原理，在具体实践中，会有一些更加细节的考虑点。</p>
+<ul>
+<li>重复结果问题</li>
+</ul>
+<p><img alt="" src="../../../media/16143354056410.jpg" /><br />
+图2、Interleaving去重示例</p>
+<p>在大多数情况下，策略结果并不会像图1所示变化那么剧烈（两侧结果完全不同），更多的策略往往是在已知的首页结果上进行更细化的排序，例如图2所示的例子。由于从用户感知层面来看，相同的结果只能够占据一个展示位置，因此要对重复结果进行消除。最终展现给用户的是无重复的结果。消除的原则是：相同结果仅保留在前面的一条。</p>
+<p>此外，如何界定”相同结果”，也需要充分考虑。例如，如果仅仅采用URL做为结果的区分标准，可能会将一些URL相同，但展现丰富程度不同的结果去掉（例如某些特型卡片） 。此时，需要从全面评估角度进行更详细的设计。</p>
+<ul>
+<li>均匀抽样问题</li>
+</ul>
+<p>搜索中，用户的点击是有位置偏差的，越靠前的结果越容易被点击。即在A优先的前提下，用户更倾向于点击A的结果，这就造成了指标的偏差。因此在抽取流量时候，需要保证A优先和B优先的比例是一致的。这样从统计上可以将偏差打平。因此，理想情况下，为了保证度量的准确性，需要保证流量中有50%的是A优先，50%的是B优先。</p>
+<ul>
+<li>其它问题</li>
+</ul>
+<p>除了上述基本问题外，从评估角度出发，需要考察各种可能导致评价误差的因素（例如展现样式和高度偏差、位置偏差等），这里不再赘述</p>
+<h3 id="_3">实验效果度量<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<p>传统AB实验，评估更多的是用户的整体体验，主要通过点击率、有点比例，长点率，换query率等基础指标，来刻画用户体验的变化。而interleaving指标设计更多的体现在对于单次检索的评价上，且更多的应用在排序实验中。</p>
+<p>基于单次检索的评价，在用户”同时”看到两侧结果的场景下，更多的体现在对于用户行为（点击、停留时长）的分配问题上。假设策略将一条基线没有的好结果提上来，用户点击后获得满足离开，这个点击会很自然的分配给策略方；当策略将一条基线已有的好结果提升位置展现，用户点击满足离开后，这时需要各分配一些分数给策略和基线方；当一次搜索是多次点击的情况下，如何分配和判断会变的更加复杂。</p>
+<p>一般的，需要衡量的体验维度包括：<br />
+- 感知相关性<br />
+用户在排序感知上（包括飘红、摘要等展现要素）的差别，如上描述，这个可以通过点击的结果分配在策略或基线哪边更靠前来度量。</p>
+<ul>
+<li>
+<p>真实相关性<br />
+真实相关性也就是用用户点后，在结果页的真实满足程度，比如可以通过用户的停留时间来衡量。</p>
+</li>
+<li>
+<p>其它方向度量<br />
+除了基础相关性度量外，由于Interleaving同时具有两侧的结果，我们还可以进行更多维度（时效性、权威性等）的度量。基于指标的具体计算这里不再展开。</p>
+</li>
+</ul>
+<h2 id="3-interleavingab">3 Interleaving与AB实验方式区别<a class="headerlink" href="#3-interleavingab" title="Permanent link">#</a></h2>
+<p>作为两种不同的实验方式，AB和interleaving实验有不同的应用场景和优缺点。主要来说有这么几个方面：</p>
+<ul>
+<li>
+<p>指标敏感度<br />
+AB实验敏感度低一些，适合改动较大的策略，比如展现样式的变化，新增了一张阿拉丁卡片等；而interleaving实验敏感度比较高，主要应用在rank 排序类的实验中。</p>
+</li>
+<li>
+<p>所需流量<br />
+AB实验因为敏感度低，一般所需流量较大(比如4%-6%)，而interleaving实验因为相对敏感，很小的流量就能出信号(比如0.25%)。</p>
+</li>
+<li>
+<p>实验周期<br />
+AB实验因为抽的是两份不同的流量，在真正做实验之前，需要去验证两份流量是否天然存在偏差。所以一般需要空转3天，然后实验5天。而interleaving实验因为天然的就是同一个用户看到两种效果，因此不需要空转，一般实验3天左右即可。</p>
+</li>
+<li>
+<p>指标设计<br />
+AB指标设计简单，直观且相对易于理解； 而interleaving实验，因为本身的实验机制就比较复杂，指标设计也困难许多。</p>
+</li>
+<li>
+<p>Case抽取<br />
+分析实验需要定位到具体的case级别，interleaving实验非常方便定位；而AB实验因为两边结果都不一定能复现，而且是不同人的行为，可比性较差。</p>
+</li>
+</ul>
+<h2 id="4">4 小结<a class="headerlink" href="#4" title="Permanent link">#</a></h2>
+<p>总的来说，不管是interleaving实验还是AB实验，都是一种实验方式，他们有各自的优缺点和试用范围，都需要根据具体的产品或者策略类型去灵活的选择；不管是白玫瑰还是红玫瑰，都需要自己去选择合适的，从而能够有效的衡量出搜索引擎的排序和展现效果，不断提升用户的线上体验。</p>
+<p>当然interleaving实验的具体度量方式和指标设计比较复杂，这次只是对其实验方式的一个简单介绍，没有具体展开。如果你想要接着了解她，可以期待我们下次的分享呦。</p>
+<h2 id="5">5. 专业版<a class="headerlink" href="#5" title="Permanent link">#</a></h2>
+<p>指标体系</p>
+<p>指标阈值设计<a href="../../../cases/%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87%E4%B8%8E%E8%AF%8A%E6%96%AD/%E6%A1%88%E4%BE%8B-%E6%8C%87%E6%A0%87%E9%98%88%E5%80%BC-rank%E6%90%9C%E7%B4%A2/">案例-指标阈值-rank搜索</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1065 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>@方法论 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              @方法论
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 搭建指标体系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-sop-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法论1 SOP - 诊断-归因-改进
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法论1 SOP - 诊断-归因-改进">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 诊断
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 归因
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 归因">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        品牌-同一个场
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        品牌-跨场
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mall-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mall- 跨场
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 改进
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法论2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        产品demo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E6%95%B0%E5%AD%97%E9%9B%B6%E5%94%AE%E4%B8%8E%E5%95%86%E4%B8%9A%E7%A9%BA%E9%97%B4/">数字零售与商业空间</a> · 类型：方法</p>
+</blockquote>
+<h1 id="_1">方法总结<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h2 id="0">0. 搭建指标体系<a class="headerlink" href="#0" title="Permanent link">#</a></h2>
+<p>现有的客流指标体系</p>
+<ul>
+<li>指标的显著性。<ul>
+<li>Ab test产出显著性</li>
+<li>问题指标归因</li>
+</ul>
+</li>
+<li>
+<p>指标的有效性：能够反映出好坏的变化</p>
+<ul>
+<li>指标设计的区分度</li>
+<li>回溯历史事件(节假日、活动、疫情等在指标层面是否体现)</li>
+</ul>
+</li>
+<li>
+<h2 id="1-sop-">方法论1 SOP - 诊断-归因-改进<a class="headerlink" href="#1-sop-" title="Permanent link">#</a></h2>
+</li>
+</ul>
+<p>SOP: 分别看客流指标(进店数，深逛数，深逛数v2, 有效客流数等等)与gmv关系即可，当前的分析已有</p>
+<blockquote>
+<p>建模的结果可以为我们提供SOP指标的构造灵感：将top的几个柔和成一个有业务意义的指标，比如深逛其实就是停留时长大于xx的个数，比如构造有效客流数，价值客流数等等作为目标GMV的前瞻性指标</p>
+</blockquote>
+<h3 id="21">2.1 诊断<a class="headerlink" href="#21" title="Permanent link">#</a></h3>
+<p>诊断： 对研究对象(mall/store/业态)给出定量评估，</p>
+<p>评估的角度包括：</p>
+<ul>
+<li>集团角度：跨场评估</li>
+<li>场角度：同场、同业态、同楼层等</li>
+</ul>
+<p>评估方法：</p>
+<p>(1) 直接评估: 直接对比目标指标，比如对比GMV</p>
+<p>(2) 可比评估：因为每个个体受到的影响因素是不同的，将其他因素控制的条件下进行比较。比如:</p>
+<p>Y(A) = f(Z=z1, X=x1), Y(B) = f(Z=z2, X=x2), 我们其实是希望知道 Y(A')= f(Z=z2, X=x1)的结果和Y(B)的对比情况。所以对比方法：将所有对象的Z 设置成统一的，根据模型预测得到新的结果</p>
+<p>Yk' = f(Z=z0, X=xk ), e.g 一般意义上一线城市的一个场服装业态的收入大概是多少？(其他控制变量设置一般取值，然后进行模型预测)</p>
+<blockquote>
+<p>类比特征重要性的计算思路PDP方式</p>
+</blockquote>
+<h3 id="22">2.2 归因<a class="headerlink" href="#22" title="Permanent link">#</a></h3>
+<p>以store粒度为例，归因是回答为什么当前该store的表现是这样，为什么和其他同类别的store有差别，比如同一品牌不同场。</p>
+<p>通过建立模型 Y = f(x1, x2, ...xk)。然后利用shap解释 $<span class="arithmatex"><span class="MathJax_Preview">y=y_{base} +\phi_1 + \phi_2 + .... + \phi_k</span><script type="math/tex">y=y_{base} +\phi_1 + \phi_2 + .... + \phi_k</script></span>$ shape可以给出每个case下的每个特征的定量贡献，并且具有可加性。</p>
+<p>e.g</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">y_i = base + factor_{1i} + factor_{2i} + ... + factor_{ki}</div>
+<script type="math/tex; mode=display">y_i = base + factor_{1i} + factor_{2i} + ... + factor_{ki}</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">y_j = base + factor_{1j} + factor_{2j} + ... + factor_{kj}</div>
+<script type="math/tex; mode=display">y_j = base + factor_{1j} + factor_{2j} + ... + factor_{kj}</script>
+</div>
+<p>个体i和个体j在y上的表现具体是由哪些因素导致的看以通过贡献看出来</p>
+<h4 id="-">品牌-同一个场<a class="headerlink" href="#-" title="Permanent link">#</a></h4>
+<p>通过shap对模型做分析，能够给出各个因素(客群，店铺位置，店铺属性等等)对目标的贡献，从而定位出来该店铺表现好或差的原因</p>
+<h4 id="-_1">品牌-跨场<a class="headerlink" href="#-_1" title="Permanent link">#</a></h4>
+<ul>
+<li>场因素、客群因素、店铺位置因素等等，定位出影响的因素，比如以雷达图展示</li>
+<li>反事实预测：如果我把表现差的其他客观因素改成和表现好的一样，新的预测值是否能达到好的效果，从而定位出是客观因素导致的，还是本身经营问题。</li>
+<li>对于客观因素(客群、位置等)我们可以有对应的建议，参见2.3部分</li>
+</ul>
+<h4 id="mall-">Mall- 跨场<a class="headerlink" href="#mall-" title="Permanent link">#</a></h4>
+<p>类似品牌跨场，给出其当前表现，以及在可对比情况下的对比结果，从而定位出主要问题(客观因素，主观经营)</p>
+<h3 id="23">2.3 改进<a class="headerlink" href="#23" title="Permanent link">#</a></h3>
+<p>根据分解思路中定位的问题，最终定位到的业务上比较好操作或者是落地的因素无非是：</p>
+<ul>
+<li><strong>场的因素</strong></li>
+</ul>
+<p>业态布局、店铺类型、动线设计(如何量化评估？)</p>
+<ul>
+<li><strong>店铺的因素</strong></li>
+</ul>
+<p>包括业态、位置、面积等等</p>
+<ul>
+<li><strong>人/客群 关联</strong>**@**<strong>一鸣 客群分析</strong></li>
+</ul>
+<blockquote>
+<p>目前缺乏一个比较系统化的对客群的分析方法，可以将当前的一些零散的分析模块整合在一起。</p>
+</blockquote>
+<p>分析该人群的特点，从而进行营销活动导流</p>
+<ul>
+<li>该人群的画像特点，输出显著diff的特征表述，比如和总体计算PHI指数。画像标签可以是线上+线下，可以再store/mall这个粒度进行打通，当做建模的特征</li>
+<li>该人群的行为特点： 逛店偏好，关联店铺，</li>
+<li>该人群在哪里：热力分布，场内动线</li>
+<li>
+<p>后续加上模型应用：潜客预测</p>
+</li>
+<li>
+<h2 id="2">方法论2<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+</li>
+</ul>
+<p>根据分解关系中的因果图，推断出关键节点的关系，从而能给出每个节点对最终结果GMV的影响。可以在此图的基础上进行各种推断。也可以将已有的模型结果纳入此图中4</p>
+<ol>
+<li>
+<h2 id="demo">产品demo<a class="headerlink" href="#demo" title="Permanent link">#</a></h2>
+</li>
+</ol>
+<p>场 -&gt; 店铺 -&gt; 客群、店铺</p>
+<h1 id="ml-">ML-建模<a class="headerlink" href="#ml-" title="Permanent link">#</a></h1>
+<p><a href="https://aibee.feishu.cn/docs/doccnPgEgfy2GFiZhCNT1Kco9se">Mall建模体系</a></p>
+<ol>
+<li>
+<h2 id="_2">组内调研结果<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+</li>
+</ol>
+<p>当前建模的发现汇总：<a href="https://aibee.feishu.cn/docs/doccnT6NjM6D630ikZ8UasfkMGc">【保密】购物中心行业数据探索</a></p>
+<p>课题</p>
+<p><strong>主要发现</strong></p>
+<p><strong>备注</strong></p>
+<p><a href="https://aibee.feishu.cn/docs/doccnPWxIy5pB52an8HPEMvWkxd#wm3nzu">GMV与线下客流建模（店铺级）</a></p>
+<p>杨邹</p>
+<ol>
+<li>深逛人数和进店人数有强相关关系（cor =0.92)</li>
+<li>店铺面积与进店人数和深逛人数有强正相关性（0.84；0.8）</li>
+<li>过店人数与GMV负相关？</li>
+</ol>
+<p><a href="https://aibee.feishu.cn/docs/doccnk5A3a9Ir5xMPgNGdbBcQcq">客流指标与GMV</a> 柳姐</p>
+<p><img alt="" src="https://aibee.feishu.cn/space/api/box/stream/download/asynccode/?code=YTAyZmE4OTc5Yjc1MjFlODRiNGIyZDg3YjM1YmQ4M2ZfR013UktkSTZRMnVqS3BGYWFQQllMVWFzZlF3RmdjbXVfVG9rZW46Ym94Y25QVzdZdkkwNFFiRUxsV3dsdGZWc2piXzE2NDcyMjkwNTc6MTY0NzIzMjY1N19WNA" /></p>
+<p><a href="https://aibee.feishu.cn/docs/doccnxoe6ZSxig2nin0o3S2onHd">印力租金因素可视化分析</a></p>
+<p>莫栖</p>
+<ol>
+<li>租金坪效正相关因素：平均日营业额、过店客流量、</li>
+<li>租金坪效负相关因素：店铺面积，提成租金（bug）</li>
+<li>相关性较高因素：楼层（首层最高，可能和首次业态类型及客流较多相关）</li>
+</ol>
+<p><a href="https://aibee.feishu.cn/docs/doccnIT0PuTnGD2FWCM44ETTZkc#nqbtxe">Mall商铺租金建模</a> 晓帅</p>
+<p>正: 过去一年平均日营业额，租金类型=固定与提成取最高</p>
+<p>负：出租面积，提成租金，</p>
+<p><a href="https://aibee.feishu.cn/docs/doccngwl2GkmYnXwps3BrCwtIYg">笔单价影响因素分析</a> 莫栖</p>
+<p>停留时长 charles</p>
+<p>停留时长对GMV的贡献与店铺相关，不建议作为核心指标来提升</p>
+<ol>
+<li>整体上店内平均停留时长与GMV坪效（log）呈负相关性</li>
+<li>相关性受三级业态甚至单店铺影响较大。</li>
+<li>停留时长越长，不代表GMV收益率会更高。</li>
+<li>过店越多，停留越短。</li>
+</ol>
+<p>深逛人数</p>
+<p>北极星指标-深逛V2.</p>
+<p>用来做其他运营场景的Y值来优化。摆脱对GMV的直接依赖</p>
+<p>人数与人次</p>
+<ol>
+<li>无论是工作日或节假日，进店**人数**的相关性都比进店人次更高。</li>
+<li>珠宝、儿童、美容、快时尚、主力店，进店人数相关性更高；其他、餐饮、电器、休闲娱乐，进店人次相关性更高；</li>
+<li>进店人数和人次都不对特殊业态-车产生影响</li>
+</ol>
+<p>mall-GMV<a href="https://aibee.feishu.cn/docs/doccnBjL9BtW1Z8Nq7UMaCU8h6g">跨场GMV建模</a></p>
+<p>store-GMV <a href="https://aibee.feishu.cn/docs/doccnvNBzq33o9nPz2IgvI3egyf">跨场Brand GMV建模</a></p>
+<p><a href="https://aibee.feishu.cn/docs/doccnqTH1eusAxjJ1CKNZUznoug">Store GMV - V4</a></p>
+<h1 id="_3">参考资料<a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
+<p><a href="https://aibee.feishu.cn/docs/doccnNgaOnW4mQbioH8xupwcBSm">《为什么：关于因果关系的新科学》</a></p>
+<p>因果关系梳理参考 <a href="https://aibee.feishu.cn/docs/doccnT6NjM6D630ikZ8UasfkMGc">【保密】购物中心行业数据探索</a></p>
+<p><a href="https://aibee.feishu.cn/file/boxcnQhWR2WHrDu4qUg7mZjKGJg?office">GMV&amp;租金建模.pptx</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

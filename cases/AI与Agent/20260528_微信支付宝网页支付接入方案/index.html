@@ -1,0 +1,1382 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>20260528_微信支付宝网页支付接入方案 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              20260528_微信支付宝网页支付接入方案
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、场景与支付方式选择
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、前置条件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、前置条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        微信支付
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        支付宝
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结论
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、开发流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、开发流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-jsapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 微信支付 JSAPI（公众号内网页）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 支付宝电脑网站支付
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、费率对比
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、Python 技术实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、Python 技术实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-python-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Python SDK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-flask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 推荐架构（Flask 项目）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 关键安全要点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、接入策略建议
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、个人收款码 vs 官方接口的本质区别
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、参考链接
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/AI%E4%B8%8EAgent/">AI与Agent</a> · 类型：案例</p>
+</blockquote>
+<h1 id="_1">微信/支付宝网页支付接入方案<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<blockquote>
+<p>调研时间：2026-05-28<br />
+场景：PC 电脑网页 + 手机网页，自有 Flask Web App，已注册个体工商户</p>
+</blockquote>
+<hr />
+<h2 id="_2">一、场景与支付方式选择<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>用户访问设备/环境</th>
+<th>微信支付方式</th>
+<th>支付宝方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微信内网页（公众号/H5）</td>
+<td>JSAPI 支付</td>
+<td>手机网站支付（WAP）</td>
+</tr>
+<tr>
+<td>手机端浏览器</td>
+<td>H5 支付</td>
+<td>手机网站支付（WAP）</td>
+</tr>
+<tr>
+<td><strong>PC 电脑网页</strong></td>
+<td><strong>Native 支付（扫码）</strong></td>
+<td><strong>电脑网站支付</strong></td>
+</tr>
+<tr>
+<td>iOS App</td>
+<td>App 支付</td>
+<td>App 支付</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>你的项目 <code>aigc-humanizer-en</code>（Flask Web App）最可能用到：<br />
+- PC 端 → 微信 Native 扫码 + 支付宝电脑网站支付<br />
+- 手机端 → 微信 H5 支付 + 支付宝手机网站支付</p>
+</blockquote>
+<hr />
+<h2 id="_3">二、前置条件<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<h3 id="_4">微信支付<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主体</td>
+<td><strong>企业营业执照或个体工商户</strong></td>
+</tr>
+<tr>
+<td>额外账号</td>
+<td>微信**服务号**（订阅号不支持微信支付）</td>
+</tr>
+<tr>
+<td>域名</td>
+<td>已备案域名</td>
+</tr>
+<tr>
+<td>实名认证</td>
+<td>企业/个体户三证合一</td>
+</tr>
+<tr>
+<td>API 配置</td>
+<td>API v3 密钥 + API 证书</td>
+</tr>
+<tr>
+<td>JSAPI 额外</td>
+<td>商户平台配置 JSAPI 支付授权目录</td>
+</tr>
+<tr>
+<td>入驻难度</td>
+<td>⭐⭐⭐ 较严格</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">支付宝<a class="headerlink" href="#_5" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主体</td>
+<td>**企业或个体工商户**即可</td>
+</tr>
+<tr>
+<td>额外账号</td>
+<td>只需支付宝账号</td>
+</tr>
+<tr>
+<td>域名</td>
+<td>配置授权域名（需 HTTPS）</td>
+</tr>
+<tr>
+<td>密钥</td>
+<td>生成 RSA2/SHA256 密钥对，上传公钥</td>
+</tr>
+<tr>
+<td>回调</td>
+<td>配置异步通知地址（Notify URL，公网可访问 HTTPS）</td>
+</tr>
+<tr>
+<td>合规</td>
+<td>根据经营类目提交营业执照、ICP 备案、特定行业资质</td>
+</tr>
+<tr>
+<td>入驻难度</td>
+<td>⭐⭐ 相对宽松</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">结论<a class="headerlink" href="#_6" title="Permanent link">#</a></h3>
+<blockquote>
+<p>有个体工商户执照即可接入两者。支付宝门槛更低，不需要额外注册服务号。</p>
+</blockquote>
+<hr />
+<h2 id="_7">三、开发流程<a class="headerlink" href="#_7" title="Permanent link">#</a></h2>
+<h3 id="31-jsapi">3.1 微信支付 JSAPI（公众号内网页）<a class="headerlink" href="#31-jsapi" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>用户访问网页
+  → 后端 OAuth 获取 openid
+    → 后端调 JSAPI 下单接口 → 获取 prepay_id
+      → 前端 WeixinJSBridge 调起微信支付
+        → 用户确认支付
+          → 微信异步通知 + 前端回调
+            → 后端查单确认 → 完成
+</code></pre></div>
+<p><strong>核心 API 接口：</strong></p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /v3/pay/transactions/jsapi</code></td>
+<td>下单，获取 prepay_id</td>
+</tr>
+<tr>
+<td><code>GET /v3/pay/transactions/id/{id}</code></td>
+<td>查询订单</td>
+</tr>
+<tr>
+<td><code>POST /v3/pay/transactions/close</code></td>
+<td>关闭未支付订单</td>
+</tr>
+<tr>
+<td>支付成功回调通知</td>
+<td>异步推送，需验签</td>
+</tr>
+<tr>
+<td><code>POST /v3/refund/domestic/refunds</code></td>
+<td>退款</td>
+</tr>
+<tr>
+<td>下载交易账单</td>
+<td>对账用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键参数：</strong><br />
+- <code>openid</code>：用户唯一标识（必须）<br />
+- <code>prepay_id</code>：有效期 2 小时，过期需重新下单<br />
+- <code>time_expire</code>：可选，不传默认订单有效期 7 天<br />
+- 前端下单按钮必须做**防抖处理**</p>
+<p><strong>官方文档：</strong> <a href="https://pay.weixin.qq.com/wiki/doc/apiv3/open/pay/chapter2_3.shtml">https://pay.weixin.qq.com/wiki/doc/apiv3/open/pay/chapter2_3.shtml</a></p>
+<h3 id="32">3.2 支付宝电脑网站支付<a class="headerlink" href="#32" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>用户点击支付
+  → 后端构造订单参数 + RSA2 签名
+    → 返回 form 表单 / 跳转链接
+      → 自动跳转支付宝收银台
+        → 用户扫码或登录支付
+          → 同步返回 (return_url) + 异步通知 (notify_url)
+            → 后端验签 → 更新订单 → 完成
+</code></pre></div>
+<p><strong>核心 API 接口：</strong></p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>方法标识</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下单支付</td>
+<td><code>alipay.trade.page.pay</code></td>
+<td>发起支付，生成跳转</td>
+</tr>
+<tr>
+<td>查询订单</td>
+<td><code>alipay.trade.query</code></td>
+<td>查询支付状态</td>
+</tr>
+<tr>
+<td>退款</td>
+<td><code>alipay.trade.refund</code></td>
+<td>全额或部分退款</td>
+</tr>
+<tr>
+<td>撤销订单</td>
+<td><code>alipay.trade.cancel</code></td>
+<td>撤销未支付订单</td>
+</tr>
+<tr>
+<td>对账单下载</td>
+<td><code>alipay.data.bill.download.query</code></td>
+<td>下载对账文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>官方文档：</strong> <a href="https://opendocs.alipay.com/open/270/105899">https://opendocs.alipay.com/open/270/105899</a></p>
+<hr />
+<h2 id="_8">四、费率对比<a class="headerlink" href="#_8" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>支付方式</th>
+<th>标准费率</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微信支付（JSAPI/H5/App）</td>
+<td><strong>0.6%</strong></td>
+<td>部分行业可申请 0.38%</td>
+</tr>
+<tr>
+<td>支付宝（网站/App/WAP）</td>
+<td><strong>0.6%</strong></td>
+<td>部分行业可申请 0.38%</td>
+</tr>
+<tr>
+<td>微信扫码支付（Native）</td>
+<td>0.38%</td>
+<td>线下扫码场景</td>
+</tr>
+<tr>
+<td>退款</td>
+<td>免费</td>
+<td>双方均免费</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>单笔最低手续费 0.1 元</li>
+<li>结算周期：默认 T+1 自动结算到绑定银行卡</li>
+<li>无接口调用费、无年费</li>
+</ul>
+<hr />
+<h2 id="python">五、Python 技术实现<a class="headerlink" href="#python" title="Permanent link">#</a></h2>
+<h3 id="51-python-sdk">5.1 Python SDK<a class="headerlink" href="#51-python-sdk" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>SDK</th>
+<th>安装命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微信支付 v3</td>
+<td><code>wechatpayv3</code></td>
+<td><code>pip install wechatpayv3</code></td>
+</tr>
+<tr>
+<td>支付宝</td>
+<td><code>alipay-sdk-python</code></td>
+<td><code>pip install alipay-sdk-python</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-flask">5.2 推荐架构（Flask 项目）<a class="headerlink" href="#52-flask" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>用户点击支付 → Flask 后端创建订单（DB 记录 pending）
+  → 用户选择「微信」或「支付宝」
+    → 分别调用对应 SDK 接口
+      → 监听各自的异步回调通知（独立路由）
+        → 验签 → 统一更新订单状态为 paid
+          → 自动开通服务
+</code></pre></div>
+<p><strong>代码组织建议：</strong><br />
+<div class="highlight"><pre><span></span><code>payment/
+├── __init__.py
+├── base.py          # 抽象支付接口
+├── wechat.py        # 微信支付适配器
+├── alipay.py        # 支付宝适配器
+└── models.py        # 订单模型
+</code></pre></div></p>
+<p>利用适配器模式，统一两种支付的调用和回调处理逻辑。</p>
+<h3 id="53">5.3 关键安全要点<a class="headerlink" href="#53" title="Permanent link">#</a></h3>
+<ul>
+<li><strong>异步通知必须验签</strong>：微信支付 v3 用证书验签，支付宝用 RSA2 公钥验签</li>
+<li><strong>异步通知才是业务依据</strong>：同步返回（前端跳转）仅用于用户体验，不能作为订单完成的依据</li>
+<li><strong>金额用分（整数）传输</strong>：避免浮点精度问题</li>
+<li><strong>回调 URL 必须是 HTTPS</strong>：两者都要求</li>
+<li><strong>防止重复回调</strong>：同一订单号可能收到多次通知，需幂等处理</li>
+</ul>
+<hr />
+<h2 id="_9">六、接入策略建议<a class="headerlink" href="#_9" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>先接哪个</strong></td>
+<td>支付宝（门槛低、不需要服务号、开发更简单）</td>
+</tr>
+<tr>
+<td><strong>最小闭环</strong></td>
+<td>先接支付宝电脑网站支付（PC+手机通用），1-2 天跑通</td>
+</tr>
+<tr>
+<td><strong>完整方案</strong></td>
+<td>支付宝网站支付 + 微信 JSAPI + Native，覆盖全场景</td>
+</tr>
+<tr>
+<td><strong>开发周期</strong></td>
+<td>单个平台 1-2 天；双平台 3-5 天（含测试联调）</td>
+</tr>
+<tr>
+<td><strong>测试</strong></td>
+<td>微信有沙箱环境；支付宝有开发测试模式</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="vs">七、个人收款码 vs 官方接口的本质区别<a class="headerlink" href="#vs" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>个人收款码</th>
+<th>官方支付接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>做法</td>
+<td>放一张图片</td>
+<td>API 对接</td>
+</tr>
+<tr>
+<td>回调通知</td>
+<td>❌ 无</td>
+<td>✅ 异步通知</td>
+</tr>
+<tr>
+<td>自动对账</td>
+<td>❌ 手动核对</td>
+<td>✅ 自动完成</td>
+</tr>
+<tr>
+<td>并发订单</td>
+<td>❌ 易混乱</td>
+<td>✅ 天然支持</td>
+</tr>
+<tr>
+<td>适合场景</td>
+<td>偶尔收钱、订单极少</td>
+<td>自动化业务</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>即使有个体户执照，也建议走官方接口而非收款码。官方接口的核心优势是**自动化**——支付成功自动回调、自动更新订单状态、自动开通服务。</p>
+</blockquote>
+<hr />
+<h2 id="_10">八、参考链接<a class="headerlink" href="#_10" title="Permanent link">#</a></h2>
+<ul>
+<li>微信支付 JSAPI 开发指引：<a href="https://pay.weixin.qq.com/wiki/doc/apiv3/open/pay/chapter2_3.shtml">https://pay.weixin.qq.com/wiki/doc/apiv3/open/pay/chapter2_3.shtml</a></li>
+<li>支付宝电脑网站支付快速接入：<a href="https://opendocs.alipay.com/open/270/105899">https://opendocs.alipay.com/open/270/105899</a></li>
+<li>支付宝开放平台：<a href="https://open.alipay.com">https://open.alipay.com</a></li>
+<li>微信支付商户平台：<a href="https://pay.weixin.qq.com">https://pay.weixin.qq.com</a></li>
+<li>Go 语言微信 JSAPI 实战教程：<a href="https://blog.axiaoxin.com/post/wechat-pay-jsapi-guide/">https://blog.axiaoxin.com/post/wechat-pay-jsapi-guide/</a></li>
+<li>Spring Boot 微信 JSAPI+H5 对接：<a href="https://blog.csdn.net/qq_36021478/article/details/155971421">https://blog.csdn.net/qq_36021478/article/details/155971421</a></li>
+<li>Python Flask + 微信 JSAPI + Native：<a href="https://www.ipengtao.com/event-system-wechat-pay-jsapi-native/">https://www.ipengtao.com/event-system-wechat-pay-jsapi-native/</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

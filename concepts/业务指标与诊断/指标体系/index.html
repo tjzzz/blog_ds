@@ -1,0 +1,989 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>指标体系 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              指标体系
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 为啥需要建立指标体系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 如何设计北极星指标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 指标综合
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 指标综合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多方位评估
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>指标体系</h1>
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87%E4%B8%8E%E8%AF%8A%E6%96%AD/">业务指标与诊断</a> · 类型：概念</p>
+<p>为什么要建立指标体系？<br />
+如何确定北极星指标？<br />
+指标能</p>
+</blockquote>
+<h2 id="1">1. 为啥需要建立指标体系<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<p>作为一个数据数据分析从业人员，在日常工作中不可避免的就是要进行各种业务指标的数据分析，有时候对于数据口径问题还需要和业务方进行拉扯。那么我们为什么需要有指标或者指标体系呢？必须要通过数据才能驱动业务吗，是否凭借业务经验<br />
+x</p>
+<div class="highlight"><pre><span></span><code>graph LR
+    A[数据收集和整理] --&gt; B[指标定义和选择]
+    B --&gt; C[数据分析和探索]
+    C --&gt; D[业务评估和比较]
+    D --&gt; E[制定改进策略]
+    E --&gt; F[推动业务发展]
+</code></pre></div>
+<p>指标能够帮助我们衡量和评估业务的表现和进展，提供决策的依据和参考。建立指标体系有以下几个重要的原因：</p>
+<ol>
+<li>
+<p>目标导向：指标体系可以帮助明确业务目标，并将其转化为可量化的指标。这样可以使业务团队更加明确和专注于实现目标，避免盲目行动和资源浪费。</p>
+</li>
+<li>
+<p>监控和评估：指标体系可以提供对业务表现的监控和评估。通过定期跟踪指标的变化和趋势，可以及时发现问题和机会，并采取相应的行动。</p>
+</li>
+<li>
+<p>对比和竞争力：指标体系可以帮助进行对比和竞争力分析。通过与行业标准或竞争对手的指标进行比较，可以评估业务在市场上的竞争力，并找到改进和提升的空间。</p>
+</li>
+<li>
+<p>激励和奖励：指标体系可以作为激励和奖励的依据。通过设定目标和奖励机制，可以激励员工和团队积极努力，实现业务目标。</p>
+</li>
+<li>
+<p>持续改进：指标体系可以帮助业务团队进行持续改进。通过分析指标的变化和趋势，可以发现业务的瓶颈和改进的机会，并采取相应的措施进行优化。</p>
+</li>
+</ol>
+<p>因此，建立指标体系是为了帮助业务团队更好地实现目标、监控和评估业务表现、提升竞争力、激励员工、以及进行持续改进。</p>
+<h2 id="2">2. 如何设计北极星指标<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<p>设计业务上的北极星指标需要考虑以下几个步骤：</p>
+<ol>
+<li>
+<p>确定业务目标：首先，明确业务的核心目标是什么，例如增加销售额、提高客户满意度、降低成本等。</p>
+</li>
+<li>
+<p>确定关键业务驱动因素：分析业务的关键驱动因素，即对实现业务目标具有重要影响的因素。例如，对于增加销售额的目标，关键驱动因素可能包括市场份额、客户转化率、客单价等。</p>
+</li>
+<li>
+<p>确定指标体系：根据关键业务驱动因素，设计一套完整的指标体系。指标体系应包括高层指标和底层指标。高层指标是对业务目标的直接度量，底层指标则是高层指标的组成部分。</p>
+</li>
+<li>
+<p>设定指标权重：为每个指标设定相应的权重，以反映其对业务目标的重要性。权重可以根据专家判断、数据分析或主观评估来确定。</p>
+</li>
+<li>
+<p>确定指标计算方法：确定每个指标的计算方法，以确保指标的准确性和可比性。计算方法应基于可靠的数据来源，并考虑到业务的特点和需求。</p>
+</li>
+<li>
+<p>设定目标值和阈值：为每个指标设定目标值和阈值，以便监控业务的进展和风险。目标值是期望达到的数值，阈值是指标的警戒线，一旦指标超过或低于阈值，就需要采取相应的行动。</p>
+</li>
+<li>
+<p>建立监控和报告机制：建立一个有效的监控和报告机制，以及时跟踪和评估指标的表现。监控和报告可以通过仪表盘、报表、数据可视化等方式进行。</p>
+</li>
+<li>
+<p>定期评估和调整：定期评估指标的有效性和适用性，并根据业务的变化和需求进行调整和优化。</p>
+</li>
+</ol>
+<p>通过以上步骤，可以设计出一套有效的业务北极星指标，帮助业务团队实现目标，并进行持续的业务改进。</p>
+<hr class="__chatgpt_plugin">
+
+<p>role::assistant</p>
+<p>确定主要指标、观测指标和北极星指标需要考虑以下几个因素：</p>
+<ol>
+<li>
+<p>业务目标：首先，要明确业务的核心目标是什么。主要指标应该直接与业务目标相关，能够反映业务的核心价值和关键结果。</p>
+</li>
+<li>
+<p>关键业务驱动因素：分析业务的关键驱动因素，即对实现业务目标具有重要影响的因素。主要指标应该能够反映这些关键驱动因素的表现和影响。</p>
+</li>
+<li>
+<p>可度量性和可操作性：主要指标应该具备可度量性和可操作性。即能够通过可靠的数据来源进行度量，并且能够采取相应的行动来改善指标的表现。</p>
+</li>
+<li>
+<p>重要性和权重：根据业务目标和关键驱动因素的重要性，为每个指标设定相应的权重。主要指标应该具有较高的权重，能够更好地反映业务的核心价值和关键结果。</p>
+</li>
+<li>
+<p>数据可获得性：主要指标应该基于可获得的数据。确保有足够的数据来源和可靠的数据质量，以支持指标的计算和分析。</p>
+</li>
+<li>
+<p>可比性和一致性：主要指标应该具备可比性和一致性。即能够在不同时间段、不同业务单元或不同地区进行比较，并保持一致的定义和计算方法。</p>
+</li>
+<li>
+<p>用户需求和反馈：考虑业务团队和用户的需求和反馈。主要指标应该能够满足他们的关注点和决策需求，帮助他们更好地理解和改进业务。</p>
+</li>
+</ol>
+<p>通过综合考虑以上因</p>
+<hr class="__chatgpt_plugin">
+
+<p>role::user</p>
+<p>你是一个互联网从业专家，能帮我梳理下常见的搜广推等业务的、金融行业、通讯行业、零售行业等的主要关注的北极星指标吗？</p>
+<hr class="__chatgpt_plugin">
+
+<p>role::assistant</p>
+<p>当涉及到不同行业的业务，其关注的北极星指标可能会有所不同。以下是一些常见行业的主要关注的北极星指标：</p>
+<ol>
+<li>搜索引擎广告业务：</li>
+<li>点击率（CTR）：衡量广告的点击次数与广告展示次数之间的比率，反映广告的吸引力和效果。</li>
+<li>平均点击成本（CPC）：衡量每次点击的平均成本，帮助评估广告投入的效益。</li>
+<li>转化率：衡量广告点击后转化为实际业务的比率，例如购买、注册等。</li>
+<li>
+<p>广告收入：衡量广告业务的收入规模和增长率。</p>
+</li>
+<li>
+<p>金融行业：</p>
+</li>
+<li>资产负债率：衡量企业资产和负债之间的比率，反映企业的财务稳定性和偿债能力。</li>
+<li>不良贷款率：衡量银行贷款中不良贷款的比例，反映风险管理和信用质量。</li>
+<li>客户满意度：调查客户对金融产品和服务的满意度，帮助提升客户体验和忠诚度。</li>
+<li>
+<p>资本回报率（ROE）：衡量企业净利润与股东权益之间的比率，反映企业的盈利能力和资本利用效率。</p>
+</li>
+<li>
+<p>通讯行业：</p>
+</li>
+<li>用户增长率：衡量用户数量的增长速度，反映企业的市场份额和竞争力。</li>
+<li>用户流失率：衡量用户的流失比例，帮助评估用户满意度和客户保留策略的效果。</li>
+<li>平</li>
+</ol>
+<hr class="__chatgpt_plugin">
+
+<p>role::user</p>
+<h2 id="3">3 指标综合<a class="headerlink" href="#3" title="Permanent link">#</a></h2>
+<p>当我们建立了一个整体的指标体系后，有些是我们核心关注的，有些只是用来观测的，因此就出现了不同的指标地位不同的情况。实际场景中往往有这么几种形式：</p>
+<h3 id="_1">多方位评估<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<p>这种场合一般是需要对一个评估对象做一个整体、全方位多维度的评估。比如：<br />
+- 评估一条检索结果的好坏，需要考虑检索结果与你检索query的相关性、检索结果的时效性、结果的质量等等多个维度<br />
+- 信贷中评估一个客户的风险。需要考虑客户的历史信用情况、收入和就业情况、年龄和婚姻情况等等。也是从各个维度去衡量一个人的信贷风险。<br />
+- 用户画像、用户分层。往往从用户各个方面的表现得分对其做一个类似于优质、中档、低质的客户类型分类。</p>
+<p>一般这个时候我们往往是对各个维度的得分进行加权汇总，构造一个所谓的“综合得分”。</p>
+<p>说起来其实挺简单的，但是有一些细节还是值得讨论下的。<br />
+(1) 选择哪些维度作为“综合得分”的衡量呢？<br />
+这个一般是根据业务的经验了，在进行维度的选择时候尽量遵循MCMC原则，枚举的维度尽量全面，不同维度之间尽量相互独立。</p>
+<p>(2) 各个维度指标如果量纲差别很大，该怎么处理呢？<br />
+当不同维度指标之间量纲差别很大的时候，肯定没办法直接进行相加了，直接相加的话综合得分就有偏了。一般我们可以采取一些数据预处理的手段，比如：<br />
+- 将所有特征都做归一化处理，比如都映射到0-1，或者0-100的打分<br />
+- 将数值转换为排名。因为转换到排名后不同维度指标之间就是可比的了。<br />
+这两种转换方式之间其实还是有一些差异的，排名转换法并不考虑绝对差值大小，只考虑相对差值，转换完之后数据之间的差异就不会这么大了。</p>
+<p>(3) 权重如何设定<br />
+权重的设定很多时候是依赖“专家经验”，或者用一些半自动的方式(比如层次分析法AHP)，有些时候如果你有groundtruth，也可以用一些定量的方式。</p>
+<ul>
+<li>专家经验：需要寻找对该业务比较了解的业务方进行访谈，而且最好是多询问几个综合他们的经验得到一个权重分配</li>
+<li>AHP层次分析法。层次分析法是一种用于多准则决策的方法。对于要研究的问题，首先需要将决策问题进行层层分解，构造一个层次结构。</li>
+<li>定量方式。当我们有真实值的时候，我们可以采用一些偏定量的方法。<br />
+比如：我们现在想根据客户的表现对客户进行分层，不同层级的客户后面会享受不同的待遇策略。假设我们现在考虑了如下几个维度：客户的历史信用表现、客户的</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

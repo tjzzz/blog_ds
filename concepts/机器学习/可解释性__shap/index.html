@@ -1,0 +1,1088 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>shap - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1shapley" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              shap
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1shapley" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.shapley值
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 数学表示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3shapley" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.shapley值的计算
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4shap-shapley-additive-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.SHAP (SHapley Additive exPlanation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5shap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.计算工具shap 包
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6shapapp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.基于shap的可视化app
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.基于shap的可视化app">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shapash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shapash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explainerdashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ExplainerDashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        官方文档学习
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="官方文档学习">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-api-explainers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. API-explainers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-shap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. shap与因果的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考资料
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a> · 类型：概念</p>
+</blockquote>
+<p>该篇主要是对特征归因分析中的SHAP（Shapley Additive exPlanations）方法介绍。</p>
+<p>主要的两篇论文:<br />
+- 2017,Lundberg《A Unified Approach to Interpreting Model Predictions》<br />
+- 2018,Lundberg《Consistent Individualized Feature Attribution for Tree Ensembles》，介绍了shap工具</p>
+<h2 id="1shapley">1.shapley值<a class="headerlink" href="#1shapley" title="Permanent link">#</a></h2>
+<p>shap方法的主要思想就是利用了shapley值。shapley值是由Shapley在1953年提出来的，主要针对玩家收益分配问题，属于合作博弈论的方法。</p>
+<p>Shapley值是所有可能联盟中特征值的平均边际贡献。即我们先固定要研究的特征，然后其他所有特征按分布随机去取，可以对模拟出来的数据计算估计出来的y，取均值作为特征取该值的时候的平均估计，然后更改该特征，重复此步骤。</p>
+<h2 id="2">2 数学表示<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<blockquote>
+<p>additive feature attribution methods可加性特征归因方法</p>
+</blockquote>
+<p>可加性特征归因分析方法是指满足如下关系的: $<span class="arithmatex"><span class="MathJax_Preview">g(z')=\phi_0 + \sum\phi_i z_i'</span><script type="math/tex">g(z')=\phi_0 + \sum\phi_i z_i'</script></span>$<br />
+其中<span class="arithmatex"><span class="MathJax_Preview">z_i'</span><script type="math/tex">z_i'</script></span>是二值变量{0,1}</p>
+<p>作者总结了常见的6中特征解释方法都可以归结到这种形式: LIME、DeepLift</p>
+<p>（1）简单的线性模型<br />
+对于简单的模型(比如线性回归)，模型本身就可以用于解释。比如回归模型<span class="arithmatex"><span class="MathJax_Preview">\hat f(x) = \beta_0 + \beta_1x_1 + ...\beta_p x_p</span><script type="math/tex">\hat f(x) = \beta_0 + \beta_1x_1 + ...\beta_p x_p</script></span><br />
+定义第j个特征对预测的<span class="arithmatex"><span class="MathJax_Preview">\hat f(x)</span><script type="math/tex">\hat f(x)</script></span>的贡献是<br />
+<img alt="" src="../../../media/16012919886500.jpg" /><br />
+即特征影响-平均影响。将所有的特征影响相加，有数据点 x 的贡献之和等于预测值减去平均预测值<br />
+<img alt="" src="../../../media/16012920713954.jpg" /></p>
+<p>(2)非线性模型</p>
+<p>而对于复杂模型，比如ensemble或者deep networks就需要找近似的。这里利用shapley的逻辑，计算shapley值:</p>
+<p><img alt="-w563" src="../../../media/15998062518052.jpg" /><br />
+- 公式前面的部分是权重，后面的部分即模型中引入特征i后带来的增益。整体相当于是引入特征i带来的平均增益<br />
+关于shap value计算例子的一个详细case: <a href="https://mathpretty.com/11210.html">https://mathpretty.com/11210.html</a>， 可以了解上述的这个公式是怎么来的</p>
+<p>这样计算得到的Shapley值是唯一满足效率性（Efficiency），对称性（Symmetry），虚拟性（Dummy）和可加性（Additivity）四个属性的归因方法，它们可以一起被视为**公平支出**的定义。</p>
+<p><strong>效率性</strong><br />
+特征贡献的累加等于x的预测和预测平均值的差值</p>
+<h2 id="3shapley">3.shapley值的计算<a class="headerlink" href="#3shapley" title="Permanent link">#</a></h2>
+<p>如果按照原始的公式进行计算的话，可能的维度组合会非常大，所以实际中采用的是近似计算。</p>
+<p><strong>shap regression value:</strong></p>
+<p>假设特征为abcd， 现在想看特征c对最终label的影响。因为特征之间可能存在多重共线性，所以谁先放入模型可能会对结果有影响。比如假设b和c的贡献是一样的，a-&gt;ac可以看出来c的贡献，ab -&gt; abc的时候可能c的贡献就被b稀释了。所以需要考虑所有可能的排列组合。<br />
+考虑当前子集S,然后在此子集S基础上引入新的特征i，而后再引入其他的特征。则所有的排列组合可能情况一共是<span class="arithmatex"><span class="MathJax_Preview">|S|!(|F|-|s|-1)!</span><script type="math/tex">|S|!(|F|-|s|-1)!</script></span>。 因此出现了全面的权重。将所有可能的Subset进行汇总平均即为最终的特征贡献。</p>
+<p><strong>shap sampling values</strong><br />
+<img alt="" src="../../../media/16012930223511.jpg" /></p>
+<p>利用蒙特卡洛模拟的方式简化计算<br />
+- 利用抽样近似；理论上是把所有的排列组合计算一遍，实际操作上进行随机抽样即可<br />
+- 在估计去掉i特征的时候，通过对特征i进行聚合的方式（边际）。除了特征 j 的值，其他不在联盟内的特征值被来自随机数据点 z 的特征值替换。 x 向量 ​ [公式] 几乎与 [公式] ​ 相同，但被随机数据点 z 的特征值替换的特征包括特征 j 。</p>
+<h2 id="4shap-shapley-additive-explanation">4.SHAP (SHapley Additive exPlanation)<a class="headerlink" href="#4shap-shapley-additive-explanation" title="Permanent link">#</a></h2>
+<p>Max SHAPE, Deep SHAP<br />
+tree-explainer:<br />
+<a href="https://github.com/suinleelab/treeexplainer-study">https://github.com/suinleelab/treeexplainer-study</a></p>
+<p>SHAP是在LIME之后提出的一个模型解释的包，可以解释任何机器学习模型。SHAP会为每个样本产生一个shap value。一个特征的shapley value是该特征在所有的特征序列中的平均边际贡献。该值满足如下的等式:<br />
+$<span class="arithmatex"><span class="MathJax_Preview">y_i = y_{base}+ f(x_{i1})+f(x_{i2}) + ...f(x_{ik})</span><script type="math/tex">y_i = y_{base}+ f(x_{i1})+f(x_{i2}) + ...f(x_{ik})</script></span>$</p>
+<p>其既可以看单个样本的值，也可以看global的(将所有个体的每个特征的shape value的绝对值求和)</p>
+<h2 id="5shap">5.计算工具shap 包<a class="headerlink" href="#5shap" title="Permanent link">#</a></h2>
+<p>github: <a href="https://github.com/slundberg/shap">https://github.com/slundberg/shap</a></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shap</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">initjs</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_shap</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data_for_prediction</span><span class="p">):</span>
+    <span class="c1">## data_for_prediction 可以是一行也可以是多行的df</span>
+    <span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">TreeExplainer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>  <span class="c1"># 计算model的shap值</span>
+    <span class="n">shap_values</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">data_for_prediction</span><span class="p">)</span>     <span class="c1"># 计算样本数据的shap值</span>
+    <span class="k">return</span> <span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">,</span> <span class="n">shap_values</span><span class="p">,</span> <span class="n">data_for_prediction</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../../../media/15982750762871.jpg" /></p>
+<p>图形解释:<br />
+- Base value 是指模型在数据集上的输出均值3.374<br />
+- output value 在当个样本上的输出值，这里是2.06。<br />
+- 起正向作用的是红色，其负向作用的是蓝色。</p>
+<p>global解释: <br />
+每个数据点的特征情况  <code>shap.summary_plot(shap_values, X)</code><br />
+特征重要性： <code>shap.summary_plot(shap_values, X, plot_type="bar")</code></p>
+<p>注意:<br />
+<img alt="-w867" src="../../../media/16012958634667.jpg" /><br />
+新版的shap对于lightgbm输出的expected_value是[]</p>
+<p>===</p>
+<p>针对shap<br />
+$<span class="arithmatex"><span class="MathJax_Preview">ln \frac{y}{1-y} = \phi_0 + \sum \phi_i</span><script type="math/tex">ln \frac{y}{1-y} = \phi_0 + \sum \phi_i</script></span>$</p>
+<p>两两之间的交互特征: <br />
+<div class="highlight"><pre><span></span><code>shap_interaction_values = explainer.shap_interaction_values(X)
+shap.summary_plot(shap_interaction_values, X)
+</code></pre></div></p>
+<p>特征重要性 <span class="arithmatex"><span class="MathJax_Preview">I_j=\sum |\phi_j^{i}|</span><script type="math/tex">I_j=\sum |\phi_j^{i}|</script></span></p>
+<p>目前许多解释机器学习模型局部预测的方法都属于可加特征归因方法（Additive feature attribution methods），比如LIME、DeepLIFT、 分层相关传播（layer-wise relevance propagation）、Shapley回归值（Shapley regression values），Shapley采样值（Shapley sampling values）和定量输入影响（Quantitative Input Influence），而SHAP（Shapley Additive exPlanations）则是统一了上面六种方法的解释预测框架。<br />
+SHAP的理论特性比较好，比如一致性(换用不同model得到相同)、可加性</p>
+<p>shap 支持不同类型的模型:<br />
+- TreeExplainer: XGBoost/LightGBM/CatBoost/scikit-learn/pyspark models<br />
+- DeepExplainer (TensorFlow/Keras models)<br />
+- KernelExplainer (explains any function)</p>
+<p><strong>shap支持xgboost，lightgbm</strong><br />
+shap嵌入了xgboost和lightgbm，可以在其中直接调用。。。</p>
+<p><code>model.predict(case, pred_contrib=True)</code></p>
+<h2 id="6shapapp">6.基于shap的可视化app<a class="headerlink" href="#6shapapp" title="Permanent link">#</a></h2>
+<h3 id="shapash">shapash<a class="headerlink" href="#shapash" title="Permanent link">#</a></h3>
+<p><a href="https://github.com/MAIF/shapash">https://github.com/MAIF/shapash</a><br />
+<img alt="" src="../../../media/Pasted%20image%2020220125145647.png" /></p>
+<h3 id="explainerdashboard">ExplainerDashboard<a class="headerlink" href="#explainerdashboard" title="Permanent link">#</a></h3>
+<p><a href="https://github.com/oegedijk/explainerdashboard">https://github.com/oegedijk/explainerdashboard</a></p>
+<p>pip install explainerdashboard</p>
+<ul>
+<li>特征重要性</li>
+<li>模型预测结果总结</li>
+<li>单个样本解释（局部)</li>
+<li>what if 模拟</li>
+<li>特征依赖分析（全局)</li>
+<li>特征交互分析</li>
+<li>树模型（针对个别模型，随机森林等)</li>
+</ul>
+<h1 id="_1">官方文档学习<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<p><a href="https://shap.readthedocs.io/">https://shap.readthedocs.io/</a></p>
+<h2 id="1-api-explainers">1. API-explainers<a class="headerlink" href="#1-api-explainers" title="Permanent link">#</a></h2>
+<p>LinearExplainer：<br />
+- 如果特征之间是相互独立的，学出来的就是coef[i] * (x[i] - X.mean(0)[i])。<br />
+- 如果特征之间存在多重共线性，也会去做相应的处理</p>
+<h2 id="2-shap">2. shap与因果的关系<a class="headerlink" href="#2-shap" title="Permanent link">#</a></h2>
+<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/overviews/Be%20careful%20when%20interpreting%20predictive%20models%20in%20search%20of%20causal%C2%A0insights.html">https://shap.readthedocs.io/en/latest/example_notebooks/overviews/Be%20careful%20when%20interpreting%20predictive%20models%20in%20search%20of%20causal%C2%A0insights.html</a><br />
+<a href="https://github.com/slundberg/shap/blob/master/notebooks/overviews/Be%20careful%20when%20interpreting%20predictive%20models%20in%20search%20of%20causal%C2%A0insights.ipynb">https://github.com/slundberg/shap/blob/master/notebooks/overviews/Be%20careful%20when%20interpreting%20predictive%20models%20in%20search%20of%20causal%C2%A0insights.ipynb</a></p>
+<p>in this article, we discuss how using predictive models to guide this kind of policy choice can often be misleading</p>
+<p>通过模拟一个因果的数据，<br />
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shap</span>
+
+<span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">Explainer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">shap_values</span> <span class="o">=</span> <span class="n">explainer</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">clust</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">hclust</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linkage</span><span class="o">=</span><span class="s2">"single"</span><span class="p">)</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="n">clustering</span><span class="o">=</span><span class="n">clust</span><span class="p">,</span> <span class="n">clustering_cutoff</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></p>
+<p><img alt="" src="../../../media/Pasted%20image%2020211223104545.png" /></p>
+<p>预测任务 vs 因果任务<br />
+- 预测，只关注预测的精度<br />
+- 因果：我们采取什么样的行为才能增加Y</p>
+<p>直接用shap的结果去做因果层的推断的话可能会带来的问题：<br />
+- When we have the same information captured by several features, predictive models can use any of those features for prediction, even though they are not all causal.</p>
+<ol>
+<li>
+<p>预测模型什么时候可以回答因果</p>
+</li>
+<li>
+<p>it is not subject to bias from either unmeasured confounders or feature redundancy. 不光要求特征和其他特征相互独立，并且没有未观察到的混杂因素</p>
+</li>
+</ol>
+<p><img alt="" src="../../../media/Pasted%20image%2020211223110115.png" /></p>
+<ol>
+<li>不能回答时候</li>
+</ol>
+<p>(1)Observed confounding<br />
+ 解决方式：  Observational Causal Inference。比如DoubleML的方式。</p>
+<p>Double ML works as follows:</p>
+<ul>
+<li>Train a model to predict a feature of interest (i.e. Ad Spend) using a set of possible confounders (i.e. any features not caused by Ad Spend).</li>
+<li>Train a model to predict the outcome (i.e. Did Renew) using the same set of possible confounders.</li>
+<li>Train a model to predict the residual variation of the outcome (the variation left after subtracting our prediction) using the residual variation of the causal feature of interest.</li>
+</ul>
+<p>在现有的econML和CausalML中均有自动实现</p>
+<p>(2) Non-confounding redundancy<br />
+对y既有直接影响，也能通过其他变量对y有间接影响</p>
+<hr />
+<h1 id="_2">参考资料<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<p>shap知识点大全 <a href="https://zhuanlan.zhihu.com/p/85791430">https://zhuanlan.zhihu.com/p/85791430</a><br />
+解释xgb和lgb中的shap值，一个很详细的实践案例 <a href="https://zhuanlan.zhihu.com/p/103370775">https://zhuanlan.zhihu.com/p/103370775</a></p>
+<p>假设特征为abcd， 现在想看特征c对最终label的影响。因为特征之间可能存在多重共线性，所以谁先放入模型可能会对结果有影响。<br />
+比如假设b和c的贡献是一样的，a-&gt;ac可以看出来c的贡献，ab -&gt; abc的时候可能c的贡献就被b稀释了。<br />
+所以需要考虑所有可能的排列组合。将所有可能的Subset进行汇总平均即为最终的特征贡献。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

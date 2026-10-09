@@ -1,0 +1,1034 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1. 用户需求模型 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1. 用户需求模型
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-1943" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 马斯洛的层次需求理论（1943年）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-kano-1979" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. KANO 模型（1979年）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-censydiam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Censydiam 用户动机分析模型
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4erg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.ERG需求理论
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 价值要素模型
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vals-vals2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VALS 和VALS2系统
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ☆☆小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考资料
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E6%95%B0%E5%AD%97%E9%9B%B6%E5%94%AE%E4%B8%8E%E5%95%86%E4%B8%9A%E7%A9%BA%E9%97%B4/">数字零售与商业空间</a> · 类型：方法</p>
+</blockquote>
+<h1 id="1">1. 用户需求模型<a class="headerlink" href="#1" title="Permanent link">#</a></h1>
+<p>常用的用户需求理论模型有如下几个</p>
+<h2 id="1-1943">1. 马斯洛的层次需求理论（1943年）<a class="headerlink" href="#1-1943" title="Permanent link">#</a></h2>
+<ul>
+<li>
+<p>生理需求（对食物、水、空气和住房等需求都是生理需求）；</p>
+</li>
+<li>
+<p>安全需求（对人身安全、生活稳定以及免遭痛苦、威胁或疾病等的需求）；<br />
+比如健康，医疗，保险等产品类别</p>
+</li>
+<li>
+<p>社交需求（对友谊、爱情以及隶属关系的需求）；<br />
+微信、陌陌、linkedin，熟人、陌生人、职场等。另外许多游戏中也会加入社交元素</p>
+</li>
+<li>
+<p>尊重需求（对成就或自我价值的个人感觉，也包括他人对自己的认可与尊重）<br />
+一般都设计在产品的用户排名中</p>
+</li>
+<li>
+<p>认知需求：是指对己对人对事物变化有所理解的需求，例如阅读书籍了解未知的事，各种内容付费产品等</p>
+</li>
+<li>
+<p>审美需求：是指对美好事物欣赏并希望周遭事物有秩序、有结构、顺自然、循真理等心理需求，例如听音乐、视频等</p>
+</li>
+<li>
+<p>自我实现需求：发挥自身潜能，实现一定的目标，比如写作。游戏中建立的成就感，打游戏获得冠军。</p>
+</li>
+</ul>
+<!-- more -->
+<p>上述的是经典的马斯洛需求理论，其中5，6两项目是马斯洛后来加上去的。<br />
+<img alt="" src="../../../media/15653386967318/15655923027941.jpg" /></p>
+<p>结合现在的现状：<br />
+短视频，小视频： 尊重需求，社交需求</p>
+<blockquote>
+<p>参考资料：<br />
+<a href="http://www.woshipm.com/pmd/646192.html">http://www.woshipm.com/pmd/646192.html</a></p>
+</blockquote>
+<p><strong>马斯洛需求与经济社会发展关系</strong></p>
+<p>而需求所处的主要阶段是有社会经济发展的阶段有所关联的。有专门研究马斯洛需求理论与经济发展之间关系的（比如https://<a href="http://www.gelonghui.com/p/83128">www.gelonghui.com/p/83128</a>)<br />
+主要是看人均GDP这个指标，将其主要内容概括下入：<br />
+<img alt="" src="../../../media/15653386967318/15655824539437.jpg" /></p>
+<p>作者举了个例子</p>
+<p>如果卖橙子，你所从事的是商品业;如果将橙子送货上门，你所从事的是服务业;如果消费者在你的橙子生态园观光游玩、亲手采摘橙子甚至认领一颗橙子树，定期来浇水施肥管理，那你做的就是体验行业了。</p>
+<p><strong>零售业的无界融合理论与实践</strong></p>
+<p>&lt; 1000, 百货店<br />
+1000-3000， 超市<br />
+3000-6000， 便利店<br />
+6000-8000， 网络零售期<br />
+仓储店、购物中心、精品专卖店</p>
+<blockquote>
+<p>参考<br />
+1. 抖音 <a href="https://www.jianshu.com/p/119e60bb78ab">https://www.jianshu.com/p/119e60bb78ab</a><br />
+2. ☆☆☆从马斯洛需求寻找未来的投资机会  <a href="https://www.gelonghui.com/p/83128">https://www.gelonghui.com/p/83128</a><br />
+3.零售业无界融合的理论与实践  <a href="http://finance.huanqiu.com/chuangr/chuangtou/2018-09/13004416.html?agt=15422">http://finance.huanqiu.com/chuangr/chuangtou/2018-09/13004416.html?agt=15422</a><br />
+4.<a href="http://www.sohu.com/a/119304468_371463">http://www.sohu.com/a/119304468_371463</a><br />
+5.<a href="https://wenku.baidu.com/view/516da2e1960590c69ec37699.html">https://wenku.baidu.com/view/516da2e1960590c69ec37699.html</a></p>
+</blockquote>
+<p><strong>马斯洛需求理论对人的行为有哪些影响？</strong></p>
+<h2 id="2-kano-1979">2. KANO 模型（1979年）<a class="headerlink" href="#2-kano-1979" title="Permanent link">#</a></h2>
+<p>kano模型感觉不完全是一个需求层面的模型，而是需求-满足之间关系的一个模型。可以用来研究需求-供给带给用户的满意度效应。体现了用户需求与用户满意度之间的非线性关系。</p>
+<table>
+<thead>
+<tr>
+<th>需求类型</th>
+<th>需求说明</th>
+<th>满意度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A魅力型</td>
+<td>出乎意料的功能</td>
+<td>有的话大幅提升满意度，无的话不影响</td>
+</tr>
+<tr>
+<td>O期望型</td>
+<td>满意度与需求满足程度线性</td>
+<td>有的话会满意，无的话会不满意</td>
+</tr>
+<tr>
+<td>M基本型</td>
+<td>产品功能必须满足的用户需求</td>
+<td>无的话会很不满意，有的话无影响</td>
+</tr>
+<tr>
+<td>I无差异型</td>
+<td>无论满足与否，用户满意度不变</td>
+<td>有无都无影响</td>
+</tr>
+<tr>
+<td>反向型</td>
+<td>无此功能反而满意，有的话不满意</td>
+<td>比如一些付费功能</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.jianshu.com/p/1a39a3689dbd">https://www.jianshu.com/p/1a39a3689dbd</a></p>
+<ul>
+<li>满意度 = f(顾客需求/期望 ， 商场提供/实际)。 即现实与预期之间的差异。</li>
+<li>model最终划分了5档位</li>
+<li>满意度具有连锁反应</li>
+</ul>
+<h2 id="3-censydiam">3. Censydiam 用户动机分析模型<a class="headerlink" href="#3-censydiam" title="Permanent link">#</a></h2>
+<blockquote>
+<p>Censydiam用户动机分析模型是由思纬市场研究公司的Censydiam研究机构提出来的，主要用于研究用户行为、态度或者目标背后的动机。该模型的基本逻辑是：用户的需求存在于社会和个体两个层面，面对不同层面的需求，用户会有不同的需求解决策略，通过研究用户采取的需求应对策略，我们可以透视用户内在的动机。其主要内容可以概括为“两维度”、“四策略”和“八动机”</p>
+</blockquote>
+<p><img alt="" src="../../../media/15653386967318/15657678329975.jpg" /></p>
+<blockquote>
+<p>参考 <a href="http://www.gupowang.com/article/view/5469">http://www.gupowang.com/article/view/5469</a></p>
+</blockquote>
+<h2 id="4erg">4.ERG需求理论<a class="headerlink" href="#4erg" title="Permanent link">#</a></h2>
+<p>是在马斯洛需求层次理论基础上，提出的一种新的人本主义需要理论。具体内容包括：</p>
+<ul>
+<li>E 生存需要</li>
+<li>R 相关关系的需要</li>
+<li>G 成长发展的需要</li>
+</ul>
+<h2 id="5">5. 价值要素模型<a class="headerlink" href="#5" title="Permanent link">#</a></h2>
+<blockquote>
+<p>参考 <br />
+<a href="https://36kr.com/p/5080235">https://36kr.com/p/5080235</a></p>
+</blockquote>
+<p>价值要素模型可以说是马斯洛经典需求模型的一个延伸，针对消费者，分析他们行为背后的关键因素。由贝恩公司根据一些定性和定量的客户研究，提取出了30个关键词，或者说是关键因素。<br />
+<img alt="" src="../../../media/15653386967318/15655892586027.jpg" /></p>
+<p>情感营销：野兽派花店、钻石小鸟</p>
+<h2 id="vals-vals2">VALS 和VALS2系统<a class="headerlink" href="#vals-vals2" title="Permanent link">#</a></h2>
+<p>价值观和生活方式系统，由美国斯坦福国际研究院创立的一种系统，通过人的态度、需求、欲望、信仰和人口统计学特征来观察并综合描述人们。将人群进行了划分。主要是结合了马斯洛需求理论和美国社会学家戴维·瑞斯曼(David Reisman)提出的内在驱动者、外在驱动者理论。</p>
+<p>VALS2模型基于四个人口统计变量和42个倾向性的项目。VALS2验明美国消费者的细分市场是基于对170个产品目录上产品的消费状况进行调查的结果。细分市场基于两个因素：</p>
+<p>（1）消费者的资源：包括收入、教育、自信、健康、购买愿望、智力和能力水平。</p>
+<p>（2）自我导向，或者说什么激励他们，包括他们的行为和价值观念。被验明的有三种自我导向：一是以原则为导向的消费者，他们被知识而不是感觉或其它人的观点所左右。二是以地位为导向的个体，他们的观点是基于其他人的行为和观点，他们为赢得其他人的认可而奋斗。三是面向行为的消费者，他们喜欢社会性的和物质刺激的行为、变化、活动和冒险。</p>
+<p>根据自我导向变量，消费者被划分为8个细分市场：</p>
+<ul>
+<li>现代者（Actualizers）：乐于赶时髦。善于接受新产品，新技术，新的分销方式。不相信广告。阅读大量的出版物。轻度电视观看者。</li>
+<li>实现者(Fulfilleds)：对名望不太赶兴趣。喜欢教育和公共事务。阅读广泛。</li>
+<li>成就者(Achievers)：被昂贵的产品所吸引。主要瞄准产品的种类。中度电视观看者，阅读商务、新闻和自助出版物。</li>
+<li>享乐者(Experiencers)：追随时髦和风尚。在社交活动上花费较多的可支配收入。购买行为较为冲动。注意广告。听摇滚乐。</li>
+<li>信任者(Believers)：购买美国造的产品。偏好变化较慢。寻求廉价商品。重度电视观看者。阅读有关退休、家庭/花园和感兴趣的杂志。</li>
+<li>奋斗者(Strivers)：注重形象。有限的灵活收入，但能够保持信用卡平衡。花销主要在服装和个人保健产品上。与阅读相比，更喜欢观看电视。</li>
+<li>休闲者(Makers)：逛商店是为了体现舒服、耐性和价值观。不被奢侈所动。仅购买基本的东西，听收音机。阅读汽车、家用机械、垂钓和户外杂志。</li>
+<li>挣扎者(Strugglers)：忠实品牌。使用赠券，观察销售。相信广告。经常观看电视。阅读小型报和女性杂志。</li>
+</ul>
+<h2 id="_1">☆☆小结<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p>综述来看，还是以马斯洛的需求理论为基础，然后结合其他的维度进行细致的划分。马斯洛理论提供了一个分析的大框，在不同的场景下，用户需求对应的具体关键词是什么还需要自己研究。</p>
+<p>以马斯洛理论为基础，摸底下当前零售消费场景下，用户的需求点都有哪些？？</p>
+<h2 id="_2">参考资料<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>十大消费者研究模型 <a href="https://zhuanlan.zhihu.com/p/32773484">https://zhuanlan.zhihu.com/p/32773484</a><br />
+人均GDP 与发展阶段的研究： <a href="http://www.synochip.com/upload/file/2018/10/ceshi.pdf">http://www.synochip.com/upload/file/2018/10/ceshi.pdf</a><br />
+<a href="https://zhuanlan.zhihu.com/p/26322256">https://zhuanlan.zhihu.com/p/26322256</a><br />
+用户画像|数据分析结合心理动力学剖析用户深层次情感需求，内附案例 <a href="http://www.gupowang.com/article/view/5469">http://www.gupowang.com/article/view/5469</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,978 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>逻辑回归 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-logistic" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              逻辑回归
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logistic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logistic分布
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logistic_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logistic回归模型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="logistic回归模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#odds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        事件的几率odds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对数几率
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型参数估计
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a> · 类型：方法</p>
+</blockquote>
+<h1 id="1-logistic">1. logistic回归&amp;最大熵模型<a class="headerlink" href="#1-logistic" title="Permanent link">#</a></h1>
+<blockquote>
+<p>引子: 经典回归分析中目标Y一般是服从正态分布的连续变量，取值范围可以是(-∞, + ∞) ，那么能否利用回归的方式来解决二分类问题呢？</p>
+</blockquote>
+<h2 id="logistic">logistic分布<a class="headerlink" href="#logistic" title="Permanent link">#</a></h2>
+<p>分布函数如下<br />
+<img alt="" src="../../../media/Pasted%20image%2020211224181333.png" /></p>
+<p><img alt="" src="../../../media/Pasted%20image%2020211224181358.png" /></p>
+<p>分布函数特点：</p>
+<ul>
+<li>分布函数以(u, &frac12;)为中心对称，在中心附近增长速度较快，在两端增长速度较慢。</li>
+<li>也称为sigmoid函数</li>
+</ul>
+<h2 id="logistic_1">logistic回归模型<a class="headerlink" href="#logistic_1" title="Permanent link">#</a></h2>
+<blockquote>
+<p>利用sigmoid函数进行映射，将传统的回归(-∞, + ∞) 数值映射到 (0, 1)。或者反过来说，是通过回归方式直接对odds进行建模</p>
+</blockquote>
+<ul>
+<li><strong>二分类</strong></li>
+</ul>
+<p>二项logistic回归模型是如下的条件概率分布，其中Y={0,1}</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">P(Y=1|x) = \frac{e^{wx+b}}{1+e^{wx+b}}</div>
+<script type="math/tex; mode=display">P(Y=1|x) = \frac{e^{wx+b}}{1+e^{wx+b}}</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">P(Y=0|x) = \frac{1}{1+e^{wx+b}}</div>
+<script type="math/tex; mode=display">P(Y=0|x) = \frac{1}{1+e^{wx+b}}</script>
+</div>
+<p>模型的物理意义：</p>
+<h3 id="odds">事件的几率odds<a class="headerlink" href="#odds" title="Permanent link">#</a></h3>
+<p>一个事件发生的概率与不发生的概率的比值</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">\frac{p}{1-p}</div>
+<script type="math/tex; mode=display">\frac{p}{1-p}</script>
+</div>
+<h3 id="_1">对数几率<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<div class="arithmatex">
+<div class="MathJax_Preview">log(odds) = log\frac{p}{1-p}=wx+b</div>
+<script type="math/tex; mode=display">log(odds) = log\frac{p}{1-p}=wx+b</script>
+</div>
+<ul>
+<li><strong>多分类</strong></li>
+</ul>
+<p>多分类的逻辑回归是二分类的推广形式，假设离散型随机变量Y的取值范围是{1,2, ..., K}， 则多项logstic回归模型的形式是</p>
+<p><img alt="" src="../../../media/Pasted%20image%2020211228195346.png" /></p>
+<h2 id="_2">模型参数估计<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p><strong>极大似然估计</strong></p>
+<p>以常用的二分类为例， 我们假设$<span class="arithmatex"><span class="MathJax_Preview">P(Y=1|x)=\pi(x), P(Y=0|x)=1-\pi(x)</span><script type="math/tex">P(Y=1|x)=\pi(x), P(Y=0|x)=1-\pi(x)</script></span>$, 则</p>
+<p>对应的似然函数是: $<span class="arithmatex"><span class="MathJax_Preview">\prod \pi(x_i)^{y_i}(1-\pi(x_i))^{1-y_i}</span><script type="math/tex">\prod \pi(x_i)^{y_i}(1-\pi(x_i))^{1-y_i}</script></span>$</p>
+<p>对数似然函数为： $<span class="arithmatex"><span class="MathJax_Preview">L(w) =\sum y_i log \pi(x_i) + (1-y_i)log(1-\pi(x_i))</span><script type="math/tex">L(w) =\sum y_i log \pi(x_i) + (1-y_i)log(1-\pi(x_i))</script></span>$</p>
+<p>通过对L(w)求极大值，得到w的估计值。</p>
+<p>似然函数：是统计模型中参数的函数，表示的是给定参数后样本取值的概率</p>
+<h1 id="2">2 最大熵模型<a class="headerlink" href="#2" title="Permanent link">#</a></h1>
+<h2 id="_3">最大熵原理<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<p>最大熵原理是**概率模型**学习的一个准则。学习概率模型时，在所有可能的概率模型分布中，熵最大的模型是最好的模型。</p>
+<p>通常用约束条件来确定概率模型的候选集合，因此最大熵原理也可以表述为：<strong>在满足约束条件的模型集合中选取熵最大的模型。</strong></p>
+<div class="arithmatex">
+<div class="MathJax_Preview">H(p) = -\sum_{i=1}^{n}p_i\log{p_i} \\ 0 \le H(p) \le \log{n}\\ </div>
+<script type="math/tex; mode=display">H(p) = -\sum_{i=1}^{n}p_i\log{p_i} \\ 0 \le H(p) \le \log{n}\\ </script>
+</div>
+<p>熵的上界是<span class="arithmatex"><span class="MathJax_Preview">log(n)</span><script type="math/tex">log(n)</script></span>, 并且仅当pi全部相等即X服从均匀分布的时候熵最大</p>
+<p>=&gt; 体现了一种思想，不要把鸡蛋都放在同一个篮子里。在我们对分布本身的信息不足的时候，最安全的选择就是保留各种可能性。</p>
+<p><strong>例如:</strong> 假设随机变量X有5个取值{A, B, C,D,E}, 并且已知P(A) + P(B) = 3/10, P(A) + P(B) + P(C) + P(D) + P(E) = 1，求X取各个值的概率？</p>
+<p>Answer：满足已经信息条件的概率部分有无穷多个。如果没有任何其他信息，仍要对概率分布进行估计，一个办法就行认为在限制条件下各个分布取值是一样的。即 P(A) = P(B) = 3/20, P(C) = P(D) =P(E) = 7/30</p>
+<p>条件熵</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">H(Y|X) = -\sum p(x_i)H(Y|X=x_i)=-\sum_{x,y}p(x)P(y|x)logP(y|x)</div>
+<script type="math/tex; mode=display">H(Y|X) = -\sum p(x_i)H(Y|X=x_i)=-\sum_{x,y}p(x)P(y|x)logP(y|x)</script>
+</div>
+<h2 id="_4">最大熵模型<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<p>将最大熵原理应用在分类问题中得到的模型就是最大熵模型。</p>
+<p><strong>例如</strong>：一般的一个分类模型可以表述成<span class="arithmatex"><span class="MathJax_Preview">P(Y|X)</span><script type="math/tex">P(Y|X)</script></span>, 给定一个训练数据集合$<span class="arithmatex"><span class="MathJax_Preview">T=\{(x_1, y_1), (x_2, y_2)...(x_N, y_N)\}</span><script type="math/tex">T=\{(x_1, y_1), (x_2, y_2)...(x_N, y_N)\}</script></span>$,学习的目标是用最大熵原理选择最好的分类模型<br />
+<img alt="" src="../../../media/Pasted%20image%2020211228195534.png" /></p>
+<p>最大熵模型求解：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">min_{P \in C} -H(Y|X) = \sum_{x,y}p(x)P(y|x)logP(y|x) </div>
+<script type="math/tex; mode=display">min_{P \in C} -H(Y|X) = \sum_{x,y}p(x)P(y|x)logP(y|x) </script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">st. E_P(f_i) - E_{\hat P}(f_i) =0, i =1,2,...n \\ \sum_y P(y|x) = 1</div>
+<script type="math/tex; mode=display">st. E_P(f_i) - E_{\hat P}(f_i) =0, i =1,2,...n \\ \sum_y P(y|x) = 1</script>
+</div>
+<p>通过拉格朗日乘子将限制条件转为优化目标： $<span class="arithmatex"><span class="MathJax_Preview">min_{P \in C}Max_w L(P, w) \\ L(P, w)= -H(Y|X) + w_0(1-\sum P(y|x)) +w_1\sum (E_P(f_i) - E_{\hat P}(f_i))</span><script type="math/tex">min_{P \in C}Max_w L(P, w) \\ L(P, w)= -H(Y|X) + w_0(1-\sum P(y|x)) +w_1\sum (E_P(f_i) - E_{\hat P}(f_i))</script></span>$</p>
+<p>等价的对偶问题是</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">Max_w min_{P \in C}L(P, w) </div>
+<script type="math/tex; mode=display">Max_w min_{P \in C}L(P, w) </script>
+</div>
+<p>step1： $$min_{P \in C}L(P, w) $$最终求解得到<br />
+<img alt="" src="../../../media/Pasted%20image%2020211228195603.png" /></p>
+<p>step2: 求解对偶问题外部的极大化问题</p>
+<p>=&gt; 可以证明：对偶函数的极大化等价于最大熵模型的极大似然估计</p>
+<h1 id="3">3.模型学习的最优化算法<a class="headerlink" href="#3" title="Permanent link">#</a></h1>
+<p>logstic回归模型、最大熵模型最终都可以归结为以似然函数为目标函数的最优化问题，通常通过迭代算法求解。</p>
+<p><strong>改进的迭代尺度法IIS</strong></p>
+<p>IIS是一种最大熵模型学习的最优化算法。对极大似然函数求最值。</p>
+<p>基本想法：假设最大熵模型当前的参数向量是$<span class="arithmatex"><span class="MathJax_Preview">w=(w_1, w_2,...w_n)T</span><script type="math/tex">w=(w_1, w_2,...w_n)T</script></span><span class="arithmatex"><span class="MathJax_Preview">，希望找到一个新的参数向量</span><script type="math/tex">，希望找到一个新的参数向量</script></span><span class="arithmatex"><span class="MathJax_Preview">w+\delta</span><script type="math/tex">w+\delta</script></span>$使得模型的对数似然函数值增大，然后一直沿用这种参数更新的方法，直至找到对数似然函数的最大值。</p>
+<p>当模型参数改变时，对数似然函数的改变量是:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">L(w+\delta) -L(w) \ge B(\delta | w)</div>
+<script type="math/tex; mode=display">L(w+\delta) -L(w) \ge B(\delta | w)</script>
+</div>
+<p>其中$<span class="arithmatex"><span class="MathJax_Preview">B(\delta|w)</span><script type="math/tex">B(\delta|w)</script></span><span class="arithmatex"><span class="MathJax_Preview">是改变量的下界，寻找适当的</span><script type="math/tex">是改变量的下界，寻找适当的</script></span>\delta$使得下界提高，那么似然函数也会提高。</p>
+<p><img alt="" src="../../../media/Pasted%20image%2020211228195620.png" /></p>
+<p><strong>梯度下降法-一阶</strong></p>
+<p>假设f(x) 具有一阶连续偏导数的函数</p>
+<p>目标函数 $<span class="arithmatex"><span class="MathJax_Preview">min_{x\in R^n} f(x)</span><script type="math/tex">min_{x\in R^n} f(x)</script></span>$</p>
+<p>泰勒展开$<span class="arithmatex"><span class="MathJax_Preview">f(x) ≈ f(x_k) + ▽f(x_k)(x-x_k)</span><script type="math/tex">f(x) ≈ f(x_k) + ▽f(x_k)(x-x_k)</script></span>$</p>
+<p>沿着负梯度方向进行迭代</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">x' = x_k- \eta▽f(x_k)</div>
+<script type="math/tex; mode=display">x' = x_k- \eta▽f(x_k)</script>
+</div>
+<p><strong>牛顿法-二阶</strong></p>
+<p>泰勒展开到二阶 $<span class="arithmatex"><span class="MathJax_Preview">f(x) ≈ f(x_0) + ▽f(x_0)(x-x_0)+\frac{1}{2}(x-x_k)^T H(x_k)(x-x_k)</span><script type="math/tex">f(x) ≈ f(x_0) + ▽f(x_0)(x-x_0)+\frac{1}{2}(x-x_k)^T H(x_k)(x-x_k)</script></span>$<br />
+<img alt="" src="../../../media/Pasted%20image%2020211228195744.png" /></p>
+<p><img alt="" src="../../../media/Pasted%20image%2020211228195754.png" /></p>
+<p><strong>拟牛顿法</strong></p>
+<p>在牛顿法中需要计算黑塞矩阵H的逆矩阵，拟牛顿法主要是对该逆矩阵的计算进行优化。即考虑用一个n阶矩阵来近似替代H的逆矩阵。</p>
+<ul>
+<li>BFGS</li>
+</ul>
+<p>不支持在 Docs 外粘贴 block</p>
+<p>参考资料</p>
+<p><a href="https://zhuanlan.zhihu.com/p/42689565">机器学习中的最优化算法总结</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

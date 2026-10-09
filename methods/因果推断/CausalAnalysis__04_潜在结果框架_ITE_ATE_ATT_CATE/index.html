@@ -1,0 +1,1013 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>潜在结果框架 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#04-iteateattcate" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              潜在结果框架
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 基本设定
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-estimand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 常见 estimand
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 为什么直接比较会有偏
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 识别条件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 与旧文档关系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estimand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        旧笔记整合：潜在结果框架与基本 estimand
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分析逻辑
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        观察性研究
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/">因果推断</a> · 类型：方法</p>
+</blockquote>
+<h1 id="04-iteateattcate">04. 潜在结果框架：ITE、ATE、ATT、CATE<a class="headerlink" href="#04-iteateattcate" title="Permanent link">#</a></h1>
+<p>潜在结果框架的核心直觉是：</p>
+<blockquote>
+<p>对同一个个体，理论上存在接受处理和不接受处理两种潜在结果，但现实中只能观察到其中一个。</p>
+</blockquote>
+<h2 id="1">1. 基本设定<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<p>对个体 <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>：</p>
+<ul>
+<li><span class="arithmatex"><span class="MathJax_Preview">T_i=1</span><script type="math/tex">T_i=1</script></span>：接受处理；</li>
+<li><span class="arithmatex"><span class="MathJax_Preview">T_i=0</span><script type="math/tex">T_i=0</script></span>：未接受处理；</li>
+<li><span class="arithmatex"><span class="MathJax_Preview">Y_i(1)</span><script type="math/tex">Y_i(1)</script></span>：如果接受处理时的结果；</li>
+<li><span class="arithmatex"><span class="MathJax_Preview">Y_i(0)</span><script type="math/tex">Y_i(0)</script></span>：如果未接受处理时的结果。</li>
+</ul>
+<p>个体处理效应：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+ITE_i = Y_i(1) - Y_i(0)
+</div>
+<script type="math/tex; mode=display">
+ITE_i = Y_i(1) - Y_i(0)
+</script>
+</div>
+<p>问题是：同一个个体不可能同时处于处理和未处理状态，所以 <span class="arithmatex"><span class="MathJax_Preview">ITE_i</span><script type="math/tex">ITE_i</script></span> 通常无法被直接观测。</p>
+<h2 id="2-estimand">2. 常见 estimand<a class="headerlink" href="#2-estimand" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>定义</th>
+<th>业务含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ITE</td>
+<td><span class="arithmatex"><span class="MathJax_Preview">Y_i(1)-Y_i(0)</span><script type="math/tex">Y_i(1)-Y_i(0)</script></span></td>
+<td>单个用户的增量效果</td>
+</tr>
+<tr>
+<td>ATE</td>
+<td><span class="arithmatex"><span class="MathJax_Preview">E[Y(1)-Y(0)]</span><script type="math/tex">E[Y(1)-Y(0)]</script></span></td>
+<td>全体用户平均增量</td>
+</tr>
+<tr>
+<td>ATT</td>
+<td><span class="arithmatex"><span class="MathJax_Preview">E[Y(1)-Y(0) \mid T=1]</span><script type="math/tex">E[Y(1)-Y(0) \mid T=1]</script></span></td>
+<td>已接受处理人群的平均增量</td>
+</tr>
+<tr>
+<td>ATC</td>
+<td><span class="arithmatex"><span class="MathJax_Preview">E[Y(1)-Y(0) \mid T=0]</span><script type="math/tex">E[Y(1)-Y(0) \mid T=0]</script></span></td>
+<td>未接受处理人群如果接受处理的增量</td>
+</tr>
+<tr>
+<td>CATE</td>
+<td><span class="arithmatex"><span class="MathJax_Preview">E[Y(1)-Y(0) \mid X=x]</span><script type="math/tex">E[Y(1)-Y(0) \mid X=x]</script></span></td>
+<td>某类人群的条件平均增量</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 为什么直接比较会有偏<a class="headerlink" href="#3" title="Permanent link">#</a></h2>
+<p>直接比较：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+E[Y|T=1] - E[Y|T=0]
+</div>
+<script type="math/tex; mode=display">
+E[Y|T=1] - E[Y|T=0]
+</script>
+</div>
+<p>里面混合了两部分：</p>
+<div class="highlight"><pre><span></span><code>真实处理效应 + 处理组与对照组原本就不同带来的偏差
+</code></pre></div>
+<p>例如使用某功能的用户留存更高，可能是功能有效，也可能是高活用户更容易使用功能。</p>
+<h2 id="4">4. 识别条件<a class="headerlink" href="#4" title="Permanent link">#</a></h2>
+<p>最常见的识别条件是可忽略性 / 无混杂：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+(Y(1), Y(0)) \perp T \mid X
+</div>
+<script type="math/tex; mode=display">
+(Y(1), Y(0)) \perp T \mid X
+</script>
+</div>
+<p>含义是：控制可观测变量 <span class="arithmatex"><span class="MathJax_Preview">X</span><script type="math/tex">X</script></span> 后，是否接受处理近似随机。</p>
+<p>这也是 Matching、PSM、IPW、回归调整等方法的共同基础。</p>
+<h2 id="5">5. 与旧文档关系<a class="headerlink" href="#5" title="Permanent link">#</a></h2>
+<p>本篇吸收了以下文档中的基本概念：</p>
+<ul>
+<li><a href="./">概念与研究框架_因果</a></li>
+<li><a href="../CausalAnalysis__03_%E6%97%A0%E5%AE%9E%E9%AA%8C%E5%9C%BA%E6%99%AF%E6%95%88%E6%9E%9C%E8%AF%84%E4%BC%B0%E5%86%B3%E7%AD%96%E6%A0%91/">因果效应估计方法</a></li>
+<li><a href="../../../topics/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/CausalAnalysis__MOC_%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E4%BD%93%E7%B3%BB/">【TOC】因果分析</a></li>
+</ul>
+<hr />
+<!-- migrated-from: 04_潜在结果框架_ITE_ATE_ATT_CATE.md -->
+
+<h2 id="estimand">旧笔记整合：潜在结果框架与基本 estimand<a class="headerlink" href="#estimand" title="Permanent link">#</a></h2>
+<blockquote>
+<p>迁移说明：原文中的 ITE、ATE、CATE、ATT 等基础概念归入本篇。</p>
+</blockquote>
+<hr />
+<h2 id="_1">分析逻辑<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p><img alt="" src="../../../media/Pasted%20image%2020220704225439.png" /></p>
+<h2 id="_2">观察性研究<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>通过观察性研究来进行因果分析，会存在异质性问题</p>
+<p><strong>图稿原文件</strong>：<code>../../../附件/Excalidraw/@因果推断 2022-07-04 23.07.18.excalidraw.md</code>（暂未导出为网页图片）</p>
+<p>ability这个变量会影响对最终结果的估计。</p>
+<p>因此分析异质性产生的原因，并且采取相应的解决措施就可以来解决该问题。<br />
+1. 遗漏了重要变量<br />
+2. 样本选择的有偏性<br />
+3. 测量方差。如果测量误差不是随机的，误差的发生概率与某个特征变量存在相关性，就会引起估计偏差</p>
+<p>异质性问题分类：<br />
+- 可观测的、非可观测的<br />
+- 随时间变化的、随时间不变的</p>
+<h1 id="_3">三、研究内容<a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
+<h2 id="_4">一些基本概念<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<p>Causal Effect Estimation</p>
+<p>这里系统的介绍下看到的关于因果估计的各种方法吧</p>
+<p>实验与对照有时候会存在“选择偏差”，比如研究就业培训对未来收入的影响。参加就业培训的可能是失业、低收入者。 所以我们关心的是，实验组的未来收入是否会比这些人如果未参加培训的未来收入高。(消除个体影响)</p>
+<p>场景设置：实验组treatment和对照组control，结果是Y<br />
+几个基础概念与指标</p>
+<h3 id="ite">ITE<a class="headerlink" href="#ite" title="Permanent link">#</a></h3>
+<p>ITE 即 individual的treatment effect.<br />
+$<span class="arithmatex"><span class="MathJax_Preview">ITE_i =y_{1i}-y_{0i}</span><script type="math/tex">ITE_i =y_{1i}-y_{0i}</script></span>$</p>
+<h3 id="ate">ATE<a class="headerlink" href="#ate" title="Permanent link">#</a></h3>
+<p>ATE 即平均处理效应(average treatment effect.)<br />
+$<span class="arithmatex"><span class="MathJax_Preview">ATE=E(y_{1i}-y_{0i})</span><script type="math/tex">ATE=E(y_{1i}-y_{0i})</script></span>$</p>
+<h3 id="cate">CATE<a class="headerlink" href="#cate" title="Permanent link">#</a></h3>
+<p>加了限制的平均处理效应(conditional average treatment effect),一般是总体中的一个子集<br />
+$<span class="arithmatex"><span class="MathJax_Preview">CATE=E(y_{1i}-y_{0i}|i \in xx)</span><script type="math/tex">CATE=E(y_{1i}-y_{0i}|i \in xx)</script></span>$</p>
+<h3 id="att">ATT<a class="headerlink" href="#att" title="Permanent link">#</a></h3>
+<p>参与者平均处理效应 average treatment effect on Treated<br />
+$<span class="arithmatex"><span class="MathJax_Preview">ATT=E(y_{1i}-y_{0i}|D_i = 1)</span><script type="math/tex">ATT=E(y_{1i}-y_{0i}|D_i = 1)</script></span>$<br />
+然而实际数据中我们没办法同时观测到<span class="arithmatex"><span class="MathJax_Preview">y_{0i}</span><script type="math/tex">y_{0i}</script></span>与<span class="arithmatex"><span class="MathJax_Preview">y_{1i}</span><script type="math/tex">y_{1i}</script></span>, 没办法直接通过项目参与者与未参与者的差值来比较(会带来选择偏差)</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

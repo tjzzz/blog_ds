@@ -1,0 +1,1068 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Jupyter - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jupyter-notebook" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Jupyter
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.安装
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#magic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        magic 关键字
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.转换 notebook格式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3jupyter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.测试机上安装jupyter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4jupyterlabcolab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.高阶工具jupyterlab，colab
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.常见问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 好用的插件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-jupyterlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 jupyterlab 安装其他内核
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/">数据科学工作流</a> · 类型：工具</p>
+</blockquote>
+<div class="toc">
+<ul>
+<li><a href="#jupyter-notebook">Jupyter notebook</a><ul>
+<li><a href="#1">1.安装</a></li>
+<li><a href="#magic">magic 关键字</a></li>
+<li><a href="#2-notebook">2.转换 notebook格式</a></li>
+<li><a href="#3jupyter">3.测试机上安装jupyter</a></li>
+<li><a href="#4jupyterlabcolab">4.高阶工具jupyterlab，colab</a></li>
+<li><a href="#5">5.常见问题</a></li>
+<li><a href="#6">6 好用的插件</a></li>
+<li><a href="#7-jupyterlab">7 jupyterlab 安装其他内核</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="jupyter-notebook">Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permanent link">#</a></h1>
+<p>类似于r的markdown</p>
+<p>GitHub 上也直接支持 Jupyter notebook 的渲染。借助此出色的功能，你可以轻松地共享工作。<a href="http://nbviewer.jupyter.org/">http://nbviewer.jupyter.org/</a> 也会提供 GitHub 代码库中的 notebook ，以及存储在其他地方的 notebook。</p>
+<p>名称 Jupyter 由 Julia、Python 和 R 组合而成，早期的两个非 Python 内核分别是 R 语言和 Julia 语言</p>
+<h2 id="1">1.安装<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<ul>
+<li>如果安装anaconda 会自带</li>
+<li>通过conda环境安装 <code>conda install jupyter notebook</code>，或者<code>pip install jupyter notebook</code></li>
+</ul>
+<p><div class="highlight"><pre><span></span><code># 启动
+jupyter notebook
+</code></pre></div><br />
+快捷键</p>
+<p>在上方插入cell：a<br />
+在下方插入cell：b<br />
+剪切当前cell：x<br />
+删除当前cell：dd<br />
+撤销删除：u<br />
+上下：方向键 or jk (同vim)<br />
+扩展选中上下左右：shift+jk<br />
+当前cell转入markdown状态：m<br />
+当前cell转入代码状态：y</p>
+<h2 id="magic">magic 关键字<a class="headerlink" href="#magic" title="Permanent link">#</a></h2>
+<p>Magic 关键字是可以在单元格中运行的特殊命令，能让你控制notebook 本身或执行系统调用（例如更改目录）</p>
+<p>Magic 命令的前面带有一个或两个百分号（% 或 %%），分别对应行 Magic 命令和单元格 Magic 命令。行 Magic 命令仅应用于编写 Magic 命令时所在的行，而单元格 Magic 命令应用于整个单元格。</p>
+<p>对于 Python 内核，可以使用 Magic 命令 %pdb 开启交互式调试器。出错时，你能检查当前命名空间中的变量。</p>
+<h2 id="2-notebook">2.转换 notebook格式<a class="headerlink" href="#2-notebook" title="Permanent link">#</a></h2>
+<p>Notebook 只是扩展名为 .ipynb 的大型 JSON 文件。</p>
+<p>转换格式的命令 <code>nbconvert</code></p>
+<p><div class="highlight"><pre><span></span><code>jupyter nbconvert --to html notebook.ipynb   #转成html
+jupyter nbconvert --to markdown xxx.ipynb 
+</code></pre></div><br />
+目前支持的转换格式(<a href="https://nbconvert.readthedocs.io/en/latest/usage.html">https://nbconvert.readthedocs.io/en/latest/usage.html</a>)<br />
+HTML,<br />
+LaTeX,<br />
+PDF,<br />
+Reveal.js HTML slideshow,<br />
+Markdown,<br />
+reStructuredText,<br />
+executable script,<br />
+notebook.</p>
+<p><strong>创建幻灯片</strong></p>
+<p>在 notebook 中创建幻灯片的过程像平常一样，但需要指定作为幻灯片的单元格和单元格的幻灯片类型。在菜单栏中，点击“View”（视图）&gt;“Cell Toolbar”（单元格工具栏）&gt;“Slideshow”（幻灯片），以便在每个单元格上弹出幻灯片单元格菜单。</p>
+<div class="highlight"><pre><span></span><code>#转换并在浏览器中展示
+jupyter nbconvert notebook.ipynb --to slides --post serve
+</code></pre></div>
+<h2 id="3jupyter">3.测试机上安装jupyter<a class="headerlink" href="#3jupyter" title="Permanent link">#</a></h2>
+<p><a href="https://cloud.tencent.com/developer/article/1147487">https://cloud.tencent.com/developer/article/1147487</a></p>
+<ul>
+<li>安装jupyter</li>
+<li>生成密码 python -c "import IPython;print IPython.lib.passwd()"</li>
+<li>修改配置文件 </li>
+</ul>
+<p>/home/work/.jupyter/jupyter_notebook_config.py</p>
+<p>如果启动报错</p>
+<div class="highlight"><pre><span></span><code>socket.gaierror: [Errno -2] Name or service not known
+</code></pre></div>
+<p>可以加上自己的ip</p>
+<div class="highlight"><pre><span></span><code> jupyter notebook --ip=xxxx
+ jupyter lab --ip=xxx
+</code></pre></div>
+<h2 id="4jupyterlabcolab">4.高阶工具jupyterlab，colab<a class="headerlink" href="#4jupyterlabcolab" title="Permanent link">#</a></h2>
+<p><strong>jupyter-lab</strong><br />
+jupyter-lab 是jupyter-notebook的升级版，界面更加炫酷，也支持更多功能，强烈建议使用lab方式</p>
+<p><strong>colab</strong><br />
+google 基于jupyter开发的存在在google driver上的网页版<br />
+<a href="https://colab.research.google.com/">https://colab.research.google.com/</a><br />
+本身功能上差不太多，主要是有search和share功能，查看别人分享的代码</p>
+<p>一个简单的入门教程,在colab上你可以体验免费的GPU<br />
+<a href="https://github.com/xitu/gold-miner/blob/master/TODO1/google-colab-free-gpu-tutorial.md">https://github.com/xitu/gold-miner/blob/master/TODO1/google-colab-free-gpu-tutorial.md</a></p>
+<p>Q: 将大文件发送的google drive<br />
+<div class="highlight"><pre><span></span><code><span class="c1"># 需要发送哪个文件？</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s2">"REPO.tar"</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">googleapiclient.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">MediaFileUpload</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">googleapiclient.discovery</span><span class="w"> </span><span class="kn">import</span> <span class="n">build</span>
+
+<span class="n">auth</span><span class="o">.</span><span class="n">authenticate_user</span><span class="p">()</span>
+<span class="n">drive_service</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="s1">'drive'</span><span class="p">,</span> <span class="s1">'v3'</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">save_file_to_drive</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+  <span class="n">file_metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">'mimeType'</span><span class="p">:</span> <span class="s1">'application/octet-stream'</span><span class="p">}</span>
+  <span class="n">media</span> <span class="o">=</span> <span class="n">MediaFileUpload</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">'application/octet-stream'</span><span class="p">,</span> <span class="n">resumable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="n">created</span> <span class="o">=</span> <span class="n">drive_service</span><span class="o">.</span><span class="n">files</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">file_metadata</span><span class="p">,</span> <span class="n">media_body</span><span class="o">=</span><span class="n">media</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="s1">'id'</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+
+  <span class="k">return</span> <span class="n">created</span>
+
+<span class="n">save_file_to_drive</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+</code></pre></div></p>
+<h2 id="5">5.常见问题<a class="headerlink" href="#5" title="Permanent link">#</a></h2>
+<p>Q1: 若import了自己写的外部模块，如果这个外部模块有更新，再次执行import，jupyter是不会重新导入的<br />
+<a href="https://blog.csdn.net/ybdesire/article/details/86709727">https://blog.csdn.net/ybdesire/article/details/86709727</a></p>
+<p>对于 Python2.x<br />
+import some_module<br />
+reload(some_module)</p>
+<p>对于 Python 3.2 and 3.3:<br />
+import some_module<br />
+import importlib<br />
+importlib.reload(some_module)</p>
+<p>对于 Python3.4+<br />
+import some_module<br />
+import imp<br />
+imp.reload(some_module)</p>
+<p>方法2：<br />
+auto_load</p>
+<p><a href="https://codeday.me/bug/20181215/447675.html">https://codeday.me/bug/20181215/447675.html</a></p>
+<p>Q2. <code>jupyter lab</code> 启动提示</p>
+<p><img alt="" src="../../../media/15637037680349/15665439689997.jpg" /></p>
+<p>应该是编码问题，暂时的解决方案https://github.com/jupyter/notebook/issues/2789#issuecomment-338380336</p>
+<p><code>LANG=zn jupyter lab</code></p>
+<p>这个问题后来查了下说是python2的bug，安装python3就不会出现这个问题。</p>
+<p>Q3. 切换内核<br />
+很多代码都是python2写的，用pip3安装jupyter之后，想切换写内核。<br />
+<a href="https://www.cnblogs.com/Jeffiy/p/4861528.html">https://www.cnblogs.com/Jeffiy/p/4861528.html</a></p>
+<div class="highlight"><pre><span></span><code>jupyter kernelspec list
+</code></pre></div>
+<p>Q4: jupyterlab 中的内容，可以通过右键点击复制下载链接得到一个url，通过该url可以直接在网页上展示该文件。注意该url后面有个 _xsrf=xxxx的标记。<br />
+如果重启了jupyterlab，这个标记也需要更新</p>
+<p>Q5: 如果安装了不同的conda环境，想切换不同的环境运行<br />
+<div class="highlight"><pre><span></span><code>conda install nb_conda_kernels
+</code></pre></div></p>
+<p>Q6:在自己的docker环境下想运行jupyter</p>
+<div class="highlight"><pre><span></span><code># 在docker环境中安装
+pip install jupyterlab
+# 配置
+jupyter notebook --generate-config
+</code></pre></div>
+<p>Q7: jupyter中保存时候报错:<code>'_xsrf’ argument missing from POST</code><br />
+解决方法<br />
+在同一内核上打开另一个笔记本<br />
+或者转到/ tree aka Jupyter主页，然后刷新浏览器。</p>
+<h2 id="6">6 好用的插件<a class="headerlink" href="#6" title="Permanent link">#</a></h2>
+<p><a href="https://blog.csdn.net/yh0vlde8vg8ep9vge/article/details/85333338">https://blog.csdn.net/yh0vlde8vg8ep9vge/article/details/85333338</a></p>
+<p>eryra: pipline <a href="https://zhuanlan.zhihu.com/p/256400000?utm_source=com.yinxiang&amp;utm_medium=social&amp;utm_oi=42148019830784">https://zhuanlan.zhihu.com/p/256400000?utm_source=com.yinxiang&amp;utm_medium=social&amp;utm_oi=42148019830784</a><br />
+可以在jupyterlab中定义工作流 <a href="https://github.com/elyra-ai/examples/tree/master/pipelines/hello_world">https://github.com/elyra-ai/examples/tree/master/pipelines/hello_world</a></p>
+<p><strong>从外部调用不同ipynb搭建pipline</strong></p>
+<p><a href="https://www.datacouncil.ai/hubfs/DataEngConf/Data%20Council/Slides%20SF%2019/Notebooks%20as%20Functions%20with%20papermill.pdf">https://www.datacouncil.ai/hubfs/DataEngConf/Data%20Council/Slides%20SF%2019/Notebooks%20as%20Functions%20with%20papermill.pdf</a></p>
+<h2 id="7-jupyterlab">7 jupyterlab 安装其他内核<a class="headerlink" href="#7-jupyterlab" title="Permanent link">#</a></h2>
+<p>jupyterlab是jupyter notebook的一个升级版，界面更炫酷，而且同时支持R语言。</p>
+<p>(1)配置R</p>
+<p>要把先前打开的jupyterLab程序全部关闭后再进行以下操作<br />
+<div class="highlight"><pre><span></span><code>#安装必要的依赖包
+install.packages(c('repr', 'IRdisplay','evaluate', 'crayon','pbdZMQ','devtools','uuid', 'digest'))
+</code></pre></div></p>
+<p><div class="highlight"><pre><span></span><code>#IRkernel包没有放在CRAN上，需要通过GitHub安装
+devtools::install_github('IRkernel/IRkernel')
+IRkernel::installspec() #确保jupyterLab能找到R解释器安装位置
+</code></pre></div><br />
+再次在终端运行<code>jupyter lab</code>，选择R图标打开，你就可以在jupyterLab进行数据分析啦<br />
+jupyterLab的主要特性绘图函数自动插入图片ggplot2绘图完美支持</p>
+<p>(2)安装spark<br />
+以下主要是安装scala版本的notebook spark<br />
+(1)安装sbt（simple build tools）<br />
+下载sbt</p>
+<p>wget <a href="https://dl.bintray.com/sbt/native-packages/sbt/0.13.11/sbt-0.13.11.tgz">https://dl.bintray.com/sbt/native-packages/sbt/0.13.11/sbt-0.13.11.tgz</a></p>
+<p>下载完成后，配置相关PATH路径，命令<code>sbt sbt-version</code>验证。执行这个命令后，，就耐心等待吧，很久很久。。。。。。。因为要下载很多jar包。</p>
+<p>新方案: <a href="https://toree.incubator.apache.org/docs/current/user/quick-start/">https://toree.incubator.apache.org/docs/current/user/quick-start/</a></p>
+<p>(3)安装scala内核</p>
+<p>安装说明<br />
+<a href="https://almond.sh/docs/quick-start-install">https://almond.sh/docs/quick-start-install</a></p>
+<div class="highlight"><pre><span></span><code>SCALA_VERSION=2.12.8 ALMOND_VERSION=0.9.1   #版本需要根据自己情况设置
+#
+curl -Lo coursier https://git.io/coursier-cli
+chmod +x coursier
+./coursier bootstrap \
+    -r jitpack \
+    -i user -I user:sh.almond:scala-kernel-api_$SCALA_VERSION:$ALMOND_VERSION \
+    sh.almond:scala-kernel_$SCALA_VERSION:$ALMOND_VERSION \
+    -o almond
+#
+./almond --install
+</code></pre></div>
+<p>常用插件</p>
+<p><a href="https://asmcn.icopy.site/awesome/awesome-jupyter/">https://asmcn.icopy.site/awesome/awesome-jupyter/</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

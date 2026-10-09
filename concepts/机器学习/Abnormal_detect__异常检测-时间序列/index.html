@@ -1,0 +1,1206 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>异常检测-时间序列 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              异常检测-时间序列
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一 问题分类
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二 具体方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二 具体方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 时间序列检测
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-stream-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 stream data 检测
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3high-dimensional-data-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.high-dimensional data streams
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4stream-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.分布式场景下的stream data的检测
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.基于时空的异常检测
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6temporal-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.temporal network 异常检测
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其他
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三 公司应用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自动化检测问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-for-us" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        how to use for us
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a> · 类型：概念</p>
+</blockquote>
+<h1 id="2">【异常检测2】时间序列<a class="headerlink" href="#2" title="Permanent link">#</a></h1>
+<table>
+<thead>
+<tr>
+<th>paper</th>
+<th>year</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Outlier Detection for Temporal Data: A Survey</td>
+<td>2014</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Time-Series Anomaly Detection Service at Microsoft</td>
+<td>2019</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">一 问题分类<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p><img alt="-w1054" src="../../../media/15869363773517/15869376232283.jpg" /></p>
+<!-- more -->
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Data Type</strong></th>
+<th style="text-align: center;">示例场景</th>
+<th style="text-align: center;">方法</th>
+<th style="text-align: center;">方案</th>
+<th style="text-align: center;">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">time series Database</td>
+<td style="text-align: center;">轨迹trace</td>
+<td style="text-align: center;">学习normal的model，然后找到异常</td>
+<td style="text-align: center;">无监督判别方法 序列相似度 + 序列cluster</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">学习参数model，预测误差</td>
+<td style="text-align: center;">无监督参数方法-（FSA, Markov，HMM</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">看cell及其后续的趋势、数量等</td>
+<td style="text-align: center;">无监督OLAP based 方法</td>
+<td style="text-align: center;">Mining Approximate Top-K Subspace Anomalies in Multi-dimensional Time series Data</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">有监督的</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">一条时间序列</td>
+<td style="text-align: center;">1.检测points</td>
+<td style="text-align: center;">prediction model</td>
+<td style="text-align: center;">用时间序列或者简单统计的方法预测</td>
+<td style="text-align: center;">详见下面的例子</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2.检测subsequence</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">二 具体方法<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<h3 id="1">1. 时间序列检测<a class="headerlink" href="#1" title="Permanent link">#</a></h3>
+<p><strong>(1) 检测points</strong><br />
+方案1：prediction model<br />
+- 以[t-k, t+k]的近邻区间的median，其他自定义规则<br />
+- AR 自回归<br />
+- ARIMA等其他</p>
+<p>场景1: 是否超出某个阈值， 看一段窗口内的均值是否超过THRESHOLD。<br />
+一个比较平滑的处理方式是采用累积恒定阈值的方法 <span class="arithmatex"><span class="MathJax_Preview">s(t) =\frac{x_t + ...+x_{t-w+1}}{w}</span><script type="math/tex">s(t) =\frac{x_t + ...+x_{t-w+1}}{w}</script></span><br />
+<img alt="" src="../../../media/15846836766049/15850438434419.jpg" /></p>
+<p>场景2：数据突变<br />
+正常情况应该是光滑的曲线，不应该出现突然的上涨或下跌。=&gt; 检测环比附近的数据<br />
+<img alt="" src="../../../media/15846836766049/15850445321930.jpg" /></p>
+<p>前后窗口均值比值 <span class="arithmatex"><span class="MathJax_Preview">r(t)=\frac{x_t + ...x_{t-w+1}}{x_{t-w}+..+x_{t-2w+1}}</span><script type="math/tex">r(t)=\frac{x_t + ...x_{t-w+1}}{x_{t-w}+..+x_{t-2w+1}}</script></span></p>
+<p>场景3：数据有规律的周期波动: 检测同比，看有无异常。 统计历史上相同时期的数据的均值、标准差，假设正态分布，计算z-score</p>
+<p>方案2：Profile Similarity based Approaches<br />
+根据历史的均值 和变异来判断当前的<br />
+方案3：从MDL最小描述长度的角度，如果从原始的序列中移除一个点P，</p>
+<p><strong>(2)检测subsequence</strong><br />
+给定一个时间序列T，检测出是否存在异常子序列</p>
+<h3 id="2-stream-data">2 stream data 检测<a class="headerlink" href="#2-stream-data" title="Permanent link">#</a></h3>
+<p>(1) 多元data stream—— 进化的prediction model<br />
+方法1： online discounting learning 算法<br />
+在原有的多元数据检测的基础上，加上动态更新逻辑<br />
+<img alt="-w302" src="../../../media/15869363773517/15870043119362.jpg" /></p>
+<p>方法2：dynamic cluster maintenance 通过动态聚类的方式，比如LCS距离<br />
+方法3：dynamic bayesian network<br />
+上述的方法相当于模型不变，随着时间改变去update参数。然而有时候可能model也不适用。《“Real-time Bayesian Anomaly Detection for Environmental Sensor Data》<br />
+(2) 基于滑动窗口计算距离的方式<br />
+可以分为global的outlier和local的outlier (LOF)</p>
+<h3 id="3high-dimensional-data-streams">3.high-dimensional data streams<a class="headerlink" href="#3high-dimensional-data-streams" title="Permanent link">#</a></h3>
+<p>Stream Projected Outlier deTector (SPOT)</p>
+<h3 id="4stream-data">4.分布式场景下的stream data的检测<a class="headerlink" href="#4stream-data" title="Permanent link">#</a></h3>
+<p>详见论文</p>
+<h3 id="5">5.基于时空的异常检测<a class="headerlink" href="#5" title="Permanent link">#</a></h3>
+<p>除了时间角度、还有空间角度。<br />
+(1)场景：输入一个时空数据集，找到 ST-Outliers, i.e., spatio-temporal objects whose behavioral (non-spatial and non-temporal) attributes are significantly different from those of the other objects in its spatial and temporal neighborhoods</p>
+<p>一般的思路过程：首先找到空间异常，然后再去验证时间粒度的neighborhood<br />
+方案1： Birant et al. 改进的DBSCAN聚类方式，(时间，空间)的neighbors，然后对于这些候选异常点，再分别从空间，时间角度去验证时是否是真的<br />
+方案2：Adam et al. 距离based的空间聚类</p>
+<p>（2）找到ST-Outlier solids, i.e., a region across time。 一个区域某段时间异常<br />
+方案1：Wu et.al 提出的Outstretch算法，可以发现topK的空间异常点。具体的是使用 Exact-Grid Top-K and Approx-Grid Top-K algorithms<br />
+方案2：wavelet fuzzy classification方法。先通过小波变换提取模式，然后再利用图像处理技术进行边缘检测</p>
+<p>（3）轨迹异常<br />
+方案1：distance based 基于轨迹相似度进行cluster<br />
+方案2：direction and density<br />
+方案3：Historical Similarity, 和前面的方法稍微不同，这个是在每个time step上，计算当前轨迹与其他所有轨迹的相似值。然后不断扩充这个相似向量。对于某个pair，当发现这个相似值出现突变的时候(之前不相似突然想你死，或者之前相似变得突然你不相似)说明出现了异常</p>
+<h3 id="6temporal-network">6.temporal network 异常检测<a class="headerlink" href="#6temporal-network" title="Permanent link">#</a></h3>
+<p>graph outlier detection 输入是一组网络，检测方法类似，定义不同网络之前的相似度<br />
+具体方法详见论文</p>
+<h2 id="_3">其他<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<p><img alt="" src="../../../media/15869363773517/15869493965051.jpg" /></p>
+<h2 id="_4">三 公司应用<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<p>汇总</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>研发团队</th>
+<th>链接</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>egads</td>
+<td>yahoo</td>
+<td>Java: <a href="https://github.com/yahoo/egads">https://github.com/yahoo/egads</a></td>
+<td>《Generic and Scalable Framework for Automated Time-series Anomaly Detection》  检测+报警等功能</td>
+</tr>
+<tr>
+<td>Luminol</td>
+<td>LinkedIn</td>
+<td><a href="https://github.com/linkedin/luminol">https://github.com/linkedin/luminol</a></td>
+<td></td>
+</tr>
+<tr>
+<td>微软-AD</td>
+<td>微软</td>
+<td><a href="https://docs.microsoft.com/zh-cn/azure/cognitive-services/anomaly-detector/">https://docs.microsoft.com/zh-cn/azure/cognitive-services/anomaly-detector/</a></td>
+<td>《Time-Series Anomaly Detection Service at Microsoft》</td>
+</tr>
+<tr>
+<td>Twitter-AD</td>
+<td>Twitter</td>
+<td>R语言 <a href="https://github.com/twitter/AnomalyDetection">https://github.com/twitter/AnomalyDetection</a></td>
+<td>A Novel Technique for Long-Term Anomaly Detection in the Cloud</td>
+</tr>
+<tr>
+<td>Opprentice</td>
+<td>清华-裴丹+百度</td>
+<td>《Opprentice: Towards Practical and Automatic Anomaly Detection Through Machine Learning》</td>
+<td></td>
+</tr>
+<tr>
+<td>Metis</td>
+<td>清华+腾讯</td>
+<td><a href="https://github.com/Tencent/Metis">https://github.com/Tencent/Metis</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Donut</td>
+<td>清华+阿里</td>
+<td><a href="https://github.com/haowen-xu/donut">https://github.com/haowen-xu/donut</a></td>
+<td>Variational Auto-Encoder for Seasonal KPIs，基于tf</td>
+</tr>
+<tr>
+<td>facebook</td>
+<td>Prophet</td>
+<td><a href="https://facebook.github.io/prophet/docs/quick_start.html#python-api">https://facebook.github.io/prophet/docs/quick_start.html#python-api</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>微软 </li>
+</ul>
+<p>采用的主要思路: SR + CNN. SR(Spectral Residual)是一种无监督的算法，在视觉显著性检测中表现很好。作者将时间序列的异常检测类比到图像的显著性视觉检测。CNN是有监督的，作者通过人为构造合成曲线将 SR的输出结果进行CNN训练，最后得到检测模型。</p>
+<p>(1) 谱残差算法<br />
+大致来说是对原始序列做傅里叶变换，取log，计算SR. (zzz通过傅里叶变换将主要的不显著的区域去除掉，然后再反向转回去，得到显著的区域)<br />
+<img alt="-w426" src="../../../media/15869363773517/15870224916178.jpg" /></p>
+<p>微软的论文中比较了FFT, twitter-AD， Luminol和自己的效果。</p>
+<ul>
+<li>
+<p>Opprentice<br />
+本文通过运维人员的业务经验来进行异常数据的标注工作，使用时间序列的各种算法来提取特征，并且使用有监督学习模型（例如 Random Forest，GBDT，XgBoost 等）模型来实现离线训练和上线预测的功能。</p>
+</li>
+<li>
+<p>yahoo—— EGADS<br />
+《Generic and Scalable Framework for Automated Time-series Anomaly Detection》<br />
+<a href="https://juejin.im/post/5c88a2e95188257e914052e4">https://juejin.im/post/5c88a2e95188257e914052e4</a><br />
+主要也是先建立时间序列模型，然后通过期望和误差判断异常。</p>
+</li>
+<li>
+<p>skyline<br />
+skyline: Skyline is a near real time anomaly detection system. 看其github上code <code>skyline/skyline/analyzer/algorithms.py</code>所包含的模型，主要是一些基于统计/时间序列的方法， 每种方法其实都是有适用条件的。<br />
+<code>skyline,median_absolute_deviation</code></p>
+</li>
+<li>
+<p>DeepADoTS <br />
+Implementation and evaluation of 7 deep learning-based techniques for Anomaly Detection on Time-Series data.</p>
+</li>
+</ul>
+<p><strong>其他的开源工具</strong></p>
+<p><a href="https://github.com/chenryn/aiops-handbook/blob/master/README.md">https://github.com/chenryn/aiops-handbook/blob/master/README.md</a></p>
+<p>工具 <a href="https://github.com/chickenbestlover/RNN-Time-series-Anomaly-Detection">https://github.com/chickenbestlover/RNN-Time-series-Anomaly-Detection</a></p>
+<p>工具包 <a href="https://github.com/rob-med/awesome-TS-anomaly-detection">https://github.com/rob-med/awesome-TS-anomaly-detection</a></p>
+<p>[Python] banpei: Banpei is a Python package of the anomaly detection.</p>
+<p>[Python] telemanom: A framework for using LSTMs to detect anomalies in multivariate time series data.</p>
+<p>[Python] DeepADoTS: A benchmarking pipeline for anomaly detection on time series data for multiple state-of-the-art deep learning methods.</p>
+<p>[Python] NAB: The Numenta Anomaly Benchmark: NAB is a novel benchmark for evaluating algorithms for anomaly detection in streaming, real-time applications.</p>
+<h2 id="_5">参考<a class="headerlink" href="#_5" title="Permanent link">#</a></h2>
+<p><a href="https://www.zhihu.com/question/337230484/answer/803136648">https://www.zhihu.com/question/337230484/answer/803136648</a><br />
+<a href="https://github.com/chenryn/aiops-handbook/blob/master/README.md">https://github.com/chenryn/aiops-handbook/blob/master/README.md</a></p>
+<h2 id="_6">自动化检测问题<a class="headerlink" href="#_6" title="Permanent link">#</a></h2>
+<p>问题：大部分工具或者算法实现了不同的方案，但是却没法自动判断选择哪个检测方法，均需要用户指定。<br />
+<a href="https://www.infoq.cn/article/e7kgB9EVJXkQdRVSsDSo">https://www.infoq.cn/article/e7kgB9EVJXkQdRVSsDSo</a><br />
+<a href="https://www.infoq.cn/article/FyumuFc4s7KVk7K9PWKw">https://www.infoq.cn/article/FyumuFc4s7KVk7K9PWKw</a></p>
+<p><img alt="-w691" src="../../../media/15869363773517/15870297798892.jpg" /></p>
+<p>(1) 判断周期性 —— 基于差分的方法<br />
+<img alt="-w461" src="../../../media/15869363773517/15870300046533.jpg" /></p>
+<p>(2)前面的方法能够分离出周期性数据，接下来要度量数据的全局波动和局部波动的相对大小。数据方差可以直接表达全局波动范围。对数据施加小尺度的小波变换可以得到局部波动，局部波动的方差反应了局部波动的大小</p>
+<p>(3)自动配置参数</p>
+<h2 id="how-to-use-for-us">how to use for us<a class="headerlink" href="#how-to-use-for-us" title="Permanent link">#</a></h2>
+<ol>
+<li>特征值异常</li>
+<li>时间序列异常</li>
+<li>时空-轨迹trace异常</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

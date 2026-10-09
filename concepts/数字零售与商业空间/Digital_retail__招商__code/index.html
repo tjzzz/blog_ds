@@ -1,0 +1,991 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>code - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              code
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../methods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>code</h1>
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E6%95%B0%E5%AD%97%E9%9B%B6%E5%94%AE%E4%B8%8E%E5%95%86%E4%B8%9A%E7%A9%BA%E9%97%B4/">数字零售与商业空间</a> · 类型：概念</p>
+</blockquote>
+<p>The main function of GA (Since the complete program is quite long, only the main function is listed here. As you can see, the main function structure is consistent with table 2.):</p>
+<div class="highlight"><pre><span></span><code><span class="c">%遗传主函数 function main()</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w">  </span>
+<span class="nb">clc</span><span class="p">;</span><span class="w">  </span>
+<span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="w">  </span>
+<span class="c">%除了 initpop 之外，都要输入完整的购物中心种群 for daxunhuan = 1:4</span>
+
+<span class="c">%%</span>
+
+<span class="c">%楼层信息</span>
+
+<span class="n">Fn</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="c">%楼层总数</span>
+
+<span class="n">Ch</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="c">%楼层的物理特征数(一楼不包括入口)</span>
+
+<span class="c">%f = 1;%楼层</span>
+
+<span class="c">%G = 10000;%f 层的可出租面积</span>
+
+<span class="c">%% %店铺信息</span>
+
+<span class="c">%s = [];%楼层店铺面积矩阵</span>
+
+<span class="c">%x = [];%楼层店铺中心点 x 坐标</span>
+
+<span class="c">%y = [];%楼层店铺中心点 y 坐标</span>
+
+<span class="c">%% %楼层设施信息</span>
+
+<span class="c">%elevx = [];%楼层 f 的电梯中心点 x 坐标 %elevy = [];%楼层 f 的电梯中心点 y 坐标</span>
+
+<span class="n">ShMph</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">charac_1</span><span class="p">(</span><span class="n">Fn</span><span class="p">,</span><span class="w"> </span><span class="n">Ch</span><span class="p">);</span><span class="w"> </span><span class="c">%ShMph:(楼层总面积)，(单个店铺面积)，(店铺中心点坐标)，(电梯中心点</span>
+
+坐标<span class="p">)</span>
+
+<span class="n">entrx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">700.9109</span><span class="w"> </span><span class="mf">645.4463</span><span class="w"> </span><span class="mf">641.2834</span><span class="w"> </span><span class="mf">641.0279</span><span class="w"> </span><span class="mf">650.5831</span><span class="w"> </span><span class="mf">650.8711</span><span class="w"> </span><span class="mf">727.4578</span><span class="w"> </span><span class="mf">725.0332</span>
+
+<span class="p">];</span><span class="c">%1 楼入口 x 坐标 entry = [2542.0152 2534.1304 2526.4701 2519.3482 2496.0956 2484.8699 2490.7176 2504.4124</span>
+
+<span class="p">];</span><span class="c">%1 楼入口 y 坐标 %%</span>
+
+<span class="c">%市场信息</span>
+
+<span class="n">n_i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">10000</span><span class="w"> </span><span class="mi">3000</span><span class="w">  </span>
+<span class="n">365</span><span class="w">  </span>
+<span class="s">100000</span>
+
+<span class="n">500</span><span class="w">  </span>
+<span class="s">16320</span><span class="w">  </span>
+<span class="n">40320</span><span class="w">  </span>
+<span class="s">40800</span><span class="w">  </span>
+<span class="n">176000</span><span class="w">  </span>
+<span class="s">20460</span><span class="w">  </span>
+<span class="n">95040</span><span class="w">  </span>
+<span class="s">79200</span><span class="w">  </span>
+<span class="n">41580</span><span class="w">  </span>
+<span class="s">107800</span><span class="w">  </span>
+<span class="n">648000</span><span class="w">  </span>
+<span class="s">192000</span><span class="w">  </span>
+<span class="n">79200</span><span class="w">  </span>
+<span class="s">34560</span><span class="w">  </span>
+<span class="n">43200</span><span class="w">  </span>
+<span class="s">38880</span><span class="w">  </span>
+<span class="n">138240</span><span class="w">  </span>
+<span class="s">7056</span><span class="w">  </span>
+<span class="p">];</span><span class="c">%购物中心零售类型 i 的潜在消费者人数，22*1 cost_i = [200</span>
+
+<span class="n">1500</span><span class="w">  </span>
+<span class="s">5000</span><span class="w">  </span>
+<span class="n">30</span><span class="w">  </span>
+<span class="s">3000</span><span class="w">  </span>
+<span class="n">50</span><span class="w">  </span>
+<span class="s">60</span><span class="w">  </span>
+<span class="n">80</span><span class="w">  </span>
+<span class="s">15</span><span class="w">  </span>
+<span class="n">25</span><span class="w">  </span>
+<span class="s">25</span><span class="w">  </span>
+<span class="n">80</span><span class="w">  </span>
+<span class="s">100</span><span class="w">  </span>
+<span class="n">20</span><span class="w">  </span>
+<span class="s">60</span><span class="w">  </span>
+<span class="n">100</span><span class="w">  </span>
+<span class="s">200</span><span class="w">  </span>
+<span class="n">400</span><span class="w">  </span>
+<span class="s">200</span><span class="w">  </span>
+<span class="n">300</span><span class="w">  </span>
+<span class="s">200</span><span class="w">  </span>
+<span class="n">600</span><span class="w">  </span>
+<span class="s">]</span><span class="p">;</span><span class="c">%零售类型 i 的潜在消费者每年愿意在 i 商品上花费的金额，22*1 %%</span>
+
+<span class="c">%开发者偏好</span>
+
+<span class="n">f_t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w">  </span>
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="k">...</span><span class="c">%这里是第 12 个</span>
+
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="c">%1 楼:21、22; 3、5</span>
+
+<span class="c">%  </span>
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="k">...</span><span class="c">  </span>
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="c">%2楼:17;3  </span>
+<span class="c">%  </span>
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="k">...</span><span class="c">  </span>
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="c">%3 楼:17、18;3  </span>
+<span class="c">%  </span>
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="k">...</span><span class="c">  </span>
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="c">%4 楼:14、18、20;4、3、3 %  </span>
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="k">...</span><span class="c">  </span>
+<span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="c">%5 楼:12、13;4、4</span>
+
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="k">...</span><span class="c">  </span>
+<span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="c">%B1 楼:9、10、11、14、15、16;2、4、4、4、1、1 ];%楼层主题调整矩阵</span>
+
+<span class="c">% f_t = [</span>
+
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="c">%  </span>
+<span class="n">rB</span><span class="w"> </span><span class="p">=</span><span class="w">  </span>
+<span class="c">%cf = 0.5^f;%楼层的基本租金调节系数 %%</span>
+
+<span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="k">...</span><span class="c">  </span>
+<span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="c">%1 楼:21、22 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8,...  </span>
+<span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">;</span><span class="c">%2 楼:17  </span>
+<span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="k">...</span><span class="c">  </span>
+<span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">;</span><span class="c">%3 楼:17、18 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8,...  </span>
+<span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">;</span><span class="c">%4 楼:14、18、20 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1,...</span>
+
+<span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">;</span><span class="c">%5 楼:12、13  </span>
+<span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="k">...</span><span class="c">%第 12 个  </span>
+<span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">;</span><span class="c">%B1 楼:9、10、11、14、15、16 ];%楼层主题调整矩阵(7.10 的无奈之举)  </span>
+<span class="mi">20</span><span class="p">;</span><span class="c">%1 楼每平方米每月基本租金</span>
+
+<span class="c">%算法参数设定  </span>
+<span class="n">popsize</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5000</span><span class="p">;</span><span class="c">%种群大小  </span>
+<span class="c">%n = length(s);%单层店铺数  </span>
+<span class="c">%chromlength = 2*n;%基因长度  </span>
+<span class="n">pc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.8</span><span class="p">;</span><span class="c">%交叉概率  </span>
+<span class="n">pm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.003</span><span class="p">;</span><span class="c">%变异概率  </span>
+<span class="n">ShMve</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">charac_2</span><span class="p">(</span><span class="n">ShMph</span><span class="p">,</span><span class="w"> </span><span class="n">Fn</span><span class="p">,</span><span class="w"> </span><span class="n">popsize</span><span class="p">,</span><span class="w"> </span><span class="n">f_t</span><span class="p">);</span><span class="c">%初始化整个购物中心的种群 iter = 400;%迭代次数</span>
+
+<span class="n">elite</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[];</span><span class="c">%每一代的最优精英个体  </span>
+<span class="n">elite_fitvalue</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[];</span><span class="c">%每一代的最大适应度 fitvalue_mean = [];%每一代的平均适应度  </span>
+<span class="c">%%  </span>
+<span class="c">%迭代开始  </span>
+<span class="c">%1 次运行，要获得多个最优解需要进行多次运行 for i = 1:iter</span>
+
+<span class="nb">disp</span><span class="p">(</span><span class="s">'现在迭代代数为:'</span><span class="p">);</span><span class="nb">i</span><span class="c">%代数计数  </span>
+<span class="c">%计算适应度  </span>
+<span class="p">[</span><span class="n">objvalue</span><span class="p">,</span><span class="w"> </span><span class="n">fit_mean</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cal_objvalue</span><span class="p">(</span><span class="n">ShMve</span><span class="p">,</span><span class="w"> </span><span class="n">ShMph</span><span class="p">,</span><span class="w"> </span><span class="n">entrx</span><span class="p">,</span><span class="w"> </span><span class="n">entry</span><span class="p">,</span><span class="w"> </span><span class="n">Fn</span><span class="p">,</span><span class="w"> </span><span class="n">rB</span><span class="p">,</span><span class="k">...</span>
+
+<span class="n">n_i</span><span class="p">,</span><span class="w"> </span><span class="n">cost_i</span><span class="p">,</span><span class="w"> </span><span class="n">f_t</span><span class="p">);</span><span class="w">  </span>
+<span class="n">fitvalue</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">objvalue</span><span class="p">;</span><span class="c">%objvalue 为整个购物中心的总租金</span>
+
+<span class="n">fitvalue_best</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">fitvalue</span><span class="p">);</span><span class="c">%第 iter 代最大适应度 fitvalue_mean(i) = fit_mean;%第 iter 代平均适应度</span>
+
+<span class="c">%%  </span>
+<span class="c">%寻找最优解和精英  </span>
+<span class="c">%在这一步我们对 ShMve 根据 fitvalue 的大小进行排序了 [bestindividual, bestfit, ShMve, fitvalue] = best(ShMve, fitvalue, Fn); elite{i, 1} = bestindividual;%记录第 iter 代精英  </span>
+<span class="n">elite_fitvalue</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bestfit</span><span class="p">;</span><span class="c">%记录第 iter 代最大适应度  </span>
+<span class="c">%%  </span>
+<span class="c">%选择操作</span>
+
+<span class="n">newShMve</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">selection</span><span class="p">(</span><span class="n">ShMve</span><span class="p">,</span><span class="w"> </span><span class="n">ShMph</span><span class="p">,</span><span class="w"> </span><span class="n">Fn</span><span class="p">,</span><span class="w"> </span><span class="n">popsize</span><span class="p">,</span><span class="w"> </span><span class="n">fitvalue</span><span class="p">,</span><span class="w"> </span><span class="nb">i</span><span class="p">,</span><span class="w"> </span><span class="n">f_t</span><span class="p">);</span><span class="w"> </span><span class="c">%%  </span>
+<span class="c">%交叉操作  </span>
+<span class="n">newShMve</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">crossover</span><span class="p">(</span><span class="n">newShMve</span><span class="p">,</span><span class="w"> </span><span class="n">pc</span><span class="p">,</span><span class="w"> </span><span class="n">Fn</span><span class="p">);</span>
+
+<span class="c">%%</span>
+
+<span class="c">%变异操作</span>
+
+<span class="n">newShMve</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">mutation</span><span class="p">(</span><span class="n">newShMve</span><span class="p">,</span><span class="w"> </span><span class="n">Fn</span><span class="p">,</span><span class="w"> </span><span class="n">pm</span><span class="p">,</span><span class="w"> </span><span class="n">ShMph</span><span class="p">,</span><span class="w"> </span><span class="n">f_t</span><span class="p">);</span><span class="w"> </span><span class="c">%%  </span>
+<span class="c">%添加精英  </span>
+<span class="c">%精英不参与交叉、变异，直接替换掉第 popsize 个个体 for ftemp = 1:Fn</span>
+
+<span class="n">yetai</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">newShMve</span><span class="p">{</span><span class="n">ftemp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span><span class="w">  </span>
+<span class="n">dengji</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">newShMve</span><span class="p">{</span><span class="n">ftemp</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">};</span><span class="w"> </span><span class="n">yetai</span><span class="p">(</span><span class="n">popsize</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bestindividual</span><span class="p">{</span><span class="n">ftemp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span><span class="w"> </span><span class="n">dengji</span><span class="p">(</span><span class="n">popsize</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bestindividual</span><span class="p">{</span><span class="n">ftemp</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">};</span><span class="w"> </span><span class="n">newShMve</span><span class="p">{</span><span class="n">ftemp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">yetai</span><span class="p">;</span><span class="w"> </span><span class="n">newShMve</span><span class="p">{</span><span class="n">ftemp</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">dengji</span><span class="p">;</span>
+
+<span class="k">end</span><span class="w">  </span>
+<span class="c">%%  </span>
+<span class="c">%更新种群  </span>
+<span class="n">ShMve</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">newShMve</span><span class="p">;</span>
+
+<span class="k">end</span><span class="w">  </span>
+<span class="c">%% %画图操作</span>
+
+<span class="n">x_iter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">iter</span><span class="p">;</span><span class="w">  </span>
+<span class="c">%figure  </span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_iter</span><span class="p">,</span><span class="w"> </span><span class="n">elite_fitvalue</span><span class="p">,</span><span class="w"> </span><span class="s">'linewidth'</span><span class="p">,</span><span class="w"> </span><span class="mf">2.5</span><span class="p">);</span><span class="w">  </span>
+<span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="p">;</span><span class="w">  </span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_iter</span><span class="p">,</span><span class="w"> </span><span class="n">fitvalue_mean</span><span class="p">);</span><span class="w">  </span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">'The best Y is ---&gt;%5.2f\n'</span><span class="p">,</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">elite_fitvalue</span><span class="p">));</span><span class="w">  </span>
+<span class="k">for</span><span class="w"> </span><span class="n">emmm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="w">  </span>
+<span class="n">myelite</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="n">emmm</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}],[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="n">emmm</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}]]</span><span class="w"> </span><span class="k">end</span><span class="w">  </span>
+<span class="nb">eval</span><span class="p">([</span><span class="s">'save process'</span><span class="p">,</span><span class="w"> </span><span class="nb">num2str</span><span class="p">(</span><span class="n">daxunhuan</span><span class="p">)]);</span><span class="w">  </span>
+<span class="n">fid</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fopen</span><span class="p">(</span><span class="s">'outcome'</span><span class="p">,</span><span class="w"> </span><span class="s">'a+'</span><span class="p">);</span><span class="w">  </span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%s'</span><span class="p">,</span><span class="w"> </span><span class="s">'运行次数:'</span><span class="p">);</span><span class="w">  </span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%d\n\r'</span><span class="p">,</span><span class="w"> </span><span class="n">daxunhuan</span><span class="p">);</span><span class="w">  </span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%s\n\r'</span><span class="p">,</span><span class="w"> </span><span class="s">'这是最大的租金 max(elite_fitvalue):'</span><span class="p">);</span><span class="w"> </span><span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%f\n\r'</span><span class="p">,</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">elite_fitvalue</span><span class="p">));</span><span class="w">  </span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%s\n\r'</span><span class="p">,</span><span class="w"> </span><span class="s">'这是 myelite:'</span><span class="p">);</span><span class="w">  </span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%d\n\r'</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}],[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}]]);</span><span class="w"> </span><span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%d\n\r'</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}],[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}]]);</span><span class="w"> </span><span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%d\n\r'</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}],[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}]]);</span><span class="w"> </span><span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%d\n\r'</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}],[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}]]);</span><span class="w"> </span><span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%d\n\r'</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}],[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}]]);</span><span class="w"> </span><span class="nb">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="s">'%d\n\r'</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}],[</span><span class="n">elite</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}{</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}]]);</span><span class="w"> </span><span class="nb">fclose</span><span class="p">(</span><span class="n">fid</span><span class="p">);</span><span class="w">  </span>
+<span class="k">end</span>
+</code></pre></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

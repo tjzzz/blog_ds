@@ -1,0 +1,1027 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>时序预测tools - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#prophet" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              时序预测tools
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prophet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prophet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prophet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-gtgt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 趋势项g(t)g(t)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#neural-prophet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neural Prophet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merlion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        merlion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 数据预处理
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>时序预测tools</h1>
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a> · 类型：方法</p>
+</blockquote>
+<p><a href="https://github.com/topics/traffic-prediction">https://github.com/topics/traffic-prediction</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/67832773">https://zhuanlan.zhihu.com/p/67832773</a></p>
+<h2 id="prophet">Prophet<a class="headerlink" href="#prophet" title="Permanent link">#</a></h2>
+<p>相关介绍: <a href="https://zhuanlan.zhihu.com/p/52330017">https://zhuanlan.zhihu.com/p/52330017</a><br />
+论文: 《forecasting at scale》<a href="https://peerj.com/preprints/3190.pdf">https://peerj.com/preprints/3190.pdf</a><br />
+facebook的prophet是进行时间序列相关建模的工具箱，并且提供了python和R的接口。除此之外时间序列的异常检测也可以使用该工具。</p>
+<p>原理简单说明:<br />
+通常对于时间序列，常见的处理方式就是进行<mark>序列分解</mark>，将一条时间序列分解为季节趋势、趋势项、剩余项目。形式可以是加法或者乘法的形式。<br />
+$<span class="arithmatex"><span class="MathJax_Preview">y_t = S_t + T_t + R_t</span><script type="math/tex">y_t = S_t + T_t + R_t</script></span>$<br />
+在prophet中考虑了季节、趋势、节假日因素。即<span class="arithmatex"><span class="MathJax_Preview">y_t = g(t) + T_t + h_t + R_t</span><script type="math/tex">y_t = g(t) + T_t + h_t + R_t</script></span>. 具体来说:</p>
+<h3 id="1-gtgt">1 趋势项<span class="arithmatex"><span class="MathJax_Preview">g(t)</span><script type="math/tex">g(t)</script></span><a class="headerlink" href="#1-gtgt" title="Permanent link">#</a></h3>
+<p>prophet算法中，关于趋势项的预测有两种方式<br />
+(1) 基于逻辑回归<br />
+一般的sigmoid形式是<span class="arithmatex"><span class="MathJax_Preview">y=C/(1+e^{-k(x-m)})</span><script type="math/tex">y=C/(1+e^{-k(x-m)})</script></span>，然而在实际场景中， 参数不会是常数的，而是随着时间变化的。所以在Prophet里面，作者将三个参数全部换成了随时间变化的函数<span class="arithmatex"><span class="MathJax_Preview">y=C(t)/(1+e^{-k(t)(x-m(t))})</span><script type="math/tex">y=C(t)/(1+e^{-k(t)(x-m(t))})</script></span></p>
+<p>(2) 基于分段线性函数(默认的)<br />
+<a href="https://github.com/facebook/prophet/blob/master/python/fbprophet/forecaster.py">https://github.com/facebook/prophet/blob/master/python/fbprophet/forecaster.py</a></p>
+<p>变点的选择 changepoint</p>
+<p><strong>2.季节项</strong><br />
+傅里叶级数</p>
+<p>关于prophet初始化时候的参数，可以参照<code>forecaster.py</code></p>
+<h2 id="neural-prophet">Neural Prophet<a class="headerlink" href="#neural-prophet" title="Permanent link">#</a></h2>
+<p>官网简单的ppt说明：<a href="https://github.com/ourownstory/neural_prophet/blob/master/notes/NeuralProphet_Introduction.pdf">https://github.com/ourownstory/neural_prophet/blob/master/notes/NeuralProphet_Introduction.pdf</a></p>
+<p>相比与prophet，主要更新如下：<br />
+-  第一个巨变是分解的分量增加了一个重量级的AR（自回归），这个是超级重量级的。并且AR模型用的是神经网络的方式. AR-net<br />
+- 第二个巨变是Pytorch作为backend<br />
+-  Global model 应该还在开发中，支持多个序列同时建模</p>
+<p><img alt="" src="../../../media/Pasted%20image%2020220301140318.png" /></p>
+<p>例子:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">neuralprophet</span><span class="w"> </span><span class="kn">import</span> <span class="n">NeuralProphet</span>
+
+<span class="c1">## 默认，等同于prophet</span>
+<span class="n">m_baseline</span> <span class="o">=</span> <span class="n">NeuralProphet</span><span class="p">()</span>
+<span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span> <span class="o">=</span> <span class="n">m_baseline</span><span class="o">.</span><span class="n">split_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'D'</span><span class="p">,</span> <span class="n">valid_p</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">m_baseline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_train</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'D'</span><span class="p">,</span><span class="n">validation_df</span><span class="o">=</span><span class="n">df_test</span><span class="p">,</span> <span class="n">plot_live_loss</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">## 增加AR</span>
+<span class="n">m_add_lag</span> <span class="o">=</span> <span class="n">NeuralProphet</span><span class="p">(</span>
+    <span class="n">growth</span><span class="o">=</span><span class="s1">'off'</span><span class="p">,</span>
+    <span class="n">n_lags</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">ar_sparsity</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.003</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">m_add_lag</span> <span class="o">=</span> <span class="n">NeuralProphet</span><span class="p">(</span>
+    <span class="n">growth</span><span class="o">=</span><span class="s1">'off'</span><span class="p">,</span>
+    <span class="n">n_lags</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">num_hidden_layers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">d_hidden</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.003</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+
+<span class="c1">## 增加lagged regressors</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">NeuralProphet</span><span class="p">(</span>
+    <span class="n">n_forecasts</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
+    <span class="n">n_lags</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">add_lagged_regressor</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="n">xx_list</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">highlight_nth_step_ahead_of_each_forecast</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"H"</span><span class="p">)</span>
+</code></pre></div>
+<p>NeuralProphet详细的输入参数说明:<br />
+<a href="https://neuralprophet.com/html/hyperparameter-selection.html">https://neuralprophet.com/html/hyperparameter-selection.html</a><br />
+- n_lags=0, 是否使用AR-net，用于指定自回归的阶数<br />
+- 模型训练相关参数： epochs，learning_rate, batch_size<br />
+- loss_func=Huber, 可以自己指定其他损失函数 torch.nn.modules.loss<br />
+- num_hidden_layers, d_hidden<br />
+- 趋势相关参数<br />
+    - trend_reg<br />
+- Seasonality Related Parameters<br />
+        - <code>yearly_seasonality</code>, <code>weekly_seasonality</code> and <code>daily_seasonality</code></p>
+<p>增加holidays和特殊events<br />
+<div class="highlight"><pre><span></span><code><span class="c1"># history events</span>
+<span class="n">playoffs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'event'</span><span class="p">:</span> <span class="s1">'playoff'</span><span class="p">,</span>
+    <span class="s1">'ds'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span>
+        <span class="s1">'2008-01-13'</span><span class="p">,</span> <span class="s1">'2009-01-03'</span><span class="p">,</span> <span class="s1">'2010-01-16'</span><span class="p">,</span>
+        <span class="s1">'2010-01-24'</span><span class="p">,</span> <span class="s1">'2010-02-07'</span><span class="p">,</span> <span class="s1">'2011-01-08'</span><span class="p">,</span>
+        <span class="s1">'2013-01-12'</span><span class="p">,</span> <span class="s1">'2014-01-12'</span><span class="p">,</span> <span class="s1">'2014-01-19'</span><span class="p">,</span>
+        <span class="s1">'2014-02-02'</span><span class="p">,</span> <span class="s1">'2015-01-11'</span><span class="p">,</span> <span class="s1">'2016-01-17'</span><span class="p">,</span>
+        <span class="s1">'2016-01-24'</span><span class="p">,</span> <span class="s1">'2016-02-07'</span><span class="p">,</span>
+    <span class="p">]),</span>
+<span class="p">})</span>
+
+<span class="n">superbowls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'event'</span><span class="p">:</span> <span class="s1">'superbowl'</span><span class="p">,</span>
+    <span class="s1">'ds'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span>
+        <span class="s1">'2010-02-07'</span><span class="p">,</span> <span class="s1">'2012-02-05'</span><span class="p">,</span> <span class="s1">'2014-02-02'</span><span class="p">,</span>
+        <span class="s1">'2016-02-07'</span><span class="p">,</span>
+    <span class="p">]),</span>
+<span class="p">})</span>
+
+<span class="n">events_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">playoffs</span><span class="p">,</span> <span class="n">superbowls</span><span class="p">))</span>
+
+<span class="c1"># NeuralProphet Object</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">NeuralProphet</span><span class="p">(</span><span class="n">loss_func</span><span class="o">=</span><span class="s2">"MSE"</span><span class="p">)</span>
+
+<span class="c1"># set the model to expect these events</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">add_events</span><span class="p">([</span><span class="s2">"playoff"</span><span class="p">,</span> <span class="s2">"superbowl"</span><span class="p">])</span>
+
+<span class="c1"># create the data df with events</span>
+<span class="n">history_df</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">create_df_with_events</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">events_df</span><span class="p">)</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">history_df</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
+</code></pre></div></p>
+<h2 id="merlion">merlion<a class="headerlink" href="#merlion" title="Permanent link">#</a></h2>
+<p><a href="https://github.com/salesforce/Merlion#getting-started">https://github.com/salesforce/Merlion#getting-started</a><br />
+<a href="https://opensource.salesforce.com/Merlion/v1.1.0/index.html">https://opensource.salesforce.com/Merlion/v1.1.0/index.html</a></p>
+<p><img alt="" src="../../../media/Pasted%20image%2020220301141438.png" /></p>
+<p>merlion主要支持的功能：</p>
+<ul>
+<li>merlion.models<ul>
+<li><a href="https://opensource.salesforce.com/Merlion/v1.1.0/merlion.models.anomaly.html#module-merlion.models.anomaly" title="merlion.models.anomaly"><code>merlion.models.anomaly</code></a>: Anomaly detection models</li>
+<li><a href="https://opensource.salesforce.com/Merlion/v1.1.0/merlion.models.anomaly.change_point.html#module-merlion.models.anomaly.change_point" title="merlion.models.anomaly.change_point"><code>merlion.models.anomaly.change_point</code></a>: Change point detection models</li>
+<li><a href="https://opensource.salesforce.com/Merlion/v1.1.0/merlion.models.forecast.html#module-merlion.models.forecast" title="merlion.models.forecast"><code>merlion.models.forecast</code></a>: Forecasting models</li>
+<li><a href="https://opensource.salesforce.com/Merlion/v1.1.0/merlion.models.anomaly.forecast_based.html#module-merlion.models.anomaly.forecast_based" title="merlion.models.anomaly.forecast_based"><code>merlion.models.anomaly.forecast_based</code></a>: Forecasting models adapted for anomaly detection. Anomaly scores are based on the residual between the predicted and true value at each timestamp.</li>
+<li><a href="https://opensource.salesforce.com/Merlion/v1.1.0/merlion.models.ensemble.html#module-merlion.models.ensemble" title="merlion.models.ensemble"><code>merlion.models.ensemble</code></a>: Ensembles &amp; automated model selection of models for both anomaly detection and forecasting.</li>
+<li><a href="https://opensource.salesforce.com/Merlion/v1.1.0/merlion.models.automl.html#module-merlion.models.automl" title="merlion.models.automl"><code>merlion.models.automl</code></a>: AutoML layers for various models</li>
+</ul>
+</li>
+<li>merlion.transform</li>
+<li>merlion.post_process</li>
+<li>merlion.evaluate</li>
+<li>merlion.plot</li>
+</ul>
+<p>异常检测：</p>
+<ul>
+<li>模型初始化<br />
+所有的模型初始化都是通过<code>ModelClass(config)</code>的方式</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">## 1. 模型初始化</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">merlion.models.anomaly.isolation_forest</span><span class="w"> </span><span class="kn">import</span> <span class="n">IsolationForest</span><span class="p">,</span> <span class="n">IsolationForestConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">merlion.models.anomaly.windstats</span><span class="w"> </span><span class="kn">import</span> <span class="n">WindStats</span><span class="p">,</span> <span class="n">WindStatsConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">merlion.models.anomaly.forecast_based.prophet</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProphetDetector</span><span class="p">,</span> <span class="n">ProphetDetectorConfig</span>
+
+<span class="c1"># Import a post-rule for thresholding</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">merlion.post_process.threshold</span><span class="w"> </span><span class="kn">import</span> <span class="n">AggregateAlarms</span>
+<span class="c1"># Import a data processing transform</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">merlion.transform.moving_average</span><span class="w"> </span><span class="kn">import</span> <span class="n">DifferenceTransform</span>
+
+
+<span class="n">config1</span> <span class="o">=</span> <span class="n">IsolationForestConfig</span><span class="p">()</span>
+<span class="n">model1</span>  <span class="o">=</span> <span class="n">IsolationForest</span><span class="p">(</span><span class="n">config1</span><span class="p">)</span>
+
+<span class="c1"># We use a WindStats model that splits each week into windows of 60 minutes</span>
+<span class="c1"># each. Anomaly scores in Merlion correspond to z-scores. By default, we would</span>
+<span class="c1"># like to fire an alert for any 4-sigma event, so we specify a threshold rule</span>
+<span class="c1"># which achieves this.</span>
+<span class="n">config2</span> <span class="o">=</span> <span class="n">WindStatsConfig</span><span class="p">(</span><span class="n">wind_sz</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">AggregateAlarms</span><span class="p">(</span><span class="n">alm_threshold</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">model2</span>  <span class="o">=</span> <span class="n">WindStats</span><span class="p">(</span><span class="n">config2</span><span class="p">)</span>
+
+<span class="c1"># Prophet is a popular forecasting algorithm. Here, we specify that we would like</span>
+<span class="c1"># to pre-processes the input time series by applying a difference transform,</span>
+<span class="c1"># before running the model on it.</span>
+<span class="n">config3</span> <span class="o">=</span> <span class="n">ProphetDetectorConfig</span><span class="p">(</span><span class="n">transform</span><span class="o">=</span><span class="n">DifferenceTransform</span><span class="p">())</span>
+<span class="n">model3</span>  <span class="o">=</span> <span class="n">ProphetDetector</span><span class="p">(</span><span class="n">config3</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">## 2.模型训练</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">train_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span> <span class="n">anomaly_lables</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+
+<span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_anomaly_score</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_anomaly_label</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+</code></pre></div>
+<p>使用外生特征回归<br />
+<a href="https://opensource.salesforce.com/Merlion/v2.0.2/tutorials/forecast/3_ForecastExogenous.html">https://opensource.salesforce.com/Merlion/v2.0.2/tutorials/forecast/3_ForecastExogenous.html</a></p>
+<h2 id="12">1.2 数据预处理<a class="headerlink" href="#12" title="Permanent link">#</a></h2>
+<p>tslearn：开源的时间序列机器学习python工具包<br />
+tsfresh：开源的时间序列特征提取python工具包<br />
+<a href="https://tsfresh.readthedocs.io/en/latest/text/quick_start.html">https://tsfresh.readthedocs.io/en/latest/text/quick_start.html</a></p>
+<p>pyts：开源的时间序列分类Python工具包。提供预处理工具及若干种时间序列分类算法</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

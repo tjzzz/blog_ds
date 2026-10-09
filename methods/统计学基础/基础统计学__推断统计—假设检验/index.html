@@ -1,0 +1,1101 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>推断统计—假设检验 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              推断统计—假设检验
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 基本步骤
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-p-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 p-value
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 显著性水平与两类错误
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 显著性水平与两类错误">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一类错误
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二类错误
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        统计功效
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 置信区间与假设检验的关系
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/">统计学基础</a> · 类型：方法</p>
+</blockquote>
+<p>假设检验其实与参数估计类似，只是描述的角度不同。</p>
+<h1 id="1">1. 假设检验的基本原理<a class="headerlink" href="#1" title="Permanent link">#</a></h1>
+<p>简单说：假设检验就是先对总体参数提出某种假设，然后根据抽取到的样本数据，判断样本证据是否足够强，从而决定是否拒绝原假设。</p>
+<h2 id="11">1.1 基本步骤<a class="headerlink" href="#11" title="Permanent link">#</a></h2>
+<ol>
+<li>提出原假设与备择假设，例如：</li>
+</ol>
+<div class="arithmatex">
+<div class="MathJax_Preview"> H_0: \mu =\mu_0, H_1: \mu  &gt; \mu_0 </div>
+<script type="math/tex; mode=display"> H_0: \mu =\mu_0, H_1: \mu  > \mu_0 </script>
+</div>
+<ol>
+<li>选择合适的检验统计量，例如 Z 统计量、t 统计量、卡方统计量、F 统计量等；</li>
+<li>设定显著性水平 <span class="arithmatex"><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span>，常见取值为 0.05 或 0.01；</li>
+<li>根据样本数据计算检验统计量和 p-value；</li>
+<li>比较 p-value 与 <span class="arithmatex"><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span>，决定是否拒绝原假设；</li>
+<li>结合业务背景解释差异是否有实际意义。</li>
+</ol>
+<h2 id="12-p-value">1.2 p-value<a class="headerlink" href="#12-p-value" title="Permanent link">#</a></h2>
+<p>p-value 表示：<strong>在原假设成立的前提下，观察到当前样本结果或比当前结果更极端结果的概率</strong>。</p>
+<p>常见判断方式：</p>
+<ul>
+<li>如果 p-value &lt; <span class="arithmatex"><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span>，说明当前结果在原假设下较少发生，因此拒绝原假设；</li>
+<li>如果 p-value &gt;= <span class="arithmatex"><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span>，说明当前证据不足，不能拒绝原假设。</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>p-value 不是「原假设为真的概率」；</li>
+<li>p-value 小不代表效果大，只代表在当前假设下结果较不容易由随机波动解释；</li>
+<li>p-value 不显著不代表没有效果，可能是样本量不足、方差过大或指标噪声太高；</li>
+<li>在业务分析中，需要同时看 p-value、效应量、置信区间和业务价值。</li>
+</ul>
+<h2 id="13">1.3 显著性水平与两类错误<a class="headerlink" href="#13" title="Permanent link">#</a></h2>
+<h3 id="_1">第一类错误<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<p>第一类错误也叫 <span class="arithmatex"><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> 错误：<strong>原假设为真，但错误地拒绝了原假设</strong>。</p>
+<p>在 AB 实验中，可以理解为：实际上 A/B 没有差异，但我们误判为有差异。显著性水平 <span class="arithmatex"><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> 就是事先愿意承受的第一类错误概率。</p>
+<h3 id="_2">第二类错误<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<p>第二类错误也叫 <span class="arithmatex"><span class="MathJax_Preview">\beta</span><script type="math/tex">\beta</script></span> 错误：<strong>原假设为假，但没有拒绝原假设</strong>。</p>
+<p>在 AB 实验中，可以理解为：实际上 A/B 有差异，但我们没有检验出来。</p>
+<h3 id="_3">统计功效<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<p>统计功效（power）定义为：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+Power = 1 - \beta
+</div>
+<script type="math/tex; mode=display">
+Power = 1 - \beta
+</script>
+</div>
+<p>它表示当真实效果存在时，实验能够检验出这个效果的概率。</p>
+<p>统计功效受以下因素影响：</p>
+<ul>
+<li>样本量：样本量越大，功效通常越高；</li>
+<li>效应量：真实差异越大，越容易检验出来；</li>
+<li>方差/噪声：数据波动越大，越难检验出来；</li>
+<li>显著性水平：<span class="arithmatex"><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> 越大，越容易拒绝原假设，但第一类错误风险也更高。</li>
+</ul>
+<p>在实验设计中，通常会在实验前进行样本量估算，确保实验有足够功效检出业务上关心的最小效果。</p>
+<h2 id="14">1.4 置信区间与假设检验的关系<a class="headerlink" href="#14" title="Permanent link">#</a></h2>
+<p>置信区间用于描述参数估计的不确定性。比如 95% 置信区间可以理解为：如果重复抽样很多次，用同样方法构造区间，大约 95% 的区间会覆盖真实参数。</p>
+<p>在双侧检验中，置信区间和假设检验可以相互对应：</p>
+<ul>
+<li>如果 95% 置信区间不包含原假设对应的值，通常意味着在 <span class="arithmatex"><span class="MathJax_Preview">\alpha=0.05</span><script type="math/tex">\alpha=0.05</script></span> 下显著；</li>
+<li>如果 95% 置信区间包含原假设对应的值，通常意味着在 <span class="arithmatex"><span class="MathJax_Preview">\alpha=0.05</span><script type="math/tex">\alpha=0.05</script></span> 下不显著。</li>
+</ul>
+<p>业务解释中，置信区间往往比单独的 p-value 更有信息量，因为它能同时体现方向、大小和不确定性。</p>
+<h1 id="2-t">2. 均值的比较：t 检验<a class="headerlink" href="#2-t" title="Permanent link">#</a></h1>
+<p>均值的比较一般可以用 t 检验，根据设计方式的不同可分为如下两类。</p>
+<h2 id="21-t">2.1 配对样本 t 检验<a class="headerlink" href="#21-t" title="Permanent link">#</a></h2>
+<p>配对样本，即相同的用户参与了不同的测试。采用相同的用户分别参加两种不同的测试，好处是排除了用户的个体干扰，面临的问题是需要对用户先接触哪个、后接触哪个做好平衡，不能让两个处理之间相互影响。比如测试两种药品，先服用 A 药后，已经对用户产生了影响，再去服用 B 药物的话就无法准确地看出效果了。</p>
+<p>美食评判中，美食专家们都是品尝完一道菜之后需要漱口，然后才开始品尝下一道菜，就是这个原因。</p>
+<p>其中 D 表示两个不同测试之间的差别。</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">t=\frac{\hat D}{S_D/\sqrt n}</div>
+<script type="math/tex; mode=display">t=\frac{\hat D}{S_D/\sqrt n}</script>
+</div>
+<h2 id="22-t">2.2 双总体 t 检验<a class="headerlink" href="#22-t" title="Permanent link">#</a></h2>
+<p>即不同的用户参与了不同的测试，一个 A 组，一个 B 组。通过两组效果的差异进行比较。</p>
+<p>假设两个总体分别为 X, Y，令 <span class="arithmatex"><span class="MathJax_Preview">Z=X-Y</span><script type="math/tex">Z=X-Y</script></span>。</p>
+<p>假设条件：</p>
+<ul>
+<li>两组样本不相关；</li>
+<li>两组样本近似服从正态分布，或样本量足够大时可依赖中心极限定理。</li>
+</ul>
+<p>在以上的前提假设下，<span class="arithmatex"><span class="MathJax_Preview">Z=X-Y</span><script type="math/tex">Z=X-Y</script></span> 也应该近似服从正态分布。且有：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview"> E(Z) = E(X)- E(Y)=\mu_1-\mu_2$$
+$$ Var(Z) = Var(X-Y)= Var(X) + Var(Y)</div>
+<script type="math/tex; mode=display"> E(Z) = E(X)- E(Y)=\mu_1-\mu_2$$
+$$ Var(Z) = Var(X-Y)= Var(X) + Var(Y)</script>
+</div>
+<p>均值的估计可以用样本均值差 <span class="arithmatex"><span class="MathJax_Preview">\bar x - \bar y</span><script type="math/tex">\bar x - \bar y</script></span>，而方差的估计需要分情况讨论。</p>
+<ul>
+<li><span class="arithmatex"><span class="MathJax_Preview">\sigma_1,\sigma_2</span><script type="math/tex">\sigma_1,\sigma_2</script></span> 已知：</li>
+</ul>
+<div class="arithmatex">
+<div class="MathJax_Preview">Z=\frac{\bar x-\bar y -(\mu_1 - \mu_2)}{\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}}\sim N(0,1)</div>
+<script type="math/tex; mode=display">Z=\frac{\bar x-\bar y -(\mu_1 - \mu_2)}{\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}}\sim N(0,1)</script>
+</div>
+<ul>
+<li><span class="arithmatex"><span class="MathJax_Preview">\sigma_1,\sigma_2</span><script type="math/tex">\sigma_1,\sigma_2</script></span> 未知：<ul>
+<li>若假设 <span class="arithmatex"><span class="MathJax_Preview">\sigma_1=\sigma_2</span><script type="math/tex">\sigma_1=\sigma_2</script></span>，可以使用合并方差估计：</li>
+</ul>
+</li>
+</ul>
+<div class="arithmatex">
+<div class="MathJax_Preview"> t=\frac{\bar x-\bar y -(\mu_1 - \mu_2)}{S_w\sqrt{1/n_1+1/n_2}}\sim t_{n_1+n_2-2}</div>
+<script type="math/tex; mode=display"> t=\frac{\bar x-\bar y -(\mu_1 - \mu_2)}{S_w\sqrt{1/n_1+1/n_2}}\sim t_{n_1+n_2-2}</script>
+</div>
+<p>其中联合估计方差：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">s_w^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2 -2}</div>
+<script type="math/tex; mode=display">s_w^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2 -2}</script>
+</div>
+<ul>
+<li>若不假设 <span class="arithmatex"><span class="MathJax_Preview">\sigma_1=\sigma_2</span><script type="math/tex">\sigma_1=\sigma_2</script></span>，可以使用 Welch t 检验：</li>
+</ul>
+<div class="arithmatex">
+<div class="MathJax_Preview"> t=\frac{\bar x-\bar y -(\mu_1 - \mu_2)}{\sqrt{s_1^2/n_1+s_2^2/n_2}}\sim t_{df'}</div>
+<script type="math/tex; mode=display"> t=\frac{\bar x-\bar y -(\mu_1 - \mu_2)}{\sqrt{s_1^2/n_1+s_2^2/n_2}}\sim t_{df'}</script>
+</div>
+<p>其中 t 分布的自由度近似为：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">df'=\frac{(s_1^2/n_1+s_2^2/n_2)^2}{\frac{(s_1^2/n_1)^2}{n_1-1} + \frac{(s_2^2/n_2)^2}{n_2-1}}</div>
+<script type="math/tex; mode=display">df'=\frac{(s_1^2/n_1+s_2^2/n_2)^2}{\frac{(s_1^2/n_1)^2}{n_1-1} + \frac{(s_2^2/n_2)^2}{n_2-1}}</script>
+</div>
+<h2 id="23">2.3 效应量<a class="headerlink" href="#23" title="Permanent link">#</a></h2>
+<p>除了差异是否显著以外，在实际中还需要注意差异的效应量（effect size），即这个差异究竟有多大。</p>
+<p>在业务实验中，一个结果可能统计显著，但提升幅度很小，不一定值得上线；也可能暂时不显著，但方向稳定、置信区间较窄，值得继续扩大样本观察。</p>
+<h1 id="3">3. 比例的比较<a class="headerlink" href="#3" title="Permanent link">#</a></h1>
+<h2 id="31">3.1 双比例检验<a class="headerlink" href="#31" title="Permanent link">#</a></h2>
+<p>双总体的比例检验，比例其实可以看做是均值的一种特殊情况，所以双总体比例的比较也可以转化为均值的比较。</p>
+<p>设两组样本比例为 <span class="arithmatex"><span class="MathJax_Preview">\hat p_1, \hat p_2</span><script type="math/tex">\hat p_1, \hat p_2</script></span>，合并比例为：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\hat p=\frac{x_1+x_2}{n_1+n_2}, \quad \hat q = 1-\hat p
+</div>
+<script type="math/tex; mode=display">
+\hat p=\frac{x_1+x_2}{n_1+n_2}, \quad \hat q = 1-\hat p
+</script>
+</div>
+<p>则在原假设 <span class="arithmatex"><span class="MathJax_Preview">p_1=p_2</span><script type="math/tex">p_1=p_2</script></span> 下：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">Z=\frac{\hat p_1-\hat p_2 }{\sqrt{\hat p\hat q(\frac{1}{n_1}+\frac{1}{n_2})}}\sim N(0,1)</div>
+<script type="math/tex; mode=display">Z=\frac{\hat p_1-\hat p_2 }{\sqrt{\hat p\hat q(\frac{1}{n_1}+\frac{1}{n_2})}}\sim N(0,1)</script>
+</div>
+<h2 id="32">3.2 卡方检验<a class="headerlink" href="#32" title="Permanent link">#</a></h2>
+<p>对于分类型变量，另一个常用的检验方法就是卡方检验。卡方检验首先是一种非参数检验方法，其并不依赖于原始数据的分布假定。卡方检验主要应用于分类变量的关联性分析（关于卡方检验的后续再详细介绍）。</p>
+<p>对于 2x2 的列联表来说：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>通过</th>
+<th>失败</th>
+<th>总计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实验A</td>
+<td>a</td>
+<td>b</td>
+<td>m</td>
+</tr>
+<tr>
+<td>实验B</td>
+<td>c</td>
+<td>d</td>
+<td>n</td>
+</tr>
+<tr>
+<td>总计</td>
+<td>r</td>
+<td>s</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<div class="arithmatex">
+<div class="MathJax_Preview">\chi^2 = \frac{(ad-bc)^2N}{mnrs}</div>
+<script type="math/tex; mode=display">\chi^2 = \frac{(ad-bc)^2N}{mnrs}</script>
+</div>
+<h2 id="33-fisher">3.3 Fisher 精确检验<a class="headerlink" href="#33-fisher" title="Permanent link">#</a></h2>
+<p>上述说的卡方检验和双比例检验其实都是一种近似。Fisher 精确检验依据超几何分布，根据排列组合的概率来进行计算，适合样本量较小或列联表中期望频数较低的场景。</p>
+<h1 id="4">4. 常见检验方法选择<a class="headerlink" href="#4" title="Permanent link">#</a></h1>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>常见方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>两组均值比较，独立样本</td>
+<td>独立样本 t 检验 / Welch t 检验</td>
+<td>方差不齐时优先考虑 Welch t 检验</td>
+</tr>
+<tr>
+<td>两组均值比较，配对样本</td>
+<td>配对 t 检验</td>
+<td>同一对象前后对比或匹配样本</td>
+</tr>
+<tr>
+<td>多组均值比较</td>
+<td>方差分析 ANOVA</td>
+<td>显著后通常需要进一步做多重比较</td>
+</tr>
+<tr>
+<td>两组比例比较</td>
+<td>双比例 Z 检验</td>
+<td>常用于转化率、点击率等指标</td>
+</tr>
+<tr>
+<td>分类变量关联</td>
+<td>卡方检验 / Fisher 精确检验</td>
+<td>小样本时考虑 Fisher 精确检验</td>
+</tr>
+<tr>
+<td>数据不满足参数检验假设</td>
+<td>非参数检验</td>
+<td>如 Mann-Whitney U、Wilcoxon、Kruskal-Wallis 等</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

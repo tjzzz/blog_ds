@@ -1,0 +1,1356 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>01_实验可行性分析 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#01_" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              01_实验可行性分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 本模块要解决什么问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 实验可行性分析框架
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 第一步：把业务问题转成可验证问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 第一步：把业务问题转成可验证问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 不好的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 更好的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 第二步：判断是否适合随机对照实验
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 第二步：判断是否适合随机对照实验">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 随机实验可行的典型条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 不适合直接 AB 的情况
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 第三步：选择实验或评估方式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 第四步：初步判断样本与流量是否够
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 第五步：判断风险与止损条件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 可行性结论模板
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 快速 Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/">实验设计与AB测试</a> · 类型：方法</p>
+</blockquote>
+<h1 id="01_">01_实验可行性分析<a class="headerlink" href="#01_" title="Permanent link">#</a></h1>
+<p>实验可行性分析是实验设计的第一关。它不急着算样本量、配流量、写指标，而是先判断：<strong>这个业务问题是否值得实验、能不能随机实验、如果不能随机实验应该用什么替代方案</strong>。</p>
+<p>一句话：实验可行性分析回答的是 <strong>“这件事要不要做实验，以及适合用哪种方式验证”</strong>。</p>
+<h2 id="1">1. 本模块要解决什么问题<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>判断层</th>
+<th>核心问题</th>
+<th>如果判断不清会怎样</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>值不值得做</td>
+<td>业务问题是否足够重要？预期收益是否覆盖实验成本和风险？</td>
+<td>为小问题消耗流量和研发资源</td>
+</tr>
+<tr>
+<td>能不能做</td>
+<td>是否能随机分组？实验单元是否稳定？样本是否足够？</td>
+<td>实验组和对照组不可比，结论不可信</td>
+</tr>
+<tr>
+<td>该不该做</td>
+<td>是否有伦理、合规、体验、品牌或核心链路风险？</td>
+<td>指标正向但带来用户体验或业务风险</td>
+</tr>
+<tr>
+<td>怎么替代</td>
+<td>如果不能做标准 AB，是否有其他评估方式？</td>
+<td>把所有问题都硬塞进 AB Test</td>
+</tr>
+</tbody>
+</table>
+<p>可行性分析的最终产出不是一份完整实验方案，而是一个明确结论：</p>
+<ul>
+<li><strong>可做标准随机对照实验</strong>：进入 <a href="../ExperimentDesign__02_%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1/">02_实验方案设计</a>。</li>
+<li><strong>有条件可做</strong>：需要先补齐埋点、流量、人群、工程隔离或风控机制。</li>
+<li><strong>不适合做标准 AB</strong>：转向 interleaving、准实验、灰度观察、离线评估或问卷研究。</li>
+<li><strong>暂不建议实验</strong>：收益不足、风险过高、问题定义不清，先回到业务问题澄清。</li>
+</ul>
+<h2 id="2">2. 实验可行性分析框架<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>分析项</th>
+<th>需要回答的问题</th>
+<th>判断标准</th>
+<th>主要产出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实验背景</td>
+<td>当前业务问题是什么？为什么现在要验证？</td>
+<td>问题具体、场景清楚、owner 明确</td>
+<td>背景说明、问题定义</td>
+</tr>
+<tr>
+<td>预期收益</td>
+<td>成功后提升什么？提升多少算值得？</td>
+<td>有明确收益指标或战略价值</td>
+<td>预期收益、优先级</td>
+</tr>
+<tr>
+<td>风险成本</td>
+<td>会伤害哪些用户体验或业务指标？研发和流量成本多大？</td>
+<td>风险可控，有止损机制</td>
+<td>风险边界、止损条件</td>
+</tr>
+<tr>
+<td>随机化可行性</td>
+<td>是否能随机分组？分组后体验是否稳定？</td>
+<td>实验单元可识别、可稳定分桶</td>
+<td>是否可做 RCT</td>
+</tr>
+<tr>
+<td>样本与流量</td>
+<td>有多少目标人群？实验周期内能否积累足够样本？</td>
+<td>样本量基本够，周期可接受</td>
+<td>初步样本/周期判断</td>
+</tr>
+<tr>
+<td>干扰与污染</td>
+<td>用户之间、实验之间是否互相影响？</td>
+<td>干扰可隔离或可建模</td>
+<td>隔离、互斥、分层建议</td>
+</tr>
+<tr>
+<td>数据可观测性</td>
+<td>曝光、行为、转化、护栏指标是否能被记录？</td>
+<td>数据链路完整，口径可定义</td>
+<td>埋点和指标准备清单</td>
+</tr>
+<tr>
+<td>替代评估</td>
+<td>如果不能随机，是否有其他因果或评估方法？</td>
+<td>能找到可信反事实或对照方式</td>
+<td>替代方案</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 第一步：把业务问题转成可验证问题<a class="headerlink" href="#3" title="Permanent link">#</a></h2>
+<p>很多实验不可行，不是统计问题，而是业务问题没有定义清楚。</p>
+<h3 id="31">3.1 不好的问题<a class="headerlink" href="#31" title="Permanent link">#</a></h3>
+<ul>
+<li>“这个新功能效果好不好？”</li>
+<li>“这个模型要不要上线？”</li>
+<li>“这个活动有没有用？”</li>
+<li>“用户喜不喜欢新版？”</li>
+</ul>
+<p>这些问题太泛，无法直接实验。</p>
+<h3 id="32">3.2 更好的问题<a class="headerlink" href="#32" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>原始问题</th>
+<th>可验证版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新功能效果好不好？</td>
+<td>新功能是否能让目标用户的下单转化率提升至少 1%，且不提高投诉率？</td>
+</tr>
+<tr>
+<td>模型要不要上线？</td>
+<td>新排序模型是否能提升搜索结果点击满意度，同时不降低支付转化？</td>
+</tr>
+<tr>
+<td>活动有没有用？</td>
+<td>补贴活动是否能提升新客首单率，且补贴 ROI 大于 1？</td>
+</tr>
+<tr>
+<td>用户喜不喜欢新版？</td>
+<td>新版是否提升核心任务完成率，并降低退出率？</td>
+</tr>
+</tbody>
+</table>
+<p>可验证问题通常包括：</p>
+<div class="highlight"><pre><span></span><code>在什么人群 / 场景下，
+对什么策略 / 功能 / 模型做改变，
+预期影响哪个核心指标，
+最小可接受收益是多少，
+哪些风险指标不能变坏。
+</code></pre></div>
+<h2 id="4">4. 第二步：判断是否适合随机对照实验<a class="headerlink" href="#4" title="Permanent link">#</a></h2>
+<p>标准 AB 实验的前提是：实验组和对照组除了处理不同，其他条件尽量随机一致。</p>
+<h3 id="41">4.1 随机实验可行的典型条件<a class="headerlink" href="#41" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有明确实验单元</td>
+<td>能按用户、设备、商家、门店、订单、内容等稳定分组</td>
+</tr>
+<tr>
+<td>实验处理可控</td>
+<td>能控制谁看到新策略，谁看到旧策略</td>
+</tr>
+<tr>
+<td>实验单元相对独立</td>
+<td>一个单元的处理不会显著影响另一个单元</td>
+</tr>
+<tr>
+<td>数据可观测</td>
+<td>曝光、行为、转化和护栏指标能被记录</td>
+</tr>
+<tr>
+<td>样本足够</td>
+<td>目标人群和流量能支撑检测预期效果</td>
+</tr>
+<tr>
+<td>风险可控</td>
+<td>有小流量、回滚、止损和监控机制</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-ab">4.2 不适合直接 AB 的情况<a class="headerlink" href="#42-ab" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>不适合原因</th>
+<th>典型表现</th>
+<th>建议处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无法随机</td>
+<td>政策按城市上线、功能按版本自然发布</td>
+<td>准实验、DID、断点回归、匹配方法</td>
+</tr>
+<tr>
+<td>强网络效应</td>
+<td>用户之间会互相影响，如社交、供需撮合、内容生态</td>
+<td>聚类随机、城市/社区级随机、准实验</td>
+</tr>
+<tr>
+<td>低频长周期</td>
+<td>转化很少或效果要几周/月才出现</td>
+<td>拉长周期、扩大人群、找前置指标、做离线或准实验</td>
+</tr>
+<tr>
+<td>改动极小</td>
+<td>排序微调、搜索结果局部变化，AB 不敏感</td>
+<td>interleaving 或更敏感指标</td>
+</tr>
+<tr>
+<td>高风险不可回滚</td>
+<td>支付、安全、合规修复、重大体验风险</td>
+<td>先离线验证、小流量灰度、风控白名单</td>
+</tr>
+<tr>
+<td>对照不伦理</td>
+<td>明知旧策略有明显损害，不能继续给对照组</td>
+<td>灰度观察、前后对比、保守上线监控</td>
+</tr>
+<tr>
+<td>指标不可观测</td>
+<td>关键行为无埋点、链路 join 不上</td>
+<td>先补数据链路，不直接实验</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 第三步：选择实验或评估方式<a class="headerlink" href="#5" title="Permanent link">#</a></h2>
+<p>整合 <a href="../ExperimentDesign__%E5%AE%9E%E9%AA%8C%E6%96%B9%E5%BC%8F/">实验方式</a>、<a href="../../../concepts/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ExperimentDesign__ab-test/">ab-test</a>、<a href="../../../concepts/%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8EAB%E6%B5%8B%E8%AF%95/ExperimentDesign__interleaving%E4%BB%8B%E7%BB%8D/">interleaving介绍</a> 中的内容，可以先按下面的决策表选择方法。</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐方法</th>
+<th>为什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常规产品功能、文案、按钮、流程改动</td>
+<td>AB Test / 完全随机设计</td>
+<td>改动可控，用户可随机分组，指标直观</td>
+</tr>
+<tr>
+<td>搜索/推荐排序的微小改动</td>
+<td>Interleaving</td>
+<td>同一次请求中比较两个排序结果，敏感度更高，所需流量更少</td>
+</tr>
+<tr>
+<td>需要控制人群差异</td>
+<td>随机区组 / 分层随机</td>
+<td>先按地域、端、活跃度等分层，再在层内随机</td>
+</tr>
+<tr>
+<td>同一对象可以接受多个处理</td>
+<td>配对设计 / 交叉设计</td>
+<td>利用自身对照，减少个体差异</td>
+</tr>
+<tr>
+<td>多个因素同时变化</td>
+<td>析因设计 / 正交设计</td>
+<td>识别主效应和交互效应，降低组合实验成本</td>
+</tr>
+<tr>
+<td>无法随机上线</td>
+<td>准实验 / 因果推断</td>
+<td>通过非随机数据构造反事实</td>
+</tr>
+<tr>
+<td>想理解态度、满意度、认知</td>
+<td>问卷 / 访谈</td>
+<td>适合回答主观感受，但要关注信度、效度</td>
+</tr>
+<tr>
+<td>先验证工程链路</td>
+<td>A/A 或空转</td>
+<td>不改变用户体验，先验证分流和指标链路</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 第四步：初步判断样本与流量是否够<a class="headerlink" href="#6" title="Permanent link">#</a></h2>
+<p>可行性阶段不一定要精确计算样本量，但至少要做初筛：</p>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目标人群规模</td>
+<td>实验条件过滤后，每天还有多少可用用户 / 请求 / 商家 / 订单？</td>
+</tr>
+<tr>
+<td>基线指标水平</td>
+<td>当前转化率、留存率、点击率、GMV、人均收入等是多少？</td>
+</tr>
+<tr>
+<td>预期提升幅度</td>
+<td>希望检出的最小效果是多少？例如转化率提升 0.5pp 或相对提升 2%</td>
+</tr>
+<tr>
+<td>可接受周期</td>
+<td>业务能等几天、几周还是几个月？</td>
+</tr>
+<tr>
+<td>指标波动</td>
+<td>指标天然波动大不大？是否长尾？是否需要方差缩减？</td>
+</tr>
+<tr>
+<td>流量占用</td>
+<td>实验需要占多少流量？是否会挤占其他实验？</td>
+</tr>
+</tbody>
+</table>
+<p>如果样本明显不足，常见处理方式：</p>
+<ul>
+<li>增加实验周期；</li>
+<li>扩大目标人群；</li>
+<li>提高实验流量；</li>
+<li>换更敏感的前置指标；</li>
+<li>做 CUPED、分层、metric transformation 等方差缩减；</li>
+<li>改用 interleaving 或离线评估；</li>
+<li>接受只能观察方向，不能做强统计结论。</li>
+</ul>
+<h2 id="7">7. 第五步：判断风险与止损条件<a class="headerlink" href="#7" title="Permanent link">#</a></h2>
+<p>实验不是只追求收益，也要提前明确什么情况下必须停。</p>
+<table>
+<thead>
+<tr>
+<th>风险类型</th>
+<th>例子</th>
+<th>可行性阶段要确认什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户体验风险</td>
+<td>延迟上升、页面崩溃、投诉增加、负反馈增加</td>
+<td>是否有护栏指标和告警</td>
+</tr>
+<tr>
+<td>交易风险</td>
+<td>下单失败、支付失败、退款上升、履约异常</td>
+<td>是否能小流量、可回滚</td>
+</tr>
+<tr>
+<td>收入风险</td>
+<td>GMV、广告收入、转化率显著下降</td>
+<td>允许最大损失是多少</td>
+</tr>
+<tr>
+<td>合规风险</td>
+<td>隐私、金融、医疗、安全等敏感场景</td>
+<td>是否允许做对照实验</td>
+</tr>
+<tr>
+<td>品牌风险</td>
+<td>明显劣化体验、大范围舆情</td>
+<td>是否需要白名单或灰度</td>
+</tr>
+<tr>
+<td>工程风险</td>
+<td>配置错误、参数下发失败、版本不兼容</td>
+<td>是否有默认值和回退机制</td>
+</tr>
+</tbody>
+</table>
+<p>可行性分析阶段就应该定义：</p>
+<div class="highlight"><pre><span></span><code>如果护栏指标 X 在连续 N 个统计窗口内下降超过阈值，
+或错误率 / 投诉率 / 延迟超过阈值，
+则自动暂停实验或回滚到 control。
+</code></pre></div>
+<h2 id="8">8. 可行性结论模板<a class="headerlink" href="#8" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><span class="gu">## 实验可行性结论</span>
+
+<span class="k">-</span><span class="w"> </span>实验名称：
+<span class="k">-</span><span class="w"> </span>业务背景：
+<span class="k">-</span><span class="w"> </span>待验证问题：
+<span class="k">-</span><span class="w"> </span>预期收益：
+<span class="k">-</span><span class="w"> </span>主要风险：
+<span class="k">-</span><span class="w"> </span>目标人群：
+<span class="k">-</span><span class="w"> </span>实验单元：用户 / 设备 / 商家 / 订单 / 内容 / 其他
+<span class="k">-</span><span class="w"> </span>是否可随机分组：是 / 否 / 有条件
+<span class="k">-</span><span class="w"> </span>是否存在干扰：无 / 弱干扰 / 强干扰
+<span class="k">-</span><span class="w"> </span>数据链路是否完备：完备 / 需补埋点 / 需对账
+<span class="k">-</span><span class="w"> </span>样本与流量初判：充足 / 紧张 / 不足
+<span class="k">-</span><span class="w"> </span>推荐评估方式：AB / Interleaving / 准实验 / A/A 空转 / 问卷 / 离线评估
+<span class="k">-</span><span class="w"> </span>是否进入实验设计：是 / 否 / 待补充条件
+<span class="k">-</span><span class="w"> </span>需要补充的前置条件：
+</code></pre></div>
+<h2 id="9-checklist">9. 快速 Checklist<a class="headerlink" href="#9-checklist" title="Permanent link">#</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> 业务问题是否具体到人群、场景、动作和指标？</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 预期收益是否明确，且值得占用流量和研发资源？</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 实验处理是否能被平台控制？</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 实验单元是否稳定，且与指标口径一致？</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 是否能随机分组并保持分组稳定？</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 用户之间、实验之间是否存在明显干扰？</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 目标人群和实验周期是否能支撑样本量？</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 曝光、行为、转化、护栏指标是否可观测？</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 是否有小流量、告警、回滚、止损机制？</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 如果不能做 AB，是否明确了替代评估方案？</li>
+</ul>
+<p>下一步进入：<a href="../ExperimentDesign__02_%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1/">02_实验方案设计</a>。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

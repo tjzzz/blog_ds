@@ -1,0 +1,903 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>4.2 回归与分类 - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#42" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4.2 回归与分类
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../topics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Topic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../concepts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概念
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  方法
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  工具
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  案例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../relationships/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../syntheses/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  综合分析
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../relationships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关系
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../syntheses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    综合分析
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 硬输出——判别分析
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.软输出
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<p>所属 Topic：<a href="../../../topics/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a> · 类型：方法</p>
+</blockquote>
+<h1 id="42">4.2 回归与分类<a class="headerlink" href="#42" title="Permanent link">#</a></h1>
+<blockquote>
+<p>统计模型一开始是从回归分析开始的，但是实际问题中更加普遍的是分类问题。那么很自然的一个问题是，如果利用回归分析的方法的话，如何去做分类问题呢？换句话说回归和分类之间的联系在哪里呢？</p>
+</blockquote>
+<p>一个很自然的想法是，根据回归分析y的结果，按照一定规则将其映射到不同的区间段，从而形成一个分类模型。即连续变量 =&gt; 分类变量</p>
+<h3 id="1">1. 硬输出——判别分析<a class="headerlink" href="#1" title="Permanent link">#</a></h3>
+<p>直接根据阈值划分分类结果， 而这个映射函数即为**判别函数**。比较典型的就是判别分析了。常用的判别分析的方法：</p>
+<blockquote>
+<p>距离判别法</p>
+</blockquote>
+<p>即按照样本距离各个总体距离的远近来判断所属的归类。比如基于欧式距离或马氏距离，欧式距离没有考虑到本身特征量纲的差异，所以用的不多。这里以马氏距离，两个类别为例。</p>
+<p>例子：已知一个样本X可能来自两个总体<span class="arithmatex"><span class="MathJax_Preview">G_1</span><script type="math/tex">G_1</script></span>和<span class="arithmatex"><span class="MathJax_Preview">G_2</span><script type="math/tex">G_2</script></span>其中的一个，其中 <span class="arithmatex"><span class="MathJax_Preview">G_1: \mu_1,V_1, G_2:\mu_2, V_2</span><script type="math/tex">G_1: \mu_1,V_1, G_2:\mu_2, V_2</script></span>, 现在给定X，判断其属于哪一类。<br />
+注意：对总体分布没有要求</p>
+<p>解析：判别函数<span class="arithmatex"><span class="MathJax_Preview">W(X)=D^2(X,G_2)-D^2(X,G_1)=(X-\mu_2)V_2^{-1}(X-\mu_2)-(X-\mu_1)V_1^{-1}(X-\mu_1)</span><script type="math/tex">W(X)=D^2(X,G_2)-D^2(X,G_1)=(X-\mu_2)V_2^{-1}(X-\mu_2)-(X-\mu_1)V_1^{-1}(X-\mu_1)</script></span>.</p>
+<p>在实际中因为总体均值和方差是位置的，需要用样本进行估计。当<span class="arithmatex"><span class="MathJax_Preview">V_1=V_2=V</span><script type="math/tex">V_1=V_2=V</script></span>时候，二次判别式可以变成线性的，有<span class="arithmatex"><span class="MathJax_Preview">W(X) = (X-\bar\mu)V^{-1}(\mu_1-\mu_2)</span><script type="math/tex">W(X) = (X-\bar\mu)V^{-1}(\mu_1-\mu_2)</script></span>， 其中<span class="arithmatex"><span class="MathJax_Preview">\bar\mu = (\mu_1+\mu_2)/2</span><script type="math/tex">\bar\mu = (\mu_1+\mu_2)/2</script></span></p>
+<p>误判概率：判别分析肯定也有出错的时候，下面来讨论下误判概率问题。</p>
+<p><img alt="" src="../../../media/15383213879430/15384587841040.jpg" /></p>
+<p>从上图中可以比较清楚的看到，出错的概率即为图中阴影部分的面积。</p>
+<p>假设X属于1，下面计算其被判断成2的概率即P(2|1)=P(W(X)&lt;0). </p>
+<p>令<span class="arithmatex"><span class="MathJax_Preview">\lambda=(\mu_1-\mu_2)'V^{-1}(\mu_1-\mu_2)</span><script type="math/tex">\lambda=(\mu_1-\mu_2)'V^{-1}(\mu_1-\mu_2)</script></span>. 因为<span class="arithmatex"><span class="MathJax_Preview">W(X) = (X-\bar\mu)V^{-1}(\mu_1-\mu_2)</span><script type="math/tex">W(X) = (X-\bar\mu)V^{-1}(\mu_1-\mu_2)</script></span>， 所以可以计算出<br />
+<span class="arithmatex"><span class="MathJax_Preview">E(W(X))=(\mu_1-\bar\mu)V^{-1}(\mu_1-\mu_2)=\lambda/2</span><script type="math/tex">E(W(X))=(\mu_1-\bar\mu)V^{-1}(\mu_1-\mu_2)=\lambda/2</script></span><br />
+<span class="arithmatex"><span class="MathJax_Preview">D(X)=(\mu_1-\mu_2)'V^{-1}(\mu_1-\mu_2)=\lambda</span><script type="math/tex">D(X)=(\mu_1-\mu_2)'V^{-1}(\mu_1-\mu_2)=\lambda</script></span><br />
+在X服从正态分布的假定下，有<span class="arithmatex"><span class="MathJax_Preview">W(X)~N(\lambda/2, \lambda)</span><script type="math/tex">W(X)~N(\lambda/2, \lambda)</script></span>，从而可以计算出<span class="arithmatex"><span class="MathJax_Preview">P(2|1)</span><script type="math/tex">P(2|1)</script></span>与<span class="arithmatex"><span class="MathJax_Preview">P(1|2)</span><script type="math/tex">P(1|2)</script></span></p>
+<blockquote>
+<p>贝叶斯判别法</p>
+</blockquote>
+<p>前面说的距离判别法因为形式简单，计算简便应用比较广。但是没有考虑到各个总体出现的可能性/概率大小，以及误判之后造成的不同损失大小。而贝叶斯判别法就是考虑这两点的一种判别方法。</p>
+<p>这里只对其建模过程做个简述。<br />
+建模：假设m个类别，每个的先验概率和密度函数是 <span class="arithmatex"><span class="MathJax_Preview">q_i, f_i(x)</span><script type="math/tex">q_i, f_i(x)</script></span>, 而将原本属于类别i的判给类别j时候造成的损失，记为<span class="arithmatex"><span class="MathJax_Preview">C(j|i)=</span><script type="math/tex">C(j|i)=</script></span>， 而误判的概率可以写成<span class="arithmatex"><span class="MathJax_Preview">p(j|i,R)=\int_{R_j}f_i(x)dx</span><script type="math/tex">p(j|i,R)=\int_{R_j}f_i(x)dx</script></span>。 因此划分规则R最终带来的损失是<br />
+$<span class="arithmatex"><span class="MathJax_Preview">g(R)=\sum^m_1 q_i r(i,R)=\sum_1^m q_i\sum_{j=1}^m C(j|i)p(j|i,R)</span><script type="math/tex">g(R)=\sum^m_1 q_i r(i,R)=\sum_1^m q_i\sum_{j=1}^m C(j|i)p(j|i,R)</script></span>$</p>
+<blockquote>
+<p>Fisher判别法</p>
+</blockquote>
+<p>fisher 判别法出发点和前面两个略有不同，是从投影/降维角度(将多元转为一元)来进行的。以两类为例：假定训练数据分为两个类别C1和C2,每个类别的均值分别是<span class="arithmatex"><span class="MathJax_Preview">u_1</span><script type="math/tex">u_1</script></span>和<span class="arithmatex"><span class="MathJax_Preview">u_2</span><script type="math/tex">u_2</script></span>,如前所述经过<span class="arithmatex"><span class="MathJax_Preview">y=W^TX+b</span><script type="math/tex">y=W^TX+b</script></span>投影后，最终的目标是希望类内的距离尽量小，类间的距离尽量大</p>
+<p>类内距离：<span class="arithmatex"><span class="MathJax_Preview">s_k=\sum_{x_i\in C_k}(w^Tx_i-w^Tu_k)^2   k=1,2</span><script type="math/tex">s_k=\sum_{x_i\in C_k}(w^Tx_i-w^Tu_k)^2   k=1,2</script></span><br />
+类间聚类：<span class="arithmatex"><span class="MathJax_Preview">(w^Tu_1 - w^Tu_2)^2</span><script type="math/tex">(w^Tu_1 - w^Tu_2)^2</script></span></p>
+<p>因此最终是最大化这个目标函数<span class="arithmatex"><span class="MathJax_Preview">J(W)=\frac{(w^Tu_1 - w^Tu_2)^2}{s_1^2+s_2^2}</span><script type="math/tex">J(W)=\frac{(w^Tu_1 - w^Tu_2)^2}{s_1^2+s_2^2}</script></span>，为了保证<span class="arithmatex"><span class="MathJax_Preview">W</span><script type="math/tex">W</script></span>的唯一性，不妨设<span class="arithmatex"><span class="MathJax_Preview">W'S_WW=1</span><script type="math/tex">W'S_WW=1</script></span></p>
+<div class="arithmatex">
+<div class="MathJax_Preview">MAX J(W)=\frac{W^TS_BW}{W^TS_WW}$$
+$$st. W'S_WW=1 </div>
+<script type="math/tex; mode=display">MAX J(W)=\frac{W^TS_BW}{W^TS_WW}$$
+$$st. W'S_WW=1 </script>
+</div>
+<p>这里简单推导一下求解过程，令<br />
+$$L(W;\lambda)=W'S_BW-\lambda(W'S_WW -1) $$<br />
+$<span class="arithmatex"><span class="MathJax_Preview">\frac{\partial J}{\partial w}=2S_BW-2\lambda S_ww=0</span><script type="math/tex">\frac{\partial J}{\partial w}=2S_BW-2\lambda S_ww=0</script></span>$<br />
+$<span class="arithmatex"><span class="MathJax_Preview">\frac{\partial J}{\partial \lambda}=W'S_WW - 1=0</span><script type="math/tex">\frac{\partial J}{\partial \lambda}=W'S_WW - 1=0</script></span>$<br />
+=&gt; <span class="arithmatex"><span class="MathJax_Preview">W'S_BW=\lambda</span><script type="math/tex">W'S_BW=\lambda</script></span>，所以只需最大化<span class="arithmatex"><span class="MathJax_Preview">\lambda</span><script type="math/tex">\lambda</script></span><br />
+<span class="arithmatex"><span class="MathJax_Preview">S_BW=\lambda S_ww</span><script type="math/tex">S_BW=\lambda S_ww</script></span>  ==&gt; <span class="arithmatex"><span class="MathJax_Preview">S_W^{-1}S_BW=\lambda W</span><script type="math/tex">S_W^{-1}S_BW=\lambda W</script></span><br />
+因此取<span class="arithmatex"><span class="MathJax_Preview">S_W^{-1}S_B</span><script type="math/tex">S_W^{-1}S_B</script></span>的最大特征值即为<span class="arithmatex"><span class="MathJax_Preview">\lambda</span><script type="math/tex">\lambda</script></span>，对应的特征向量即为<span class="arithmatex"><span class="MathJax_Preview">W</span><script type="math/tex">W</script></span></p>
+<p>当然除了判别分析之外，还有SVM等方法，这个后续会具体介绍</p>
+<h3 id="2">2.软输出<a class="headerlink" href="#2" title="Permanent link">#</a></h3>
+<p>利用似然度区分回归结果，根据回归值和似然性的关系输出样本属于某个类别的**概率**。即通过一个激活函数，架起了回归和分类问题的通道。<br />
+$<span class="arithmatex"><span class="MathJax_Preview">y(x) = g^{-1}(w^Tx+b)</span><script type="math/tex">y(x) = g^{-1}(w^Tx+b)</script></span>$</p>
+<p>逻辑回归就是一个典型的例子。传统的回归模型的假定已经不成立，因为预测变量y是服从二项分布，逻辑回归估计的是样本属于某个类别的后验概率。即</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">p(c_1|x)=\frac{p(x|c_1)p(c_1)}{p(x|c_1)p(c_1) + p(x|c_2)p(c_2)}</div>
+<script type="math/tex; mode=display">p(c_1|x)=\frac{p(x|c_1)p(c_1)}{p(x|c_1)p(c_1) + p(x|c_2)p(c_2)}</script>
+</div>
+<p>从这个角度看，对上式稍加变形就有</p>
+<p>$<span class="arithmatex"><span class="MathJax_Preview">p(c_1|x)=\frac{1}{1+exp(-z)}=\pi(z)</span><script type="math/tex">p(c_1|x)=\frac{1}{1+exp(-z)}=\pi(z)</script></span>$<br />
+其中<span class="arithmatex"><span class="MathJax_Preview">z=ln \frac{p(x|c_1)p(c_1)}{p(x|c_2)p(c_2)}=w^Tx + b</span><script type="math/tex">z=ln \frac{p(x|c_1)p(c_1)}{p(x|c_2)p(c_2)}=w^Tx + b</script></span></p>
+<p>参数估计用MLE方法：最终分类结果只有两个，所以是服从二项分布<br />
+$<span class="arithmatex"><span class="MathJax_Preview">p(w,b|x) = \prod \pi(x_i)^{y_i}[1-\pi(x_i)]^{1-y_i}</span><script type="math/tex">p(w,b|x) = \prod \pi(x_i)^{y_i}[1-\pi(x_i)]^{1-y_i}</script></span>$</p>
+<p>对数似然函数<br />
+$<span class="arithmatex"><span class="MathJax_Preview">J(w)=\sum_1^n y_i ln(\pi(z_i)) + (1-y_i)ln(1-\pi(z_i))</span><script type="math/tex">J(w)=\sum_1^n y_i ln(\pi(z_i)) + (1-y_i)ln(1-\pi(z_i))</script></span>$</p>
+<p>最大化这个目标函数，可以用梯度下降的方法。注意到sigmoid函数有一个比较好的性质<span class="arithmatex"><span class="MathJax_Preview">\pi'(z)=\pi(z)(1-\pi(z))</span><script type="math/tex">\pi'(z)=\pi(z)(1-\pi(z))</script></span></p>
+<p>推导：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">\frac{\partial J(W)}{\partial w_j}=\sum (y_i\frac{1}{pi(z_i)}-(1-y_i)\frac{1}{1-\pi(z_i)})\pi(z_i)(1-\pi(z_i))x_j$$
+$$=\sum [y_i(1-\pi(z_i)) - (1-y_i)\pi(z_i)]x_j</div>
+<script type="math/tex; mode=display">\frac{\partial J(W)}{\partial w_j}=\sum (y_i\frac{1}{pi(z_i)}-(1-y_i)\frac{1}{1-\pi(z_i)})\pi(z_i)(1-\pi(z_i))x_j$$
+$$=\sum [y_i(1-\pi(z_i)) - (1-y_i)\pi(z_i)]x_j</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">=\sum(y_i -\pi(z_i))x_j</div>
+<script type="math/tex; mode=display">=\sum(y_i -\pi(z_i))x_j</script>
+</div>
+<p>因此在利用梯度下降方法更新权重时候，只需要按照<span class="arithmatex"><span class="MathJax_Preview">w_j:=w_j +\eta\sum(y_i -\pi(z_i))x_j</span><script type="math/tex">w_j:=w_j +\eta\sum(y_i -\pi(z_i))x_j</script></span>即可</p>
+<p>梯度下降的python版本实现 <a href="https://github.com/tjzzz/data_science/blob/master/statistical%20learning/logistic_regression.py">github</a></p>
+<p><strong>sklearn实现</strong>： 逻辑回归是在<code>sklearn.linear_model</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">multi_class</span><span class="o">=</span><span class="s1">'multinomial'</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">'sag'</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>OR值(odds ratio), 本来是在医学实验中的词，值实验组中暴露人数与非暴露人数的比值，与对照组中暴露人数与非暴露人数的比值的比值，所以也叫**比值比**<br />
+逻辑回归的更新公式与一般的线性回归的极为相似。<span class="arithmatex"><span class="MathJax_Preview">\sum(y_i-x_iw)x_j</span><script type="math/tex">\sum(y_i-x_iw)x_j</script></span></p>
+</blockquote>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
