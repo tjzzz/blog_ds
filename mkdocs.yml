@@ -5,6 +5,7 @@
 site_name: blog_ds
 nav:
   - 首页: index.md
+  - 关于我: about.md
   - Topic: topics/index.md
   - 概念: concepts/index.md
   - 方法: methods/index.md
