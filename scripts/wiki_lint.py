@@ -11,8 +11,10 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 SOURCE = ROOT / 'Input/rebuild_source_2026-10-09'
+LEGACY_SOURCE = ROOT / 'Input/legacy_docs_2026-10-09'
 MIGRATION = json.loads((ROOT / 'scripts/wiki_migration_map.json').read_text())
 MANIFEST_PATH = SOURCE / '_manifest.json'
+LEGACY_MANIFEST_PATH = LEGACY_SOURCE / '_manifest.json'
 ERRORS: list[str] = []
 FIELDS = {'title','created','updated','tags','source','topic','wiki_type','migrated_from','review_status'}
 LINK = re.compile(r'!?\[[^\]\n]*\]\(([^)\n]+)\)')
@@ -20,6 +22,7 @@ SECRET = re.compile(r'sk-[A-Za-z0-9_-]{20,}')
 IMAGE_EXT = {'.png','.jpg','.jpeg','.gif','.webp','.svg','.bmp','.tif','.tiff'}
 
 source_count = MIGRATION['source_count']
+snapshot_state = 'private snapshot unavailable'
 if MANIFEST_PATH.is_file():
     manifest = json.loads(MANIFEST_PATH.read_text())
     if len(manifest['files']) != source_count:
@@ -30,6 +33,16 @@ if MANIFEST_PATH.is_file():
             ERRORS.append(f'missing source: {rel}')
         elif hashlib.sha256(path.read_bytes()).hexdigest() != expected:
             ERRORS.append(f'changed source snapshot: {rel}')
+    snapshot_state = 'full private snapshot verified'
+elif LEGACY_MANIFEST_PATH.is_file():
+    legacy_manifest = json.loads(LEGACY_MANIFEST_PATH.read_text())
+    for rel, expected in legacy_manifest['files'].items():
+        path = LEGACY_SOURCE / rel
+        if not path.is_file():
+            ERRORS.append(f'missing legacy backup: {rel}')
+        elif hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+            ERRORS.append(f'changed legacy backup: {rel}')
+    snapshot_state = f"full snapshot missing; {len(legacy_manifest['files'])} legacy files verified"
 
 for old, new in MIGRATION['mapping'].items():
     page, alias = DOCS/new, DOCS/old
@@ -76,7 +89,6 @@ for path in DOCS.rglob('*'):
     if path.is_file() and len(path.relative_to(DOCS).parts) > 3:
         ERRORS.append(f'asset exceeds two folder levels: {path.relative_to(DOCS)}')
 
-snapshot_state = 'verified' if MANIFEST_PATH.is_file() else 'private snapshot unavailable'
 missing_images = len(list((DOCS/'media/missing').glob('*.svg')))
 print(f"Source snapshots: {source_count} ({snapshot_state}); migrated articles: {len(MIGRATION['mapping'])}; "
       f"Topic pages: 13; unrecovered originals: {missing_images}; errors: {len(ERRORS)}")
