@@ -13,4 +13,7 @@ jobs:
         with:
           python-version: '3.x'
       - run: pip install -r requirements.txt
-      - run: mkdocs gh-deploy --force
+      - run: python config/scripts/wiki_lint.py
+      - run: mkdocs build --strict -f config/mkdocs.yml
+      - run: python config/scripts/check_site_output.py
+      - run: mkdocs gh-deploy --force --strict -f config/mkdocs.yml

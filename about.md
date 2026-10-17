@@ -1,0 +1,12 @@
+---
+title: 关于我
+wiki_type: site
+---
+
+# 关于我
+
+- 统计专业一枚研究僧
+- 毕业后在熊厂、aibee、宇宙厂工作过
+- 感兴趣方向：DS、线下数字化
+
+> GitHub：tjzzz（同本仓库 owner，已公开）
