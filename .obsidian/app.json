@@ -1,6 +1,6 @@
 {
   "defaultViewMode": "preview",
-  "attachmentFolderPath": "Draft/media",
+  "attachmentFolderPath": "media",
   "newLinkFormat": "relative",
   "useMarkdownLinks": true,
   "alwaysUpdateLinks": true,
