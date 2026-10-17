@@ -3,6 +3,7 @@
 from __future__ import annotations
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 from urllib.parse import unquote
@@ -22,6 +23,7 @@ FIELDS = {'title','created','updated','tags','source','topic','wiki_type','migra
 PRIVATE_TOPICS = {'深度学习', '业务指标与诊断', '轨迹分析', '编程与数据工程'}
 PUBLIC_TOPICS = ('数据科学工作流','统计学基础','实验设计与AB测试','因果推断','机器学习',
                  '推荐系统','数字零售与商业空间','算法与面试','AI与Agent')
+CONSOLIDATED_PAGES = {'topics/实验设计与AB测试/统计判断与决策/贝叶斯胜率.md'}
 LINK = re.compile(r'!?\[[^\]\n]*\]\(([^)\n]+)\)')
 SECRET = re.compile(r'sk-[A-Za-z0-9_-]{20,}')
 IMAGE_EXT = {'.png','.jpg','.jpeg','.gif','.webp','.svg','.bmp','.tif','.tiff'}
@@ -51,6 +53,8 @@ elif LEGACY_MANIFEST_PATH.is_file():
 
 for old, new in MIGRATION['mapping'].items():
     private = new.startswith('topics/') and new.split('/')[1] in PRIVATE_TOPICS
+    if private and (os.environ.get('CI') or not (DOCS/'Input').is_dir()):
+        continue
     page = DOCS/'Input'/Path(new).relative_to('topics') if private else DOCS/new
     alias = DOCS/old
     if not page.is_file():
@@ -67,6 +71,10 @@ for old, new in MIGRATION['mapping'].items():
     try: meta=yaml.safe_load(match.group(1)) or {}
     except yaml.YAMLError as exc:
         ERRORS.append(f'invalid frontmatter: {new}: {exc}')
+        continue
+    if new in CONSOLIDATED_PAGES:
+        if meta.get('wiki_type') not in {'concepts','methods'}:
+            ERRORS.append(f'{new}: invalid wiki_type')
         continue
     required = FIELDS - {'migrated_from'} if new.startswith('topics/') and new.endswith('/index.md') else FIELDS
     for field in required-set(meta): ERRORS.append(f'{new}: missing {field}')

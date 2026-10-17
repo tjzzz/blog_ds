@@ -80,7 +80,7 @@ p 很小 ⇒ 证据太不像偶然 ⇒ 判 H0 有罪(显著)
 ## 🔗 关联笔记
 
 - 地基推导：[推断统计—假设检验](../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E6%8E%A8%E6%96%AD%E7%BB%9F%E8%AE%A1%E2%80%94%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C.md)、[推断统计—参数估计](../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E6%8E%A8%E6%96%AD%E7%BB%9F%E8%AE%A1%E2%80%94%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1.md)
-- 进阶出路：[02_贝叶斯胜率](ab%E5%AE%9E%E9%AA%8C__02_%E8%B4%9D%E5%8F%B6%E6%96%AF%E8%83%9C%E7%8E%87.md)（对比）、[03_序贯分析](ab%E5%AE%9E%E9%AA%8C__03_%E5%BA%8F%E8%B4%AF%E5%88%86%E6%9E%90.md)（修 peek）
+- 进阶出路：[02_贝叶斯胜率](贝叶斯胜率.md)（对比）、[03_序贯分析](ab%E5%AE%9E%E9%AA%8C__03_%E5%BA%8F%E8%B4%AF%E5%88%86%E6%9E%90.md)（修 peek）
 - 提效：[04_CUPED与方差缩减](../%E7%81%B5%E6%95%8F%E5%BA%A6%E4%B8%8E%E6%8F%90%E6%95%88/ab%E5%AE%9E%E9%AA%8C__04_CUPED%E4%B8%8E%E6%96%B9%E5%B7%AE%E7%BC%A9%E5%87%8F.md)（缩小 σ，等价降样本量）
 - 总入口：[MOC_ab实验方法图谱](../index.md#ab-method-map)
 
