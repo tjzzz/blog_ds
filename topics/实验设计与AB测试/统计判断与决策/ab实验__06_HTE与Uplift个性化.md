@@ -11,7 +11,7 @@ tags:
   - llm-wiki
 description: "异质处理效应(HTE)与 Uplift 建模：ATE vs CATE、Uplift 四类人群、Qini/AUUC 评估、因果森林。当前学界+工业最热方向。对接 vault 因果推断体系。"
 created: 2026-10-09
-updated: 2026-10-09
+updated: 2026-10-19
 source: ["Input/rebuild_source_2026-10-09/03_统计/ab实验/06_HTE与Uplift个性化.md"]
 wiki_type: methods
 topic: "实验设计与AB测试"
@@ -59,8 +59,8 @@ Uplift：      只给「推了才转化」的人推  ← 最省成本
 
 ## 🎯 实战用法
 - 用实验数据训 CATE/Uplift 模型 → 对高 uplift 人群定向投放，省成本提 ROI
-- 与 [05_MAB与客户分群路由](ab%E5%AE%9E%E9%AA%8C__05_MAB%E4%B8%8E%E5%AE%A2%E6%88%B7%E5%88%86%E7%BE%A4%E8%B7%AF%E7%94%B1.md) 结合：MAB 选策略，Uplift 选人群
-- 与 [07_网络效应与干扰](../%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/ab%E5%AE%9E%E9%AA%8C__07_%E7%BD%91%E7%BB%9C%E6%95%88%E5%BA%94%E4%B8%8E%E5%B9%B2%E6%89%B0.md) 注意：社交产品里「对谁推」还要考虑溢出
+- 与 [05_MAB与客户分群路由](../分流与平台/ab实验__05_MAB与客户分群路由.md) 结合：MAB 选策略，Uplift 选人群
+- 与 [07_网络效应与干扰](../复杂场景与治理/ab实验__07_网络效应与干扰.md) 注意：社交产品里「对谁推」还要考虑溢出
 
 ---
 
@@ -72,9 +72,9 @@ Uplift：      只给「推了才转化」的人推  ← 最省成本
 
 ## 🔗 关联笔记
 
-- 因果底座：[潜在结果框架](../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E4%B8%8E%E8%AF%86%E5%88%AB/CausalAnalysis__04_%E6%BD%9C%E5%9C%A8%E7%BB%93%E6%9E%9C%E6%A1%86%E6%9E%B6_ITE_ATE_ATT_CATE.md)（待补）、因果推断.md（待补）
-- 分流承接：[05_MAB与客户分群路由](ab%E5%AE%9E%E9%AA%8C__05_MAB%E4%B8%8E%E5%AE%A2%E6%88%B7%E5%88%86%E7%BE%A4%E8%B7%AF%E7%94%B1.md)
-- 干扰注意：[07_网络效应与干扰](../%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/ab%E5%AE%9E%E9%AA%8C__07_%E7%BD%91%E7%BB%9C%E6%95%88%E5%BA%94%E4%B8%8E%E5%B9%B2%E6%89%B0.md)
-- 总入口：[MOC_ab实验方法图谱](../index.md#ab-method-map)
+- 因果底座：[潜在结果框架](../../因果推断/基础与识别/潜在结果框架_ITE_ATE_ATT_CATE.md)（待补）、因果推断.md（待补）
+- 分流承接：[05_MAB与客户分群路由](../分流与平台/ab实验__05_MAB与客户分群路由.md)
+- 干扰注意：[07_网络效应与干扰](../复杂场景与治理/ab实验__07_网络效应与干扰.md)
+- 总入口：[实验设计与AB测试](../index.md#ab-method-map)
 
-**更新日期**：2026-10-09
+**更新日期**：2026-10-19

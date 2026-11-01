@@ -17,11 +17,8 @@ nav:
       - 因果推断: topics/因果推断/index.md
       - 机器学习: topics/机器学习/index.md
       - 推荐系统: topics/推荐系统/index.md
-      - 数字零售与商业空间: topics/数字零售与商业空间/index.md
-      - 算法与面试: topics/算法与面试/index.md
-      - AI与Agent: topics/AI与Agent/index.md
-  - 关系: relationships/index.md
-  - 综合分析: syntheses/index.md
+  - AI与Agent: AI与Agent/index.md
+  - Books: Books/index.md
   - 维护规范: wiki-schema.md
 
 theme:
@@ -84,7 +81,7 @@ plugins:
         - "**/*.gz"
       regex:
         # Root is the docs source. Publish only these reviewed site paths.
-        - '^(?!(?:topics|relationships|syntheses|media|js|assets)/|(?:index|about|wiki-log|wiki-schema)\.md$).+'
+        - '^(?!(?:topics|relationships|syntheses|media|js|assets|AI与Agent|Books)/|(?:index|about|wiki-log|wiki-schema)\.md$).+'
         - '.*\.(tmp|bin|tar|db|sqlite|pem|key|p12)$'
 
 extra_javascript:

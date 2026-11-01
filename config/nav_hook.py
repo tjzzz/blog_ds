@@ -31,8 +31,11 @@ def _reading_order(directory):
         if not target.endswith(".md"):
             continue
         resolved = (directory / target).resolve()
-        if resolved.is_relative_to(directory.resolve()):
-            order.setdefault(resolved, len(order))
+        try:
+            resolved.relative_to(directory.resolve())
+        except ValueError:
+            continue
+        order.setdefault(resolved, len(order))
     return order
 
 

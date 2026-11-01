@@ -29,7 +29,7 @@ review_status: structural
 # 4. 在匹配后样本上估计 treatment effect
 ```
 
-旧文档 [Matching方法](../%E5%87%86%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95/CausalAnalysis__%E6%96%B9%E6%B3%95_Matching%E4%B8%8EPSM.md) 中已有一版 PSMEstimator 代码，后续可以整理成可运行 notebook。
+旧文档 [Matching方法](../准实验方法/Matching与PSM.md) 中已有一版 PSMEstimator 代码，后续可以整理成可运行 notebook。
 
 ## 2. DID 的基础回归
 
