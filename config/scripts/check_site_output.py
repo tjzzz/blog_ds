@@ -7,7 +7,7 @@ SITE = ROOT.parent / "Z_Project_DS_site"
 ALLOWED_ROOT_FILES = {"index.html", "404.html", "sitemap.xml", "sitemap.xml.gz"}
 ALLOWED_DIRS = {
     "about", "wiki-log", "wiki-schema", "topics", "relationships",
-    "syntheses", "media", "js", "assets", "search",
+    "syntheses", "media", "js", "assets", "search", "AI与Agent", "Books",
 }
 
 if not (SITE / "index.html").is_file():
