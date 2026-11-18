@@ -16,4 +16,7 @@ jobs:
       - run: python config/scripts/wiki_lint.py
       - run: mkdocs build --strict -f config/mkdocs.yml
       - run: python config/scripts/check_site_output.py
-      - run: mkdocs gh-deploy --force --strict -f config/mkdocs.yml
+      # The 资讯 tab is sourced from a folder outside the repo (../资讯),
+      # which does not exist on CI. Publishing is done locally with
+      # `mkdocs gh-deploy -f config/mkdocs.yml`; CI only validates and must
+      # not overwrite gh-pages with a build that lacks the tab.
