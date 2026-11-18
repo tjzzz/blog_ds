@@ -6,7 +6,7 @@
 
 从 [`topics/index.md`](../topics/index.md) 的 13 个 Topic 进入；每个主题的 `index.md` 通向子领域目录，子领域的 `index.md` 列出文章。概念、方法、工具和案例正文按子领域放置，每篇正文的 `wiki_type` 元数据标记文档类型。一个页面只维护一份，其他主题通过链接引用。
 
-[`relationships/`](../relationships/index.md)解释知识之间的联系；[`syntheses/`](../syntheses/index.md)整合跨主题问题。页面字段与维护方式见 [`wiki-schema.md`](../wiki-schema.md)。
+跨主题的关系与综合问题已并入各 Topic 正文。页面字段与维护方式见 [`wiki-schema.md`](../wiki-schema.md)。
 
 ## 来源与迁移
 
@@ -16,7 +16,7 @@
 
 ## 图片
 
-旧图尽量从当前 Vault 和本机备份恢复，放在 `media/recovered/`。8 张找不到原文件的图片使用明确标注的占位图，见 [`syntheses/待找回图片.md`](../syntheses/待找回图片.md)。Excalidraw 原稿仍在本地 `附件/`；未导出的图稿在正文中标注原始路径。
+旧图尽量从当前 Vault 和本机备份恢复，放在 `media/recovered/`。8 张找不到原文件的图片使用明确标注的占位图。Excalidraw 原稿仍在本地 `附件/`；未导出的图稿在正文中标注原始路径。
 
 ## 本地检查
 
@@ -31,4 +31,4 @@ python3 -m venv .venv
 
 校验脚本使用仓库内的迁移映射检查公开页面，并核对当前可用的 338 篇旧文备份；如果找回 `Input/rebuild_source_2026-10-09/`，还会逐文件核对完整原稿哈希。
 
-博客由 `.github/workflows/ci.yml` 在 `master/main` 推送后构建并发布到 GitHub Pages。MkDocs 只收录 `topics/`、`relationships/`、`syntheses/`、`media/`、`js/`、主题静态资源 `assets/` 和四个根目录站点页；`Input/` 等本地资料不进入构建。公开前检查待提交文件和图片；公开仓库中已提交的文件同样可见，私有原始资料不得提交。
+CI 在 `master/main` 推送后只做校验；站点由本地 `mkdocs gh-deploy` 发布到 GitHub Pages（资讯 tab 由外部目录注入，仅本地构建包含）。MkDocs 收录 `topics/`、`media/`、`js/`、主题静态资源 `assets/` 和四个根目录站点页；`Input/` 等本地资料不进入构建。公开前检查待提交文件和图片；公开仓库中已提交的文件同样可见，私有原始资料不得提交。

@@ -11,7 +11,7 @@ wiki_type: site
 
 ## 从哪里进入
 
-先选 [Topic](topics/index.md)，沿关键问题和阅读路线进入文章。正文按子领域保存在 `topics/<主题>/<子领域>/`；页面元数据 `wiki_type` 标明概念、方法、工具、案例等类型。[关系](relationships/index.md)解释概念之间怎样作用，[综合分析](syntheses/index.md)回答跨主题决策问题。
+先选 [Topic](topics/index.md)，沿关键问题和阅读路线进入文章。正文按子领域保存在 `topics/<主题>/<子领域>/`；页面元数据 `wiki_type` 标明概念、方法、工具、案例等类型。概念之间的关系与跨主题决策问题并入对应 Topic 正文。
 
 每个 Topic 维护 `topics/<主题>/index.md` 主入口；每个子领域目录以自己的 `index.md` 列出文章。主题级 MOC、TOC 与导读内容并入主入口，原始来源记录在 `source` 和 `merged_from`；专题范围较窄的综述仍可作为独立资料页。Topic 提供导航，一篇正文只放在一个主归属主题的子领域目录中，其他 Topic 通过链接引用。
 
@@ -32,6 +32,6 @@ wiki_type: site
 
 ## 图片和发布
 
-图片统一放在 `media/`。本轮找回的旧素材在 `media/recovered/`；[8 张待找回原图](syntheses/%E5%BE%85%E6%89%BE%E5%9B%9E%E5%9B%BE%E7%89%87.md)暂用明确标注的占位图，原文件名记录在待找回清单。新增图片要确认来源和公开权限。
+图片统一放在 `media/`。本轮找回的旧素材在 `media/recovered/`；8 张待找回原图暂用明确标注的占位图。新增图片要确认来源和公开权限。
 
 发布前检查待提交文件、敏感内容、图片和 MkDocs 构建。MkDocs 配置只收录明确列出的公开页面目录。`blog_ds` 是公开仓库：即使文件没有进入网站，只要被提交到仓库，也能在 GitHub 上被读取。
