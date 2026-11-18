@@ -1,0 +1,8683 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>post_stratification_variance - blog_ds</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#post_stratification_variance" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="blog_ds" class="md-header__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog_ds
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              post_stratification_variance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tjzzz/blog_ds" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Topic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../AI%E4%B8%8EAgent/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI与Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Books/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Books
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../wiki-schema/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  维护规范
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E8%B5%84%E8%AE%AF/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  资讯
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="blog_ds" class="md-nav__button md-logo" aria-label="blog_ds" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blog_ds
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tjzzz/blog_ds" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于我
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据科学工作流
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据科学工作流
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    增强分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    增强分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90__BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90__%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    增强分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90__%E5%A4%9A%E7%BB%B4%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多维分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90/%E5%A2%9E%E5%BC%BA%E5%88%86%E6%9E%90__%E8%87%AA%E5%8A%A8%E6%95%B0%E6%8D%AE%E8%A7%81%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自动数据见解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据可视化
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据可视化
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/DataVisulization__%40%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    @数据可视化概述
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/DataVisulization__R-%E5%8F%AF%E8%A7%86%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    R-可视化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/DataVisulization__python-matplotlib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python-matplotlib
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/DataVisulization__python-seaborn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python-seaborn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/DataVisulization__superset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    superset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E4%B8%8E%E8%B4%A8%E9%87%8F/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据获取与质量
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据获取与质量
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E4%B8%8E%E8%B4%A8%E9%87%8F/get_Data__python-BeautifulSoup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python-BeautifulSoup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E4%B8%8E%E8%B4%A8%E9%87%8F/get_Data__python-selenium/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python-selenium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E4%B8%8E%E8%B4%A8%E9%87%8F/%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据质量
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    环境与工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    环境与工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/2%20%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7conda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 环境管理工具conda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/2.%20%E7%BB%88%E7%AB%AFIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 终端IDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/3.vim%20%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.vim 配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/Jupyter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jupyter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/crontab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    crontab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/ssh%26%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssh&发送邮件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/%E5%89%8D%E6%B2%BFstudy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    前沿study
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%85%A5%E9%97%A8%E8%B5%84%E6%96%99/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    如何选择入门资料
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%B7%A5%E4%BD%9C%E6%B5%81/%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7/%E6%9C%89%E7%94%A8%E7%9A%84%E7%BD%91%E5%9D%80%26%E5%B0%8F%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    有用的网址&小工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学基础
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    统计学基础
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    应用案例
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    应用案例
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/%E6%A1%88%E4%BE%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学应用案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物统计-生存分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E6%8A%BD%E6%A0%B7%E4%B8%8E%E4%BC%B0%E8%AE%A1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    抽样与估计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    抽样与估计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E6%8A%BD%E6%A0%B7%E4%B8%8E%E4%BC%B0%E8%AE%A1/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1-%E6%A0%B7%E6%9C%AC%E9%87%8F%E7%9A%84%E7%A1%AE%E5%AE%9A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参数估计-样本量的确定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E6%8A%BD%E6%A0%B7%E4%B8%8E%E4%BC%B0%E8%AE%A1/%E6%8A%BD%E6%A0%B7%E6%8A%80%E6%9C%AF__%E6%8A%BD%E6%A0%B7%E6%8A%80%E6%9C%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    抽样技术
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E6%8A%BD%E6%A0%B7%E4%B8%8E%E4%BC%B0%E8%AE%A1/%E6%8A%BD%E6%A0%B7%E6%8A%80%E6%9C%AF__%E8%B0%83%E6%9F%A5%E9%97%AE%E5%8D%B7%E7%9A%84%E4%BF%A1%E5%BA%A6%E3%80%81%E6%95%88%E5%BA%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    调查问卷的信度、效度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计基础与推断
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    统计基础与推断
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    回归分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E5%88%86%E7%B1%BB%E5%8F%98%E9%87%8F%E7%9A%84%E6%8E%A8%E6%96%AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分类变量的推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础统计学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E6%8E%A8%E6%96%AD%E7%BB%9F%E8%AE%A1-%E9%9D%9E%E5%8F%82%E6%95%B0%E6%A3%80%E9%AA%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    推断统计-非参数检验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E6%8E%A8%E6%96%AD%E7%BB%9F%E8%AE%A1%E2%80%94%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    推断统计—假设检验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E6%8E%A8%E6%96%AD%E7%BB%9F%E8%AE%A1%E2%80%94%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    推断统计—参数估计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方差分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E7%BB%9F%E8%AE%A1%E5%AD%A6__%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    置信区间：估计的不确定性如何表达
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验设计与AB测试
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    实验设计与AB测试
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02_%E5%AE%9E%E9%AA%8C%E6%B5%81%E7%A8%8B%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02_实验流程与设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_2" id="__nav_3_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    02_实验流程与设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_%E5%AE%9E%E9%AA%8C%E6%B5%81%E7%A8%8B%E4%B8%8E%E8%AE%BE%E8%AE%A1/00_%E5%AE%9E%E9%AA%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%8E%E4%B8%8A%E7%BA%BF%E6%B2%BB%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验生命周期与上线治理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_%E5%AE%9E%E9%AA%8C%E6%B5%81%E7%A8%8B%E4%B8%8E%E8%AE%BE%E8%AE%A1/01_%E5%AE%9E%E9%AA%8C%E5%8F%AF%E8%A1%8C%E6%80%A7%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01_实验可行性分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_%E5%AE%9E%E9%AA%8C%E6%B5%81%E7%A8%8B%E4%B8%8E%E8%AE%BE%E8%AE%A1/02_%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验方案设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_%E5%AE%9E%E9%AA%8C%E6%B5%81%E7%A8%8B%E4%B8%8E%E8%AE%BE%E8%AE%A1/03_%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%98%BE%E8%91%97%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验指标体系与统计规划
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_%E5%AE%9E%E9%AA%8C%E6%B5%81%E7%A8%8B%E4%B8%8E%E8%AE%BE%E8%AE%A1/%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95%E9%80%89%E6%8B%A9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验方法选择：A/B、区组、析因与 Interleaving
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_%E5%AE%9E%E9%AA%8C%E6%B5%81%E7%A8%8B%E4%B8%8E%E8%AE%BE%E8%AE%A1/%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%85%A8%E9%87%8F%E5%B7%AE%E5%BC%82%E6%8E%92%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验结果与全量效果不一致：排查框架
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01_%E5%88%86%E6%B5%81%E4%B8%8E%E4%BA%BA%E7%BE%A4%E7%AD%9B%E9%80%89/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01_分流与人群筛选
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_3" id="__nav_3_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    01_分流与人群筛选
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E5%88%86%E6%B5%81%E4%B8%8E%E4%BA%BA%E7%BE%A4%E7%AD%9B%E9%80%89/01_%E5%88%86%E6%B5%81%E7%A7%91%E5%AD%A6%E6%80%A7%E4%B8%8E%E5%B9%B3%E5%8F%B0%E6%A0%A1%E9%AA%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分流科学性与平台校验：均匀性、代表性、无 diff 与假阳性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E5%88%86%E6%B5%81%E4%B8%8E%E4%BA%BA%E7%BE%A4%E7%AD%9B%E9%80%89/02_%E6%B5%81%E9%87%8F%E5%9F%9F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%B5%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    流量域设计与分流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E5%88%86%E6%B5%81%E4%B8%8E%E4%BA%BA%E7%BE%A4%E7%AD%9B%E9%80%89/ab%E5%AE%9E%E9%AA%8C__05_MAB%E4%B8%8E%E5%AE%A2%E6%88%B7%E5%88%86%E7%BE%A4%E8%B7%AF%E7%94%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 MAB 与客户分群路由 (CSR) — 分流侧的两类解法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E5%88%86%E6%B5%81%E4%B8%8E%E4%BA%BA%E7%BE%A4%E7%AD%9B%E9%80%89/CSR-%E5%AE%A2%E6%88%B7%E5%88%86%E7%BE%A4%E8%B7%AF%E7%94%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSR：客户分群路由
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E5%88%86%E6%B5%81%E4%B8%8E%E4%BA%BA%E7%BE%A4%E7%AD%9B%E9%80%89/ExperimentDesign__03_%E6%8A%BD%E6%A0%B7%E5%B9%B3%E5%8F%B0_%E6%B5%81%E9%87%8F%E5%88%86%E7%BB%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03_抽样平台_流量分组
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E5%88%86%E6%B5%81%E4%B8%8E%E4%BA%BA%E7%BE%A4%E7%AD%9B%E9%80%89/ExperimentDesign__%E6%B5%81%E9%87%8F%E5%88%86%E7%BB%84_%E5%90%84%E6%B5%81%E9%87%8F%E5%9F%9F%E6%9E%B6%E6%9E%84.excalidraw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    流量分组_各流量域架构.excalidraw
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E5%88%86%E6%B5%81%E4%B8%8E%E4%BA%BA%E7%BE%A4%E7%AD%9B%E9%80%89/SRM-%E5%88%86%E7%BB%84%E6%A0%B7%E6%9C%AC%E6%AF%94%E4%BE%8B%E4%B8%8D%E5%8C%B9%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分组样本比例不匹配（SRM）：检测、诊断与处置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03_%E7%BB%9F%E8%AE%A1%E5%88%A4%E6%96%AD%E4%B8%8E%E5%86%B3%E7%AD%96/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03_统计判断与决策
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_4" id="__nav_3_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    03_统计判断与决策
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E7%BB%9F%E8%AE%A1%E5%88%A4%E6%96%AD%E4%B8%8E%E5%86%B3%E7%AD%96/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%E4%B8%8Ep%E5%80%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 假设检验与 p 值 — 频率学派如何估计 A/B 实验效果
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E7%BB%9F%E8%AE%A1%E5%88%A4%E6%96%AD%E4%B8%8E%E5%86%B3%E7%AD%96/%E8%B4%9D%E5%8F%B6%E6%96%AF%E8%83%9C%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贝叶斯胜率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E7%BB%9F%E8%AE%A1%E5%88%A4%E6%96%AD%E4%B8%8E%E5%86%B3%E7%AD%96/%E5%BA%8F%E8%B4%AF%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序贯分析：实验中持续查看与提前停止
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E7%BB%9F%E8%AE%A1%E5%88%A4%E6%96%AD%E4%B8%8E%E5%86%B3%E7%AD%96/%E5%88%A4%E6%96%AD%E6%96%B9%E6%B3%95%E4%B8%8E%E4%B8%8A%E7%BA%BF%E5%86%B3%E7%AD%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    判断方法与上线决策
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E7%BB%9F%E8%AE%A1%E5%88%A4%E6%96%AD%E4%B8%8E%E5%86%B3%E7%AD%96/ab%E5%AE%9E%E9%AA%8C__06_HTE%E4%B8%8EUplift%E4%B8%AA%E6%80%A7%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 HTE 与 Uplift 个性化 — 从「平均效应」到「谁受益」
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E7%BB%9F%E8%AE%A1%E5%88%A4%E6%96%AD%E4%B8%8E%E5%86%B3%E7%AD%96/MDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MDE（最小可检测效应）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05_%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05_复杂场景与治理
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_5" id="__nav_3_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    05_复杂场景与治理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/%E8%BE%9B%E6%99%AE%E6%A3%AE%E6%82%96%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ☆辛普森悖论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/Experiment%E9%9A%BE%E9%A2%98__%E5%A4%9A%E9%87%8D%E6%A3%80%E9%AA%8C%E4%B8%8E%E6%98%BE%E8%91%97%E6%80%A7%E7%AA%A5%E6%8E%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多重检验与显著性窥探
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/Experiment%E9%9A%BE%E9%A2%98__%E6%97%B6%E5%BA%8F%E5%B9%B2%E6%89%B0%E4%B8%8E%E9%95%BF%E6%9C%9F%E6%95%88%E5%BA%94/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    时序干扰与长期效应
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/Experiment%E9%9A%BE%E9%A2%98__%E8%A7%A6%E5%8F%91%E5%81%8F%E5%B7%AE%E4%B8%8E%E5%B9%B8%E5%AD%98%E8%80%85%E5%81%8F%E5%B7%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    触发偏差与幸存者偏差
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/%E9%AB%98%E9%98%B6%E5%AE%9E%E9%AA%8C%E9%9A%BE%E9%A2%98_%E6%8C%87%E6%A0%87%E6%B1%A1%E6%9F%93%E4%B8%8E%E5%8F%A3%E5%BE%84%E6%BC%82%E7%A7%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高阶实验难题_指标污染与口径漂移
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/%E9%AB%98%E9%98%B6%E5%AE%9E%E9%AA%8C%E9%9A%BE%E9%A2%98_%E7%BD%91%E7%BB%9C%E6%95%88%E5%BA%94%E4%B8%8E%E6%BA%A2%E5%87%BA%E5%B9%B2%E6%89%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高阶实验难题_网络效应与溢出干扰
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/ab%E5%AE%9E%E9%AA%8C__07_%E7%BD%91%E7%BB%9C%E6%95%88%E5%BA%94%E4%B8%8E%E5%B9%B2%E6%89%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 网络效应与干扰 — 社交/双边市场下 RCT 的隐形杀手
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%A4%8D%E6%9D%82%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%B2%BB%E7%90%86/ab%E5%AE%9E%E9%AA%8C__08_%E5%AE%9E%E9%AA%8C%E6%B2%BB%E7%90%86%E4%B8%8E%E6%8A%A4%E6%A0%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 实验治理与护栏 — SRM/护栏/多重比较/Holdout 防火墙
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    因果推断
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E4%B8%8E%E8%AF%86%E5%88%AB/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础与识别
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5_2" id="__nav_3_5_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础与识别
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E4%B8%8E%E8%AF%86%E5%88%AB/01_%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断导论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E4%B8%8E%E8%AF%86%E5%88%AB/AB%E5%AE%9E%E9%AA%8C%E4%B8%8E%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E7%9A%84%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AB实验与因果推断的关系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E4%B8%8E%E8%AF%86%E5%88%AB/%E6%BD%9C%E5%9C%A8%E7%BB%93%E6%9E%9C%E6%A1%86%E6%9E%B6_ITE_ATE_ATT_CATE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    潜在结果框架
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E4%B8%8E%E8%AF%86%E5%88%AB/%E7%BB%93%E6%9E%84%E5%9B%A0%E6%9E%9C%E6%A8%A1%E5%9E%8B_DAG%E4%B8%8Edo_calculus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    结构因果模型_DAG与do_calculus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E4%B8%8E%E8%AF%86%E5%88%AB/%E5%81%8F%E5%B7%AE%E4%B8%8E%E8%AF%86%E5%88%AB%E5%81%87%E8%AE%BE_%E6%B7%B7%E6%9D%82%E9%80%89%E6%8B%A9%E5%81%8F%E5%B7%AE%E5%86%85%E7%94%9F%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    偏差与识别假设
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E5%9F%BA%E7%A1%80%E4%B8%8E%E8%AF%86%E5%88%AB/%E6%BD%9C%E5%9C%A8%E7%BB%93%E6%9E%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    潜在结果
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    软件实现
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5_3" id="__nav_3_5_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    软件实现
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0/CausalAnalysis__%E5%B7%A5%E5%85%B7__08_%E5%B7%A5%E5%85%B7_DoWhy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具_DoWhy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0/CausalAnalysis__%E5%B7%A5%E5%85%B7__08_%E5%B7%A5%E5%85%B7_EconML%E4%B8%8ECausalML/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具_EconML与CausalML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0/CausalAnalysis__%E5%B7%A5%E5%85%B7__08_%E5%B7%A5%E5%85%B7_StatsModels%E5%AE%9E%E7%8E%B0PSM_DID_IV/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具_StatsModels实现PSM_DID_IV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    机器学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分类与回归
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6_2" id="__nav_3_6_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    分类与回归
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Classification__catBoost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    catBoost
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Classification__gbdt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gbdt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Classification__k%E8%BF%91%E9%82%BB%20%E2%80%94%E2%80%94%20%E9%9D%9E%E5%8F%82%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k近邻 —— 非参模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Classification__lightgbm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    lightgbm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Classification__xgboost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    xgboost
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Classification__%E5%86%B3%E7%AD%96%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策树
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Classification__%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    支持向量机SVM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Classification__%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    逻辑回归
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Classification__%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集成学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Regression__4.2%20%E5%9B%9E%E5%BD%92%E4%B8%8E%E5%88%86%E7%B1%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 回归与分类
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/Regression__%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    回归模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础与模型评估
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6_3" id="__nav_3_6_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础与模型评估
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/HMMM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HMMM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/page%20rank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    page rank
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7__0_%E6%A8%A1%E5%9E%8B%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0_模型可解释性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7__shap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7__%E8%AE%BA%E6%96%87-LIME/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    论文-LIME
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/%E5%9B%A0%E5%AD%90%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因子分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/%E6%A8%A1%E5%9E%8B%E6%95%88%E6%9E%9C%E8%AF%84%E4%BC%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型效果评估
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    知识图谱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    平台与工程
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6_4" id="__nav_3_6_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    平台与工程
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__MLops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__airflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    airflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__feature_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    feature_tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gradio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__pycaret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pycaret
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__python-ppt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python-ppt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__streamlit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    streamlit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__%E5%89%8D%E7%AB%AF%E5%B1%95%E7%8E%B0%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    前端展现相关
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参数调优
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__%E6%A1%88%E4%BE%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__%E8%87%AA%E5%8A%A8%E5%8C%96%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自动化分析平台
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/1_Auto_tools__%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    规则引擎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B7%A5%E7%A8%8B/%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86%E4%B8%8E%E6%9C%8D%E5%8A%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型管理与服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%89%B9%E5%BE%81/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据与特征
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6_5" id="__nav_3_6_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据与特征
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%89%B9%E5%BE%81/Features%26Data__%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据预处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%89%B9%E5%BE%81/Features%26Data__%E7%89%B9%E5%BE%81%E5%A4%84%E7%90%86%E2%80%94%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特征处理—特征选择
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%89%B9%E5%BE%81/Features%26Data__%E7%89%B9%E5%BE%81%E5%A4%84%E7%90%86%E2%80%94%E9%99%8D%E7%BB%B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特征处理—降维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%89%B9%E5%BE%81/Features%26Data__%E7%BB%9F%E8%AE%A1-%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计-样本不均衡
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    时间序列
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6_6" id="__nav_3_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    时间序列
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97__%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8Btools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    时序预测tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97__%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97-%E9%A2%84%E6%B5%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    时间序列-预测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97__%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    时间序列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97__%E8%AE%BA%E6%96%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    论文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    聚类与异常检测
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6_7" id="__nav_3_6_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    聚类与异常检测
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/Abnormal_detect__tool-%E5%A4%9A%E5%85%83%E6%95%B0%E6%8D%AE-Pyod/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tool-多元数据-Pyod
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/Abnormal_detect__tool-%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tool-时间序列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/Abnormal_detect__%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B-%E5%A4%9A%E5%85%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    异常检测-多元
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/Abnormal_detect__%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B-%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    异常检测-时间序列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/Abnormal_detect__%E7%9F%A5%E8%AF%86%E5%8F%91%E7%8E%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    知识发现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/Cluster__%E8%81%9A%E7%B1%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    聚类
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/Cluster__%E8%81%9A%E7%B1%BBTools%E7%AF%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    聚类Tools篇
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/Cluster__%E8%81%9A%E7%B1%BB%E6%95%88%E6%9E%9C%E8%AF%84%E4%BB%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    聚类效果评价
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    推荐系统
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    推荐系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%8F%AC%E5%9B%9E%E4%B8%8E%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    召回与序列推荐
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7_2" id="__nav_3_7_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    召回与序列推荐
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%8F%AC%E5%9B%9E%E4%B8%8E%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/DSSM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DSSM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%8F%AC%E5%9B%9E%E4%B8%8E%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/Faiss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Faiss
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%8F%AC%E5%9B%9E%E4%B8%8E%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/look%20alike/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    look alike
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%8F%AC%E5%9B%9E%E4%B8%8E%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/%E5%8E%9F%E7%90%86%E7%AF%87-%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理篇-注意力机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%8F%AC%E5%9B%9E%E4%B8%8E%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/%E5%8E%9F%E7%90%86%E7%AF%87%E2%80%94%E5%86%B7%E5%90%AF%E5%8A%A8%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理篇—冷启动相关
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%8F%AC%E5%9B%9E%E4%B8%8E%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/%E5%BA%8F%E5%88%97%E6%8E%A8%E8%8D%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序列推荐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础与协同过滤
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7_3" id="__nav_3_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础与协同过滤
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/%E3%80%90%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E3%80%91%E7%AB%A01%20%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    【推荐系统】章1 基本介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/%E3%80%90%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E3%80%91%E7%AB%A02%20%E5%88%A9%E7%94%A8%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%95%B0%E6%8D%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    【推荐系统】章2 利用用户行为数据
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/%E5%8E%9F%E7%90%86%E7%AF%87%E2%80%941%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理篇—1协同过滤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/%E5%8E%9F%E7%90%86%E7%AF%87%E2%80%942%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理篇—2矩阵分解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%B7%A5%E7%A8%8B%E4%B8%8E%E5%AE%9E%E8%B7%B5/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工程与实践
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7_4" id="__nav_3_7_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工程与实践
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%B7%A5%E7%A8%8B%E4%B8%8E%E5%AE%9E%E8%B7%B5/%E3%80%90%E5%AE%9E%E8%B7%B5%E3%80%91python-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%8C%85/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    【实践】python-推荐系统包
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%B7%A5%E7%A8%8B%E4%B8%8E%E5%AE%9E%E8%B7%B5/%E5%AE%9E%E8%B7%B5-deepCtr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实践-deepCtr
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E5%B7%A5%E7%A8%8B%E4%B8%8E%E5%AE%9E%E8%B7%B5/%E5%B7%A5%E7%A8%8B%E7%AF%87%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E6%9E%B6%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工程篇——常见架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    排序与深度模型
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7_5" id="__nav_3_7_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    排序与深度模型
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/NeuralCF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NeuralCF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/PNN%E6%A8%A1%E5%9E%8B%28Product-based%20Neural%20Network%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PNN模型(Product-based Neural Network)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/deep%20crossing%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    deep crossing模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/wide%26deep%E6%A8%A1%E5%9E%8B%E7%B3%BB%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    wide&deep模型系列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/%E5%8E%9F%E7%90%86%E7%AF%87%E2%80%94AutoRec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理篇—AutoRec
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/%E5%8E%9F%E7%90%86%E7%AF%87%E2%80%94FM%E7%B3%BB%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理篇—FM系列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/%E5%B1%80%E9%83%A8%E6%95%8F%E6%84%9F%E5%93%88%E5%B8%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    局部敏感哈希
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/%E6%9C%80%E6%96%B0%E6%8A%80%E6%9C%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最新技术
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI%E4%B8%8EAgent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI与Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Books/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Books
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../wiki-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    维护规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../%E8%B5%84%E8%AE%AF/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    资讯
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    资讯
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ab实验
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ab实验
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/ab%E5%AE%9E%E9%AA%8C/%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95%E5%9B%BE%E8%B0%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验方法图谱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/ab%E5%AE%9E%E9%AA%8C/AB%E5%AE%9E%E9%AA%8C%E5%89%8D%E6%B2%BF%E9%9B%B7%E8%BE%BE-2026-11-16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AB实验前沿雷达-2026-11-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/ab%E5%AE%9E%E9%AA%8C/AB%E5%AE%9E%E9%AA%8C%E5%89%8D%E6%B2%BF%E9%9B%B7%E8%BE%BE-2026-11-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AB实验前沿雷达-2026-11-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/ab%E5%AE%9E%E9%AA%8C/AB%E5%AE%9E%E9%AA%8C%E5%89%8D%E6%B2%BF%E9%9B%B7%E8%BE%BE-2026-11-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AB实验前沿雷达-2026-11-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/ab%E5%AE%9E%E9%AA%8C/AB%E5%AE%9E%E9%AA%8C%E5%89%8D%E6%B2%BF%E9%9B%B7%E8%BE%BE-2026-10-26/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AB实验前沿雷达-2026-10-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    商机雷达简报
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    商机雷达简报
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-10-23_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-10-23_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-10-16_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-10-16_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-10-12_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-10-12_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-10-09_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-10-09_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-09-28_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-09-28_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-09-25_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-09-25_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-09-21_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-09-21_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-09-18_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-09-18_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-09-14_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-09-14_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-09-11_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-09-11_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-09-07_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-09-07_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-09-04_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-09-04_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-09-03_GitHub%E6%9C%BA%E4%BC%9A%E5%8F%91%E7%8E%B0_%E6%B5%8B%E8%AF%95%E7%89%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-09-03_GitHub机会发现_测试版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-08-13_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-08-13_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-08-12_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-08-12_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-08-11_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-08-11_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-08-10_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-08-10_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-08-07_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-08-07_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-08-06_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-08-06_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%B5%84%E8%AE%AF/%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%E7%AE%80%E6%8A%A5/2026-08-05_AI%E5%8F%98%E7%8E%B0%E6%9C%BA%E4%BC%9A%E7%AE%80%E6%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-08-05_AI变现机会简报
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="post_stratification_variance">post_stratification_variance<a class="headerlink" href="#post_stratification_variance" title="Permanent link">#</a></h1>
+<h1 id="ab">AB 实验事后分层：为什么可能降低方差，以及理论降幅<a class="headerlink" href="#ab" title="Permanent link">#</a></h1>
+<blockquote>
+<p>核心问题：对于人均收入、人均时长等指标，在普通随机分流后，先按用户特征分层、再汇总实验效果，方差理论上能降低多少？</p>
+<p>适用对象：用户级随机分流、以入组用户为分析单位的均值类指标；关注实验组减对照组的绝对差值。</p>
+<p>日期：2026-10-27</p>
+</blockquote>
+<h2 id="1">1. 核心结论<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<p>在实验组与对照组 1:1 分流、AA 或处理效果恒定、各层样本充分等理想条件下，设用户指标的方差分解为：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(Y)=W+B
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(Y)=W+B
+</script>
+</div>
+<p>其中 <span class="arithmatex"><span class="MathJax_Preview">W</span><script type="math/tex">W</script></span> 是层内方差，<span class="arithmatex"><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> 是层间均值方差，则：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(\hat\Delta_{\text{直接}})\approx\frac{4(W+B)}{N}
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(\hat\Delta_{\text{直接}})\approx\frac{4(W+B)}{N}
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(\hat\Delta_{\text{分层}})\approx\frac{4W}{N}
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(\hat\Delta_{\text{分层}})\approx\frac{4W}{N}
+</script>
+</div>
+<p>所以，在上述条件下：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\text{理论方差降低比例}\approx \frac{B}{W+B}=R_H^2
+</div>
+<script type="math/tex; mode=display">
+\text{理论方差降低比例}\approx \frac{B}{W+B}=R_H^2
+</script>
+</div>
+<p><strong>如何理解“抹掉组间方差，只剩组内方差”？</strong> 对 AA 或恒定处理效果的理想模型，这个直觉是对的：使用统一层权重，可以消除实验组和对照组层构成随机不平衡所引入的层间均值波动。但它指的是**效果估计量的方差分量**，不是用户收入自身的总体方差真的消失了。一般 AB 实验若各层效果不同、目标总体层构成也被视为随机，效果估计方差中还会有层间处理效果差异项；不能无条件说“只剩组内方差”。</p>
+<p>本文比较的是绝对差值 <span class="arithmatex"><span class="MathJax_Preview">\Delta</span><script type="math/tex">\Delta</script></span> 的方差。若关注收入提升率 <span class="arithmatex"><span class="MathJax_Preview">\bar Y_T/\bar Y_C-1</span><script type="math/tex">\bar Y_T/\bar Y_C-1</script></span>、ARPPU 等比率指标，需要对相应估计量使用 Delta 方法、影响函数或合适的重采样，不能直接套用本文公式。</p>
+<h2 id="2">2. 研究对象与符号<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<p>设实验入组用户总数为 <span class="arithmatex"><span class="MathJax_Preview">N</span><script type="math/tex">N</script></span>，实验组 <span class="arithmatex"><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span>、对照组 <span class="arithmatex"><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> 各约 <span class="arithmatex"><span class="MathJax_Preview">N/2</span><script type="math/tex">N/2</script></span> 人；<span class="arithmatex"><span class="MathJax_Preview">Y</span><script type="math/tex">Y</script></span> 是用户在固定实验窗口内的总收入或总时长，包括零值。分层变量 <span class="arithmatex"><span class="MathJax_Preview">H</span><script type="math/tex">H</script></span> 使用实验前特征，划分为 <span class="arithmatex"><span class="MathJax_Preview">L</span><script type="math/tex">L</script></span> 层。</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex"><span class="MathJax_Preview">w_j</span><script type="math/tex">w_j</script></span></td>
+<td>目标人群第 <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> 层的占比，<span class="arithmatex"><span class="MathJax_Preview">\sum_j w_j=1</span><script type="math/tex">\sum_j w_j=1</script></span></td>
+</tr>
+<tr>
+<td><span class="arithmatex"><span class="MathJax_Preview">\mu_j</span><script type="math/tex">\mu_j</script></span></td>
+<td>第 <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> 层的真实人均指标（AA 或对照状态）</td>
+</tr>
+<tr>
+<td><span class="arithmatex"><span class="MathJax_Preview">\mu=\sum_j w_j\mu_j</span><script type="math/tex">\mu=\sum_j w_j\mu_j</script></span></td>
+<td>目标人群人均指标</td>
+</tr>
+<tr>
+<td><span class="arithmatex"><span class="MathJax_Preview">\sigma_j^2</span><script type="math/tex">\sigma_j^2</script></span></td>
+<td>第 <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> 层用户指标的方差</td>
+</tr>
+<tr>
+<td><span class="arithmatex"><span class="MathJax_Preview">n_{Tj},n_{Cj}</span><script type="math/tex">n_{Tj},n_{Cj}</script></span></td>
+<td>第 <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> 层两组的实际样本量</td>
+</tr>
+<tr>
+<td><span class="arithmatex"><span class="MathJax_Preview">\bar Y_{Tj},\bar Y_{Cj}</span><script type="math/tex">\bar Y_{Tj},\bar Y_{Cj}</script></span></td>
+<td>第 <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> 层两组的样本人均指标</td>
+</tr>
+<tr>
+<td><span class="arithmatex"><span class="MathJax_Preview">\hat\Delta</span><script type="math/tex">\hat\Delta</script></span></td>
+<td>实验组与对照组人均指标的差值估计</td>
+</tr>
+</tbody>
+</table>
+<p>随机化单位与分析单位均为用户；若按设备或用户簇分流，应按实际随机化单位或簇处理标准误。本文主要比较相同总样本量、相同目标人群下，重复随机分组得到的估计量波动。</p>
+<h2 id="3-b-w">3. B 与 W：总体方差是如何分解的？<a class="headerlink" href="#3-b-w" title="Permanent link">#</a></h2>
+<p>全方差公式：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(Y)=\operatorname{Var}(E[Y\mid H])+E[\operatorname{Var}(Y\mid H)]
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(Y)=\operatorname{Var}(E[Y\mid H])+E[\operatorname{Var}(Y\mid H)]
+</script>
+</div>
+<p>定义层间方差：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+B=\operatorname{Var}(E[Y\mid H])=\sum_j w_j(\mu_j-\mu)^2
+</div>
+<script type="math/tex; mode=display">
+B=\operatorname{Var}(E[Y\mid H])=\sum_j w_j(\mu_j-\mu)^2
+</script>
+</div>
+<p><span class="arithmatex"><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> 衡量各层平均指标相对于总体均值的差异；这里的“层间”指用户分层之间，不是实验组和对照组之间。</p>
+<p>定义层内方差：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+W=E[\operatorname{Var}(Y\mid H)]=\sum_jw_j\sigma_j^2
+</div>
+<script type="math/tex; mode=display">
+W=E[\operatorname{Var}(Y\mid H)]=\sum_jw_j\sigma_j^2
+</script>
+</div>
+<p><span class="arithmatex"><span class="MathJax_Preview">W</span><script type="math/tex">W</script></span> 是层内用户指标方差的加权平均。两者合计：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(Y)=B+W
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(Y)=B+W
+</script>
+</div>
+<p>即使使用事后分层，用户收入总体方差仍是 <span class="arithmatex"><span class="MathJax_Preview">B+W</span><script type="math/tex">B+W</script></span>。分层改变的是如何利用数据估计实验效果，以及该估计量在重复分流下的波动。</p>
+<h2 id="4">4. 两种实验效果估计方式<a class="headerlink" href="#4" title="Permanent link">#</a></h2>
+<h3 id="41">4.1 直接计算<a class="headerlink" href="#41" title="Permanent link">#</a></h3>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\hat\Delta_{\text{直接}}=\bar Y_T-\bar Y_C
+</div>
+<script type="math/tex; mode=display">
+\hat\Delta_{\text{直接}}=\bar Y_T-\bar Y_C
+</script>
+</div>
+<p>其中两组整体均值分别使用了各自实际的层占比：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\bar Y_T=\sum_j\hat w_{Tj}\bar Y_{Tj},\quad
+\bar Y_C=\sum_j\hat w_{Cj}\bar Y_{Cj}
+</div>
+<script type="math/tex; mode=display">
+\bar Y_T=\sum_j\hat w_{Tj}\bar Y_{Tj},\quad
+\bar Y_C=\sum_j\hat w_{Cj}\bar Y_{Cj}
+</script>
+</div>
+<p>普通随机分流下，<span class="arithmatex"><span class="MathJax_Preview">\hat w_{Tj}</span><script type="math/tex">\hat w_{Tj}</script></span> 与 <span class="arithmatex"><span class="MathJax_Preview">\hat w_{Cj}</span><script type="math/tex">\hat w_{Cj}</script></span> 可能不同；如果各层的收入水平不同，这种构成差异会影响两组整体人均收入差。</p>
+<h3 id="42">4.2 事后分层<a class="headerlink" href="#42" title="Permanent link">#</a></h3>
+<p>先计算各层人均差值，再按同一套目标权重汇总：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\hat\Delta_{\text{post}}=\sum_jw_j(\bar Y_{Tj}-\bar Y_{Cj})
+</div>
+<script type="math/tex; mode=display">
+\hat\Delta_{\text{post}}=\sum_jw_j(\bar Y_{Tj}-\bar Y_{Cj})
+</script>
+</div>
+<p>权重决定目标人群。例如，使用全部入组用户的层占比，目标是本次入组人群的平均效果；若使用外部总体权重，目标会变成对应总体，且还需额外的可推广性条件。普通随机分流下该估计量与直接差值通常不完全相同。</p>
+<h2 id="5">5. 降方差的机制：去掉哪一部分波动？<a class="headerlink" href="#5" title="Permanent link">#</a></h2>
+<p>先考虑 AA，即不存在真实处理效果。将层内样本均值写成：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\bar Y_{Tj}=\mu_j+\varepsilon_{Tj},\quad
+\bar Y_{Cj}=\mu_j+\varepsilon_{Cj}
+</div>
+<script type="math/tex; mode=display">
+\bar Y_{Tj}=\mu_j+\varepsilon_{Tj},\quad
+\bar Y_{Cj}=\mu_j+\varepsilon_{Cj}
+</script>
+</div>
+<p>则直接效果估计量可以精确拆成：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\hat\Delta_{\text{直接}}
+=\underbrace{\sum_j(\hat w_{Tj}-\hat w_{Cj})\mu_j}_{\text{层构成不平衡带来的波动}}
++\underbrace{\sum_j(\hat w_{Tj}\varepsilon_{Tj}-\hat w_{Cj}\varepsilon_{Cj})}_{\text{层内样本波动}}
+</div>
+<script type="math/tex; mode=display">
+\hat\Delta_{\text{直接}}
+=\underbrace{\sum_j(\hat w_{Tj}-\hat w_{Cj})\mu_j}_{\text{层构成不平衡带来的波动}}
++\underbrace{\sum_j(\hat w_{Tj}\varepsilon_{Tj}-\hat w_{Cj}\varepsilon_{Cj})}_{\text{层内样本波动}}
+</script>
+</div>
+<p>而事后分层使用统一权重：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\hat\Delta_{\text{post}}
+=\sum_jw_j\left[(\mu_j+\varepsilon_{Tj})-(\mu_j+\varepsilon_{Cj})\right]
+=\sum_jw_j(\varepsilon_{Tj}-\varepsilon_{Cj})
+</div>
+<script type="math/tex; mode=display">
+\hat\Delta_{\text{post}}
+=\sum_jw_j\left[(\mu_j+\varepsilon_{Tj})-(\mu_j+\varepsilon_{Cj})\right]
+=\sum_jw_j(\varepsilon_{Tj}-\varepsilon_{Cj})
+</script>
+</div>
+<p>在 AA 设定下，真实层均值相消；原本因两组层占比不同产生的那一项不再出现。层内随机误差仍然存在。上式展示机制，但不意味着事后分层在有限样本里必然降方差：各层样本量随机，特别小的层会使层内均值估计不稳定。</p>
+<h2 id="6">6. 理论推导：简化条件下的降幅<a class="headerlink" href="#6" title="Permanent link">#</a></h2>
+<h3 id="61">6.1 假设<a class="headerlink" href="#61" title="Permanent link">#</a></h3>
+<ol>
+<li>普通随机分流；实验组和对照组各约 <span class="arithmatex"><span class="MathJax_Preview">N/2</span><script type="math/tex">N/2</script></span> 人。</li>
+<li>AA，或每位用户的处理效果是同一个常数。</li>
+<li>分层使用实验前变量，各层权重稳定、目标相同；各层样本充分，且指标的二阶矩有限。</li>
+<li>比较大样本下的主要方差项，忽略样本量取整、空层等高阶影响。</li>
+<li>目标权重视为给定，或以全部入组用户的层占比估计该入组人群效果，并采用匹配的方差口径。</li>
+</ol>
+<p>以下公式针对同一目标人群的绝对效果，并非任意随机化设计下的有限样本精确等式。</p>
+<h3 id="62">6.2 直接估计<a class="headerlink" href="#62" title="Permanent link">#</a></h3>
+<p>在 AA 及 1:1 分流下，每组的指标方差为 <span class="arithmatex"><span class="MathJax_Preview">W+B</span><script type="math/tex">W+B</script></span>，所以：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(\hat\Delta_{\text{直接}})\approx
+\frac{W+B}{N/2}+\frac{W+B}{N/2}
+=\frac{4(W+B)}{N}
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(\hat\Delta_{\text{直接}})\approx
+\frac{W+B}{N/2}+\frac{W+B}{N/2}
+=\frac{4(W+B)}{N}
+</script>
+</div>
+<h3 id="63">6.3 事后分层估计<a class="headerlink" href="#63" title="Permanent link">#</a></h3>
+<p>对于给定的目标权重及适当的独立样本近似：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(\hat\Delta_{\text{post}})\approx
+\sum_j w_j^2\left(\frac{\sigma_j^2}{n_{Tj}}+\frac{\sigma_j^2}{n_{Cj}}\right)
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(\hat\Delta_{\text{post}})\approx
+\sum_j w_j^2\left(\frac{\sigma_j^2}{n_{Tj}}+\frac{\sigma_j^2}{n_{Cj}}\right)
+</script>
+</div>
+<p>事后分层的实际 <span class="arithmatex"><span class="MathJax_Preview">n_{Tj}</span><script type="math/tex">n_{Tj}</script></span> 和 <span class="arithmatex"><span class="MathJax_Preview">n_{Cj}</span><script type="math/tex">n_{Cj}</script></span> 是随机的。大样本下用 <span class="arithmatex"><span class="MathJax_Preview">n_{Tj}\approx n_{Cj}\approx Nw_j/2</span><script type="math/tex">n_{Tj}\approx n_{Cj}\approx Nw_j/2</script></span> 近似，得到：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(\hat\Delta_{\text{post}})
+\approx\frac{4}{N}\sum_jw_j\sigma_j^2
+=\frac{4W}{N}
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(\hat\Delta_{\text{post}})
+\approx\frac{4}{N}\sum_jw_j\sigma_j^2
+=\frac{4W}{N}
+</script>
+</div>
+<h3 id="64">6.4 方差降低比例<a class="headerlink" href="#64" title="Permanent link">#</a></h3>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\frac{\operatorname{Var}(\hat\Delta_{\text{post}})}{\operatorname{Var}(\hat\Delta_{\text{直接}})}
+\approx\frac{W}{W+B}=1-R_H^2
+</div>
+<script type="math/tex; mode=display">
+\frac{\operatorname{Var}(\hat\Delta_{\text{post}})}{\operatorname{Var}(\hat\Delta_{\text{直接}})}
+\approx\frac{W}{W+B}=1-R_H^2
+</script>
+</div>
+<p>其中：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+R_H^2=\frac{B}{W+B}=\frac{\operatorname{Var}(E[Y\mid H])}{\operatorname{Var}(Y)}
+</div>
+<script type="math/tex; mode=display">
+R_H^2=\frac{B}{W+B}=\frac{\operatorname{Var}(E[Y\mid H])}{\operatorname{Var}(Y)}
+</script>
+</div>
+<p>因此：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\boxed{\text{方差降低比例}\approx R_H^2}
+</div>
+<script type="math/tex; mode=display">
+\boxed{\text{方差降低比例}\approx R_H^2}
+</script>
+</div>
+<p>这里 <span class="arithmatex"><span class="MathJax_Preview">R_H^2</span><script type="math/tex">R_H^2</script></span> 针对**分层变量预测实验期目标指标**的解释力。历史期样本内 <span class="arithmatex"><span class="MathJax_Preview">R^2</span><script type="math/tex">R^2</script></span> 不一定等于未来实验期的解释力；层数增多还可能造成样本内高估。</p>
+<h2 id="7">7. 数值示例<a class="headerlink" href="#7" title="Permanent link">#</a></h2>
+<p>以下数字仅用于说明机制，不代表实证结果。</p>
+<table>
+<thead>
+<tr>
+<th>用户层</th>
+<th>权重</th>
+<th>人均收入</th>
+<th>层内方差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低价值</td>
+<td>50%</td>
+<td>10</td>
+<td>100</td>
+</tr>
+<tr>
+<td>高价值</td>
+<td>50%</td>
+<td>30</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>总体均值为 <span class="arithmatex"><span class="MathJax_Preview">20</span><script type="math/tex">20</script></span>，因此：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+B=0.5(10-20)^2+0.5(30-20)^2=100
+</div>
+<script type="math/tex; mode=display">
+B=0.5(10-20)^2+0.5(30-20)^2=100
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+W=0.5\times100+0.5\times100=100
+</div>
+<script type="math/tex; mode=display">
+W=0.5\times100+0.5\times100=100
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+R_H^2=\frac{100}{100+100}=50\%
+</div>
+<script type="math/tex; mode=display">
+R_H^2=\frac{100}{100+100}=50\%
+</script>
+</div>
+<p>若总样本量为 <span class="arithmatex"><span class="MathJax_Preview">N=10000</span><script type="math/tex">N=10000</script></span>，在第 6 节假设下：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(\hat\Delta_{\text{直接}})\approx\frac{4\times200}{10000}=0.08
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(\hat\Delta_{\text{直接}})\approx\frac{4\times200}{10000}=0.08
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(\hat\Delta_{\text{post}})\approx\frac{4\times100}{10000}=0.04
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(\hat\Delta_{\text{post}})\approx\frac{4\times100}{10000}=0.04
+</script>
+</div>
+<p>方差降低 50%；标准误是方差的平方根，标准误降低比例为 <span class="arithmatex"><span class="MathJax_Preview">1-\sqrt{0.5}\approx29.3\%</span><script type="math/tex">1-\sqrt{0.5}\approx29.3\%</script></span>。若其他检验条件相同，MDE 也按标准误的比例变化；不能把方差降幅直接当成 MDE 降幅。</p>
+<h2 id="8-ab">8. 一般 AB 实验：为什么未必只剩层内方差？<a class="headerlink" href="#8-ab" title="Permanent link">#</a></h2>
+<p>设潜在结果 <span class="arithmatex"><span class="MathJax_Preview">Y(1)</span><script type="math/tex">Y(1)</script></span>、<span class="arithmatex"><span class="MathJax_Preview">Y(0)</span><script type="math/tex">Y(0)</script></span> 分别为实验和对照状态的用户指标。记：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\mu_{1j}=E[Y(1)\mid H=j],\quad \mu_{0j}=E[Y(0)\mid H=j],\quad \tau_j=\mu_{1j}-\mu_{0j}
+</div>
+<script type="math/tex; mode=display">
+\mu_{1j}=E[Y(1)\mid H=j],\quad \mu_{0j}=E[Y(0)\mid H=j],\quad \tau_j=\mu_{1j}-\mu_{0j}
+</script>
+</div>
+<p>如果目标是更大总体的平均处理效应，且实验样本是从该总体随机抽取、以样本层占比估计总体层构成，设 <span class="arithmatex"><span class="MathJax_Preview">\sigma_{aj}^2=\operatorname{Var}(Y(a)\mid H=j)</span><script type="math/tex">\sigma_{aj}^2=\operatorname{Var}(Y(a)\mid H=j)</script></span>，在 1:1 随机分流、固定层数、各层充分及大样本条件下：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(\hat\Delta_{\text{直接}})\approx\frac{2\operatorname{Var}(Y(1))+2\operatorname{Var}(Y(0))}{N}
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(\hat\Delta_{\text{直接}})\approx\frac{2\operatorname{Var}(Y(1))+2\operatorname{Var}(Y(0))}{N}
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(\hat\Delta_{\text{post}})\approx\frac{2E[\sigma_{1H}^2]+2E[\sigma_{0H}^2]+\operatorname{Var}(\tau_H)}{N}
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(\hat\Delta_{\text{post}})\approx\frac{2E[\sigma_{1H}^2]+2E[\sigma_{0H}^2]+\operatorname{Var}(\tau_H)}{N}
+</script>
+</div>
+<p>其中最后一项 <span class="arithmatex"><span class="MathJax_Preview">\operatorname{Var}(\tau_H)/N</span><script type="math/tex">\operatorname{Var}(\tau_H)/N</script></span> 是**不同层处理效果不同，且样本层构成随机**带来的总体推断波动。两式相减得到：</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\operatorname{Var}(\hat\Delta_{\text{直接}})-\operatorname{Var}(\hat\Delta_{\text{post}})
+\approx\frac{\operatorname{Var}(\mu_{1H}+\mu_{0H})}{N}\geq0
+</div>
+<script type="math/tex; mode=display">
+\operatorname{Var}(\hat\Delta_{\text{直接}})-\operatorname{Var}(\hat\Delta_{\text{post}})
+\approx\frac{\operatorname{Var}(\mu_{1H}+\mu_{0H})}{N}\geq0
+</script>
+</div>
+<p>因此，一般情况下仍有一阶渐近降方差，但降幅不一定等于对照指标的 <span class="arithmatex"><span class="MathJax_Preview">B/(W+B)</span><script type="math/tex">B/(W+B)</script></span>。当 <span class="arithmatex"><span class="MathJax_Preview">\tau_j</span><script type="math/tex">\tau_j</script></span> 在各层相同，且处理只带来恒定平移时，上式恢复第 6 节结果。</p>
+<p>**目标口径很重要：**若目标是固定的一批入组用户、以其已知层占比加权，或目标总体层权重是已知固定常数，则不应机械加入上述层构成抽样项；此时应根据有限总体或固定权重的分析目标与随机化设计推导方差。不同目标的公式不能直接混用。具体有限样本下的方差还依赖随机化方式、各层样本量及潜在结果，见 Miratrix 等人的原论文。</p>
+<h2 id="9">9. 哪些情形收益更大或失效？<a class="headerlink" href="#9" title="Permanent link">#</a></h2>
+<ul>
+<li><strong>更可能有效</strong>：实验前分层变量能稳定预测实验期人均指标，不同层均值差距大，各层两组样本充足。</li>
+<li><strong>收益可能很小</strong>：各层未来均值接近，或层内重尾方差远大于层间方差，即 <span class="arithmatex"><span class="MathJax_Preview">W\gg B</span><script type="math/tex">W\gg B</script></span>。</li>
+<li><strong>有限样本可能变差</strong>：层过多、各层人数少或分流比例不均衡，导致随机分母和层内均值不稳定；空层无法直接估计层内差值。</li>
+<li><strong>不应随意使用实验后变量</strong>：实验后收入、活跃状态等可能受处理影响，按它们分层可能引入选择偏差。</li>
+<li><strong>单次标准误未必下降</strong>：理论方差是重复抽样或随机化下的波动；一次实验的估计标准误也有随机误差。</li>
+<li><strong>重尾与方差条件</strong>：少数大额用户会让经验方差及 <span class="arithmatex"><span class="MathJax_Preview">R_H^2</span><script type="math/tex">R_H^2</script></span> 不稳定；若二阶矩不存在，基于有限方差的公式不适用。</li>
+<li><strong>事前 CSR 已使用同一分层变量</strong>：若每层已严格均衡分流，层构成波动已在设计阶段受到控制，事后使用相同层不能将同一收益再次相加。事后分析与标准误仍应匹配设计。</li>
+<li><strong>已有 CUPED</strong>：应比较在当前 CUPED 或回归调整基础上的边际收益，不能直接把两个方法的降幅相加。</li>
+</ul>
+<h2 id="10">10. 对收入和时长的验证方案<a class="headerlink" href="#10" title="Permanent link">#</a></h2>
+<ol>
+<li>明确固定窗口、入组人群、用户级绝对差值、零值处理、分流比例和目标权重。</li>
+<li>使用实验前历史活跃度、收入或付费状态建立少量候选分层；用后续窗口评估各层未来均值和 <span class="arithmatex"><span class="MathJax_Preview">R_H^2</span><script type="math/tex">R_H^2</script></span>，避免仅看同窗样本内拟合。</li>
+<li>按真实流量和随机化机制重复 AA 分流；每次同时计算直接差值和事后分层差值。</li>
+<li>比较多次效果估计的经验方差：</li>
+</ol>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\text{经验方差降幅}=1-\frac{\operatorname{Var}(\hat\Delta_{\text{post}})}{\operatorname{Var}(\hat\Delta_{\text{直接}})}
+</div>
+<script type="math/tex; mode=display">
+\text{经验方差降幅}=1-\frac{\operatorname{Var}(\hat\Delta_{\text{post}})}{\operatorname{Var}(\hat\Delta_{\text{直接}})}
+</script>
+</div>
+<ol>
+<li>同时检查方差估计与真实波动、置信区间覆盖率、AA 误报率、空层率及跨时间窗口稳定性。若误报率失准、空层频繁或收益不稳定，合并层、调整方法或停止使用该方案。</li>
+<li>AA 评估的是零效果下的精度与误报；要研究不同层的真实效果差异对 power 的影响，应额外模拟合理的异质处理效应。</li>
+</ol>
+<h2 id="11">11. 实操计算示例：人均收入事后分层<a class="headerlink" href="#11" title="Permanent link">#</a></h2>
+<p>以下数字为示意，展示如何从分层汇总表计算点估计、标准误与置信区间。目标是**本次全部入组用户**的平均收入绝对差；用户为随机化和分析单位，非收入用户收入记为 0。分层依据实验前历史付费状态，权重采用全部入组用户的层占比。</p>
+<h3 id="111">11.1 汇总每层两组数据<a class="headerlink" href="#111" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>历史付费层</th>
+<th>实验组人数 <span class="arithmatex"><span class="MathJax_Preview">n_{Tj}</span><script type="math/tex">n_{Tj}</script></span></th>
+<th>对照组人数 <span class="arithmatex"><span class="MathJax_Preview">n_{Cj}</span><script type="math/tex">n_{Cj}</script></span></th>
+<th>实验组人均 <span class="arithmatex"><span class="MathJax_Preview">\bar Y_{Tj}</span><script type="math/tex">\bar Y_{Tj}</script></span></th>
+<th>对照组人均 <span class="arithmatex"><span class="MathJax_Preview">\bar Y_{Cj}</span><script type="math/tex">\bar Y_{Cj}</script></span></th>
+<th>实验组样本方差 <span class="arithmatex"><span class="MathJax_Preview">s_{Tj}^2</span><script type="math/tex">s_{Tj}^2</script></span></th>
+<th>对照组样本方差 <span class="arithmatex"><span class="MathJax_Preview">s_{Cj}^2</span><script type="math/tex">s_{Cj}^2</script></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>非付费</td>
+<td>3,900</td>
+<td>4,100</td>
+<td>1.1</td>
+<td>1</td>
+<td>16</td>
+<td>16</td>
+</tr>
+<tr>
+<td>低付费</td>
+<td>850</td>
+<td>750</td>
+<td>11</td>
+<td>10</td>
+<td>400</td>
+<td>400</td>
+</tr>
+<tr>
+<td>高付费</td>
+<td>250</td>
+<td>150</td>
+<td>110</td>
+<td>100</td>
+<td>10,000</td>
+<td>10,000</td>
+</tr>
+<tr>
+<td>合计</td>
+<td>5,000</td>
+<td>5,000</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>各层用户收入的样本方差使用分母 <span class="arithmatex"><span class="MathJax_Preview">n_{gj}-1</span><script type="math/tex">n_{gj}-1</script></span>。总人数 10,000，各层权重为：</p>
+<p><span class="arithmatex"><span class="MathJax_Preview">w_1=\frac{3900+4100}{10000}=0.80,\quad w_2=\frac{850+750}{10000}=0.16,\quad w_3=\frac{250+150}{10000}=0.04</span><script type="math/tex">w_1=\frac{3900+4100}{10000}=0.80,\quad w_2=\frac{850+750}{10000}=0.16,\quad w_3=\frac{250+150}{10000}=0.04</script></span></p>
+<p>实验组和对照组使用**同一套**权重。若使用各组自己的实际层占比，汇总结果就是各自的原始整体均值，不会得到这里的构成调整。</p>
+<h3 id="112">11.2 计算分层调整后的均值和效果<a class="headerlink" href="#112" title="Permanent link">#</a></h3>
+<p>$\bar Y_T^{\text{post}}=0.80\times1.1+0.16\times11+0.04\times110=7.04 $$$$ \bar Y_C^{\text{post}}=0.80\times1+0.16\times10+0.04\times100=6.40 $$$$ \hat\Delta_{\text{post}}=7.04-6.40=0.64$</p>
+<p>也可先算每层差值 <span class="arithmatex"><span class="MathJax_Preview">0.1,1,10</span><script type="math/tex">0.1,1,10</script></span>，再加权：</p>
+<p><span class="arithmatex"><span class="MathJax_Preview">\hat\Delta_{\text{post}}=0.80\times0.1+0.16\times1+0.04\times10=0.64</span><script type="math/tex">\hat\Delta_{\text{post}}=0.80\times0.1+0.16\times1+0.04\times10=0.64</script></span></p>
+<p>按调整后的均值计算相对提升为 <span class="arithmatex"><span class="MathJax_Preview">7.04/6.40-1=10\%</span><script type="math/tex">7.04/6.40-1=10\%</script></span>。但这是比率估计，若要检验提升率或给它构造区间，需要 Delta 方法或适合该设计的重采样，不能直接套用下面绝对差值的方差。</p>
+<h3 id="113">11.3 计算绝对差值的方差和标准误<a class="headerlink" href="#113" title="Permanent link">#</a></h3>
+<p>在各层独立组近似、权重按本次入组用户层占比固定、各层样本充足且方差公式与设计匹配的口径下：</p>
+<p><span class="arithmatex"><span class="MathJax_Preview">\begin{aligned} \widehat{\operatorname{Var}}(\hat\Delta_{\text{post}}) &amp;=0.80^2\left(\frac{16}{3900}+\frac{16}{4100}\right)\\ &amp;\quad+0.16^2\left(\frac{400}{850}+\frac{400}{750}\right)\\ &amp;\quad+0.04^2\left(\frac{10000}{250}+\frac{10000}{150}\right)\\ &amp;\approx0.20149 \end{aligned}</span><script type="math/tex">\begin{aligned} \widehat{\operatorname{Var}}(\hat\Delta_{\text{post}}) &amp;=0.80^2\left(\frac{16}{3900}+\frac{16}{4100}\right)\\ &amp;\quad+0.16^2\left(\frac{400}{850}+\frac{400}{750}\right)\\ &amp;\quad+0.04^2\left(\frac{10000}{250}+\frac{10000}{150}\right)\\ &amp;\approx0.20149 \end{aligned}</script></span></p>
+<p>注意权重是**平方**，且每一项的方差来自对应层、对应组的用户级指标。</p>
+<p><span class="arithmatex"><span class="MathJax_Preview">SE_{\text{post}}=\sqrt{0.20149}\approx0.4489</span><script type="math/tex">SE_{\text{post}}=\sqrt{0.20149}\approx0.4489</script></span></p>
+<p>零效果假设下，大样本近似检验统计量：</p>
+<p><span class="arithmatex"><span class="MathJax_Preview">Z=\frac{0.64}{0.4489}\approx1.43</span><script type="math/tex">Z=\frac{0.64}{0.4489}\approx1.43</script></span></p>
+<p>双侧 95% 置信区间近似为：</p>
+<p><span class="arithmatex"><span class="MathJax_Preview">0.64\pm1.96\times0.4489\approx[-0.24,\ 1.52]</span><script type="math/tex">0.64\pm1.96\times0.4489\approx[-0.24,\ 1.52]</script></span></p>
+<p>该示意结果包含 0，按双侧 5% 水平未达到显著；不等于证明真实效果为 0。收入重尾时还应检查正态近似、极端值对方差的影响及实验平台的实际标准误方法。</p>
+<h3 id="114">11.4 与直接计算比较<a class="headerlink" href="#114" title="Permanent link">#</a></h3>
+<p>使用表中每层人数与人均计算未调整均值：</p>
+<p>$\bar Y_T=\frac{3900\times1.1+850\times11+250\times110}{5000}=8.228 $$$$ \bar Y_C=\frac{4100\times1+750\times10+150\times100}{5000}=5.320 $$$$ \hat\Delta_{\text{直接}}=8.228-5.320=2.908$</p>
+<p>由于实验组高付费用户更多，两组构成不同，因此直接差值和分层差值差异明显；不能仅凭这一次数值就判断哪一个更接近真实效果。利用表内层样本方差、层人数与层均值，按样本方差的合并公式计算整体样本方差，得到实验组约 <span class="arithmatex"><span class="MathJax_Preview">1137.44</span><script type="math/tex">1137.44</script></span>、对照组约 <span class="arithmatex"><span class="MathJax_Preview">658.69</span><script type="math/tex">658.69</script></span>，于是：</p>
+<p><span class="arithmatex"><span class="MathJax_Preview">\widehat{\operatorname{Var}}(\hat\Delta_{\text{直接}}) \approx\frac{1137.44}{5000}+\frac{658.69}{5000}=0.35922</span><script type="math/tex">\widehat{\operatorname{Var}}(\hat\Delta_{\text{直接}}) \approx\frac{1137.44}{5000}+\frac{658.69}{5000}=0.35922</script></span></p>
+<table>
+<thead>
+<tr>
+<th>计算方式</th>
+<th>差值估计</th>
+<th>差值方差估计</th>
+<th>标准误</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>直接比较</td>
+<td>2.908</td>
+<td>0.35922</td>
+<td>约 0.5994</td>
+</tr>
+<tr>
+<td>事后分层</td>
+<td>0.640</td>
+<td>0.20149</td>
+<td>约 0.4489</td>
+</tr>
+</tbody>
+</table>
+<p>本次计算的方差估计下降约 <span class="arithmatex"><span class="MathJax_Preview">1-0.20149/0.35922=43.9\%</span><script type="math/tex">1-0.20149/0.35922=43.9\%</script></span>。这只是**一组示意数据中的单次方差估计比较**，不能替代理论方差降幅，也不能保证其他分流结果同样下降。若要推断到更大总体，或权重估计、流量分配、簇相关等影响标准误，应使用与目标及随机化机制匹配的方差计算。</p>
+<h3 id="115">11.5 最小落地检查<a class="headerlink" href="#115" title="Permanent link">#</a></h3>
+<ul>
+<li>权重使用同一批全部入组用户（或预先定义的目标总体），不是两组分别使用自己的权重。</li>
+<li>层规则在实验前确定；检查缺失层标签和每层两组样本量，空层不能直接计算层内差值。</li>
+<li>用户收入按相同窗口汇总，包含零收入用户；实验组、对照组口径一致。</li>
+<li>绝对差值与相对提升率使用各自匹配的标准误；历史 AA 回放同时检查误报率和置信区间覆盖率。</li>
+</ul>
+<h2 id="12">12. 参考资料<a class="headerlink" href="#12" title="Permanent link">#</a></h2>
+<ul>
+<li>Miratrix, Sekhon &amp; Yu (2013), <a href="https://academic.oup.com/jrsssb/article/75/2/369/7075411">Adjusting treatment effect estimates by post-stratification in randomized experiments</a>：推导随机实验下事后分层与直接均值差的方差，讨论其与事前分层的关系。本文第 6 节是为理解机制而作的简化推导；第 8 节是明确总体抽样假设下的一阶方差分解。</li>
+<li>Pashley &amp; Miratrix (2022), <a href="https://journals.sagepub.com/doi/10.3102/10769986211027240">Block What You Can, Except When You Shouldn’t</a>：讨论不同抽样和分层随机化框架下的方差比较及其条件。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

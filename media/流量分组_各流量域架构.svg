@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="950" viewBox="0 0 1320 950">
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="#555" />
+  </marker>
+  <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.12"/>
+  </filter>
+</defs>
+<rect x="0" y="0" width="1320" height="950" rx="0" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="660.0" y="44.0" font-size="30" font-weight="700" fill="#0b7285" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">流量分组平台：各流量域 / 层 / 桶 / 实验版本关系</text>
+<rect x="500" y="80" width="320" height="62" rx="10" fill="#e7f5ff" stroke="#1c7ed6" stroke-width="2"/>
+<text x="660" y="105.0" font-size="18" font-weight="400" fill="#1c2d3a" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">业务请求</text>
+<text x="660" y="127.5" font-size="18" font-weight="400" fill="#1c2d3a" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">user / device / merchant / query / order</text>
+<rect x="500" y="170" width="320" height="62" rx="10" fill="#e6fcf5" stroke="#099268" stroke-width="2"/>
+<text x="660" y="195.0" font-size="18" font-weight="400" fill="#1c2d3a" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">识别实验单元</text>
+<text x="660" y="217.5" font-size="18" font-weight="400" fill="#1c2d3a" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">选择稳定 Hash key</text>
+<rect x="540" y="270" width="240" height="76" rx="14" fill="#fff4e6" stroke="#f08c00" stroke-width="2"/>
+<text x="660" y="298.0" font-size="19" font-weight="600" fill="#5c3d00" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">Domain Router</text>
+<text x="660" y="321.8" font-size="19" font-weight="600" fill="#5c3d00" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">选择流量域</text>
+<line x1="660" y1="142" x2="660" y2="170" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="660" y1="232" x2="660" y2="270" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="40" y="88" width="340" height="155" rx="10" fill="#f8f0fc" stroke="#9c36b5" stroke-width="2"/>
+<text x="210" y="120.0" font-size="19" font-weight="700" fill="#6f42c1" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">读图顺序</text>
+<text x="70" y="152.0" font-size="16" font-weight="400" fill="#4a1d64" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">1. 先确定实验单元 / Hash key</text>
+<text x="70" y="172.0" font-size="16" font-weight="400" fill="#4a1d64" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">2. 再进入业务 Domain</text>
+<text x="70" y="192.0" font-size="16" font-weight="400" fill="#4a1d64" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">3. Domain 内按 Layer 管互斥 / 正交</text>
+<text x="70" y="212.0" font-size="16" font-weight="400" fill="#4a1d64" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">4. Layer 内切 Bucket、分配实验版本</text>
+<g filter="url(#shadow)">
+<rect x="50" y="390" width="270" height="360" rx="14" fill="#ffffff" stroke="#1971c2" stroke-width="2"/>
+<rect x="65" y="410" width="240" height="48" rx="10" fill="#d0ebff" stroke="#1971c2" stroke-width="2"/>
+<text x="185" y="440.0" font-size="20" font-weight="700" fill="#1971c2" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">Search 搜索域</text>
+<rect x="85" y="480" width="200" height="42" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
+<text x="185" y="506.0" font-size="15" font-weight="400" fill="#495057" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">受众圈选 / 白名单</text>
+<rect x="85" y="545" width="200" height="42" rx="8" fill="#d0ebff" stroke="#1971c2" stroke-width="2"/>
+<text x="185" y="572.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">召回层 Layer 1</text>
+<rect x="85" y="597" width="200" height="42" rx="8" fill="#d0ebff" stroke="#1971c2" stroke-width="2"/>
+<text x="185" y="624.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">排序层 Layer 2</text>
+<rect x="85" y="649" width="200" height="42" rx="8" fill="#d0ebff" stroke="#1971c2" stroke-width="2"/>
+<text x="185" y="676.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">UI展示层 Layer 3</text>
+<rect x="85" y="701" width="200" height="42" rx="8" fill="#d0ebff" stroke="#1971c2" stroke-width="2"/>
+<text x="185" y="728.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">Holdout层 Layer 4</text>
+<rect x="85" y="700" width="200" height="32" rx="8" fill="#f1f3f5" stroke="#868e96" stroke-width="2"/>
+<text x="185" y="721.0" font-size="14" font-weight="400" fill="#495057" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">每层独立 Hash 到桶</text>
+</g>
+<line x1="660" y1="346" x2="185" y2="390" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="185" y1="750" x2="185" y2="800" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<g filter="url(#shadow)">
+<rect x="365" y="390" width="270" height="360" rx="14" fill="#ffffff" stroke="#2b8a3e" stroke-width="2"/>
+<rect x="380" y="410" width="240" height="48" rx="10" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2"/>
+<text x="500" y="440.0" font-size="20" font-weight="700" fill="#2b8a3e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">Feed 推荐域</text>
+<rect x="400" y="480" width="200" height="42" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
+<text x="500" y="506.0" font-size="15" font-weight="400" fill="#495057" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">受众圈选 / 白名单</text>
+<rect x="400" y="545" width="200" height="42" rx="8" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2"/>
+<text x="500" y="572.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">召回/候选层</text>
+<rect x="400" y="597" width="200" height="42" rx="8" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2"/>
+<text x="500" y="624.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">排序/重排层</text>
+<rect x="400" y="649" width="200" height="42" rx="8" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2"/>
+<text x="500" y="676.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">卡片样式层</text>
+<rect x="400" y="701" width="200" height="42" rx="8" fill="#d3f9d8" stroke="#2b8a3e" stroke-width="2"/>
+<text x="500" y="728.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">长期基线层</text>
+<rect x="400" y="700" width="200" height="32" rx="8" fill="#f1f3f5" stroke="#868e96" stroke-width="2"/>
+<text x="500" y="721.0" font-size="14" font-weight="400" fill="#495057" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">每层独立 Hash 到桶</text>
+</g>
+<line x1="660" y1="346" x2="500" y2="390" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="500" y1="750" x2="500" y2="800" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<g filter="url(#shadow)">
+<rect x="680" y="390" width="270" height="360" rx="14" fill="#ffffff" stroke="#e67700" stroke-width="2"/>
+<rect x="695" y="410" width="240" height="48" rx="10" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<text x="815" y="440.0" font-size="20" font-weight="700" fill="#e67700" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">Order 交易域</text>
+<rect x="715" y="480" width="200" height="42" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
+<text x="815" y="506.0" font-size="15" font-weight="400" fill="#495057" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">受众圈选 / 白名单</text>
+<rect x="715" y="545" width="200" height="42" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<text x="815" y="572.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">价格/补贴层</text>
+<rect x="715" y="597" width="200" height="42" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<text x="815" y="624.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">履约策略层</text>
+<rect x="715" y="649" width="200" height="42" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<text x="815" y="676.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">支付风控层</text>
+<rect x="715" y="701" width="200" height="42" rx="8" fill="#fff3bf" stroke="#e67700" stroke-width="2"/>
+<text x="815" y="728.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">高风险隔离层</text>
+<rect x="715" y="700" width="200" height="32" rx="8" fill="#f1f3f5" stroke="#868e96" stroke-width="2"/>
+<text x="815" y="721.0" font-size="14" font-weight="400" fill="#495057" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">每层独立 Hash 到桶</text>
+</g>
+<line x1="660" y1="346" x2="815" y2="390" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="815" y1="750" x2="815" y2="800" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<g filter="url(#shadow)">
+<rect x="995" y="390" width="270" height="360" rx="14" fill="#ffffff" stroke="#c92a2a" stroke-width="2"/>
+<rect x="1010" y="410" width="240" height="48" rx="10" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<text x="1130" y="440.0" font-size="20" font-weight="700" fill="#c92a2a" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">Marketing 营销域</text>
+<rect x="1030" y="480" width="200" height="42" rx="8" fill="#f8f9fa" stroke="#868e96" stroke-width="2"/>
+<text x="1130" y="506.0" font-size="15" font-weight="400" fill="#495057" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">受众圈选 / 白名单</text>
+<rect x="1030" y="545" width="200" height="42" rx="8" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<text x="1130" y="572.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">触达渠道层</text>
+<rect x="1030" y="597" width="200" height="42" rx="8" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<text x="1130" y="624.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">券/补贴层</text>
+<rect x="1030" y="649" width="200" height="42" rx="8" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<text x="1130" y="676.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">频控策略层</text>
+<rect x="1030" y="701" width="200" height="42" rx="8" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<text x="1130" y="728.0" font-size="15" font-weight="400" fill="#1e1e1e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">人群 Holdout</text>
+<rect x="1030" y="700" width="200" height="32" rx="8" fill="#f1f3f5" stroke="#868e96" stroke-width="2"/>
+<text x="1130" y="721.0" font-size="14" font-weight="400" fill="#495057" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">每层独立 Hash 到桶</text>
+</g>
+<line x1="660" y1="346" x2="1130" y2="390" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="1130" y1="750" x2="1130" y2="800" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="285" y="800" width="750" height="62" rx="12" fill="#f8f9fa" stroke="#495057" stroke-width="2"/>
+<text x="660" y="837.0" font-size="19" font-weight="600" fill="#212529" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">Layer 内：桶被实验占用 → 命中 Experiment → 分配 Variant（control / treatment）</text>
+<line x1="660" y1="862" x2="660" y2="895" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="380" y="895" width="560" height="44" rx="10" fill="#fff9db" stroke="#f08c00" stroke-width="2"/>
+<text x="660" y="923.0" font-size="17" font-weight="400" fill="#5f3dc4" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">曝光日志：unit_id + domain + layer + bucket + experiment + variant</text>
+<rect x="80" y="790" width="145" height="78" rx="10" fill="#e7f5ff" stroke="#1c7ed6" stroke-width="2"/>
+<text x="152" y="817.0" font-size="16" font-weight="400" fill="#1864ab" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">同层互斥</text>
+<text x="152" y="837.0" font-size="16" font-weight="400" fill="#1864ab" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">一个桶只给一个实验</text>
+<line x1="225" y1="830" x2="285" y2="830" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1090" y="790" width="170" height="78" rx="10" fill="#e6fcf5" stroke="#099268" stroke-width="2"/>
+<text x="1175" y="817.0" font-size="16" font-weight="400" fill="#087f5b" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">跨层正交</text>
+<text x="1175" y="837.0" font-size="16" font-weight="400" fill="#087f5b" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,PingFang SC,Microsoft YaHei,sans-serif">同一用户可命中多个层实验</text>
+<line x1="1035" y1="830" x2="1090" y2="830" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>
